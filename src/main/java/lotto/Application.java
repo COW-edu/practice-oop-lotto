@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        int price = receivePrice();
 
-        int price = Integer.parseInt(Console.readLine());
         List<Integer> numbers = new ArrayList<>();
         for(int i=0; i<5; i++){
             int number = Integer.parseInt(Console.readLine());
@@ -25,6 +25,19 @@ public class Application {
         }
 
     }
+    private static int receivePrice(){
+        int price = Integer.parseInt(Console.readLine());
+        if(price%1000!=0){
+            throw new IllegalArgumentException();
+        }
+        if(price<0){
+            System.out.println("다시 입력해주세요");
+            price = Integer.parseInt(Console.readLine());
+        }
+        price=price/1000;
+        return price;
+    }
+
     private static List<Integer> create(){
         List<Integer> numbers = new ArrayList<>();
         numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
