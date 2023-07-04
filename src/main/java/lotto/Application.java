@@ -9,17 +9,26 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+
         int price = Integer.parseInt(Console.readLine());
-
         List<Integer> numbers = new ArrayList<>();
-
         for(int i=0; i<5; i++){
             int number = Integer.parseInt(Console.readLine());
             numbers.add(number);
         }
-
         int bonusNum = Integer.parseInt(Console.readLine());
-        
+        Lotto lotto = new Lotto(numbers);
+
+        List<List<Integer>> usernum =new ArrayList<List<Integer>>();
+        for(int i=0; i<price; i++) {
+            usernum.add(create());
+        }
 
     }
+    private static List<Integer> create(){
+        List<Integer> numbers = new ArrayList<>();
+        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers;
+    }
+
 }
