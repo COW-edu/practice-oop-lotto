@@ -14,7 +14,7 @@ public class Application {
         List<Lotto> lottoList = purchase(purchasePrice);
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        int[] winNumbers = getNumber(Console.readLine());
+        int[] winNumbers = getWinNumber(Console.readLine());
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getBonusNumber(Console.readLine());
@@ -38,16 +38,16 @@ public class Application {
         return lottoList;
     }
 
-    private static int[] getNumber(String numbersLine) {
+    private static int[] getWinNumber(String numbersLine) {
         String[] temp = numbersLine.split(",");
         if (temp.length != 6) {
             throw new IllegalArgumentException("[ERROR] 번호 입력이 올바르지 않습니다.");
         }
-        int[] numbers = new int[6];
+        int[] winNumbers = new int[6];
         for (int i = 0; i < temp.length; i++) {
-            numbers[i] = Integer.parseInt(temp[i]);
+            winNumbers[i] = Integer.parseInt(temp[i]);
         }
-        return numbers;
+        return winNumbers;
     }
 
     private static int getBonusNumber(String bonusNumberLine) {
