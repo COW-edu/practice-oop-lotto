@@ -1,5 +1,6 @@
 package lotto;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,12 @@ public class Application {
         System.out.println("구입 금액을 입력해 주세요.");
         int purchasePrice = Integer.parseInt(Console.readLine());
         List<Lotto> lottoList = purchase(purchasePrice);
-        System.out.println("당첨 번호를 입력해 주세요.");
 
         System.out.println("당첨 번호를 입력해 주세요.");
+        int[] winNumbers = getNumber(Console.readLine());
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = getBonusNumber(Console.readLine());
     }
 
     private static List<Lotto> purchase(int purchasePrice) {
