@@ -1,4 +1,4 @@
-package lotto.Message;
+package lotto.message;
 
 public enum ResultMessage {
     THREE_CORRECT(3, "", "5,000"),

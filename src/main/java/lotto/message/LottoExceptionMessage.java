@@ -1,4 +1,4 @@
-package lotto.Message;
+package lotto.message;
 
 public enum LottoExceptionMessage {
     NOT_CORRECT_PURCHASE_AMOUNT("[ERROR] 잘못된 입력값입니다."),

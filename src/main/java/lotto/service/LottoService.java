@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.LottoNumberRepository;
 import lotto.model.LottoResultRepository;
 import lotto.model.WinningLottoNumberRepository;
-import lotto.Message.LottoExceptionMessage;
+import lotto.message.LottoExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;

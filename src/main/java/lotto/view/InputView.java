@@ -1,7 +1,7 @@
 package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Message.InputMessage;
-import lotto.Message.LottoExceptionMessage;
+import lotto.message.InputMessage;
+import lotto.message.LottoExceptionMessage;
 import lotto.controller.LottoController;
 
 import java.util.List;
@@ -12,8 +12,7 @@ public class InputView {
 
     private int isCorrectPurchaseAmount(String money) {
         try {
-            int purchaseAmount = Integer.parseInt(money);
-            return purchaseAmount;
+            return Integer.parseInt(money);
         } catch (Exception e) {
             throw new IllegalArgumentException(LottoExceptionMessage.NOT_CORRECT_PURCHASE_AMOUNT.getMessage());
         }

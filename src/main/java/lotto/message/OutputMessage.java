@@ -1,4 +1,4 @@
-package lotto.Message;
+package lotto.message;
 
 public enum OutputMessage {
     LOTTO_RESULT("%d개 일치%s (%s원) - %d개"),

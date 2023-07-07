@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.Message.InputMessage;
-import lotto.Message.OutputMessage;
-import lotto.Message.ResultMessage;
+import lotto.message.InputMessage;
+import lotto.message.OutputMessage;
+import lotto.message.ResultMessage;
 import lotto.controller.LottoController;
 
 import java.util.List;

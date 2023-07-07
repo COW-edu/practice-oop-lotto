@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.Message.InputMessage;
+import lotto.message.InputMessage;
 import lotto.view.InputView;
-import lotto.Message.LottoExceptionMessage;
-import lotto.Message.OutputMessage;
+import lotto.message.LottoExceptionMessage;
+import lotto.message.OutputMessage;
 import lotto.view.OutputView;
 
 import java.util.HashSet;
