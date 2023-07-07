@@ -1,11 +1,10 @@
 package lotto;
 
-import java.io.Console;
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Random;
-import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
@@ -52,5 +51,9 @@ public class Application {
 
     private static int getBonusNumber(String bonusNumberLine) {
         return Integer.parseInt(bonusNumberLine);
+    }
+
+    private static void statisticsResult() {
+
     }
 }
