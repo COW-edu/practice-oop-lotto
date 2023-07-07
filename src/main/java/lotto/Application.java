@@ -8,10 +8,12 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         System.out.println("구입 금액을 입력해 주세요.");
         int purchasePrice = Integer.parseInt(Console.readLine());
         List<Lotto> lottoList = purchase(purchasePrice);
+        System.out.println("당첨 번호를 입력해 주세요.");
+
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     private static List<Lotto> purchase(int purchasePrice) {
@@ -25,9 +27,26 @@ public class Application {
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
+            lotto.print();
             lottoList.add(lotto);
         }
 
         return lottoList;
+    }
+
+    private static int[] getNumber(String numbersLine) {
+        String[] temp = numbersLine.split(",");
+        if (temp.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 번호 입력이 올바르지 않습니다.");
+        }
+        int[] numbers = new int[6];
+        for (int i = 0; i < temp.length; i++) {
+            numbers[i] = Integer.parseInt(temp[i]);
+        }
+        return numbers;
+    }
+
+    private static int getBonusNumber(String bonusNumberLine) {
+        return Integer.parseInt(bonusNumberLine);
     }
 }
