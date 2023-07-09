@@ -35,7 +35,9 @@ public class Lotto {
             income += result[i]*incomes[i];
         }
         float incomeRate = (float) (1-(income/price));
-        System.out.println("총 수익률은 "+incomeRate*100+"% 입니다.");
+        System.out.print("총 수익률은 ");
+        System.out.printf("%.1f",incomeRate*100);
+        System.out.println("% 입니다.");
     }
 
     private void printResult(int[] result) {
