@@ -5,7 +5,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.ErrorMessage;
 import lotto.controller.Controller;
 
-public class InputView {
+import java.util.List;
+
+public class View {
     public String readString() {
         String res = Console.readLine();
 
@@ -16,7 +18,7 @@ public class InputView {
         return res;
     }
 
-    public int[] getWinNumber() {
+    public List<Integer> getWinNumber() {
         Controller controller = new Controller();
         return controller.handleWinNumber(readString());
     }
