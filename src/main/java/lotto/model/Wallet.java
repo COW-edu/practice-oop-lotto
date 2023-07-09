@@ -43,9 +43,17 @@ public class Wallet {
         this.winResult = winResult;
     }
 
+    public int[] getWinResult() {
+        return winResult;
+    }
+
     public void setProfit(int profit) {
         this.profit = profit;
         profitRate = profit / (double) purchasePrice;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
     }
 
     public void setPurchasePrice(int purchasePrice) {
