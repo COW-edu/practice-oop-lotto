@@ -1,15 +1,26 @@
 package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.LottoController;
 import lotto.message.InputMessage;
 import lotto.message.LottoExceptionMessage;
-import lotto.controller.LottoController;
 
 import java.util.List;
 
 public class InputView {
 
-    private final LottoController lottoController = new LottoController();
+    private final LottoController lottoController;
 
+    public InputView(LottoController lottoController) {
+        this.lottoController = lottoController;
+    }
+
+    public int inputPurchaseAmount() throws IllegalArgumentException {
+        System.out.println(InputMessage.INPUT_PURCHASE_AMOUNT.getMessage());
+        int purchaseAmount = isCorrectPurchaseAmount(Console.readLine());
+        int purchasedLottoCounts = lottoController.checkPurchasedLottoCounts(purchaseAmount);
+        System.out.println();
+        return purchasedLottoCounts;
+    }
     private int isCorrectPurchaseAmount(String money) {
         try {
             return Integer.parseInt(money);
@@ -17,23 +28,16 @@ public class InputView {
             throw new IllegalArgumentException(LottoExceptionMessage.NOT_CORRECT_PURCHASE_AMOUNT.getMessage());
         }
     }
-    public int inputPurchaseAmount(InputMessage message) throws IllegalArgumentException {
-        System.out.println(message.getMessage());
-        int purchaseAmount = isCorrectPurchaseAmount(Console.readLine());
-        int purchasedLottoCounts = lottoController.checkPurchasedLottoCounts(purchaseAmount);
-        System.out.println();
-        return purchasedLottoCounts;
-    }
 
-    public List<Integer> inputWinningNumbers(InputMessage message) throws IllegalArgumentException {
-        System.out.println(message.getMessage());
+    public List<Integer> inputWinningNumbers() throws IllegalArgumentException {
+        System.out.println(InputMessage.INPUT_WIN_LOTTO_NUMBERS.getMessage());
         String winningNumbers = Console.readLine();
         return lottoController.insertWinningLottoNumbers(winningNumbers);
     }
 
-    public List<Integer> inputBonusNumber(InputMessage message) throws IllegalArgumentException {
-        System.out.println(message.getMessage());
+    public void inputBonusNumber() throws IllegalArgumentException {
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());
         int bonusNumber = Integer.parseInt(Console.readLine());
-        return lottoController.insertBonusNumber(bonusNumber);
+        lottoController.insertBonusNumber(bonusNumber);
     }
 }
