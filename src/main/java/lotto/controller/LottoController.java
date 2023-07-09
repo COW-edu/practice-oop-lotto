@@ -1,32 +1,20 @@
 package lotto.controller;
 
-
-import lotto.service.LottoService;
+import lotto.domain.Lotto;
+import lotto.message.ResultMessage;
 
 import java.util.List;
 
-public class LottoController {
+public interface LottoController {
+    int checkPurchasedLottoCounts(int purchaseAmount) throws IllegalArgumentException;
 
-    private final LottoService lottoService = new LottoService();
+    List<Lotto> createLottoList(int purchasedLottoCounts);
 
-    public int checkPurchasedLottoCounts(int purchaseAmount) throws IllegalArgumentException {
-        int oneThousand = 1000;
-        return lottoService.calculatePurchaseAmount(purchaseAmount, oneThousand);
-    }
+    List<Integer> insertWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
 
-    public List<List<Integer>> createLottoList(int purchasedLottoCounts) {
-        return lottoService.createRandomLottoNumbers(purchasedLottoCounts);
-    }
+    void insertBonusNumber(int bonusNumber) throws IllegalArgumentException;
 
-    public List<Integer> insertWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException {
-        return lottoService.saveWinningLottoNumbers(winningNumbers);
-    }
+    int[] countWinningNumber(int purchasedLottoCounts);
 
-    public List<Integer> insertBonusNumber(int bonusNumber) throws IllegalArgumentException {
-        return lottoService.saveBonusNumber(bonusNumber);
-    }
-
-    public int [] countWinningNumber(int purchasedLottoCounts) {
-        return lottoService.countingWinningNumber(purchasedLottoCounts);
-    }
+    double calculateTotalWinningMoney(ResultMessage resultMessage, int[] winningLottoCountList, int correctNumberCount);
 }
