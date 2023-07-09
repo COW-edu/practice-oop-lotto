@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class Lotto {
         }
     }
 
-    void print() {
+    public void print() {
         System.out.println("[" + numbers.toString() + "]");
     }
 }
