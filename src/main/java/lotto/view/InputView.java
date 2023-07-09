@@ -25,8 +25,6 @@ public class InputView {
         return res;
     }
 
-    public
-
     public int[] getWinNumber() {
         String[] temp = readString().split(",");
         if (temp.length != 6) {
