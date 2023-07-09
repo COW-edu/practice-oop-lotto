@@ -13,7 +13,6 @@ public class Application {
         int price = receivePrice();
         System.out.println("로또 개수:"+price);
 
-
         List<Integer> numbers = new ArrayList<>();
         for(int i=0; i<6; i++){
             System.out.println((i+1)+"번째 로또 당첨 번호를 입력해주세요");
@@ -31,6 +30,7 @@ public class Application {
             userNum.add(create());
         }
         System.out.println("발행한 로또 번호입니다\n"+userNum);
+        lotto.compare(userNum);
     }
     private static int receivePrice(){
         int price = Integer.parseInt(Console.readLine());
