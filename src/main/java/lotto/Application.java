@@ -30,7 +30,7 @@ public class Application {
             userNum.add(create());
         }
         System.out.println("발행한 로또 번호입니다\n"+userNum);
-        lotto.compare(userNum,bonusNum);
+        lotto.compare(userNum,bonusNum,price);
     }
     private static int receivePrice(){
         int price = Integer.parseInt(Console.readLine());

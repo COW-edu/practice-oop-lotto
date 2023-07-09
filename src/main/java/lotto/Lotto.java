@@ -16,7 +16,7 @@ public class Lotto {
         }
     }
 
-    public void compare(List<List<Integer>> UserNum,int bonus) {
+    public void compare(List<List<Integer>> UserNum,int bonus,int price) {
         System.out.println("실행중");
         int result[]=new int[5];
         Arrays.fill(result,0);
@@ -25,6 +25,17 @@ public class Lotto {
             result = count(useList,result,bonus);
         }
         printResult(result);
+        income(result,price);
+    }
+
+    private void income(int[] result, int price) {
+        int income=0;
+        int incomes[]= {5000,50000,1500000,30000000,2000000000};
+        for(int i=0; i<result.length; i++){
+            income += result[i]*incomes[i];
+        }
+        float incomeRate = (float) (1-(income/price));
+        System.out.println("총 수익률은 "+incomeRate*100+"% 입니다.");
     }
 
     private void printResult(int[] result) {
