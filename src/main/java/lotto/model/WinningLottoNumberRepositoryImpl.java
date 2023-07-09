@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WinningLottoNumberRepositoryImpl implements WinningLottoNumberRepository {
 
-    private List<Integer> winningLottoNumbersList = new ArrayList<>();
+    private static List<Integer> winningLottoNumbersList = new ArrayList<>();
     private int bonusNumber;
 
     @Override
@@ -14,14 +14,14 @@ public class WinningLottoNumberRepositoryImpl implements WinningLottoNumberRepos
     }
 
     @Override
-    public List<Integer> saveWinningLottoNumbers(List<Integer> winningNumbers) {
-        winningLottoNumbersList = winningNumbers;
-        return winningLottoNumbersList;
+    public void saveBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
     @Override
-    public void saveBonusNumber(int bonusNumber) {
-        this.bonusNumber = bonusNumber;
+    public List<Integer> saveWinningLottoNumbers(List<Integer> winningNumbers) {
+        winningLottoNumbersList = winningNumbers;
+        return winningLottoNumbersList;
     }
 
     @Override
