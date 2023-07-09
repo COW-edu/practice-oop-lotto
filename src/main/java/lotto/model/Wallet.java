@@ -1,28 +1,33 @@
 package lotto.model;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Wallet {
-    Stack<Lotto> lottoStack = new Stack<>();
-    int[] winNumber;
+    List<Lotto> lottoList = new ArrayList<>();
+    List<Integer> winNumber;
     int bonusNumber;
+    int profit;
+    double profitRate;
+
+    // 3, 4, 5, 6, Bonus
+    int[] winResult = {0, 0, 0, 0, 0};
+    int purchasePrice;
+    int purchaseAmount;
 
     public void addLotto(Lotto lotto) {
-        lottoStack.push(lotto);
+        lottoList.add(lotto);
     }
 
-    public Lotto getLotto() {
-        if (lottoStack.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_EMPTY_WALLET.getData());
-        }
-        return lottoStack.pop();
+    public List<Lotto> getLotto() {
+        return lottoList;
     }
 
-    public void setWinNumber(int[] winNumber) {
+    public void setWinNumber(List<Integer> winNumber) {
         this.winNumber = winNumber;
     }
 
-    public int[] getWinNumber() {
+    public List<Integer> getWinNumber() {
         return this.winNumber;
     }
 
@@ -34,7 +39,28 @@ public class Wallet {
         return this.bonusNumber;
     }
 
-    public int getSize() {
-        return lottoStack.size();
+    public void setWinResult(int[] winResult) {
+        this.winResult = winResult;
+    }
+
+    public void setProfit(int profit) {
+        this.profit = profit;
+        profitRate = profit / (double) purchasePrice;
+    }
+
+    public void setPurchasePrice(int purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public void setPurchaseAmount(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }
