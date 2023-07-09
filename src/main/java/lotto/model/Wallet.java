@@ -33,4 +33,8 @@ public class Wallet {
     public int getBonusNumber() {
         return this.bonusNumber;
     }
+
+    public int getSize() {
+        return lottoStack.size();
+    }
 }
