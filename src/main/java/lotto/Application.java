@@ -13,17 +13,17 @@ public class Application {
         int price = receivePrice();
         System.out.println("로또 개수:"+price);
 
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> lottoNumbers = new ArrayList<>();
         for(int i=0; i<6; i++){
             System.out.println((i+1)+"번째 로또 당첨 번호를 입력해주세요");
             int number = Integer.parseInt(Console.readLine());
-            numbers.add(number);
+            lottoNumbers.add(number);
         }
-        System.out.println("로또 당첨 번호는" +numbers+"입니다.");
+        System.out.println("로또 당첨 번호는" +lottoNumbers+"입니다.");
         System.out.println("보너스 당첨 번호를 입력해주세요");
         int bonusNum = Integer.parseInt(Console.readLine());
         System.out.println("보너스 당첨 번호는" +bonusNum+"입니다.");
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = new Lotto(lottoNumbers);
 
         List<List<Integer>> userNum =new ArrayList<>();
         for(int i=0; i<price; i++) {
@@ -35,19 +35,20 @@ public class Application {
     private static int receivePrice(){
         int price = Integer.parseInt(Console.readLine());
         if(price%1000!=0){
-            throw new IllegalArgumentException();
+            try{
+               //empty
+            }catch (IllegalArgumentException e){
+                System.out.println("1000단위로 입력해주세요.");
+            };
         }
         if(price<0){
             System.out.println("다시 입력해주세요");
             price = Integer.parseInt(Console.readLine());
         }
-        price=price/1000;
-        return price;
+        return price/1000;
     }
     private static List<Integer> create(){
-        List<Integer> numbers = new ArrayList<>();
-        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
 }
