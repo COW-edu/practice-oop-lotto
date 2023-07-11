@@ -1,8 +1,7 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
-import lotto.model.ErrorMessage;
-
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -14,6 +13,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_WIN_NUMBER_LENGTH.getData());
+        }
+
+        ArrayList<Integer> numbersChecker = new ArrayList<>();
+        for (int number : numbers) {
+            if (numbersChecker.contains(number)) {
+                throw new IllegalArgumentException(ErrorMessage.ERROR_REPEATED_LOTTO_NUMBER.getData());
+            }
+            numbersChecker.add(number);
         }
     }
 
