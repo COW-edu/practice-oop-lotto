@@ -7,7 +7,7 @@ public class Application {
         Controller controller = new Controller();
         try {
             controller.run();
-        } catch (IllegalAccessError e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
