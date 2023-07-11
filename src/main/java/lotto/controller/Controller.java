@@ -58,7 +58,7 @@ public class Controller {
         view.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
 
         view.print(ViewText.OUTPUT_TOTAL_PROFIT_RATE_HEAD.getData());
-        view.print(wallet.getProfitRate());
+        view.print(wallet.getProfitRate()*100);
         view.println(ViewText.OUTPUT_TOTAL_PROFIT_RATE_TAIL.getData());
     }
     public int convertStringToInteger(String input) {
