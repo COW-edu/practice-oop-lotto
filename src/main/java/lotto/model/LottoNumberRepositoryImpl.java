@@ -7,15 +7,16 @@ import java.util.List;
 
 public class LottoNumberRepositoryImpl implements LottoNumberRepository {
 
-    private final List<Lotto> lottoList = new ArrayList<>();
-    @Override
-    public void saveLottoList(Lotto lotto) {
-        lottoList.add(lotto);
-    }
+  private final List<Lotto> lottoList = new ArrayList<>();
 
-    @Override
-    public List<Lotto> findLottoList() {
-        return lottoList;
-    }
+  @Override
+  public void saveLottoList(Lotto lotto) {
+    lottoList.add(lotto);
+  }
+
+  @Override
+  public List<Lotto> findLottoList() {
+    return lottoList;
+  }
 
 }

@@ -27,18 +27,21 @@ public class Lotto {
         validateDuplicate(numbers);
         validateInOneToFortyFive(numbers);
     }
+
     private void validateNotEnoughSize(List<Integer> numbers) {
         int LOTTO_SIZE= 6;
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(LottoExceptionMessage.IS_NOT_ENOUGH_LOTTO_NUMBER.getMessage());
         }
     }
+
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
         if (numbersSet.size() != numbers.size()) {
             throw new IllegalArgumentException(LottoExceptionMessage.IS_DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
+
     private void validateInOneToFortyFive(List<Integer> numbers) {
         int START_INCLUSIVE = 1;
         int END_INCLUSIVE = 45;

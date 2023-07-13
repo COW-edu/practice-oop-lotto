@@ -15,35 +15,35 @@ import lotto.view.OutputView;
 
 public class AppConfig {
 
-    public LottoService lottoService() {
-        return new LottoServiceImpl(
-                lottoNumberRepository(),
-                winningLottoNumberRepository(),
-                lottoResultRepository());
-    }
+  public InputView inputView() {
+    return new InputView(lottoController());
+  }
 
-    public InputView inputView() {
-        return new InputView(lottoController());
-    }
+  public OutputView outputView() {
+    return new OutputView(lottoController());
+  }
 
-    public OutputView outputView() {
-        return new OutputView(lottoController());
-    }
+  public LottoController lottoController() {
+    return new LottoControllerImpl(lottoService());
+  }
 
-    public LottoController lottoController() {
-        return new LottoControllerImpl(lottoService());
-    }
+  public LottoService lottoService() {
+    return new LottoServiceImpl(
+        lottoNumberRepository(),
+        winningLottoNumberRepository(),
+        lottoResultRepository());
+  }
 
-    public LottoNumberRepository lottoNumberRepository() {
-        return new LottoNumberRepositoryImpl();
-    }
+  public LottoNumberRepository lottoNumberRepository() {
+    return new LottoNumberRepositoryImpl();
+  }
 
-    public WinningLottoNumberRepository winningLottoNumberRepository() {
-        return new WinningLottoNumberRepositoryImpl();
-    }
+  public WinningLottoNumberRepository winningLottoNumberRepository() {
+    return new WinningLottoNumberRepositoryImpl();
+  }
 
-    public LottoResultRepository lottoResultRepository() {
-        return new LottoResultRepositoryImpl();
-    }
+  public LottoResultRepository lottoResultRepository() {
+    return new LottoResultRepositoryImpl();
+  }
 
 }
