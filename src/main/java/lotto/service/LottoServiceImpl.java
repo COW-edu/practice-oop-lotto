@@ -1,15 +1,15 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.model.LottoNumberRepository;
 import lotto.model.LottoResultRepository;
 import lotto.model.WinningLottoNumberRepository;
 import lotto.message.LottoExceptionMessage;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class LottoServiceImpl implements LottoService {
 
@@ -58,14 +58,11 @@ public class LottoServiceImpl implements LottoService {
   @Override
   public List<Integer> saveWinningLottoNumbers(String winningNumbers)
       throws IllegalArgumentException {
-    StringTokenizer stringTokenizer = new StringTokenizer(winningNumbers, ",");
-    List<Integer> integerWinningNumber = new ArrayList<>();
-    while (stringTokenizer.hasMoreTokens()) {
-      int integerLottoNumber = Integer.parseInt(stringTokenizer.nextToken());
-      isInOneToFortyFive(integerLottoNumber);
-      integerWinningNumber.add(integerLottoNumber);
-    }
-    return winningLottoNumberRepository.saveWinningLottoNumbers(integerWinningNumber);
+      return winningLottoNumberRepository.saveWinningLottoNumbers(
+          Arrays.stream(winningNumbers.split(","))
+          .map(String::trim)
+          .map(Integer::parseInt)
+          .collect(Collectors.toList()));
   }
 
   @Override
