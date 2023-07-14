@@ -1,11 +1,9 @@
-package VLotto;
+package view;
 
-import MLotto.LottosData;
-import MLotto.WinData;
+import model.LottosData;
+import model.WinData;
 
-import java.util.Map;
-
-import static MLotto.WinData.WinLottoCount.*;
+import static model.WinData.WinLottoCount.*;
 
 public class InputResult {
     private LottosData lottsData;

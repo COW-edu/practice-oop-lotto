@@ -1,33 +1,40 @@
-package CLotto;
-import MLotto.Lotto;
-import MLotto.LottosData;
-import MLotto.WinData;
-import VLotto.InputResult;
-import VLotto.RequestText;
+package controller;
+import model.Lotto;
+import model.LottosData;
+import model.WinData;
+import view.InputResult;
+import view.RequestText;
 import camp.nextstep.edu.missionutils.Console;
-import forException.CheckedException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoInfoInput {
+public class LottoController {
     RequestText requestText;
     InputResult inputResult;
     LottosData lottosData;
     WinData winData;
     LottoWinChecked lottoWinChecked;
     LottoWinResult lottoWinResult;
-//    CheckedException checkedException;
-    public LottoInfoInput(){
-        lottosData = new LottosData();
-        winData= new WinData();
-        requestText = new RequestText();
-        inputResult = new InputResult(lottosData,winData);
-        lottoWinChecked = new LottoWinChecked(lottosData,winData);
-        lottoWinResult = new LottoWinResult(lottosData,winData);
-//        checkedException= new CheckedException(lottosData,winData);
+
+    public LottoController(RequestText requestText, InputResult inputResult, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
+        this.requestText = requestText;
+        this.inputResult = inputResult;
+        this.lottosData = lottosData;
+        this.winData = winData;
+        this.lottoWinChecked = lottoWinChecked;
+        this.lottoWinResult=lottoWinResult;
     }
-    public void inputMoney(){
+
+    public void lottoRun(){
+        inputMoney();
+        inputWinLottoNum();
+        inputBonusLottoNum();
+        totalWinChecked();
+        profitRateCheck();
+    }
+
+    private void inputMoney(){
         requestText.moneyRequest();
         String stinputMoney = Console.readLine();
         int inputMoney = Integer.parseInt(stinputMoney);
@@ -35,7 +42,7 @@ public class LottoInfoInput {
         inputResult.lottoNumResult();
     }
 
-    public void inputWinLottoNum() {
+    private void inputWinLottoNum() {
         requestText.winLottoNumRequest();
         String inputWinLottoNum = Console.readLine();
         String[] stWinLottoNums = inputWinLottoNum.split(",");
@@ -53,7 +60,7 @@ public class LottoInfoInput {
         }
         return winlottonums;
     }
-    public void inputBonusLottoNum() {
+    private void inputBonusLottoNum() {
         requestText.bonusLottoNumRequest();
         String inputBonusLottoNum = Console.readLine();
         int bonusNum =Integer.parseInt(inputBonusLottoNum);
@@ -61,13 +68,13 @@ public class LottoInfoInput {
         lottoWinChecked.checkedBonusLottoNums();
         winData.setBonusCounts(lottoWinChecked.getBonusCounts());
     }
-    public void totalWinChecked(){
+    private void totalWinChecked(){
         lottoWinResult.totalWinCounted(winData);
         winData.setWinCountResult(lottoWinResult.getWinCountTemp());
         inputResult.goalResult();
     }
 
-    public void profitRateCheck() {
+    private void profitRateCheck() {
         lottoWinResult.profitRateCal();
         winData.setProfitRateSecondPoint(lottoWinResult.getProfitRateSecondPoint());
         inputResult.profitRateResult();

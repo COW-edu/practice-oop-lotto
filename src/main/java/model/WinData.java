@@ -1,4 +1,4 @@
-package MLotto;
+package model;
 
 import java.util.Map;
 

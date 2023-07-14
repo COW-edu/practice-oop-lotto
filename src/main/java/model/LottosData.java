@@ -1,4 +1,4 @@
-package MLotto;
+package model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

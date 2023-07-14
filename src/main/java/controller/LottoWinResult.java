@@ -1,7 +1,7 @@
-package CLotto;
+package controller;
 
-import MLotto.LottosData;
-import MLotto.WinData;
+import model.LottosData;
+import model.WinData;
 import java.util.HashMap;
 import java.util.Map;
 

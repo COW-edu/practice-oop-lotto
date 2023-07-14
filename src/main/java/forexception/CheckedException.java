@@ -1,7 +1,7 @@
-package forException;
+package forexception;
 
-import MLotto.LottosData;
-import MLotto.WinData;
+import model.LottosData;
+import model.WinData;
 
 public class CheckedException {
     private LottosData lottosData;

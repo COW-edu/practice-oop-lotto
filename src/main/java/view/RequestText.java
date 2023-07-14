@@ -1,4 +1,4 @@
-package VLotto;
+package view;
 
 public class RequestText {
     public void moneyRequest(){

@@ -1,9 +1,8 @@
 package lotto;
 
-import MLotto.Lotto;
+import model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
-package CLotto;
+package controller;
 
-import MLotto.Lotto;
-import MLotto.LottosData;
-import MLotto.WinData;
+import model.LottosData;
+import model.WinData;
 
 import java.util.*;
 

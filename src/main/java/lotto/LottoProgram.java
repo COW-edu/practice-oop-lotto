@@ -1,14 +1,12 @@
 package lotto;
 
-import CLotto.LottoInfoInput;
+import controller.LottoController;
 
 public class LottoProgram {
     public void lottoStart(){
-        LottoInfoInput lottoinfoinput = new LottoInfoInput();
-        lottoinfoinput.inputMoney();
-        lottoinfoinput.inputWinLottoNum();
-        lottoinfoinput.inputBonusLottoNum();
-        lottoinfoinput.totalWinChecked();
-        lottoinfoinput.profitRateCheck();
+        LottoAppConfig lottoAppConfig = new LottoAppConfig();
+        LottoController lottoController = lottoAppConfig.LottoController();
+        lottoController.lottoRun();
+
     }
 }
