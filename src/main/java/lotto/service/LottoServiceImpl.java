@@ -25,10 +25,10 @@ public class LottoServiceImpl implements LottoService {
     this.lottoResultRepository = lottoResultRepository;
   }
 
-  private final int START_INCLUSIVE = 1;
-  private final int END_INCLUSIVE = 45;
-  private final int LOTTO_COUNT = 6;
-  private final int LOTTO_COUNT_MINUS_ONE = 5;
+  private static final int START_INCLUSIVE = 1;
+  private static final int END_INCLUSIVE = 45;
+  private static final int LOTTO_COUNT = 6;
+  private static final int LOTTO_COUNT_MINUS_ONE = 5;
 
   @Override
   public int calculatePurchaseAmount(int purchaseAmount, int oneThousand)
