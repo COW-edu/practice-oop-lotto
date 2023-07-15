@@ -5,7 +5,6 @@ import lotto.domain.Lotto;
 import lotto.model.LottoNumberRepository;
 import lotto.model.LottoResultRepository;
 import lotto.model.WinningLottoNumberRepository;
-import lotto.message.LottoExceptionMessage;
 
 import java.util.List;
 
@@ -30,14 +29,6 @@ public class LottoServiceImpl implements LottoService {
   @Override
   public int calculatePurchaseAmount(int purchaseAmount, int oneThousand)
       throws IllegalArgumentException {
-    boolean isNotDivided1000 = (purchaseAmount % oneThousand != 0);
-    boolean isUnder1000 = (purchaseAmount < oneThousand);
-    if (isUnder1000) {
-      throw new IllegalArgumentException(LottoExceptionMessage.UNDER_1000.getMessage());
-    }
-    if (isNotDivided1000) {
-      throw new IllegalArgumentException(LottoExceptionMessage.IS_NOT_DIVIDED_1000.getMessage());
-    }
     return purchaseAmount / oneThousand;
   }
 
