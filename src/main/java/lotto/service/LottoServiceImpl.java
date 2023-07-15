@@ -28,7 +28,6 @@ public class LottoServiceImpl implements LottoService {
   private static final int START_INCLUSIVE = 1;
   private static final int END_INCLUSIVE = 45;
   private static final int LOTTO_COUNT = 6;
-  private static final int LOTTO_COUNT_MINUS_ONE = 5;
 
   @Override
   public int calculatePurchaseAmount(int purchaseAmount, int oneThousand)
@@ -68,23 +67,24 @@ public class LottoServiceImpl implements LottoService {
   @Override
   public void saveBonusNumber(int bonusNumber) throws IllegalArgumentException {
     winningLottoNumberRepository.saveBonusNumber(bonusNumber);
-    isInOneToFortyFive(bonusNumber);
+    isCorrectRange(bonusNumber);
   }
 
-  private void isInOneToFortyFive(int integerLottoNumber) throws IllegalArgumentException {
+  private void isCorrectRange(int integerLottoNumber) throws IllegalArgumentException {
     if (integerLottoNumber < START_INCLUSIVE || integerLottoNumber > END_INCLUSIVE) {
-      throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBER_IN_1_45.getMessage());
+      throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_INCORRECT_RANGE.getMessage());
     }
   }
 
   @Override
   public int[] countingWinningNumber(int purchasedLottoCounts) {
     List<Lotto> myLottoList = lottoNumberRepository.findLottoList();
-    List<Integer> winningLottoNumbersList = winningLottoNumberRepository.findWinningLottoNumbersList();
+    List<Integer> winningLottoList = winningLottoNumberRepository.findWinningLottoNumbersList();
     Lotto currentLottoList;
     for (int lottoIndex = 0; lottoIndex < purchasedLottoCounts; lottoIndex++) {
       currentLottoList = myLottoList.get(lottoIndex);
-      int winningCount = calculateWinningCount(currentLottoList, winningLottoNumbersList);
+      int bonusNumber = winningLottoNumberRepository.getBonusNumber();
+      int winningCount = currentLottoList.calculateWinningCount(winningLottoList, bonusNumber);
       lottoResultRepository.saveLottoResult(winningCount);
     }
     return lottoResultRepository.findLottoResult();
