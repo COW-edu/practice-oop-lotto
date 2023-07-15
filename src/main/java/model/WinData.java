@@ -8,11 +8,11 @@ public class WinData {
     private boolean[] bonusCounts;
     private double profitRateSecondPoint;
     private Lotto winLotto;
-    private int bonusNum;
+    private int bonusNumber;
 
     public void setWinLotto(Lotto winLotto) {this.winLotto = winLotto;}
 
-    public void setBonusNum(int bonusNum) {this.bonusNum = bonusNum;}
+    public void setBonusNumber(int bonusNumber) {this.bonusNumber = bonusNumber;}
 
     public void setEqualCounts(int[] equalCounts) {
         this.equalCounts = equalCounts;
@@ -28,7 +28,7 @@ public class WinData {
 
     public Lotto getWinLotto() {return winLotto;}
 
-    public int getBonusNum() {return bonusNum;}
+    public int getBonusNumber() {return bonusNumber;}
 
     public int[] getEqualCounts() {return equalCounts;}
 

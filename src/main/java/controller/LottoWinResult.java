@@ -29,8 +29,8 @@ public class LottoWinResult {
     public void totalWinCounted(WinData winData){
         winCountTemp = new HashMap<>();
         for(WinLottoCount wincount : WinLottoCount.values()){
-            double winNum =Double.parseDouble(wincount.getCount());
-            winCountTemp.put(wincount.getCount(),countWin(winNum));
+            double winNumber =Double.parseDouble(wincount.getCount());
+            winCountTemp.put(wincount.getCount(),countWin(winNumber));
         }
     }
 
@@ -44,16 +44,16 @@ public class LottoWinResult {
         return profitTemp;
     }
 
-    private int countWin(double winNum){
+    private int countWin(double winNumber){
         int count=0;
-        boolean isInteger = (winNum%1==0);
+        boolean isInteger = (winNumber%1==0);
         for(int i = 0; i< lottosData.getCountOfLotto(); i++){
-            if(!isInteger&&winData.getEqualCounts()[i]==(int)winNum&&winData.getBonusCounts()[i]){
+            if(!isInteger&&winData.getEqualCounts()[i]==(int)winNumber&&winData.getBonusCounts()[i]){
                 count++;
                 continue;
             }
-            if(isInteger&&winData.getEqualCounts()[i]==winNum&&winData.getBonusCounts()[i])continue;
-            if(winData.getEqualCounts()[i]==winNum){
+            if(isInteger&&winData.getEqualCounts()[i]==winNumber&&winData.getBonusCounts()[i])continue;
+            if(winData.getEqualCounts()[i]==winNumber){
                 count++;
             }
         }

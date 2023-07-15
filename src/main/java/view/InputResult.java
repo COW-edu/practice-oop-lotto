@@ -14,7 +14,7 @@ public class InputResult {
         this.winData = winData;
     }
 
-    public void lottoNumResult() {
+    public void lottoNumberResult() {
         System.out.println("\n"+lottsData.getCountOfLotto()+"개를 구매했습니다.");
         System.out.println(lottsData.getLottosResult());
     }

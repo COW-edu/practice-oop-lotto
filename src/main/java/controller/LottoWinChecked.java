@@ -19,21 +19,21 @@ public class LottoWinChecked {
 
     public boolean[] getBonusCounts() {return bonusCounts;}
 
-    public void checkedWinLottoNums() {
+    public void checkedWinLottoNumbers() {
         equalCounts= findEqualCount(winData.getWinLotto().getNumbers());
     }
 
-    public void checkedBonusLottoNums(){
-        bonusCounts = checkBonusCount(winData.getBonusNum());
+    public void checkedBonusLottoNumbers(){
+        bonusCounts = checkBonusCount(winData.getBonusNumber());
     }
 
-    private boolean[] checkBonusCount(int bonusNum) {
+    private boolean[] checkBonusCount(int bonusNumber) {
         boolean[] checkBonus = new boolean[lottosData.getCountOfLotto()];
         for(int i=0; i<lottosData.getCountOfLotto(); i++){
-            List<Integer> numsOfLotto= lottosData.getLottos().get(i).getNumbers();
-            Set<Integer> lottoNumsTemp = new HashSet<>();
-            lottoNumsTemp.addAll(numsOfLotto);
-            if(lottoNumsTemp.contains(bonusNum)){
+            List<Integer> numbersOfLotto= lottosData.getLottos().get(i).getNumbers();
+            Set<Integer> lottoNumbersTemp = new HashSet<>();
+            lottoNumbersTemp.addAll(numbersOfLotto);
+            if(lottoNumbersTemp.contains(bonusNumber)){
                 checkBonus[i]=true;
                 continue;
             }
@@ -42,9 +42,9 @@ public class LottoWinChecked {
         return checkBonus;
     }
 
-    private int[] findEqualCount(List<Integer> winLottoNums) {
+    private int[] findEqualCount(List<Integer> winLottoNumbers) {
         Set<Integer> winlottoCheckTemp = new HashSet<>();
-        winlottoCheckTemp.addAll(winLottoNums);
+        winlottoCheckTemp.addAll(winLottoNumbers);
         int[] equalCounts = new int[lottosData.getCountOfLotto()];
         int count =0;
         return findEqualCount(count,winlottoCheckTemp,equalCounts);
@@ -54,9 +54,9 @@ public class LottoWinChecked {
         if(count>=lottosData.getCountOfLotto()){
             return equalCounts;
         }
-        List<Integer> lottoNums = lottosData.getLottos().get(count).getNumbers();
-        for(int j=0; j<lottosData.getCOUNTOFLOTTONUM(); j++){
-            if(winlottoCheckTemp.contains(lottoNums.get(j))){
+        List<Integer> lottoNumbers = lottosData.getLottos().get(count).getNumbers();
+        for(int j=0; j<lottosData.getCOUNT_OF_LOTTO_NUMBER(); j++){
+            if(winlottoCheckTemp.contains(lottoNumbers.get(j))){
                 equalCounts[count]++;
             }
         }

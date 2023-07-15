@@ -6,27 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottosData {
-    private final int COUNTOFLOTTONUM =6;
-    private final int LOTTOPRICE=1000;
-    private final int STARTLOTTONUM =1;
-    private final int ENDLOTTONUM = 45;
+    private final int COUNT_OF_LOTTO_NUMBER =6;
+    private final int LOTTO_PRICE =1000;
+    private final int START_LOTTO_NUMBER =1;
+    private final int END_LOTTO_NUMBER = 45;
     private int useMoney;
     private int countOflotto;
     private Lotto lotto;
     private ArrayList<Lotto> lottos;
     private String lottosResult;
 
-    public int getCOUNTOFLOTTONUM() {
-        return COUNTOFLOTTONUM;
+    public int getCOUNT_OF_LOTTO_NUMBER() {
+        return COUNT_OF_LOTTO_NUMBER;
     }
-    public int getLOTTOPRICE() {
-        return LOTTOPRICE;
+    public int getLOTTO_PRICE() {
+        return LOTTO_PRICE;
     }
-    public int getSTARTLOTTONUM() {
-        return STARTLOTTONUM;
+    public int getSTART_LOTTO_NUMBER() {
+        return START_LOTTO_NUMBER;
     }
-    public int getENDLOTTONUM() {
-        return ENDLOTTONUM;
+    public int getEND_LOTTO_NUMBER() {
+        return END_LOTTO_NUMBER;
     }
     public int getCountOfLotto(){
         return this.countOflotto;
@@ -41,11 +41,13 @@ public class LottosData {
     public void makeLottoData(int lottoMoney){
         useMoney=lottoMoney;
         lottos=getLottoListTemp();
-        countOflotto = useMoney/LOTTOPRICE;
+        countOflotto = useMoney/ LOTTO_PRICE;
          lottosResult ="";
         for(int i=0; i<countOflotto; i++){
-            List<Integer> lottoNums =Randoms.pickUniqueNumbersInRange(STARTLOTTONUM,ENDLOTTONUM,COUNTOFLOTTONUM);
-            lotto = new Lotto(lottoNums);
+            List<Integer> lottoNumbers =Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER,
+                END_LOTTO_NUMBER,
+                COUNT_OF_LOTTO_NUMBER);
+            lotto = new Lotto(lottoNumbers);
             lottosResult += lotto.toString() +"\n";
             lottos.add(lotto);
         }
