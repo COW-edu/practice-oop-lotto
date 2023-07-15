@@ -29,11 +29,11 @@ public class Lotto {
     return Collections.unmodifiableList(numbers);
   }
 
-    private void validate(List<Integer> numbers) {
-        validateNotEnoughSize(numbers);
-        validateDuplicate(numbers);
-        validateInOneToFortyFive(numbers);
-    }
+  private void validate(List<Integer> numbers) {
+    validateNotEnoughSize(numbers);
+    validateDuplicate(numbers);
+    validateCorrectRange(numbers);
+  }
 
     private void validateNotEnoughSize(List<Integer> numbers) {
         int LOTTO_SIZE= 6;
@@ -49,13 +49,30 @@ public class Lotto {
         }
     }
 
-    private void validateInOneToFortyFive(List<Integer> numbers) {
-        int START_INCLUSIVE = 1;
-        int END_INCLUSIVE = 45;
-        for (int number : numbers) {
-            if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
-                throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBER_IN_1_45.getMessage());
-            }
-        }
+  private void isCorrectRange(int number) {
+    if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
+      throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_INCORRECT_RANGE.getMessage());
     }
+  }
+
+  private void validateCorrectRange(List<Integer> numbers) {
+    numbers.stream()
+        .forEach(this::isCorrectRange);
+  }
+
+  public int calculateWinningCount(List<Integer> winningLottoNumbersList, int bonusNumber) {
+    int winningCount = 0;
+    for (int LottoNumber : winningLottoNumbersList) {
+      if (numbers.contains(LottoNumber)) {
+        winningCount++;
+      }
+    }
+    boolean isBonus = numbers.contains(bonusNumber);
+    boolean checkingRank =
+        (winningCount == LOTTO_SIZE) || (winningCount == LOTTO_RANK_5 && isBonus);
+    if (checkingRank) {
+      winningCount++;
+    }
+    return winningCount;
+  }
 }
