@@ -11,7 +11,7 @@ public class LottosData {
     private final int START_LOTTO_NUMBER =1;
     private final int END_LOTTO_NUMBER = 45;
     private int useMoney;
-    private int countOflotto;
+    private int countOfLotto;
     private Lotto lotto;
     private ArrayList<Lotto> lottos;
     private String lottosResult;
@@ -29,7 +29,7 @@ public class LottosData {
         return END_LOTTO_NUMBER;
     }
     public int getCountOfLotto(){
-        return this.countOflotto;
+        return this.countOfLotto;
     }
     public ArrayList<Lotto> getLottos(){
         return this.lottos;
@@ -41,9 +41,9 @@ public class LottosData {
     public void makeLottoData(int lottoMoney){
         useMoney=lottoMoney;
         lottos=getLottoListTemp();
-        countOflotto = useMoney/ LOTTO_PRICE;
+        countOfLotto = useMoney/ LOTTO_PRICE;
          lottosResult ="";
-        for(int i=0; i<countOflotto; i++){
+        for(int i=0; i< countOfLotto; i++){
             List<Integer> lottoNumbers =Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER,
                 END_LOTTO_NUMBER,
                 COUNT_OF_LOTTO_NUMBER);

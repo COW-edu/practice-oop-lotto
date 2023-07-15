@@ -6,7 +6,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers)  {
-            validate(numbers);
+        validate(numbers);
         this.numbers = numbers;
     }
 
@@ -31,8 +31,7 @@ public class Lotto {
     }
 
     private void checkExactLottoNum(List<Integer> numbers) {
-        for(int i=0; i< numbers.size(); i++){
-            int number = numbers.get(i);
+        for(int number : numbers){
             if(number<1||number>45){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45내의 범위여야만 합니다.");
             }

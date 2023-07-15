@@ -3,7 +3,6 @@ import message.RequestMessage;
 import model.Lotto;
 import model.LottosData;
 import model.WinData;
-import view.InputResult;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
@@ -12,15 +11,13 @@ import view.output.Output;
 
 public class LottoController {
     private final Output output;
-    private final InputResult inputResult;
     private final LottosData lottosData;
     private final WinData winData;
     private final LottoWinChecked lottoWinChecked;
     private final LottoWinResult lottoWinResult;
 
-    public LottoController(Output output, InputResult inputResult, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
+    public LottoController(Output output, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
         this.output = output;
-        this.inputResult = inputResult;
         this.lottosData = lottosData;
         this.winData = winData;
         this.lottoWinChecked = lottoWinChecked;
@@ -39,7 +36,7 @@ public class LottoController {
         output.outPutMessage(RequestMessage.BUY_INPUT_MONEY);
         String inputMoney = Console.readLine();
         lottosData.makeLottoData(Integer.parseInt(inputMoney));
-        inputResult.lottoNumberResult();
+        output.outPutBuyLotto(lottosData);
     }
 
     private void inputWinLottoNumber() {
@@ -73,12 +70,11 @@ public class LottoController {
     private void totalWinChecked(){
         lottoWinResult.totalWinCounted(winData);
         winData.setWinCountResult(lottoWinResult.getWinCountTemp());
-        inputResult.goalResult();
     }
 
     private void profitRateCheck() {
         lottoWinResult.profitRateCalculate();
         winData.setProfitRateSecondPoint(lottoWinResult.getProfitRateSecondPoint());
-        inputResult.profitRateResult();
+        output.outPutLottoResult(winData);
     }
 }
