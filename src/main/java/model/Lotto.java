@@ -11,9 +11,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호 개수는 6개여야만 합니다.");
-        }
+        checkCountLottoNum(numbers);
         checkExactLottoNum(numbers);
     }
     // TODO: 추가 기능 구현
@@ -24,6 +22,12 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private void checkCountLottoNum(List<Integer> numbers){
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호 개수는 6개여야만 합니다.");
+        }
     }
 
     private void checkExactLottoNum(List<Integer> numbers) {
