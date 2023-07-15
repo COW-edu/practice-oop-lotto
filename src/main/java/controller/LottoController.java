@@ -77,7 +77,7 @@ public class LottoController {
     }
 
     private void profitRateCheck() {
-        lottoWinResult.profitRateCal();
+        lottoWinResult.profitRateCalculate();
         winData.setProfitRateSecondPoint(lottoWinResult.getProfitRateSecondPoint());
         inputResult.profitRateResult();
     }

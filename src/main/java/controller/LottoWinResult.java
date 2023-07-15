@@ -18,7 +18,7 @@ public class LottoWinResult {
 
     public Map<String, Integer> getWinCountTemp() {return winCountTemp;}
 
-    public void profitRateCal(){
+    public void profitRateCalculate(){
         long profit = profitCalculate();
         long useMoney = lottosData.getUseMoney();
         double profitRate = ((double) profit /useMoney)*1000.0;
