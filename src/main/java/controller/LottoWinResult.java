@@ -4,6 +4,7 @@ import model.LottosData;
 import model.WinData;
 import java.util.HashMap;
 import java.util.Map;
+import model.WinLottoCount;
 
 public class LottoWinResult {
     private final LottosData lottosData;
@@ -27,7 +28,7 @@ public class LottoWinResult {
 
     public void totalWinCounted(WinData winData){
         winCountTemp = new HashMap<>();
-        for(WinData.WinLottoCount wincount : WinData.WinLottoCount.values()){
+        for(WinLottoCount wincount : WinLottoCount.values()){
             double winNum =Double.parseDouble(wincount.getCount());
             winCountTemp.put(wincount.getCount(),countWin(winNum));
         }
@@ -35,7 +36,7 @@ public class LottoWinResult {
 
     private long profitCalculate() {
         long profitTemp =0;
-        for(WinData.WinLottoCount wincountdata : WinData.WinLottoCount.values()){
+        for(WinLottoCount wincountdata : WinLottoCount.values()){
             long winningPrice =wincountdata.getLottoWinningPrice();
             long winningCount = winData.getWinCountResult().get(wincountdata.getCount());
             profitTemp += winningPrice*winningCount;
