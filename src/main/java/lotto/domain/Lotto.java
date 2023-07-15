@@ -11,16 +11,23 @@ import java.util.Set;
 
 
 public class Lotto {
-    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = new ArrayList<>(numbers);
-    }
+  private final List<Integer> numbers;
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
+  public Lotto(List<Integer> numbers) {
+    validate(numbers);
+    this.numbers = new ArrayList<>(numbers);
+  }
+
+  private static final int LOTTO_SIZE = 6;
+  private static final int START_INCLUSIVE = 1;
+  private static final int END_INCLUSIVE = 45;
+  private static final int LOTTO_RANK_5 = 5;
+
+
+  public List<Integer> getNumbers() {
+    return Collections.unmodifiableList(numbers);
+  }
 
     private void validate(List<Integer> numbers) {
         validateNotEnoughSize(numbers);
