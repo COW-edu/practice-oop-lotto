@@ -42,6 +42,7 @@ public class LottoWinResult {
             winCountTemp.put(wincount.getCount(),countWin(winNum));
         }
     }
+
     private int countWin(double winNum){
         int count=0;
         boolean isInteger = (winNum%1==0);

@@ -17,6 +17,7 @@ public class LottoWinChecked {
     public int[] getEqualCounts() {return equalCounts;}
 
     public boolean[] getBonusCounts() {return bonusCounts;}
+
     public void checkedWinLottoNums() {
         equalCounts= findEqualCount(winData.getWinLotto().getNumbers());
     }
@@ -24,6 +25,7 @@ public class LottoWinChecked {
     public void checkedBonusLottoNums(){
         bonusCounts = checkBonusCount(winData.getBonusNum());
     }
+
     private boolean[] checkBonusCount(int bonusNum) {
         boolean[] checkBonus = new boolean[lottosData.getCountOfLotto()];
         for(int i=0; i<lottosData.getCountOfLotto(); i++){
@@ -38,6 +40,7 @@ public class LottoWinChecked {
         }
         return checkBonus;
     }
+
     private int[] findEqualCount(List<Integer> winLottoNums) {
         Set<Integer> winlottoCheckTemp = new HashSet<>();
         winlottoCheckTemp.addAll(winLottoNums);

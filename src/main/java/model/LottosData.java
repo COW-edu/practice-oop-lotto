@@ -19,15 +19,12 @@ public class LottosData {
     public int getCOUNTOFLOTTONUM() {
         return COUNTOFLOTTONUM;
     }
-
     public int getLOTTOPRICE() {
         return LOTTOPRICE;
     }
-
     public int getSTARTLOTTONUM() {
         return STARTLOTTONUM;
     }
-
     public int getENDLOTTONUM() {
         return ENDLOTTONUM;
     }

@@ -25,6 +25,7 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
     private void checkExactLottoNum(List<Integer> numbers) {
         for(int i=0; i< numbers.size(); i++){
             int number = numbers.get(i);

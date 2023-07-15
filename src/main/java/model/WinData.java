@@ -20,7 +20,6 @@ public class WinData {
             return this.count;
         }
         public int getLottoWinningPrice(){return this.lottoWinningPrice;}
-
     }
     private Map<String, Integer> winCountResult;
     private int[] equalCounts;
@@ -41,9 +40,7 @@ public class WinData {
         this.bonusCounts = bonusCounts;
     }
 
-    public void setWinCountResult(Map<String, Integer> winCountResult) {
-        this.winCountResult = winCountResult;
-    }
+    public void setWinCountResult(Map<String, Integer> winCountResult) {this.winCountResult = winCountResult;}
 
     public void setProfitRateSecondPoint(double profitRateSecondPoint) {this.profitRateSecondPoint = profitRateSecondPoint;}
 

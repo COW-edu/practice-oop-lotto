@@ -51,8 +51,8 @@ public class LottoController {
         winData.setWinLotto(winLotto);
         lottoWinChecked.checkedWinLottoNums();
         winData.setEqualCounts(lottoWinChecked.getEqualCounts());
-
     }
+
     private List<Integer> stringToInt(String[] winLottoNums){
         List<Integer> winlottonums = new ArrayList<>();
         for (String winLottoNum : winLottoNums) {
@@ -60,6 +60,7 @@ public class LottoController {
         }
         return winlottonums;
     }
+
     private void inputBonusLottoNum() {
         output.outPutMessage(RequestMessage.INPUT_BONUS_NUM);
         String inputBonusLottoNum = Console.readLine();
@@ -68,6 +69,7 @@ public class LottoController {
         lottoWinChecked.checkedBonusLottoNums();
         winData.setBonusCounts(lottoWinChecked.getBonusCounts());
     }
+
     private void totalWinChecked(){
         lottoWinResult.totalWinCounted(winData);
         winData.setWinCountResult(lottoWinResult.getWinCountTemp());
