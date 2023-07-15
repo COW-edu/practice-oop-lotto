@@ -1,8 +1,6 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.model.LottoNumberRepository;
 import lotto.model.LottoResultRepository;
@@ -61,29 +59,18 @@ public class LottoServiceImpl implements LottoService {
   @Override
   public void saveWinningLottoNumbers(String winningNumbers)
       throws IllegalArgumentException {
-      winningLottoNumberRepository.saveWinningLottoNumbers(
-          Arrays.stream(winningNumbers.split(","))
-          .map(String::trim)
-          .map(Integer::parseInt)
-          .collect(Collectors.toList()));
+      winningLottoNumberRepository.saveWinningLotto(winningNumbers);
   }
 
   @Override
   public void saveBonusNumber(int bonusNumber) throws IllegalArgumentException {
     winningLottoNumberRepository.saveBonusNumber(bonusNumber);
-    isCorrectRange(bonusNumber);
-  }
-
-  private void isCorrectRange(int integerLottoNumber) throws IllegalArgumentException {
-    if (integerLottoNumber < START_INCLUSIVE || integerLottoNumber > END_INCLUSIVE) {
-      throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_INCORRECT_RANGE.getMessage());
-    }
   }
 
   @Override
   public int[] countingWinningNumber(int purchasedLottoCounts) {
     List<Lotto> myLottoList = lottoNumberRepository.findLottoList();
-    List<Integer> winningLottoList = winningLottoNumberRepository.findWinningLottoNumbersList();
+    List<Integer> winningLottoList = winningLottoNumberRepository.findWinningLotto();
     Lotto currentLottoList;
     for (int lottoIndex = 0; lottoIndex < purchasedLottoCounts; lottoIndex++) {
       currentLottoList = myLottoList.get(lottoIndex);
