@@ -19,9 +19,8 @@ public class WinningLottoNumberRepositoryImpl implements WinningLottoNumberRepos
   }
 
   @Override
-  public List<Integer> saveWinningLottoNumbers(List<Integer> winningNumbers) {
+  public void saveWinningLottoNumbers(List<Integer> winningNumbers) {
     winningLottoNumbersList = winningNumbers;
-    return winningLottoNumbersList;
   }
 
   @Override
