@@ -18,5 +18,4 @@ public class LottoNumberRepositoryImpl implements LottoNumberRepository {
   public List<Lotto> findLottoList() {
     return lottoList;
   }
-
 }
