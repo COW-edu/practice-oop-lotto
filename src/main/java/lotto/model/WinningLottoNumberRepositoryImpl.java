@@ -13,21 +13,21 @@ public class WinningLottoNumberRepositoryImpl implements WinningLottoNumberRepos
 
   @Override
   public int getBonusNumber() {
-    return bonusNumber;
+    return winningLotto.getBonusNumber();
   }
 
   @Override
   public void saveBonusNumber(int bonusNumber) {
-    this.bonusNumber = bonusNumber;
+    winningLotto.setBonusNumber(bonusNumber);
   }
 
   @Override
-  public void saveWinningLottoNumbers(List<Integer> winningNumbers) {
-    winningLottoNumbersList = winningNumbers;
+  public void saveWinningLotto(String winningNumbers) {
+    winningLotto.saveWinningNumber(winningNumbers);
   }
 
   @Override
-  public List<Integer> findWinningLottoNumbersList() {
-    return winningLottoNumbersList;
+  public List<Integer> findWinningLotto() {
+    return winningLotto.getWinningNumber();
   }
 }

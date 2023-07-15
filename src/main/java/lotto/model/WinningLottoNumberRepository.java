@@ -6,9 +6,9 @@ public interface WinningLottoNumberRepository {
 
   int getBonusNumber();
 
-  void saveWinningLottoNumbers(List<Integer> winningNumbers);
+  void saveWinningLotto(String winningNumbers);
 
   void saveBonusNumber(int bonusNumber);
 
-  List<Integer> findWinningLottoNumbersList();
+  List<Integer> findWinningLotto();
 }
