@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoWinResult {
-    private LottosData lottosData;
-    private WinData winData;
+    private final LottosData lottosData;
+    private final WinData winData;
     private double profitRateSecondPoint;
     private Map<String,Integer> winCountTemp;
     public LottoWinResult(LottosData lottosData, WinData winData){

@@ -11,12 +11,12 @@ import java.util.List;
 import view.output.Output;
 
 public class LottoController {
-    Output output;
-    InputResult inputResult;
-    LottosData lottosData;
-    WinData winData;
-    LottoWinChecked lottoWinChecked;
-    LottoWinResult lottoWinResult;
+    private final Output output;
+    private final InputResult inputResult;
+    private final LottosData lottosData;
+    private final WinData winData;
+    private final LottoWinChecked lottoWinChecked;
+    private final LottoWinResult lottoWinResult;
 
     public LottoController(Output output, InputResult inputResult, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
         this.output = output;

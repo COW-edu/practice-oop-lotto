@@ -6,8 +6,8 @@ import model.WinData;
 import static model.WinData.WinLottoCount.*;
 
 public class InputResult {
-    private LottosData lottsData;
-    private WinData winData;
+    private final LottosData lottsData;
+    private final WinData winData;
 
 
     public InputResult(LottosData lottsData, WinData winData) {

@@ -7,8 +7,8 @@ import model.LottosData;
 import model.WinData;
 
 public class LottoWinChecked {
-    private LottosData lottosData;
-    private WinData winData;
+    private final LottosData lottosData;
+    private final WinData winData;
     private int[] equalCounts;
     private boolean[] bonusCounts;
     public LottoWinChecked(LottosData lottosData, WinData winData){
