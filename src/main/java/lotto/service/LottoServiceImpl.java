@@ -90,23 +90,4 @@ public class LottoServiceImpl implements LottoService {
     }
     return lottoResultRepository.findLottoResult();
   }
-
-  private int calculateWinningCount(Lotto currentLottoList, List<Integer> winningLottoNumbersList) {
-    int winningCount = 0;
-    for (int LottoNumber : winningLottoNumbersList) {
-      boolean isWinningNumber = currentLottoList.getNumbers().contains(LottoNumber);
-        if (isWinningNumber) {
-            winningCount++;
-        }
-    }
-    if (winningCount == LOTTO_COUNT) {
-      winningCount++;
-    }
-    boolean isBonus = currentLottoList.getNumbers()
-        .contains(winningLottoNumberRepository.getBonusNumber());
-    if (winningCount == LOTTO_COUNT_MINUS_ONE && isBonus) {
-      winningCount++;
-    }
-    return winningCount;
-  }
 }
