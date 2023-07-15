@@ -28,11 +28,16 @@ public class LottoController {
     }
 
     public void lottoRun(){
+        storedDataForMethod();
         inputMoney();
         inputWinLottoNumber();
         inputBonusLottoNumber();
         totalWinChecked();
         profitRateCheck();
+    }
+    public void storedDataForMethod(){
+        lottoWinChecked.storedData(lottosData,winData);
+        lottoWinResult.storedData(lottosData,winData);
     }
 
     private void inputMoney(){
@@ -56,7 +61,7 @@ public class LottoController {
     }
 
     private void totalWinChecked(){
-        lottoWinResult.totalWinCounted(winData);
+        lottoWinResult.totalWinCounted();
         winData.setWinCountResult(lottoWinResult.getWinCountTemp());
     }
 

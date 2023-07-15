@@ -7,18 +7,18 @@ import model.LottosData;
 import model.WinData;
 
 public class LottoWinChecked {
-    private final LottosData lottosData;
-    private final WinData winData;
+    private LottosData lottosData;
+    private WinData winData;
     private int[] equalCounts;
     private boolean[] bonusCounts;
-    public LottoWinChecked(LottosData lottosData, WinData winData){
-        this.lottosData=lottosData;
-        this.winData=winData;
-    }
     public int[] getEqualCounts() {return equalCounts;}
 
     public boolean[] getBonusCounts() {return bonusCounts;}
 
+    public void storedData(LottosData lottosData, WinData winData){
+        this.lottosData =lottosData;
+        this.winData = winData;
+    }
     public void checkedWinLottoNumbers() {
         equalCounts= findEqualCount(winData.getWinLotto().getNumbers());
     }

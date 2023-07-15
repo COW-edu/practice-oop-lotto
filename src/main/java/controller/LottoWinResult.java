@@ -7,18 +7,18 @@ import java.util.Map;
 import model.WinLottoCount;
 
 public class LottoWinResult {
-    private final LottosData lottosData;
-    private final WinData winData;
+    private LottosData lottosData;
+    private WinData winData;
     private double profitRateSecondPoint;
     private Map<String,Integer> winCountTemp;
-    public LottoWinResult(LottosData lottosData, WinData winData){
-        this.lottosData=lottosData;
-        this.winData=winData;
-    }
     public double getProfitRateSecondPoint() {return profitRateSecondPoint;}
 
     public Map<String, Integer> getWinCountTemp() {return winCountTemp;}
 
+    public void storedData(LottosData lottosData, WinData winData){
+        this.lottosData =lottosData;
+        this.winData =winData;
+    }
     public void profitRateCalculate(){
         long profit = profitCalculate();
         long useMoney = lottosData.getUseMoney();
@@ -26,7 +26,7 @@ public class LottoWinResult {
        profitRateSecondPoint = Math.round(profitRate)/10.0;
     }
 
-    public void totalWinCounted(WinData winData){
+    public void totalWinCounted(){
         winCountTemp = new HashMap<>();
         for(WinLottoCount wincount : WinLottoCount.values()){
             double winNumber =Double.parseDouble(wincount.getCount());
