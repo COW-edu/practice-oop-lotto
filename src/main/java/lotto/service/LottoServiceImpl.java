@@ -57,7 +57,7 @@ public class LottoServiceImpl implements LottoService {
   @Override
   public List<Integer> saveWinningLottoNumbers(String winningNumbers)
       throws IllegalArgumentException {
-      return winningLottoNumberRepository.saveWinningLottoNumbers(
+      winningLottoNumberRepository.saveWinningLottoNumbers(
           Arrays.stream(winningNumbers.split(","))
           .map(String::trim)
           .map(Integer::parseInt)
