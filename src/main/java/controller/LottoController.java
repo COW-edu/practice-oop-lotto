@@ -7,17 +7,20 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+import view.input.Input;
 import view.output.Output;
 
 public class LottoController {
     private final Output output;
+    private final Input input;
     private final LottosData lottosData;
     private final WinData winData;
     private final LottoWinChecked lottoWinChecked;
     private final LottoWinResult lottoWinResult;
 
-    public LottoController(Output output, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
+    public LottoController(Output output, Input input, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
         this.output = output;
+        this.input=input;
         this.lottosData = lottosData;
         this.winData = winData;
         this.lottoWinChecked = lottoWinChecked;
@@ -34,35 +37,20 @@ public class LottoController {
 
     private void inputMoney(){
         output.outPutMessage(RequestMessage.BUY_INPUT_MONEY);
-        String inputMoney = Console.readLine();
-        lottosData.makeLottoData(Integer.parseInt(inputMoney));
+        lottosData.makeLottoData(input.inputMoney());
         output.outPutBuyLotto(lottosData);
     }
 
     private void inputWinLottoNumber() {
         output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
-        String inputWinLottoNumber = Console.readLine();
-        String[] stWinLottoNumbers = inputWinLottoNumber.split(",");
-        List<Integer> winLottoNumbers = stringToInt(stWinLottoNumbers);
-        Lotto winLotto = new Lotto(winLottoNumbers);
-        winData.setWinLotto(winLotto);
+        winData.setWinLotto(input.inputWinNumber());
         lottoWinChecked.checkedWinLottoNumbers();
         winData.setEqualCounts(lottoWinChecked.getEqualCounts());
     }
 
-    private List<Integer> stringToInt(String[] winLottoNumbers){
-        List<Integer> winlottonumbers = new ArrayList<>();
-        for (String winLottoNumber : winLottoNumbers) {
-            winlottonumbers.add(Integer.parseInt(winLottoNumber));
-        }
-        return winlottonumbers;
-    }
-
     private void inputBonusLottoNumber() {
         output.outPutMessage(RequestMessage.INPUT_BONUS_NUMBER);
-        String inputBonusLottoNumber = Console.readLine();
-        int bonusNumber =Integer.parseInt(inputBonusLottoNumber);
-        winData.setBonusNumber(bonusNumber);
+        winData.setBonusNumber(input.inputBonusNumber());
         lottoWinChecked.checkedBonusLottoNumbers();
         winData.setBonusCounts(lottoWinChecked.getBonusCounts());
     }
