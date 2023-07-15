@@ -13,7 +13,7 @@ public interface LottoController {
 
   List<Lotto> findLottoList();
 
-  List<Integer> insertWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
+  void insertWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
 
   void insertBonusNumber(int bonusNumber) throws IllegalArgumentException;
 

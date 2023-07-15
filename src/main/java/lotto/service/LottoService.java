@@ -12,7 +12,7 @@ public interface LottoService {
 
   List<Lotto> findRandomLottoNumbers();
 
-  List<Integer> saveWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
+  void saveWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
 
   void saveBonusNumber(int bonusNumber) throws IllegalArgumentException;
 

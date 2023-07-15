@@ -30,9 +30,9 @@ public class LottoControllerImpl implements LottoController {
   }
 
   @Override
-  public List<Integer> insertWinningLottoNumbers(String winningNumbers)
+  public void insertWinningLottoNumbers(String winningNumbers)
       throws IllegalArgumentException {
-    return lottoService.saveWinningLottoNumbers(winningNumbers);
+    lottoService.saveWinningLottoNumbers(winningNumbers);
   }
 
   @Override

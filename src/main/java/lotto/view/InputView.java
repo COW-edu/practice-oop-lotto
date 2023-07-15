@@ -5,8 +5,6 @@ import lotto.controller.LottoController;
 import lotto.message.InputMessage;
 import lotto.message.LottoExceptionMessage;
 
-import java.util.List;
-
 public class InputView {
 
   private final LottoController lottoController;
@@ -32,10 +30,10 @@ public class InputView {
     }
   }
 
-  public List<Integer> inputWinningNumbers() throws IllegalArgumentException {
+  public void inputWinningNumbers() throws IllegalArgumentException {
     System.out.println(InputMessage.INPUT_WIN_LOTTO_NUMBERS.getMessage());
     String winningNumbers = Console.readLine();
-    return lottoController.insertWinningLottoNumbers(winningNumbers);
+    lottoController.insertWinningLottoNumbers(winningNumbers);
   }
 
   public void inputBonusNumber() throws IllegalArgumentException {
