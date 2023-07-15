@@ -1,12 +1,15 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.WinningLotto;
 
 public class WinningLottoNumberRepositoryImpl implements WinningLottoNumberRepository {
 
-  private static List<Integer> winningLottoNumbersList = new ArrayList<>();
-  private int bonusNumber;
+  private final WinningLotto winningLotto;
+
+  public WinningLottoNumberRepositoryImpl(WinningLotto winningLotto) {
+    this.winningLotto = winningLotto;
+  }
 
   @Override
   public int getBonusNumber() {

@@ -2,6 +2,8 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.controller.LottoControllerImpl;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningLottoImpl;
 import lotto.model.LottoNumberRepository;
 import lotto.model.LottoNumberRepositoryImpl;
 import lotto.model.LottoResultRepository;
@@ -38,8 +40,12 @@ public class AppConfig {
     return new LottoNumberRepositoryImpl();
   }
 
+  public WinningLotto winningLotto() {
+    return new WinningLottoImpl();
+  }
+
   public WinningLottoNumberRepository winningLottoNumberRepository() {
-    return new WinningLottoNumberRepositoryImpl();
+    return new WinningLottoNumberRepositoryImpl(winningLotto());
   }
 
   public LottoResultRepository lottoResultRepository() {
