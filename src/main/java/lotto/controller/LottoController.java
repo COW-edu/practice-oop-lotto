@@ -9,7 +9,9 @@ public interface LottoController {
 
   int checkPurchasedLottoCounts(int purchaseAmount) throws IllegalArgumentException;
 
-  List<Lotto> createLottoList(int purchasedLottoCounts);
+  void createLottoList(int purchasedLottoCounts);
+
+  List<Lotto> findLottoList();
 
   List<Integer> insertWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
 

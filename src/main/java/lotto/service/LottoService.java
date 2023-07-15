@@ -8,7 +8,9 @@ public interface LottoService {
 
   int calculatePurchaseAmount(int purchaseAmount, int oneThousand) throws IllegalArgumentException;
 
-  List<Lotto> createRandomLottoNumbers(int purchasedLottoCounts);
+  void createRandomLottoNumbers(int purchasedLottoCounts);
+
+  List<Lotto> findRandomLottoNumbers();
 
   List<Integer> saveWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
 

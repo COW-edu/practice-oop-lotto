@@ -24,8 +24,9 @@ public class OutputView {
   public void outPutLottoList(int purchasedLottoCounts) {
     System.out.println(
         String.format(InputMessage.PURCHASED_LOTTO_COUNTS.getMessage(), purchasedLottoCounts));
-    List<Lotto> lottoList = lottoController.createLottoList(purchasedLottoCounts);
-    StringBuilder totalStringLottoList = new StringBuilder();
+    lottoController.createLottoList(purchasedLottoCounts);
+    List<Lotto> lottoList = lottoController.findLottoList();
+        StringBuilder totalStringLottoList = new StringBuilder();
     for (int index = 0; index < purchasedLottoCounts; index++) {
       totalStringLottoList.append(lottoList.get(index).getNumbers()).append("\n");
     }

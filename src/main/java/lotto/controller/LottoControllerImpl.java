@@ -20,8 +20,13 @@ public class LottoControllerImpl implements LottoController {
   }
 
   @Override
-  public List<Lotto> createLottoList(int purchasedLottoCounts) {
-    return lottoService.createRandomLottoNumbers(purchasedLottoCounts);
+  public void createLottoList(int purchasedLottoCounts) {
+    lottoService.createRandomLottoNumbers(purchasedLottoCounts);
+  }
+
+  @Override
+  public List<Lotto> findLottoList() {
+    return lottoService.findRandomLottoNumbers();
   }
 
   @Override

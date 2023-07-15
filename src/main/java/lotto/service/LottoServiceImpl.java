@@ -44,13 +44,17 @@ public class LottoServiceImpl implements LottoService {
   }
 
   @Override
-  public List<Lotto> createRandomLottoNumbers(int purchasedLottoCounts) {
+  public void createRandomLottoNumbers(int purchasedLottoCounts) {
     for (int count = 0; count < purchasedLottoCounts; count++) {
       List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
           LOTTO_COUNT);
       Lotto lotto = new Lotto(numbers);
       lottoNumberRepository.saveLottoList(lotto);
     }
+  }
+
+  @Override
+  public List<Lotto> findRandomLottoNumbers() {
     return lottoNumberRepository.findLottoList();
   }
 
