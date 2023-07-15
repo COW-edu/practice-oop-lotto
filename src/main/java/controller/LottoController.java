@@ -36,9 +36,8 @@ public class LottoController {
 
     private void inputMoney(){
         requestText.moneyRequest();
-        String stinputMoney = Console.readLine();
-        int inputMoney = Integer.parseInt(stinputMoney);
-        lottosData.makeLottoData(inputMoney);
+        String inputMoney = Console.readLine();
+        lottosData.makeLottoData(Integer.parseInt(inputMoney));
         inputResult.lottoNumResult();
     }
 
