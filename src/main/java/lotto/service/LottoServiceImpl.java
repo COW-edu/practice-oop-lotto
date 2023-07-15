@@ -62,6 +62,7 @@ public class LottoServiceImpl implements LottoService {
           .map(String::trim)
           .map(Integer::parseInt)
           .collect(Collectors.toList()));
+      return winningLottoNumberRepository.findWinningLottoNumbersList();
   }
 
   @Override
