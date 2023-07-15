@@ -25,6 +25,14 @@ public class LottoWinResult {
        profitRateSecondPoint = Math.round(profitRate)/10.0;
     }
 
+    public void totalWinCounted(WinData winData){
+        winCountTemp = new HashMap<>();
+        for(WinData.WinLottoCount wincount : WinData.WinLottoCount.values()){
+            double winNum =Double.parseDouble(wincount.getCount());
+            winCountTemp.put(wincount.getCount(),countWin(winNum));
+        }
+    }
+
     private long profitCalculate() {
         long profitTemp =0;
         for(WinData.WinLottoCount wincountdata : WinData.WinLottoCount.values()){
@@ -33,14 +41,6 @@ public class LottoWinResult {
             profitTemp += winningPrice*winningCount;
         }
         return profitTemp;
-    }
-
-    public void totalWinCounted(WinData winData){
-       winCountTemp = new HashMap<>();
-        for(WinData.WinLottoCount wincount : WinData.WinLottoCount.values()){
-            double winNum =Double.parseDouble(wincount.getCount());
-            winCountTemp.put(wincount.getCount(),countWin(winNum));
-        }
     }
 
     private int countWin(double winNum){
