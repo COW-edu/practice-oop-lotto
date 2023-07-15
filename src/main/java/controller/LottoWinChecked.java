@@ -1,9 +1,10 @@
 package controller;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import model.LottosData;
 import model.WinData;
-
-import java.util.*;
 
 public class LottoWinChecked {
     private LottosData lottosData;
