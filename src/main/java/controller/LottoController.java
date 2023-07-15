@@ -1,24 +1,25 @@
 package controller;
+import message.RequestMessage;
 import model.Lotto;
 import model.LottosData;
 import model.WinData;
 import view.InputResult;
-import view.RequestText;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+import view.output.Output;
 
 public class LottoController {
-    RequestText requestText;
+    Output output;
     InputResult inputResult;
     LottosData lottosData;
     WinData winData;
     LottoWinChecked lottoWinChecked;
     LottoWinResult lottoWinResult;
 
-    public LottoController(RequestText requestText, InputResult inputResult, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
-        this.requestText = requestText;
+    public LottoController(Output output, InputResult inputResult, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
+        this.output = output;
         this.inputResult = inputResult;
         this.lottosData = lottosData;
         this.winData = winData;
@@ -35,14 +36,14 @@ public class LottoController {
     }
 
     private void inputMoney(){
-        requestText.moneyRequest();
+        output.outPutMessage(RequestMessage.BUY_INPUT_MONEY);
         String inputMoney = Console.readLine();
         lottosData.makeLottoData(Integer.parseInt(inputMoney));
         inputResult.lottoNumResult();
     }
 
     private void inputWinLottoNum() {
-        requestText.winLottoNumRequest();
+        output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
         String inputWinLottoNum = Console.readLine();
         String[] stWinLottoNums = inputWinLottoNum.split(",");
         List<Integer> winLottoNums = stringToInt(stWinLottoNums);
@@ -60,7 +61,7 @@ public class LottoController {
         return winlottonums;
     }
     private void inputBonusLottoNum() {
-        requestText.bonusLottoNumRequest();
+        output.outPutMessage(RequestMessage.INPUT_BONUS_NUM);
         String inputBonusLottoNum = Console.readLine();
         int bonusNum =Integer.parseInt(inputBonusLottoNum);
         winData.setBonusNum(bonusNum);

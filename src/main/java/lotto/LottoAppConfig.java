@@ -7,13 +7,15 @@ import model.LottosData;
 import model.WinData;
 import view.InputResult;
 import view.RequestText;
+import view.output.OutPutImpl;
+import view.output.Output;
 
 public class LottoAppConfig {
   public LottoController LottoController(){
     return new LottoController(RequestText(), InputResult(), LottosData(), WinData(), LottoWinChecked(),LottoWinResult());
   }
-  public RequestText RequestText(){
-    return new RequestText();
+  public Output RequestText(){
+    return new OutPutImpl();
   }
   public InputResult InputResult(){
     return new InputResult();
