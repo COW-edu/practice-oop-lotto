@@ -4,6 +4,7 @@ import message.ResultMessage;
 import model.lotto.PayLottosData;
 import model.win.WinData;
 import model.win.WinLottoCount;
+import model.win.WinLottoResult;
 
 public class OutPutImpl implements Output{
     @Override
@@ -12,13 +13,13 @@ public class OutPutImpl implements Output{
     }
 
     @Override
-    public void outPutLottoResult(WinData winData) {
+    public void outPutLottoResult(double profitRate, WinLottoResult winLottoResult) {
         outPutMessage(ResultMessage.WIN_STATISTICS_MESSAGE);
         outPutMessage(ResultMessage.LINE_DIVIDE);
         for(WinLottoCount winLottoCount : WinLottoCount.values()){
-            outPutMessage(winLottoCount.getResultMessage()+winData.getWinCountResult().get(winLottoCount.getCount())+"개");
+            outPutMessage(winLottoCount.getResultMessage()+winLottoResult.getValue(winLottoCount.getCount())+"개");
         }
-        outPutMessage(ResultMessage.TOTAL_PROFIT_MESSAGE+winData.getProfitRateSecondPoint()+ResultMessage.PERCENT_MESSAGE);
+        outPutMessage(ResultMessage.TOTAL_PROFIT_MESSAGE+profitRate+ResultMessage.PERCENT_MESSAGE);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package model.lotto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import model.win.WinLottoCount;
 
 public class PayLottosData {
     private final LottoStore lottoStore;
@@ -25,6 +28,5 @@ public class PayLottosData {
         countOfLotto=lottoStore.lottoSizeCount(lottoMoney);
         lottos= lottoStore.makeLottoList(lottoMoney);
     }
-
 
 }

@@ -1,72 +1,75 @@
 package controller;
 import message.RequestMessage;
+import model.lotto.LottoStore;
 import model.lotto.PayLottosData;
 import model.win.WinData;
+import model.win.WinLottoResult;
+import profitcalculator.profitCalculator;
 import view.input.Input;
 import view.output.Output;
 
 public class LottoController {
     private final Output output;
     private final Input input;
-    private final PayLottosData lottosData;
-    private final WinData winData;
+    private final LottoStore lottoStore;
     private final LottoWinChecked lottoWinChecked;
-    private final LottoWinResult lottoWinResult;
+    private final profitCalculator lottoWinResult;
 
-    public LottoController(Output output, Input input, PayLottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
+    public LottoController(Output output, Input input, LottoStore lottoStore, LottoWinChecked lottoWinChecked, profitCalculator lottoWinResult) {
         this.output = output;
         this.input=input;
-        this.lottosData = lottosData;
-        this.winData = winData;
+        this.lottoStore=lottoStore;
         this.lottoWinChecked = lottoWinChecked;
         this.lottoWinResult=lottoWinResult;
     }
 
     public void lottoRun() {
         try {
+            PayLottosData payLottosData= lottoStore.makePayLottosData();
+            WinData winData= lottoStore.makeWinData();
             storedDataForMethod();
-            inputMoney();
-            inputWinLottoNumber();
-            inputBonusLottoNumber();
-            totalWinChecked();
-            profitRateCheck();
+           int payMoney = inputMoney(payLottosData);
+           int[] equalCounts = inputWinLottoNumber();
+           boolean[] bonusCounts= inputBonusLottoNumber();
+            WinLottoResult winLottoResult = totalWinChecked(equalCounts,bonusCounts);
+            profitRateCheck(winLottoResult,payMoney);
         }catch (IllegalArgumentException e){
             output.outPutMessage(e.getMessage());
         }
     }
     public void storedDataForMethod(){
-        lottoWinChecked.storedData(lottosData,winData);
-        lottoWinResult.storedData(lottosData,winData);
+        lottoWinChecked.storedData(payLottosData,winData);
+        lottoWinResult.storedData(payLottosData,winData);
     }
 
-    private void inputMoney()throws IllegalArgumentException{
+    private int inputMoney(PayLottosData payLottosData)throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.BUY_INPUT_MONEY);
-        lottosData.makeLottoData(input.inputMoney());
-        output.outPutBuyLotto(lottosData);
+        int payMoney = input.inputMoney();
+        payLottosData.makeLottoData(payMoney);
+        output.outPutBuyLotto(payLottosData);
+        return payMoney;
     }
 
-    private void inputWinLottoNumber()throws IllegalArgumentException{
+    private int[] inputWinLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
         winData.setWinLotto(input.inputWinNumber());
         lottoWinChecked.checkedWinLottoNumbers();
-        winData.setEqualCounts(lottoWinChecked.getEqualCounts());
+        return lottoWinChecked.getEqualCounts();
     }
 
-    private void inputBonusLottoNumber()throws IllegalArgumentException{
+    private boolean[] inputBonusLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_BONUS_NUMBER);
         winData.setBonusNumber(input.inputBonusNumber());
         lottoWinChecked.checkedBonusLottoNumbers();
-        winData.setBonusCounts(lottoWinChecked.getBonusCounts());
+        return lottoWinChecked.getBonusCounts();
     }
 
-    private void totalWinChecked(){
-        lottoWinResult.totalWinCounted();
-        winData.setWinCountResult(lottoWinResult.getWinCountTemp());
+    private WinLottoResult totalWinChecked(int[] equalCounts, boolean[] bonusCounts){
+        return lottoStore.makeWinLottoResult(equalCounts,bonusCounts);
     }
 
-    private void profitRateCheck() {
-        lottoWinResult.profitRateCalculate();
-        winData.setProfitRateSecondPoint(lottoWinResult.getProfitRateSecondPoint());
-        output.outPutLottoResult(winData);
+    private void profitRateCheck(WinLottoResult winLottoResult, int payMoney) {
+       double profitRate = lottoWinResult.profitRateCalculate(winLottoResult,payMoney);
+        output.outPutLottoResult(profitRate,winLottoResult);
     }
 }
