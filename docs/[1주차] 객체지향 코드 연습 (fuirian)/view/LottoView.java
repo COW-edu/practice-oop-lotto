@@ -1,3 +1,4 @@
+// LottoView.java
 package view;
 
 import java.util.Arrays;

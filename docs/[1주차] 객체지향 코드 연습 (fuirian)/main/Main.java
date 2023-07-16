@@ -1,3 +1,4 @@
+// Main.java
 package main;
 
 import controller.LottoController;
@@ -5,7 +6,6 @@ import model.LottoModel;
 import view.LottoView;
 
 public class Main {
-
     public static void main(String[] args) {
         // 모델 객체 생성
         LottoModel lottoModel = new LottoModel();

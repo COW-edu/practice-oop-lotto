@@ -1,7 +1,10 @@
+// LottoModel.java
 package model;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class LottoModel {
     private int[] winnerNumbers;
@@ -38,28 +41,22 @@ public class LottoModel {
 
     public int[] generateLottoNumbers() {
         int[] numbers = new int[6];
+        Set<Integer> uniqueNumbers = new HashSet<>();
         Random random = new Random();
 
-        int index = 0;
-        while (index < 6) {
+        while (uniqueNumbers.size() < 6) {
             int number = random.nextInt(45) + 1;
-            if (!contains(numbers, number)) {
-                numbers[index] = number;
-                index++;
-            }
+            uniqueNumbers.add(number);
+        }
+
+        int index = 0;
+        for (int number : uniqueNumbers) {
+            numbers[index] = number;
+            index++;
         }
 
         Arrays.sort(numbers);
         return numbers;
-    }
-
-    private boolean contains(int[] array, int value) {
-        for (int num : array) {
-            if (num == value) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public int countMatchingNumbers(int[] array1, int[] array2) {

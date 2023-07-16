@@ -1,9 +1,10 @@
+// LottoController.java
 package controller;
-
-import java.util.Scanner;
 
 import model.LottoModel;
 import view.LottoView;
+
+import java.util.Scanner;
 
 public class LottoController {
     private LottoModel lottoModel;
@@ -45,19 +46,39 @@ public class LottoController {
         int[] winnerNumbers = new int[6];
         System.out.println("Enter the winner numbers (6 numbers):");
         for (int i = 0; i < 6; i++) {
-            winnerNumbers[i] = scanner.nextInt();
+            winnerNumbers[i] = readNumber("Number " + (i + 1) + ": ");
         }
         return winnerNumbers;
     }
 
     private int readBonusNumber() {
         System.out.println("Enter the bonus number:");
-        return scanner.nextInt();
+        return readNumber("Bonus number: ");
     }
 
     private int readAmount() {
         System.out.println("Enter the amount:");
         return scanner.nextInt();
+    }
+
+    private int readNumber(String message) {
+        boolean isValidInput = false;
+        int number = 0;
+        while (!isValidInput) {
+            System.out.print(message);
+            String input = scanner.nextLine();
+            try {
+                number = Integer.parseInt(input);
+                if (number < 1 || number > 45) {
+                    System.out.println("Invalid number. Please enter a number between 1 and 45.");
+                } else {
+                    isValidInput = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
+        return number;
     }
 
     private boolean contains(int[] array, int value) {
