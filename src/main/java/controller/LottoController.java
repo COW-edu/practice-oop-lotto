@@ -1,6 +1,6 @@
 package controller;
 import message.RequestMessage;
-import model.lotto.LottosData;
+import model.lotto.PayLottosData;
 import model.win.WinData;
 import view.input.Input;
 import view.output.Output;
@@ -8,12 +8,12 @@ import view.output.Output;
 public class LottoController {
     private final Output output;
     private final Input input;
-    private final LottosData lottosData;
+    private final PayLottosData lottosData;
     private final WinData winData;
     private final LottoWinChecked lottoWinChecked;
     private final LottoWinResult lottoWinResult;
 
-    public LottoController(Output output, Input input, LottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
+    public LottoController(Output output, Input input, PayLottosData lottosData, WinData winData, LottoWinChecked lottoWinChecked, LottoWinResult lottoWinResult) {
         this.output = output;
         this.input=input;
         this.lottosData = lottosData;
@@ -31,7 +31,7 @@ public class LottoController {
             totalWinChecked();
             profitRateCheck();
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            output.outPutMessage(e.getMessage());
         }
     }
     public void storedDataForMethod(){

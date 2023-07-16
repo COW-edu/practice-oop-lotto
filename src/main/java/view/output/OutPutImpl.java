@@ -1,7 +1,7 @@
 package view.output;
 
 import message.ResultMessage;
-import model.lotto.LottosData;
+import model.lotto.PayLottosData;
 import model.win.WinData;
 import model.win.WinLottoCount;
 
@@ -22,7 +22,7 @@ public class OutPutImpl implements Output{
     }
 
     @Override
-    public void outPutBuyLotto(LottosData lottosData) {
+    public void outPutBuyLotto(PayLottosData lottosData) {
         outPutMessage("\n"+lottosData.getCountOfLotto()+ResultMessage.BUY_COUNT_MESSAGE);
         lottosData.getLottos()
             .forEach(lotto -> outPutMessage(String.valueOf(lotto)));

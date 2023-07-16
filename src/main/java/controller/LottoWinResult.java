@@ -1,13 +1,13 @@
 package controller;
 
-import model.lotto.LottosData;
+import model.lotto.PayLottosData;
 import model.win.WinData;
 import java.util.HashMap;
 import java.util.Map;
 import model.win.WinLottoCount;
 
 public class LottoWinResult {
-    private LottosData lottosData;
+    private PayLottosData lottosData;
     private WinData winData;
     private double profitRateSecondPoint;
     private Map<String,Integer> winCountTemp;
@@ -15,13 +15,13 @@ public class LottoWinResult {
 
     public Map<String, Integer> getWinCountTemp() {return winCountTemp;}
 
-    public void storedData(LottosData lottosData, WinData winData){
+    public void storedData(PayLottosData lottosData, WinData winData){
         this.lottosData =lottosData;
         this.winData =winData;
     }
     public void profitRateCalculate(){
         long profit = profitCalculate();
-        long useMoney = lottosData.getUseMoney();
+        long useMoney = lottosData.getPayMoney();
         double profitRate = ((double) profit /useMoney)*1000.0;
        profitRateSecondPoint = Math.round(profitRate)/10.0;
     }

@@ -12,7 +12,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoData.COUNT_OF_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.NOT_EXACT_COUNT_NUMBER);
         }
     }

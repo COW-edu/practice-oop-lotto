@@ -1,7 +1,7 @@
 import controller.LottoController;
 import controller.LottoWinChecked;
 import controller.LottoWinResult;
-import model.lotto.LottosData;
+import model.lotto.PayLottosData;
 import model.win.WinData;
 import view.input.Input;
 import view.input.InputImpl;
@@ -18,8 +18,8 @@ public class LottoAppConfig {
   public Input Input(){
     return new InputImpl();
   }
-  public LottosData LottosData(){
-    return new LottosData();
+  public PayLottosData LottosData(){
+    return new PayLottosData();
   }
   public WinData WinData(){
     return new WinData();

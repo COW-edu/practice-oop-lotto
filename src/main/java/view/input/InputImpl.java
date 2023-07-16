@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import message.ErrorMessage;
 import model.lotto.Lotto;
-import model.lotto.LottosData;
+import model.lotto.LottoData;
+import model.lotto.PayLottosData;
 
 public class InputImpl implements Input{
 
@@ -48,7 +49,7 @@ public class InputImpl implements Input{
   }
 
   private void validateThousandOne(String inputMoney)throws IllegalArgumentException {
-    if(Integer.parseInt(inputMoney)% LottosData.LOTTO_PRICE !=0){
+    if(Integer.parseInt(inputMoney)% LottoData.LOTTO_PRICE !=0){
       throw new IllegalArgumentException(ErrorMessage.NOT_THOUSANDONE);
     }
   }

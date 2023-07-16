@@ -3,11 +3,12 @@ package controller;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import model.lotto.LottosData;
+import model.lotto.LottoData;
+import model.lotto.PayLottosData;
 import model.win.WinData;
 
 public class LottoWinChecked {
-    private LottosData lottosData;
+    private PayLottosData lottosData;
     private WinData winData;
     private int[] equalCounts;
     private boolean[] bonusCounts;
@@ -15,7 +16,7 @@ public class LottoWinChecked {
 
     public boolean[] getBonusCounts() {return bonusCounts;}
 
-    public void storedData(LottosData lottosData, WinData winData){
+    public void storedData(PayLottosData lottosData, WinData winData){
         this.lottosData =lottosData;
         this.winData = winData;
     }
@@ -55,7 +56,7 @@ public class LottoWinChecked {
             return equalCounts;
         }
         List<Integer> lottoNumbers = lottosData.getLottos().get(count).getNumbers();
-        for(int j=0; j<LottosData.COUNT_OF_LOTTO_NUMBER; j++){
+        for(int j=0; j< LottoData.COUNT_OF_LOTTO_NUMBER; j++){
             if(winlottoCheckTemp.contains(lottoNumbers.get(j))){
                 equalCounts[count]++;
             }
