@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Wallet {
-    List<Lotto> lottoList = new ArrayList<>();
-    List<Integer> winNumber;
-    int bonusNumber;
-    int profit;
-    double profitRate;
+    private List<Lotto> lottoList = new ArrayList<>();
+    private List<Integer> winNumber;
+    private int bonusNumber;
+    private int profit;
+    private double profitRate;
 
     // 3, 4, 5, 6, Bonus
-    int[] winResult = {0, 0, 0, 0, 0};
-    int purchasePrice;
-    int purchaseAmount;
+    private int[] winResult = {0, 0, 0, 0, 0};
+    private int purchasePrice;
+    private int purchaseAmount;
 
     public void addLotto(Lotto lotto) {
         lottoList.add(lotto);
