@@ -4,11 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import lotto.model.ErrorMessage;
 import lotto.controller.Controller;
-import lotto.model.Wallet;
 
-import java.util.List;
-
-public class View {
+public class InputView {
     private final Controller controller = new Controller();
 
     public String readString() {
