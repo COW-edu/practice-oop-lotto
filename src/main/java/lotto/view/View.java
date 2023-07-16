@@ -9,7 +9,7 @@ import lotto.model.Wallet;
 import java.util.List;
 
 public class View {
-    Controller controller = new Controller();
+    private final Controller controller = new Controller();
 
     public String readString() {
         String result = Console.readLine();
@@ -21,15 +21,17 @@ public class View {
         return result;
     }
 
-    public void readPurchasePrice(Wallet wallet) {
-        controller.handlePurchasePrice(wallet, readString());
+    public int readInteger() {
+        return convertStringToInteger(readString());
     }
 
-    public List<Integer> readWinNumber() {
-        return controller.handleWinNumber(readString());
-    }
-
-    public int readBonusNumber() {
-        return controller.handleBonusNumber(readString());
+    public int convertStringToInteger(String input) {
+        int output;
+        try {
+            output = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_INTEGER_INPUT.getData());
+        }
+        return output;
     }
 }
