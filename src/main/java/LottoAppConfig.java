@@ -11,20 +11,19 @@ public class LottoAppConfig {
   public LottoController lottoController(){
     return new LottoController(output(), input(), lottoStore(), checkedEqualMachine(),profitCalculator());
   }
-  public Output output(){
+  private Output output(){
     return new OutPutImpl();
   }
-  public Input input(){
+  private Input input(){
     return new InputImpl();
   }
-  public LottoStore lottoStore(){
+  private LottoStore lottoStore(){
     return new LottoStore();
   }
-  public CheckedEqualMachine checkedEqualMachine(){
+  private CheckedEqualMachine checkedEqualMachine(){
     return new CheckedEqualMachine();
   }
-
-  public ProfitCalculator profitCalculator(){
+  private ProfitCalculator profitCalculator(){
     return new ProfitCalculator();
   }
 }
