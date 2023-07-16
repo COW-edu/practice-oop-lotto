@@ -1,5 +1,5 @@
 package controller;
-import machine.CheckedEqual;
+import machine.CheckedEqualMachine;
 import message.RequestMessage;
 import model.lotto.LottoStore;
 import model.lotto.PayLottosData;
@@ -12,10 +12,10 @@ public class LottoController {
     private final Output output;
     private final Input input;
     private final LottoStore lottoStore;
-    private final CheckedEqual lottoWinChecked;
+    private final CheckedEqualMachine lottoWinChecked;
     private final ProfitCalculator lottoWinResult;
 
-    public LottoController(Output output, Input input, LottoStore lottoStore, CheckedEqual lottoWinChecked, ProfitCalculator lottoWinResult) {
+    public LottoController(Output output, Input input, LottoStore lottoStore, CheckedEqualMachine lottoWinChecked, ProfitCalculator lottoWinResult) {
         this.output = output;
         this.input=input;
         this.lottoStore=lottoStore;

@@ -8,7 +8,7 @@ import model.lotto.Lotto;
 import model.lotto.LottoData;
 import model.win.WinLottoCount;
 
-public class MakeWinResult {
+public class MakeWinResultMachine {
 
   public List<Lotto> makeLottoList(List<Lotto> lottos, int countOfLotto) {
     for(int i=0; i< countOfLotto; i++){

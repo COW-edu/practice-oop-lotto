@@ -2,15 +2,15 @@ package model.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import machine.MakeWinResult;
+import machine.MakeWinResultMachine;
 import model.win.WinLottoResult;
 
 public class LottoStore {
   private static final List<Lotto> lottos = new ArrayList<>();
   private int countOfLotto;
-  private MakeWinResult makeWinResult;
+  private MakeWinResultMachine makeWinResult;
   public LottoStore(){
-    makeWinResult=new MakeWinResult();
+    makeWinResult=new MakeWinResultMachine();
   }
 
   public List<Lotto> makeLottoList(int payMoney){

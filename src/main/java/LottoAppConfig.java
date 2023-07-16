@@ -1,5 +1,5 @@
 import controller.LottoController;
-import machine.CheckedEqual;
+import machine.CheckedEqualMachine;
 import machine.ProfitCalculator;
 import model.lotto.LottoStore;
 import view.input.Input;
@@ -20,8 +20,8 @@ public class LottoAppConfig {
   public LottoStore LottoStore(){
     return new LottoStore();
   }
-  public CheckedEqual LottoWinChecked(){
-    return new CheckedEqual();
+  public CheckedEqualMachine LottoWinChecked(){
+    return new CheckedEqualMachine();
   }
 
   public ProfitCalculator LottoWinResult(){
