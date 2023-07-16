@@ -34,15 +34,15 @@ public class View {
         return result;
     }
 
-    public void getPurchasePrice(Wallet wallet) {
+    public void readPurchasePrice(Wallet wallet) {
         controller.handlePurchasePrice(wallet, readString());
     }
 
-    public List<Integer> getWinNumber() {
+    public List<Integer> readWinNumber() {
         return controller.handleWinNumber(readString());
     }
 
-    public int getBonusNumber() {
+    public int readBonusNumber() {
         return controller.handleBonusNumber(readString());
     }
 }
