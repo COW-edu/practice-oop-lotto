@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import model.win.WinData;
 import model.win.WinLottoCount;
 import model.win.WinLottoResult;
 
 public class LottoStore {
   private static final List<Lotto> lottos = new ArrayList<>();
   private int countOfLotto;
+
   public List<Lotto> makeLottoList(int payMoney){
     countOfLotto = lottoSizeCount(payMoney);
     for(int i=0; i< countOfLotto; i++){
@@ -22,9 +22,11 @@ public class LottoStore {
     }
     return lottos;
   }
+
   public Lotto makeLotto(List<Integer> LottoNum){
     return new Lotto(LottoNum);
   }
+
   public int lottoSizeCount(int payMoney){
     return  payMoney / LottoData.LOTTO_PRICE;
   }
@@ -32,9 +34,7 @@ public class LottoStore {
   public PayLottosData makePayLottosData(){
     return new PayLottosData();
   }
-  public WinData makeWinData(){
-    return new WinData();
-  }
+
   public WinLottoResult makeWinLottoResult(int[] equalCounts, boolean[] bonusCounts){
     return new WinLottoResult(makeWinLottoResultData(equalCounts,bonusCounts));
   }

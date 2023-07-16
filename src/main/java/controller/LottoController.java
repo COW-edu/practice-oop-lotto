@@ -2,7 +2,6 @@ package controller;
 import message.RequestMessage;
 import model.lotto.LottoStore;
 import model.lotto.PayLottosData;
-import model.win.WinData;
 import model.win.WinLottoResult;
 import profitcalculator.profitCalculator;
 import view.input.Input;
@@ -26,7 +25,6 @@ public class LottoController {
     public void lottoRun() {
         try {
             PayLottosData payLottosData= lottoStore.makePayLottosData();
-            WinData winData= lottoStore.makeWinData();
             storedDataForMethod();
            int payMoney = inputMoney(payLottosData);
            int[] equalCounts = inputWinLottoNumber();
@@ -38,8 +36,7 @@ public class LottoController {
         }
     }
     public void storedDataForMethod(){
-        lottoWinChecked.storedData(payLottosData,winData);
-        lottoWinResult.storedData(payLottosData,winData);
+        lottoWinChecked.storedData(payLottosData);
     }
 
     private int inputMoney(PayLottosData payLottosData)throws IllegalArgumentException{
@@ -52,16 +49,13 @@ public class LottoController {
 
     private int[] inputWinLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
-        winData.setWinLotto(input.inputWinNumber());
-        lottoWinChecked.checkedWinLottoNumbers();
-        return lottoWinChecked.getEqualCounts();
+        return lottoWinChecked.checkedWinLottoNumbers(input.inputWinNumber());
     }
 
     private boolean[] inputBonusLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_BONUS_NUMBER);
-        winData.setBonusNumber(input.inputBonusNumber());
-        lottoWinChecked.checkedBonusLottoNumbers();
-        return lottoWinChecked.getBonusCounts();
+        return lottoWinChecked.checkedBonusLottoNumbers(input.inputBonusNumber());
+
     }
 
     private WinLottoResult totalWinChecked(int[] equalCounts, boolean[] bonusCounts){

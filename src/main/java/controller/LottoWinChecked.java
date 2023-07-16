@@ -3,29 +3,21 @@ package controller;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import model.lotto.Lotto;
 import model.lotto.LottoData;
 import model.lotto.PayLottosData;
-import model.win.WinData;
 
 public class LottoWinChecked {
     private PayLottosData lottosData;
-    private WinData winData;
-    private int[] equalCounts;
-    private boolean[] bonusCounts;
-    public int[] getEqualCounts() {return equalCounts;}
-
-    public boolean[] getBonusCounts() {return bonusCounts;}
-
-    public void storedData(PayLottosData lottosData, WinData winData){
+    public void storedData(PayLottosData lottosData){
         this.lottosData =lottosData;
-        this.winData = winData;
     }
-    public void checkedWinLottoNumbers() {
-        equalCounts= findEqualCount(winData.getWinLotto().getNumbers());
+    public int[] checkedWinLottoNumbers(Lotto winLotto) {
+        return findEqualCount(winLotto.getNumbers());
     }
 
-    public void checkedBonusLottoNumbers(){
-        bonusCounts = checkBonusCount(winData.getBonusNumber());
+    public boolean[] checkedBonusLottoNumbers(int bonusNumber){
+        return checkBonusCount(bonusNumber);
     }
 
     private boolean[] checkBonusCount(int bonusNumber) {
