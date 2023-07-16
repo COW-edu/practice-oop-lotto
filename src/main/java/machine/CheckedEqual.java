@@ -1,4 +1,4 @@
-package controller;
+package machine;
 
 import java.util.HashSet;
 import java.util.List;
@@ -7,7 +7,7 @@ import model.lotto.Lotto;
 import model.lotto.LottoData;
 import model.lotto.PayLottosData;
 
-public class LottoWinChecked {
+public class CheckedEqual {
     private PayLottosData lottosData;
     public void storedData(PayLottosData lottosData){
         this.lottosData =lottosData;

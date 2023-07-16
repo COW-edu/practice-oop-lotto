@@ -1,9 +1,9 @@
-package profitcalculator;
+package machine;
 
 import model.win.WinLottoCount;
 import model.win.WinLottoResult;
 
-public class profitCalculator {
+public class ProfitCalculator {
     public double profitRateCalculate(WinLottoResult winLottoResult, int payMoney){
         long profit = profitCalculate(winLottoResult);
         double profitRate = ((double) profit /payMoney)*1000.0;

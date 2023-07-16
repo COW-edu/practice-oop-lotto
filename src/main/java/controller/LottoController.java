@@ -1,9 +1,10 @@
 package controller;
+import machine.CheckedEqual;
 import message.RequestMessage;
 import model.lotto.LottoStore;
 import model.lotto.PayLottosData;
 import model.win.WinLottoResult;
-import profitcalculator.profitCalculator;
+import machine.ProfitCalculator;
 import view.input.Input;
 import view.output.Output;
 
@@ -11,10 +12,10 @@ public class LottoController {
     private final Output output;
     private final Input input;
     private final LottoStore lottoStore;
-    private final LottoWinChecked lottoWinChecked;
-    private final profitCalculator lottoWinResult;
+    private final CheckedEqual lottoWinChecked;
+    private final ProfitCalculator lottoWinResult;
 
-    public LottoController(Output output, Input input, LottoStore lottoStore, LottoWinChecked lottoWinChecked, profitCalculator lottoWinResult) {
+    public LottoController(Output output, Input input, LottoStore lottoStore, CheckedEqual lottoWinChecked, ProfitCalculator lottoWinResult) {
         this.output = output;
         this.input=input;
         this.lottoStore=lottoStore;
@@ -24,18 +25,18 @@ public class LottoController {
 
     public void lottoRun() {
         try {
-            PayLottosData payLottosData= lottoStore.makePayLottosData();
-            storedDataForMethod();
+            PayLottosData payLottosData = lottoStore.makePayLottosData();
+            storedDataForMethod(payLottosData);
            int payMoney = inputMoney(payLottosData);
            int[] equalCounts = inputWinLottoNumber();
            boolean[] bonusCounts= inputBonusLottoNumber();
-            WinLottoResult winLottoResult = totalWinChecked(equalCounts,bonusCounts);
-            profitRateCheck(winLottoResult,payMoney);
+           WinLottoResult winLottoResult = makewinLottoResult(equalCounts,bonusCounts);
+           profitRateCheck(winLottoResult,payMoney);
         }catch (IllegalArgumentException e){
             output.outPutMessage(e.getMessage());
         }
     }
-    public void storedDataForMethod(){
+    public void storedDataForMethod(PayLottosData payLottosData){
         lottoWinChecked.storedData(payLottosData);
     }
 
@@ -58,7 +59,7 @@ public class LottoController {
 
     }
 
-    private WinLottoResult totalWinChecked(int[] equalCounts, boolean[] bonusCounts){
+    private WinLottoResult makewinLottoResult(int[] equalCounts, boolean[] bonusCounts){
         return lottoStore.makeWinLottoResult(equalCounts,bonusCounts);
     }
 
