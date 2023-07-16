@@ -24,6 +24,7 @@ public class OutPutImpl implements Output{
     @Override
     public void outPutBuyLotto(LottosData lottosData) {
         outPutMessage("\n"+lottosData.getCountOfLotto()+ResultMessage.BUY_COUNT_MESSAGE);
-        outPutMessage(lottosData.getLottosResult());
+        lottosData.getLottos()
+            .forEach(lotto -> outPutMessage(String.valueOf(lotto)));
     }
 }

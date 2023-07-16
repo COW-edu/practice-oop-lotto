@@ -2,6 +2,7 @@ package view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import message.ErrorMessage;
 import model.lotto.Lotto;
@@ -40,9 +41,9 @@ public class InputImpl implements Input{
 
   private List<Integer> stringToIntList(String[] winLottoNumbers){
     List<Integer> winLottoNumberList = new ArrayList<>();
-    for (String winLottoNumber : winLottoNumbers) {
-      winLottoNumberList.add(Integer.parseInt(winLottoNumber));
-    }
+    Arrays.stream(winLottoNumbers)
+        .mapToInt(Integer::parseInt)
+        .forEach(winLottoNumberList::add);
     return winLottoNumberList;
   }
 
@@ -67,11 +68,9 @@ public class InputImpl implements Input{
 
   private void validateDuplicated(String inputBonusLottoNumber)throws IllegalArgumentException {
     int bonusNumber = Integer.parseInt(inputBonusLottoNumber);
-    for(int winNumber : winLottoNumberList){
-      if(bonusNumber==winNumber){
-        throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUSNUMBER);
-      }
-    };
+    if(winLottoNumberList.stream().anyMatch(winLottoNumber->winLottoNumber.equals(bonusNumber))){
+      throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUSNUMBER);
+    }
   }
   private void validateDuplicated(List<Integer> winNumberList)throws IllegalArgumentException {
     if(winNumberList.size()!= winNumberList.stream().distinct().count()){
