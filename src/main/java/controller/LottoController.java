@@ -1,12 +1,7 @@
 package controller;
 import message.RequestMessage;
-import model.Lotto;
 import model.LottosData;
 import model.WinData;
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
-import java.util.List;
 import view.input.Input;
 import view.output.Output;
 
@@ -27,33 +22,37 @@ public class LottoController {
         this.lottoWinResult=lottoWinResult;
     }
 
-    public void lottoRun(){
-        storedDataForMethod();
-        inputMoney();
-        inputWinLottoNumber();
-        inputBonusLottoNumber();
-        totalWinChecked();
-        profitRateCheck();
+    public void lottoRun() {
+        try {
+            storedDataForMethod();
+            inputMoney();
+            inputWinLottoNumber();
+            inputBonusLottoNumber();
+            totalWinChecked();
+            profitRateCheck();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
     public void storedDataForMethod(){
         lottoWinChecked.storedData(lottosData,winData);
         lottoWinResult.storedData(lottosData,winData);
     }
 
-    private void inputMoney(){
+    private void inputMoney()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.BUY_INPUT_MONEY);
         lottosData.makeLottoData(input.inputMoney());
         output.outPutBuyLotto(lottosData);
     }
 
-    private void inputWinLottoNumber() {
+    private void inputWinLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
         winData.setWinLotto(input.inputWinNumber());
         lottoWinChecked.checkedWinLottoNumbers();
         winData.setEqualCounts(lottoWinChecked.getEqualCounts());
     }
 
-    private void inputBonusLottoNumber() {
+    private void inputBonusLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_BONUS_NUMBER);
         winData.setBonusNumber(input.inputBonusNumber());
         lottoWinChecked.checkedBonusLottoNumbers();

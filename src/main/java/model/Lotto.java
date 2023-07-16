@@ -1,18 +1,20 @@
 package model;
 
 import java.util.List;
+import message.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers)  {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        checkCountLottoNum(numbers);
-        checkExactLottoNum(numbers);
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXACT_COUNT_NUMBER);
+        }
     }
     // TODO: 추가 기능 구현
     @Override
@@ -24,17 +26,4 @@ public class Lotto {
         return numbers;
     }
 
-    private void checkCountLottoNum(List<Integer> numbers){
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호 개수는 6개여야만 합니다.");
-        }
-    }
-
-    private void checkExactLottoNum(List<Integer> numbers) {
-        for(int number : numbers){
-            if(number<1||number>45){
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45내의 범위여야만 합니다.");
-            }
-        }
-    }
 }

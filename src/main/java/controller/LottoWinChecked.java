@@ -55,7 +55,7 @@ public class LottoWinChecked {
             return equalCounts;
         }
         List<Integer> lottoNumbers = lottosData.getLottos().get(count).getNumbers();
-        for(int j=0; j<lottosData.getCOUNT_OF_LOTTO_NUMBER(); j++){
+        for(int j=0; j<LottosData.COUNT_OF_LOTTO_NUMBER; j++){
             if(winlottoCheckTemp.contains(lottoNumbers.get(j))){
                 equalCounts[count]++;
             }

@@ -20,7 +20,9 @@ public class LottoAppConfig {
   public Input Input(){
     return new InputImpl();
   }
-  public LottosData LottosData(){return new LottosData();}
+  public LottosData LottosData(){
+    return new LottosData();
+  }
 
   public WinData WinData(){
     return new WinData();
