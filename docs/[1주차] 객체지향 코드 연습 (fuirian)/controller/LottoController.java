@@ -44,41 +44,49 @@ public class LottoController {
 
     private int[] readWinnerNumbers() {
         int[] winnerNumbers = new int[6];
-        System.out.println("Enter the winner numbers (6 numbers):");
+        System.out.println("Enter the winner numbers (6 numbers, separated by spaces):");
+        String input = scanner.nextLine();
+        String[] numberStrings = input.split(" ");
+
+        if (numberStrings.length != 6) {
+            System.out.println("Invalid input. Please enter exactly 6 numbers.");
+            return readWinnerNumbers();
+        }
+
         for (int i = 0; i < 6; i++) {
-            winnerNumbers[i] = readNumber("Number " + (i + 1) + ": ");
+            try {
+                winnerNumbers[i] = Integer.parseInt(numberStrings[i]);
+                if (winnerNumbers[i] < 1 || winnerNumbers[i] > 45) {
+                    System.out.println("Invalid number. Please enter a number between 1 and 45.");
+                    return readWinnerNumbers();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter valid numbers.");
+                return readWinnerNumbers();
+            }
         }
         return winnerNumbers;
     }
 
     private int readBonusNumber() {
         System.out.println("Enter the bonus number:");
-        return readNumber("Bonus number: ");
+        String input = scanner.nextLine();
+        try {
+            int bonus = Integer.parseInt(input);
+            if (bonus < 1 || bonus > 45) {
+                System.out.println("Invalid number. Please enter a number between 1 and 45.");
+                return readBonusNumber();
+            }
+            return bonus;
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+            return readBonusNumber();
+        }
     }
 
     private int readAmount() {
         System.out.println("Enter the amount:");
         return scanner.nextInt();
-    }
-
-    private int readNumber(String message) {
-        boolean isValidInput = false;
-        int number = 0;
-        while (!isValidInput) {
-            System.out.print(message);
-            String input = scanner.nextLine();
-            try {
-                number = Integer.parseInt(input);
-                if (number < 1 || number > 45) {
-                    System.out.println("Invalid number. Please enter a number between 1 and 45.");
-                } else {
-                    isValidInput = true;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-            }
-        }
-        return number;
     }
 
     private boolean contains(int[] array, int value) {
