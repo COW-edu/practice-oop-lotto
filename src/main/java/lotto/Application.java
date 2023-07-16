@@ -1,54 +1,25 @@
 package lotto;
-
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("금액을 입력해주세요");
-        int price = receivePrice();
-        System.out.println("로또 개수:"+price);
+        //금액 입력 받기
+        System.out.println("금액을 입력하세요");
+        int inputPrice = Integer.parseInt(Console.readLine());
+        //로또 답 입력 받기
+        System.out.println("당첨 로또 번호를 입력하세요.");
+        LottoAnswer lottoAnswer = new LottoAnswer();
+        //로또 생성하기
+        LottoShop lottoShop = new LottoShop(inputPrice);
+        //생성한 로또 저장하기
+        List<Lotto> CustomerLotto = lottoShop.getLottos(); //뭔가 클래스로 감싸서 전달하고 싶은데...
+        LottoWallet lottoWallet = new LottoWallet(CustomerLotto);
+        //로또 계산하기
+        LottoCalculator lottoCalculator = new LottoCalculator(lottoWallet, lottoAnswer);
+        List<Integer> lottoResult=lottoCalculator.getResult();
+        //출력
+        Customer customer = new Customer(lottoWallet,lottoResult);
 
-        List<Integer> lottoNumbers = new ArrayList<>();
-        for(int i=0; i<6; i++){
-            System.out.println((i+1)+"번째 로또 당첨 번호를 입력해주세요");
-            int number = Integer.parseInt(Console.readLine());
-            lottoNumbers.add(number);
-        }
-        System.out.println("로또 당첨 번호는" +lottoNumbers+"입니다.");
-        System.out.println("보너스 당첨 번호를 입력해주세요");
-        int bonusNum = Integer.parseInt(Console.readLine());
-        System.out.println("보너스 당첨 번호는" +bonusNum+"입니다.");
-        Lotto lotto = new Lotto(lottoNumbers);
-
-        List<List<Integer>> userNum =new ArrayList<>();
-        for(int i=0; i<price; i++) {
-            userNum.add(create());
-        }
-        System.out.println("발행한 로또 번호입니다\n"+userNum);
-        lotto.compare(userNum,bonusNum,price);
     }
-    private static int receivePrice(){
-        int price = Integer.parseInt(Console.readLine());
-        if(price%1000!=0){
-            try{
-               //empty
-            }catch (IllegalArgumentException e){
-                System.out.println("1000단위로 입력해주세요.");
-            };
-        }
-        if(price<0){
-            System.out.println("다시 입력해주세요");
-            price = Integer.parseInt(Console.readLine());
-        }
-        return price/1000;
-    }
-    private static List<Integer> create(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
 }
