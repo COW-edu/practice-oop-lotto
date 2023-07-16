@@ -10,19 +10,6 @@ import java.util.List;
 
 public class View {
     Controller controller = new Controller();
-    public void println(String message) {
-        System.out.println(message);
-    }
-
-    public void print(String message) {
-        System.out.print(message);
-    }
-    public void print(int number) {
-        System.out.print(number);
-    }
-    public void print(Double number) {
-        System.out.print(number);
-    }
 
     public String readString() {
         String result = Console.readLine();
