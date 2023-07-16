@@ -1,10 +1,8 @@
-package lotto;
-
 import controller.LottoController;
 import controller.LottoWinChecked;
 import controller.LottoWinResult;
-import model.LottosData;
-import model.WinData;
+import model.lotto.LottosData;
+import model.win.WinData;
 import view.input.Input;
 import view.input.InputImpl;
 import view.output.OutPutImpl;
@@ -23,11 +21,9 @@ public class LottoAppConfig {
   public LottosData LottosData(){
     return new LottosData();
   }
-
   public WinData WinData(){
     return new WinData();
   }
-
   public LottoWinChecked LottoWinChecked(){
     return new LottoWinChecked();
   }

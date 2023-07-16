@@ -1,9 +1,10 @@
-package model;
+package model.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.lotto.Lotto;
 
 public class LottosData {
     public static final int COUNT_OF_LOTTO_NUMBER =6;

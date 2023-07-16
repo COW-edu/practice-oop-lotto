@@ -1,9 +1,9 @@
 package view.output;
 
 import message.ResultMessage;
-import model.LottosData;
-import model.WinData;
-import model.WinLottoCount;
+import model.lotto.LottosData;
+import model.win.WinData;
+import model.win.WinLottoCount;
 
 public class OutPutImpl implements Output{
     @Override

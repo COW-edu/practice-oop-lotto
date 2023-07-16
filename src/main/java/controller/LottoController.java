@@ -1,7 +1,7 @@
 package controller;
 import message.RequestMessage;
-import model.LottosData;
-import model.WinData;
+import model.lotto.LottosData;
+import model.win.WinData;
 import view.input.Input;
 import view.output.Output;
 

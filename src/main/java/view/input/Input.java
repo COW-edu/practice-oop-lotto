@@ -1,7 +1,6 @@
 package view.input;
 
-import java.util.List;
-import model.Lotto;
+import model.lotto.Lotto;
 
 public interface Input {
    int inputMoney();

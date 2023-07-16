@@ -3,8 +3,8 @@ package controller;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import model.LottosData;
-import model.WinData;
+import model.lotto.LottosData;
+import model.win.WinData;
 
 public class LottoWinChecked {
     private LottosData lottosData;

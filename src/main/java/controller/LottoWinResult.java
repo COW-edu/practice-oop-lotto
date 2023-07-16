@@ -1,10 +1,10 @@
 package controller;
 
-import model.LottosData;
-import model.WinData;
+import model.lotto.LottosData;
+import model.win.WinData;
 import java.util.HashMap;
 import java.util.Map;
-import model.WinLottoCount;
+import model.win.WinLottoCount;
 
 public class LottoWinResult {
     private LottosData lottosData;

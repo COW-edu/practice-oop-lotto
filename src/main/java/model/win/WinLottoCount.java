@@ -1,4 +1,4 @@
-package model;
+package model.win;
 
 public enum WinLottoCount {
   threeCount("3",5000,"3개 일치 (5000원) -"),

@@ -1,6 +1,7 @@
-package model;
+package model.win;
 
 import java.util.Map;
+import model.lotto.Lotto;
 
 public class WinData {
     private Map<String, Integer> winCountResult;

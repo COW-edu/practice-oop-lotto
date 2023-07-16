@@ -1,7 +1,7 @@
 package view.output;
 
-import model.LottosData;
-import model.WinData;
+import model.lotto.LottosData;
+import model.win.WinData;
 
 public interface Output {
   void outPutMessage(String message);

@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import message.ErrorMessage;
-import model.Lotto;
-import model.LottosData;
+import model.lotto.Lotto;
+import model.lotto.LottosData;
 
 public class InputImpl implements Input{
 

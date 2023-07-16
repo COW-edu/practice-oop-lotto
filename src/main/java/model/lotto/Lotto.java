@@ -1,4 +1,4 @@
-package model;
+package model.lotto;
 
 import java.util.List;
 import message.ErrorMessage;
