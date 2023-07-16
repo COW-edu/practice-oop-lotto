@@ -12,15 +12,15 @@ public class LottoController {
     private final Output output;
     private final Input input;
     private final LottoStore lottoStore;
-    private final CheckedEqualMachine lottoWinChecked;
-    private final ProfitCalculator lottoWinResult;
+    private final CheckedEqualMachine checkedEqualMachine;
+    private final ProfitCalculator profitCalculator;
 
-    public LottoController(Output output, Input input, LottoStore lottoStore, CheckedEqualMachine lottoWinChecked, ProfitCalculator lottoWinResult) {
+    public LottoController(Output output, Input input, LottoStore lottoStore, CheckedEqualMachine checkedEqualMachine, ProfitCalculator profitCalculator) {
         this.output = output;
         this.input=input;
         this.lottoStore=lottoStore;
-        this.lottoWinChecked = lottoWinChecked;
-        this.lottoWinResult=lottoWinResult;
+        this.checkedEqualMachine = checkedEqualMachine;
+        this.profitCalculator=profitCalculator;
     }
 
     public void lottoRun() {
@@ -37,7 +37,7 @@ public class LottoController {
         }
     }
     public void storedDataForMethod(PayLottosData payLottosData){
-        lottoWinChecked.storedData(payLottosData);
+        checkedEqualMachine.storedData(payLottosData);
     }
 
     private int inputMoney(PayLottosData payLottosData)throws IllegalArgumentException{
@@ -50,12 +50,12 @@ public class LottoController {
 
     private int[] inputWinLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
-        return lottoWinChecked.checkedWinLottoNumbers(input.inputWinNumber());
+        return checkedEqualMachine.checkedWinLottoNumbers(input.inputWinNumber());
     }
 
     private boolean[] inputBonusLottoNumber()throws IllegalArgumentException{
         output.outPutMessage(RequestMessage.INPUT_BONUS_NUMBER);
-        return lottoWinChecked.checkedBonusLottoNumbers(input.inputBonusNumber());
+        return checkedEqualMachine.checkedBonusLottoNumbers(input.inputBonusNumber());
 
     }
 
@@ -64,7 +64,7 @@ public class LottoController {
     }
 
     private void profitRateCheck(WinLottoResult winLottoResult, int payMoney) {
-       double profitRate = lottoWinResult.profitRateCalculate(winLottoResult,payMoney);
+       double profitRate = profitCalculator.profitRateCalculate(winLottoResult,payMoney);
         output.outPutLottoResult(profitRate,winLottoResult);
     }
 }

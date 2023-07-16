@@ -8,23 +8,23 @@ import view.output.OutPutImpl;
 import view.output.Output;
 
 public class LottoAppConfig {
-  public LottoController LottoController(){
-    return new LottoController(Output(), Input(), LottoStore(), LottoWinChecked(),LottoWinResult());
+  public LottoController lottoController(){
+    return new LottoController(output(), input(), lottoStore(), checkedEqualMachine(),profitCalculator());
   }
-  public Output Output(){
+  public Output output(){
     return new OutPutImpl();
   }
-  public Input Input(){
+  public Input input(){
     return new InputImpl();
   }
-  public LottoStore LottoStore(){
+  public LottoStore lottoStore(){
     return new LottoStore();
   }
-  public CheckedEqualMachine LottoWinChecked(){
+  public CheckedEqualMachine checkedEqualMachine(){
     return new CheckedEqualMachine();
   }
 
-  public ProfitCalculator LottoWinResult(){
+  public ProfitCalculator profitCalculator(){
     return new ProfitCalculator();
   }
 }
