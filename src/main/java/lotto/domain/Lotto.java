@@ -15,7 +15,6 @@ public class Lotto {
   private static final int LOTTO_SIZE = 6;
   private static final int START_INCLUSIVE = 1;
   private static final int END_INCLUSIVE = 45;
-  private static final int LOTTO_RANK_5 = 5;
 
   private final List<Integer> numbers;
 
@@ -28,18 +27,12 @@ public class Lotto {
     return Collections.unmodifiableList(numbers);
   }
 
-  public int calculateWinningCount(List<Integer> winningLottoNumbersList, int bonusNumber) {
+  public int calculateWinningCount(List<Integer> winningLottoNumbersList) {
     int winningCount = 0;
     for (int LottoNumber : winningLottoNumbersList) {
       if (numbers.contains(LottoNumber)) {
         winningCount++;
       }
-    }
-    boolean isBonus = numbers.contains(bonusNumber);
-    boolean checkingRank =
-        (winningCount == LOTTO_SIZE) || (winningCount == LOTTO_RANK_5 && isBonus);
-    if (checkingRank) {
-      winningCount++;
     }
     return winningCount;
   }

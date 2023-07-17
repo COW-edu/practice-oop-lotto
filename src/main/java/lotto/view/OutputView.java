@@ -3,7 +3,7 @@ package lotto.view;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.message.OutputMessage;
-import lotto.message.ResultMessage;
+import lotto.message.WinningRankMessage;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class OutputView {
         String.format(OutputMessage.PURCHASED_LOTTO_COUNTS.getMessage(), purchasedLottoCounts));
     lottoController.createLottoList(purchasedLottoCounts);
     List<Lotto> lottoList = lottoController.findLottoList();
-        StringBuilder totalStringLottoList = new StringBuilder();
+    StringBuilder totalStringLottoList = new StringBuilder();
     for (int index = 0; index < purchasedLottoCounts; index++) {
       totalStringLottoList.append(lottoList.get(index).getNumbers()).append("\n");
     }
@@ -51,26 +51,40 @@ public class OutputView {
   }
 
   public String outPutLottoTotalResult(int purchasedLottoCounts) {
-    ResultMessage resultMessage;
     double totalWinningMoney = 0.0;
     System.out.println("\n당첨 통계\n---");
     int[] winningLottoCountList = lottoController.countWinningNumber(purchasedLottoCounts);
-    for (int correctNumberCount = RESULT_INDEX_THREE; correctNumberCount <= RESULT_INDEX_SEVEN;
-        correctNumberCount++) {
-      resultMessage = ResultMessage.valueOf(correctNumberCount);
-      System.out.println(
-          outPutResultComment(resultMessage, winningLottoCountList, correctNumberCount));
-      totalWinningMoney += lottoController.calculateTotalWinningMoney(resultMessage,
-          winningLottoCountList, correctNumberCount);
+
+    for (int winningCount = RANK_FIFTH; winningCount <= RANK_FIRST;
+        winningCount++) {
+      if (winningCount == RANK_FIRST) {
+        totalWinningMoney += calculateTotalWinningMoney(HAS_BONUS, winningLottoCountList, RANK_SECOND);
+      }
+      totalWinningMoney += calculateTotalWinningMoney(HAS_NOT_BONUS, winningLottoCountList, winningCount);
     }
     return String.format("%.1f",
-        totalWinningMoney / (purchasedLottoCounts * CHANGE_PURCHASE_MONEY) * CHANGE_PERCENT);
+        totalWinningMoney / (purchasedLottoCounts * CHANGE_PURCHASE_UNIT) * CHANGE_PERCENT);
   }
 
-  private String outPutResultComment(ResultMessage resultMessage, int[] winningLottoCountList,
-      int correctNumberCount) {
-    return String.format(OutputMessage.LOTTO_RESULT.getMessage(), resultMessage.getWinningCount(),
-        resultMessage.getBonusComment(), resultMessage.getWinningMoney(),
-        winningLottoCountList[correctNumberCount - 3]);
+  private String outputResultComment(WinningRankMessage winningRankMessage,
+      int[] winningLottoCountList,
+      int winningCount) {
+    String extraComment = "";
+    if (winningRankMessage.hasBonus()) {
+      extraComment = ", 보너스 볼 일치";
+    }
+    return String.format(OutputMessage.LOTTO_RESULT.getMessage(),
+        winningRankMessage.getWinningCount(),
+        extraComment, winningRankMessage.getWinningMoney(),
+        winningLottoCountList[winningCount - INDEXING]);
+  }
+
+  private double calculateTotalWinningMoney(boolean hasBonus, int[] winningLottoCountList, int winningCount) {
+    WinningRankMessage winningRankMessage;
+    winningRankMessage = WinningRankMessage.valueOf(winningCount, hasBonus);
+    System.out.println(
+        outputResultComment(winningRankMessage, winningLottoCountList, winningCount));
+    return lottoController.calculateTotalWinningMoney(winningRankMessage,
+        winningLottoCountList, winningCount);
   }
 }
