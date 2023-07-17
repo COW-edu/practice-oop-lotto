@@ -25,11 +25,12 @@ public class LottoServiceImpl implements LottoService {
   private static final int START_INCLUSIVE = 1;
   private static final int END_INCLUSIVE = 45;
   private static final int LOTTO_COUNT = 6;
+  private static final int UNIT = 1000;
 
   @Override
-  public int calculatePurchaseAmount(int purchaseAmount, int oneThousand)
+  public int calculatePurchaseAmount(int purchaseAmount)
       throws IllegalArgumentException {
-    return purchaseAmount / oneThousand;
+    return purchaseAmount / UNIT;
   }
 
   @Override

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LottoService {
 
-  int calculatePurchaseAmount(int purchaseAmount, int oneThousand) throws IllegalArgumentException;
+  int calculatePurchaseAmount(int purchaseAmount) throws IllegalArgumentException;
 
   void createRandomLottoNumbers(int purchasedLottoCounts);
 

@@ -16,7 +16,7 @@ public class LottoControllerImpl implements LottoController {
 
   @Override
   public int checkPurchasedLottoCounts(int purchaseAmount) throws IllegalArgumentException {
-    return lottoService.calculatePurchaseAmount(purchaseAmount, 1000);
+    return lottoService.calculatePurchaseAmount(purchaseAmount);
   }
 
   @Override
