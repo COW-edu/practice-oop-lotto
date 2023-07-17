@@ -5,73 +5,26 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.ErrorMessage;
 import lotto.model.Lotto;
 import lotto.model.Wallet;
-import lotto.view.View;
+import lotto.view.InputView;
 import lotto.view.ViewText;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
     public void run() {
-        Wallet wallet = new Wallet();
-        View view = new View();
-
-        view.println(ViewText.INPUT_PURCHASE_PRICE.getData());
-        view.getPurchasePrice(wallet);
-        view.print(wallet.getPurchaseAmount());
-        view.println(ViewText.OUTPUT_PURCHASE_AMOUNT.getData());
-
-        purchaseLotto(wallet);
-        for (Lotto lotto : wallet.getLotto()) {
-            lotto.print();
-        }
-
-        view.println(ViewText.INPUT_WIN_NUMBER.getData());
-        wallet.setWinNumber(view.getWinNumber());
-        view.println(ViewText.INPUT_BONUS_NUMBER.getData());
-        wallet.setBonusNumber(view.getBonusNumber());
-
-        calculateWinResult(wallet);
-        view.println(ViewText.OUTPUT_WIN_STATISTICS_TITLE.getData());
-        view.println(ViewText.OUTPUT_DIVISION_LINE.getData());
-
-        int[] winResult = wallet.getWinResult();
-
-        view.print(ViewText.OUTPUT_THREE_ACCORD_NUMBERS.getData());
-        view.print(winResult[0]);
-        view.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
-
-        view.print(ViewText.OUTPUT_FOUR_ACCORD_NUMBERS.getData());
-        view.print(winResult[1]);
-        view.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
-
-        view.print(ViewText.OUTPUT_FIVE_ACCORD_NUMBERS.getData());
-        view.print(winResult[2]);
-        view.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
-
-        view.print(ViewText.OUTPUT_FIVE_ACCORD_NUMBERS_BONUS.getData());
-        view.print(winResult[4]);
-        view.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
-
-        view.print(ViewText.OUTPUT_SIX_ACCORD_NUMBERS.getData());
-        view.print(winResult[3]);
-        view.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
-
-        view.print(ViewText.OUTPUT_TOTAL_PROFIT_RATE_HEAD.getData());
-        view.print(wallet.getProfitRate()*100);
-        view.println(ViewText.OUTPUT_TOTAL_PROFIT_RATE_TAIL.getData());
-    }
-    public int convertStringToInteger(String input) {
-        int output;
-        try {
-            output = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_INTEGER_INPUT.getData());
-        }
-        return output;
+        List<Lotto> lottoList = new ArrayList<>();
+        int purchaseAmount = purchaseLotto(lottoList);
+        Wallet wallet = getNumbers(lottoList, purchaseAmount);
+        displayStatistics(wallet);
     }
 
-    public List<Integer> handleWinNumber(String winNumberLine) {
+    public List<Integer> readWinNumber() {
+        String winNumberLine = inputView.readString();
         String[] winNumberLineSplit = winNumberLine.split(",");
         if (winNumberLineSplit.length != 6) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_WIN_NUMBER_LENGTH.getData());
@@ -87,64 +40,70 @@ public class Controller {
         return winNumbers;
     }
 
-    public int handleBonusNumber(String bonusNumberLine) {
-        return convertStringToInteger(bonusNumberLine);
+    public int readBonusNumber() {
+        return inputView.readInteger();
     }
 
-    public void handlePurchasePrice(Wallet wallet, String purchasePriceString) {
-        int purchasePrice = convertStringToInteger(purchasePriceString);
-        if (purchasePrice % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_PRICE_UNIT.getData());
-        }
-        wallet.setPurchasePrice(purchasePrice);
-        wallet.setPurchaseAmount(purchasePrice / 1000);
-    }
+    private int purchaseLotto(List<Lotto> lottoList) {
+        int purchaseAmount = calculatePurchasePrice();
 
-    public void purchaseLotto(Wallet wallet) {
-        int purchaseAmount = wallet.getPurchaseAmount();
+        outputView.printPurchaseAmountMessage(purchaseAmount);
 
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
-            lotto.print();
-            wallet.addLotto(lotto);
+            lottoList.add(lotto);
+            outputView.printLotto(lotto);
         }
+
+        return purchaseAmount;
     }
 
-    public void calculateWinResult(Wallet wallet) {
-        List<Lotto> lottoList = wallet.getLotto();
-        List<Integer> winNumber = wallet.getWinNumber();
-        int bonusNumber = wallet.getBonusNumber();
-
-        // 3, 4, 5, 6, Bonus
-        int[] winResult = {0, 0, 0, 0, 0};
-
-        for (Lotto lotto : lottoList) {
-            List<Integer> numbers = lotto.getNumbers();
-
-            int accordWinNumber = 0;
-            int accordBonusNumber = 0;
-
-            for (Integer number : numbers) {
-                if (winNumber.contains(number)) {
-                    accordWinNumber += 1;
-                }
-                if (number == bonusNumber) {
-                    accordBonusNumber += 1;
-                }
-            }
-
-            if (accordWinNumber >= 3) {
-                if (accordWinNumber == 5 && accordBonusNumber == 1) {
-                    winResult[4] += 1;
-                }
-                winResult[accordWinNumber - 3] += 1;
-            }
+    private int calculatePurchasePrice() {
+        int purchasePrice =  inputView.readInteger();
+        if (purchasePrice % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_PRICE_UNIT.getData());
         }
+        return purchasePrice / 1000;
+    }
 
-        int profit = winResult[0]*5000 + winResult[1]*50000 + winResult[2]*1500000 + winResult[3]*2000000000 + winResult[4]*30000000;
+    private Wallet getNumbers(List<Lotto> lottoList, int purchaseAmount) {
+        outputView.printReadWinNumbersMessage();
+        List<Integer> winNumber = readWinNumber();
+        outputView.printReadBonusNumbersMessage();
+        int bonusNumber = readBonusNumber();
 
-        wallet.setWinResult(winResult);
-        wallet.setProfit(profit);
+        return new Wallet(lottoList, winNumber, bonusNumber, purchaseAmount);
+    }
+
+    private void displayStatistics(Wallet wallet) {
+        System.out.println(ViewText.OUTPUT_WIN_STATISTICS_TITLE.getData());
+        System.out.println(ViewText.OUTPUT_DIVISION_LINE.getData());
+
+        int[] winResult = wallet.getWinResult();
+
+        System.out.print(ViewText.OUTPUT_THREE_ACCORD_NUMBERS.getData());
+        System.out.print(winResult[0]);
+        System.out.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
+
+        System.out.print(ViewText.OUTPUT_FOUR_ACCORD_NUMBERS.getData());
+        System.out.print(winResult[1]);
+        System.out.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
+
+        System.out.print(ViewText.OUTPUT_FIVE_ACCORD_NUMBERS.getData());
+        System.out.print(winResult[2]);
+        System.out.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
+
+        System.out.print(ViewText.OUTPUT_FIVE_ACCORD_NUMBERS_BONUS.getData());
+        System.out.print(winResult[4]);
+        System.out.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
+
+        System.out.print(ViewText.OUTPUT_SIX_ACCORD_NUMBERS.getData());
+        System.out.print(winResult[3]);
+        System.out.println(ViewText.OUTPUT_ACCORD_NUMBERS_TAIL.getData());
+
+        System.out.print(ViewText.OUTPUT_TOTAL_PROFIT_RATE_HEAD.getData());
+        System.out.print(wallet.getProfitRate()*100);
+        System.out.println(ViewText.OUTPUT_TOTAL_PROFIT_RATE_TAIL.getData());
     }
 }
