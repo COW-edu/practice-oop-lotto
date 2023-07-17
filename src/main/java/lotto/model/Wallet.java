@@ -4,51 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Wallet {
+    private static final int THREE_ACCORD_REWARD = 5000;
+    private static final int FOUR_ACCORD_REWARD = 50000;
+    private static final int FIVE_ACCORD_REWARD = 1500000;
+    private static final int BONUS_ACCORD_REWARD = 30000000;
+    private static final int SIX_ACCORD_REWARD = 2000000000;
+
     private List<Lotto> lottoList = new ArrayList<>();
     private List<Integer> winNumber;
     private int bonusNumber;
     private int profit;
     private double profitRate;
 
+    private final int purchasePrice;
+
     // 3, 4, 5, 6, Bonus
-    private int[] winResult = {0, 0, 0, 0, 0};
-    private int purchasePrice;
-    private int purchaseAmount;
+    int[] winResult = {0, 0, 0, 0, 0};
 
-    public void addLotto(Lotto lotto) {
-        lottoList.add(lotto);
-    }
-
-    public List<Lotto> getLotto() {
-        return lottoList;
-    }
-
-    public void setWinNumber(List<Integer> winNumber) {
+    public Wallet(List<Lotto> lottoList, List<Integer> winNumber, int bonusNumber, int purchaseAmount) {
+        this.lottoList = lottoList;
         this.winNumber = winNumber;
-    }
-
-    public List<Integer> getWinNumber() {
-        return this.winNumber;
-    }
-
-    public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+        this.purchasePrice = purchaseAmount*1000;
+        calculateProfitRate();
+        calculateWinResult();
     }
 
-    public int getBonusNumber() {
-        return this.bonusNumber;
-    }
-
-    public void setWinResult(int[] winResult) {
-        this.winResult = winResult;
-    }
-
-    public int[] getWinResult() {
-        return winResult;
-    }
-
-    public void setProfit(int profit) {
-        this.profit = profit;
+    private void calculateProfitRate() {
         profitRate = profit / (double) purchasePrice;
     }
 
@@ -56,19 +38,33 @@ public class Wallet {
         return profitRate;
     }
 
-    public void setPurchasePrice(int purchasePrice) {
-        this.purchasePrice = purchasePrice;
+    public void calculateWinResult() {
+        for (Lotto lotto : lottoList) {
+            List<Integer> numbers = lotto.getNumbers();
+
+            int accordWinNumber = 0;
+            int accordBonusNumber = 0;
+
+            for (Integer number : numbers) {
+                if (winNumber.contains(number)) {
+                    accordWinNumber += 1;
+                }
+                if (number == bonusNumber) {
+                    accordBonusNumber += 1;
+                }
+            }
+
+            if (accordWinNumber >= 3) {
+                if (accordWinNumber == 5 && accordBonusNumber == 1) {
+                    winResult[4] += 1;
+                }
+                winResult[accordWinNumber - 3] += 1;
+            }
+        }
+        profit = winResult[0]*THREE_ACCORD_REWARD + winResult[1]*FOUR_ACCORD_REWARD + winResult[2]*FIVE_ACCORD_REWARD + winResult[3]*SIX_ACCORD_REWARD + winResult[4]*BONUS_ACCORD_REWARD;
     }
 
-    public void setPurchaseAmount(int purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
-    }
-
-    public int getPurchasePrice() {
-        return purchasePrice;
-    }
-
-    public int getPurchaseAmount() {
-        return purchaseAmount;
+    public int[] getWinResult() {
+        return winResult;
     }
 }
