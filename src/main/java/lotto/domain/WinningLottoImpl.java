@@ -20,6 +20,22 @@ public class WinningLottoImpl implements WinningLotto {
     setWinningNumber(initialWinningNumber);
   }
 
+  @Override
+  public void setBonusNumber(int bonusNumber) {
+    isCorrectRange(bonusNumber);
+    this.bonusNumber = bonusNumber;
+  }
+
+  @Override
+  public List<Integer> getWinningNumber() {
+    return winningNumber;
+  }
+
+  @Override
+  public int getBonusNumber() {
+    return bonusNumber;
+  }
+
   private void setWinningNumber(String initialWinningNumber) {
     winningNumber = Arrays.stream(initialWinningNumber.split(","))
         .map(String::trim)
@@ -54,21 +70,5 @@ public class WinningLottoImpl implements WinningLotto {
     if (integerLottoNumber < START_INCLUSIVE || integerLottoNumber > END_INCLUSIVE) {
       throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_INCORRECT_RANGE.getMessage());
     }
-  }
-
-  @Override
-  public void setBonusNumber(int bonusNumber) {
-    isCorrectRange(bonusNumber);
-    this.bonusNumber = bonusNumber;
-  }
-
-  @Override
-  public List<Integer> getWinningNumber() {
-    return winningNumber;
-  }
-
-  @Override
-  public int getBonusNumber() {
-    return bonusNumber;
   }
 }

@@ -29,6 +29,22 @@ public class Lotto {
     return Collections.unmodifiableList(numbers);
   }
 
+  public int calculateWinningCount(List<Integer> winningLottoNumbersList, int bonusNumber) {
+    int winningCount = 0;
+    for (int LottoNumber : winningLottoNumbersList) {
+      if (numbers.contains(LottoNumber)) {
+        winningCount++;
+      }
+    }
+    boolean isBonus = numbers.contains(bonusNumber);
+    boolean checkingRank =
+        (winningCount == LOTTO_SIZE) || (winningCount == LOTTO_RANK_5 && isBonus);
+    if (checkingRank) {
+      winningCount++;
+    }
+    return winningCount;
+  }
+
   private void validate(List<Integer> numbers) {
     validateNotEnoughSize(numbers);
     validateDuplicate(numbers);
@@ -59,21 +75,5 @@ public class Lotto {
   private void validateCorrectRange(List<Integer> numbers) {
     numbers.stream()
         .forEach(this::isCorrectRange);
-  }
-
-  public int calculateWinningCount(List<Integer> winningLottoNumbersList, int bonusNumber) {
-    int winningCount = 0;
-    for (int LottoNumber : winningLottoNumbersList) {
-      if (numbers.contains(LottoNumber)) {
-        winningCount++;
-      }
-    }
-    boolean isBonus = numbers.contains(bonusNumber);
-    boolean checkingRank =
-        (winningCount == LOTTO_SIZE) || (winningCount == LOTTO_RANK_5 && isBonus);
-    if (checkingRank) {
-      winningCount++;
-    }
-    return winningCount;
   }
 }
