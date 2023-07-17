@@ -3,11 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import lotto.model.ErrorMessage;
-import lotto.controller.Controller;
 
 public class InputView {
-    private final Controller controller = new Controller();
-
     public String readString() {
         String result = Console.readLine();
 
