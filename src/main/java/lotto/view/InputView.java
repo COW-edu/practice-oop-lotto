@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
-import lotto.message.InputMessage;
 import lotto.message.LottoExceptionMessage;
 
 public class InputView {
@@ -15,11 +14,8 @@ public class InputView {
   }
 
   public int inputPurchaseAmount() throws IllegalArgumentException {
-    System.out.println(InputMessage.INPUT_PURCHASE_AMOUNT.getMessage());
     int purchaseAmount = validatePurchaseAmount(Console.readLine());
-    int purchasedLottoCounts = lottoController.checkPurchasedLottoCounts(purchaseAmount);
-    System.out.println();
-    return purchasedLottoCounts;
+    return lottoController.checkPurchasedLottoCounts(purchaseAmount);
   }
 
   private int validatePurchaseAmount(String inputMoney) {
@@ -53,13 +49,11 @@ public class InputView {
   }
 
   public void inputWinningNumbers() throws IllegalArgumentException {
-    System.out.println(InputMessage.INPUT_WIN_LOTTO_NUMBERS.getMessage());
     String winningNumbers = Console.readLine();
     lottoController.insertWinningLottoNumbers(winningNumbers);
   }
 
   public void inputBonusNumber() throws IllegalArgumentException {
-    System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());
     int bonusNumber = Integer.parseInt(Console.readLine());
     lottoController.insertBonusNumber(bonusNumber);
   }

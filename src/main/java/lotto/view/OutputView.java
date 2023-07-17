@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
-import lotto.message.InputMessage;
 import lotto.message.OutputMessage;
 import lotto.message.ResultMessage;
 
@@ -21,9 +20,14 @@ public class OutputView {
     this.lottoController = lottoController;
   }
 
+  public void outputPurchaseAmount() {
+    System.out.println(OutputMessage.INPUT_PURCHASE_AMOUNT.getMessage());
+    System.out.println();
+  }
+
   public void outPutLottoList(int purchasedLottoCounts) {
     System.out.println(
-        String.format(InputMessage.PURCHASED_LOTTO_COUNTS.getMessage(), purchasedLottoCounts));
+        String.format(OutputMessage.PURCHASED_LOTTO_COUNTS.getMessage(), purchasedLottoCounts));
     lottoController.createLottoList(purchasedLottoCounts);
     List<Lotto> lottoList = lottoController.findLottoList();
         StringBuilder totalStringLottoList = new StringBuilder();
@@ -31,6 +35,19 @@ public class OutputView {
       totalStringLottoList.append(lottoList.get(index).getNumbers()).append("\n");
     }
     System.out.println(totalStringLottoList.toString());
+  }
+
+  public void outputWinningNumbers() {
+    System.out.println(OutputMessage.INPUT_WIN_LOTTO_NUMBERS.getMessage());
+  }
+
+  public void outputBonusNumber() {
+    System.out.println(OutputMessage.INPUT_BONUS_NUMBER.getMessage());
+  }
+
+  public void outPutRateOfLotteryWinnings(String totalWinningMoney) {
+    System.out.println(
+        String.format(OutputMessage.RATE_OF_LOTTERY_WINNINGS.getMessage(), totalWinningMoney));
   }
 
   public String outPutLottoTotalResult(int purchasedLottoCounts) {
@@ -55,10 +72,5 @@ public class OutputView {
     return String.format(OutputMessage.LOTTO_RESULT.getMessage(), resultMessage.getWinningCount(),
         resultMessage.getBonusComment(), resultMessage.getWinningMoney(),
         winningLottoCountList[correctNumberCount - 3]);
-  }
-
-  public void outPutRateOfLotteryWinnings(String totalWinningMoney) {
-    System.out.println(
-        String.format(OutputMessage.RATE_OF_LOTTERY_WINNINGS.getMessage(), totalWinningMoney));
   }
 }

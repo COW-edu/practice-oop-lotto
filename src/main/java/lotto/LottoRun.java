@@ -16,10 +16,13 @@ public class LottoRun implements Runnable {
   @Override
   public void run() {
     try {
+      outputView.outputPurchaseAmount();
       int purchasedLottoCounts = inputView.inputPurchaseAmount();
       outputView.outPutLottoList(purchasedLottoCounts);
+      outputView.outputWinningNumbers();
       inputView.inputWinningNumbers();
       inputView.inputBonusNumber();
+      outputView.outputBonusNumber();
 
       String totalWinningMoney = outputView.outPutLottoTotalResult(purchasedLottoCounts);
       outputView.outPutRateOfLotteryWinnings(totalWinningMoney);
