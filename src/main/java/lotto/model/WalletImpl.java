@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wallet {
+public class WalletImpl {
     private static final int THREE_ACCORD_REWARD = 5000;
     private static final int FOUR_ACCORD_REWARD = 50000;
     private static final int FIVE_ACCORD_REWARD = 1500000;
@@ -21,7 +21,7 @@ public class Wallet {
     // 3, 4, 5, 6, Bonus
     int[] winResult = {0, 0, 0, 0, 0};
 
-    public Wallet(List<Lotto> lottoList, List<Integer> winNumber, int bonusNumber, int purchaseAmount) {
+    public WalletImpl(List<Lotto> lottoList, List<Integer> winNumber, int bonusNumber, int purchaseAmount) {
         this.lottoList = lottoList;
         this.winNumber = winNumber;
         this.bonusNumber = bonusNumber;
