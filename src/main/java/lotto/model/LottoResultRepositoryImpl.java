@@ -1,5 +1,9 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LottoResultRepositoryImpl implements LottoResultRepository {
 
   private static final int RANK_FIFTH_COUNT = 3;
@@ -24,7 +28,7 @@ public class LottoResultRepositoryImpl implements LottoResultRepository {
   }
 
   @Override
-  public List<Integer> findList() {
+  public List<Integer> findLottoResults() {
     return lottoResult;
   }
 }

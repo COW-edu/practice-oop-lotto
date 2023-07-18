@@ -11,7 +11,7 @@ public interface LottoController {
 
   void createLottoList(int purchasedLottoCounts);
 
-  List<Lotto> findLottoList();
+  List<Lotto> findLotto();
 
   void insertWinningLottoNumbers(String winningNumbers) throws IllegalArgumentException;
 

@@ -22,12 +22,12 @@ public class WinningLottoNumberRepositoryImpl implements WinningLottoNumberRepos
   }
 
   @Override
-  public void saveNumber(String winningNumbers) {
+  public void saveWinningLotto(String winningNumbers) {
     winningLotto.saveWinningNumber(winningNumbers);
   }
 
   @Override
-  public List<Integer> findWinningLotto() {
-    return winningLotto.getWinningNumber();
+  public int calculateWinningCount(List<Integer> lottoList) {
+    return winningLotto.calculateWinningCount(lottoList);
   }
 }

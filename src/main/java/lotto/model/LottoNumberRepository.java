@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LottoNumberRepository {
 
-  void saveNumber(Lotto lotto);
+  void saveLotto(Lotto lotto);
 
-  List<Lotto> findList();
+  List<Lotto> findLotteries();
 }

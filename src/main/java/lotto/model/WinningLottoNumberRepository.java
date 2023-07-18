@@ -6,7 +6,7 @@ public interface WinningLottoNumberRepository {
 
   int getBonusNumber();
 
-  void saveNumber(String winningNumbers);
+  void saveWinningLotto(String winningNumbers);
 
   void saveBonusNumber(int bonusNumber);
 

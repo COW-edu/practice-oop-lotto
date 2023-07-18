@@ -25,7 +25,7 @@ public class LottoControllerImpl implements LottoController {
   }
 
   @Override
-  public List<Lotto> findLottoList() {
+  public List<Lotto> findLotto() {
     return lottoService.findRandomLottoNumbers();
   }
 

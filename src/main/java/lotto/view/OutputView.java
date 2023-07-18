@@ -33,7 +33,7 @@ public class OutputView {
     System.out.println(
         String.format(OutputMessage.PURCHASED_LOTTO_COUNTS.getMessage(), purchasedLottoCounts));
     lottoController.createLottoList(purchasedLottoCounts);
-    List<Lotto> lottoList = lottoController.findLottoList();
+    List<Lotto> lottoList = lottoController.findLotto();
     StringBuilder totalStringLottoList = new StringBuilder();
     for (int index = 0; index < purchasedLottoCounts; index++) {
       totalStringLottoList.append(lottoList.get(index).getNumbers()).append("\n");

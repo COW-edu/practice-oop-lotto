@@ -41,19 +41,19 @@ public class LottoServiceImpl implements LottoService {
       List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
           LOTTO_COUNT);
       Lotto lotto = new Lotto(numbers);
-      lottoNumberRepository.saveNumber(lotto);
+      lottoNumberRepository.saveLotto(lotto);
     }
   }
 
   @Override
   public List<Lotto> findRandomLottoNumbers() {
-    return lottoNumberRepository.findList();
+    return lottoNumberRepository.findLotteries();
   }
 
   @Override
   public void saveWinningLottoNumbers(String winningNumbers)
       throws IllegalArgumentException {
-    winningLottoNumberRepository.saveNumber(winningNumbers);
+    winningLottoNumberRepository.saveWinningLotto(winningNumbers);
   }
 
   @Override
