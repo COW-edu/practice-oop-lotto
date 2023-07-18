@@ -25,6 +25,7 @@
 ### Service
 
 - Service : 서비스 관련 객체들을 모아서 관리하는 객체
+- PurchasePriceHandler : 구입 금액을 처리하는 객체
 - WinNumbersGenerator : 로또 당첨 번호를 생성하는 객체
 - LottoGenerator : 로또를 생성(판매)하는 객체
 - WinResultCalculator : 로또 당첨 결과를 계산하는 객체
