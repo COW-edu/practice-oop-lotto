@@ -11,10 +11,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        checkNumberLength(numbers);
+        checkRepeatedNumber(numbers);
+    }
+
+    private void checkNumberLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_WIN_NUMBER_LENGTH.getData());
         }
+    }
 
+    private void checkRepeatedNumber(List<Integer> numbers) {
         ArrayList<Integer> numbersChecker = new ArrayList<>();
         for (int number : numbers) {
             if (numbersChecker.contains(number)) {
