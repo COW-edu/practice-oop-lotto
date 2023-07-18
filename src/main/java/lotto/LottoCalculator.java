@@ -10,8 +10,8 @@ public class LottoCalculator {
     private List<Integer> answerLotto;
     private List<Integer> customerResult=new ArrayList<>();
     private int bonus;
-    public LottoCalculator(LottoWallet lottoWallet, LottoAnswer lottoAnswer) {
-        this.customerLottos =lottoWallet.getLottoWallet();
+    public LottoCalculator(LottoWallet lottoCustomer, LottoAnswer lottoAnswer) {
+        this.customerLottos =lottoCustomer.getLottos();
         this.answerLotto=lottoAnswer.getLottoAnswer();
         this.bonus = lottoAnswer.getBonusNum();
         ReceiveValues();
@@ -47,7 +47,7 @@ public class LottoCalculator {
         return result;
     }
     private List<Integer> ResultRecord(int gap,boolean bonusCheck,List<Integer> result) {
-        result.set(gap-1, result.get(gap-1)+1);
+        result.set(gap-3, result.get(gap-3)+1);
         if(gap==5) {
                 result=BonusRecord(result,bonusCheck);
             }
