@@ -7,8 +7,8 @@
 - Lotto : 로또 번호를 저장하는 객체
 - LottoStorage : 로또들을 모아서 저장하는 객체
 - Wallet : 구입 금액 관련 정보들을 저장하는 객체
-- WinNumbers : 당첨 번호 관련 정보들을 저장하는 객체
-- WinResult : 로또 당첨 결과 관련 정보들을 저장하는 객체
+- WinNumbersStorage : 당첨 번호 관련 정보들을 저장하는 객체
+- WinResultStorage : 로또 당첨 결과 관련 정보들을 저장하는 객체
 - WinRewardData : 로또 당첨 상금 관련 정보들을 저장하는 객체(열거형)
 - ErrorMessage : 에러 메시지들을 저장하는 객체(열거형)
 
