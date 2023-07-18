@@ -26,9 +26,9 @@ public class InputView {
     return money;
   }
 
-  private int validateInteger(String inputMoney) {
+  private int validateInteger(String inputValue) {
     try {
-      return Integer.parseInt(inputMoney);
+      return Integer.parseInt(inputValue);
     } catch (Exception e) {
       throw new IllegalArgumentException(
           LottoExceptionMessage.NOT_INTEGER.getMessage());
