@@ -12,6 +12,7 @@ public class WinningLottoImpl implements WinningLotto {
   private static final int START_INCLUSIVE = 1;
   private static final int END_INCLUSIVE = 45;
   private static final int LOTTO_SIZE = 6;
+  private static final String DELIMITER = ",";
 
   private static List<Integer> winningNumber;
   private static int bonusNumber;
@@ -27,10 +28,6 @@ public class WinningLottoImpl implements WinningLotto {
     this.bonusNumber = bonusNumber;
   }
 
-  @Override
-  public List<Integer> getWinningNumber() {
-    return winningNumber;
-  }
 
   @Override
   public int getBonusNumber() {
@@ -49,7 +46,7 @@ public class WinningLottoImpl implements WinningLotto {
   }
 
   private void setWinningNumber(String initialWinningNumber) {
-    winningNumber = Arrays.stream(initialWinningNumber.split(","))
+    winningNumber = Arrays.stream(initialWinningNumber.split(DELIMITER))
         .map(String::trim)
         .map(Integer::parseInt)
         .collect(Collectors.toList());

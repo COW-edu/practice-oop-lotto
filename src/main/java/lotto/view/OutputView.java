@@ -15,6 +15,7 @@ public class OutputView {
   private static final int RANK_FIFTH = 3;
   private static final int RANK_SECOND = 5;
   private static final int RANK_FIRST = 6;
+  private static final int RANK_FIRST_INDEX = 4;
   private static final boolean HAS_BONUS = true;
   private static final boolean HAS_NOT_BONUS = false;
 
