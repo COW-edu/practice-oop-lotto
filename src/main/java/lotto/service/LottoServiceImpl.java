@@ -37,6 +37,7 @@ public class LottoServiceImpl implements LottoService {
 
   @Override
   public void createRandomLottoNumbers(int purchasedLottoCounts) {
+
     for (int count = 0; count < purchasedLottoCounts; count++) {
       List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
           LOTTO_COUNT);
@@ -47,7 +48,7 @@ public class LottoServiceImpl implements LottoService {
 
   @Override
   public List<Lotto> findRandomLottoNumbers() {
-    return lottoNumberRepository.findLotteries();
+    return lottoNumberRepository.findLottos();
   }
 
   @Override
@@ -62,12 +63,13 @@ public class LottoServiceImpl implements LottoService {
   }
 
   @Override
-  public List<Integer> countingWinningNumber(int purchasedLottoCounts) {
-    List<Lotto> myLottoList = lottoNumberRepository.findLotteries();
+  public List<Integer> countWinningNumber(int purchasedLottoCounts) {
+    List<Lotto> myLottos = lottoNumberRepository.findLottos();
     int bonusNumber = winningLottoNumberRepository.getBonusNumber();
     Lotto currentLotto;
+
     for (int lottoIndex = 0; lottoIndex < purchasedLottoCounts; lottoIndex++) {
-      currentLotto = myLottoList.get(lottoIndex);
+      currentLotto = myLottos.get(lottoIndex);
       int winningCount = winningLottoNumberRepository.calculateWinningCount(
           currentLotto.getNumbers());
       boolean isBonus = currentLotto.checkBonus(bonusNumber);
@@ -81,6 +83,7 @@ public class LottoServiceImpl implements LottoService {
       List<Integer> winningLottoCountList,
       int winningCount) {
     int winningIndex = winningCount - INDEXING;
+
     if (winningCount == 6) {
       winningIndex = 4;
     }

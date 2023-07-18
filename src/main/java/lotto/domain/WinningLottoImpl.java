@@ -37,7 +37,9 @@ public class WinningLottoImpl implements WinningLotto {
   @Override
   public int calculateWinningCount(List<Integer> lottoList) {
     int winningCount = 0;
+
     for (int LottoNumber : winningNumber) {
+
       if (lottoList.contains(LottoNumber)) {
         winningCount++;
       }
@@ -56,6 +58,7 @@ public class WinningLottoImpl implements WinningLotto {
   }
 
   private void validateNotEnoughSize(List<Integer> winningNumber) {
+
     if (winningNumber.size() != LOTTO_SIZE) {
       throw new IllegalArgumentException(
           LottoExceptionMessage.IS_NOT_ENOUGH_LOTTO_NUMBER.getMessage());
@@ -64,6 +67,7 @@ public class WinningLottoImpl implements WinningLotto {
 
   private void validateDuplicate(List<Integer> winningNumber) {
     Set<Integer> winningNumberSet = new HashSet<>(winningNumber);
+
     if (winningNumberSet.size() != winningNumber.size()) {
       throw new IllegalArgumentException(
           LottoExceptionMessage.IS_DUPLICATE_LOTTO_NUMBER.getMessage());
@@ -76,6 +80,7 @@ public class WinningLottoImpl implements WinningLotto {
   }
 
   private void isCorrectRange(int integerLottoNumber) {
+
     if (integerLottoNumber < START_INCLUSIVE || integerLottoNumber > END_INCLUSIVE) {
       throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_INCORRECT_RANGE.getMessage());
     }

@@ -18,14 +18,14 @@ public class LottoRun implements Runnable {
     try {
       outputView.outputPurchaseAmount();
       int purchasedLottoCounts = inputView.inputPurchaseAmount();
-      outputView.outPutLottoList(purchasedLottoCounts);
+      outputView.outputLottos(purchasedLottoCounts);
       outputView.outputWinningNumbers();
       inputView.inputWinningNumbers();
       inputView.inputBonusNumber();
       outputView.outputBonusNumber();
 
-      String totalWinningMoney = outputView.outPutLottoTotalResult(purchasedLottoCounts);
-      outputView.outPutRateOfLotteryWinnings(totalWinningMoney);
+      String totalWinningMoney = outputView.outputLottoTotalResult(purchasedLottoCounts);
+      outputView.outputRateOfLotteryWinnings(totalWinningMoney);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }

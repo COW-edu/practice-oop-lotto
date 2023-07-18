@@ -8,5 +8,5 @@ public interface LottoNumberRepository {
 
   void saveLotto(Lotto lotto);
 
-  List<Lotto> findLotteries();
+  List<Lotto> findLottos();
 }

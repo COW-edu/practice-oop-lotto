@@ -42,7 +42,7 @@ public class LottoControllerImpl implements LottoController {
 
   @Override
   public List<Integer> countWinningNumber(int purchasedLottoCounts) {
-    return lottoService.countingWinningNumber(purchasedLottoCounts);
+    return lottoService.countWinningNumber(purchasedLottoCounts);
   }
 
   @Override

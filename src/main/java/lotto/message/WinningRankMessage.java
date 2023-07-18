@@ -35,6 +35,7 @@ public enum WinningRankMessage {
   }
 
   public static WinningRankMessage valueOf(int winningCount, boolean hasBonus) {
+
     if (checkSecondRank(winningCount, hasBonus)) {
       return SECOND;
     }
