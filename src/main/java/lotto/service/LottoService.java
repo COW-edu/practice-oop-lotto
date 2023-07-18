@@ -16,5 +16,9 @@ public interface LottoService {
 
   void saveBonusNumber(int bonusNumber) throws IllegalArgumentException;
 
-  int[] countingWinningNumber(int purchasedLottoCounts);
+  List<Integer> countingWinningNumber(int purchasedLottoCounts);
+
+  double calculateTotalWinningMoney(WinningRankMessage winningRankMessage,
+      List<Integer> winningLottoCountList,
+      int winningCount);
 }

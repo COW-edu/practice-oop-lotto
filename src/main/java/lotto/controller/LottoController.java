@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.message.ResultMessage;
+import lotto.message.WinningRankMessage;
 
 import java.util.List;
 
@@ -17,8 +17,9 @@ public interface LottoController {
 
   void insertBonusNumber(int bonusNumber) throws IllegalArgumentException;
 
-  int[] countWinningNumber(int purchasedLottoCounts);
+  List<Integer> countWinningNumber(int purchasedLottoCounts);
 
-  double calculateTotalWinningMoney(ResultMessage resultMessage, int[] winningLottoCountList,
+  double calculateTotalWinningMoney(WinningRankMessage resultMessage,
+      List<Integer> winningLottoCountList,
       int correctNumberCount);
 }

@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.message.ResultMessage;
+import lotto.message.WinningRankMessage;
 import lotto.service.LottoService;
 
 import java.util.List;
@@ -41,16 +41,15 @@ public class LottoControllerImpl implements LottoController {
   }
 
   @Override
-  public int[] countWinningNumber(int purchasedLottoCounts) {
+  public List<Integer> countWinningNumber(int purchasedLottoCounts) {
     return lottoService.countingWinningNumber(purchasedLottoCounts);
   }
 
   @Override
-  public double calculateTotalWinningMoney(ResultMessage resultMessage, int[] winningLottoCountList,
-      int correctNumberCount) {
-    int winningMoney = 0;
-    winningMoney += Integer.parseInt(resultMessage.getWinningMoney().replaceAll(",", ""))
-        * winningLottoCountList[correctNumberCount - 3];
-    return winningMoney;
+  public double calculateTotalWinningMoney(WinningRankMessage winningRankMessage,
+      List<Integer> winningLottoCountList,
+      int winningCount) {
+    return lottoService.calculateTotalWinningMoney(winningRankMessage,
+        winningLottoCountList, winningCount);
   }
 }
