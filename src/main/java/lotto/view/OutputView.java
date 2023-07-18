@@ -10,9 +10,13 @@ import java.util.List;
 public class OutputView {
 
   private static final int CHANGE_PERCENT = 100;
-  private static final int CHANGE_PURCHASE_MONEY = 1000;
-  private static final int RESULT_INDEX_THREE = 3;
-  private static final int RESULT_INDEX_SEVEN = 7;
+  private static final int CHANGE_PURCHASE_UNIT = 1000;
+  private static final int INDEXING = 3;
+  private static final int RANK_FIFTH = 3;
+  private static final int RANK_SECOND = 5;
+  private static final int RANK_FIRST = 6;
+  private static final boolean HAS_BONUS = true;
+  private static final boolean HAS_NOT_BONUS = false;
 
   private final LottoController lottoController;
 

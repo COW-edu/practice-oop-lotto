@@ -10,12 +10,12 @@ public class LottoNumberRepositoryImpl implements LottoNumberRepository {
   private final List<Lotto> lottoList = new ArrayList<>();
 
   @Override
-  public void saveLottoList(Lotto lotto) {
+  public void saveNumber(Lotto lotto) {
     lottoList.add(lotto);
   }
 
   @Override
-  public List<Lotto> findLottoList() {
+  public List<Lotto> findList() {
     return lottoList;
   }
 }

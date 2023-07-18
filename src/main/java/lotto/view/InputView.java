@@ -6,8 +6,9 @@ import lotto.message.LottoExceptionMessage;
 
 public class InputView {
 
-  private final LottoController lottoController;
   private static final int UNIT = 1000;
+
+  private final LottoController lottoController;
 
   public InputView(LottoController lottoController) {
     this.lottoController = lottoController;
@@ -46,15 +47,5 @@ public class InputView {
     if (isUnderUnit) {
       throw new IllegalArgumentException(LottoExceptionMessage.LESS_THAN_MINIMUM.getMessage());
     }
-  }
-
-  public void inputWinningNumbers() throws IllegalArgumentException {
-    String winningNumbers = Console.readLine();
-    lottoController.insertWinningLottoNumbers(winningNumbers);
-  }
-
-  public void inputBonusNumber() throws IllegalArgumentException {
-    int bonusNumber = Integer.parseInt(Console.readLine());
-    lottoController.insertBonusNumber(bonusNumber);
   }
 }

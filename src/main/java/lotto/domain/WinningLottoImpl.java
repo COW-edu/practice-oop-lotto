@@ -9,11 +9,12 @@ import lotto.message.LottoExceptionMessage;
 
 public class WinningLottoImpl implements WinningLotto {
 
-  private static List<Integer> winningNumber;
-  private int bonusNumber;
   private static final int START_INCLUSIVE = 1;
   private static final int END_INCLUSIVE = 45;
   private static final int LOTTO_SIZE = 6;
+
+  private static List<Integer> winningNumber;
+  private static int bonusNumber;
 
   @Override
   public void saveWinningNumber(String initialWinningNumber) {

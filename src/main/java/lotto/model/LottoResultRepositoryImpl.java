@@ -2,7 +2,9 @@ package lotto.model;
 
 public class LottoResultRepositoryImpl implements LottoResultRepository {
 
-  private static final int RANK_1 = 3;
+  private static final int RANK_FIFTH_COUNT = 3;
+  private static final int RANK_SECOND_COUNT = 5;
+  private static final int RANK_SECOND_INDEX = 3;
   private static final int INDEXING = 3;
   private final List<Integer> lottoResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 

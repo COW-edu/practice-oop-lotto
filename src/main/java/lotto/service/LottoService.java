@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.domain.Lotto;
 
 import java.util.List;
+import lotto.message.WinningRankMessage;
 
 public interface LottoService {
 

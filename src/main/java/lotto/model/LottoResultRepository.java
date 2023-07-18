@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface LottoResultRepository {
 
-  void saveLottoResult(int winningCount);
+  void saveResult(int winningCount, boolean isBonus);
 
   List<Integer> findList();
 }

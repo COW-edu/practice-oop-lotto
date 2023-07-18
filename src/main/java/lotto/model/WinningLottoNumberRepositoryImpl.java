@@ -22,7 +22,7 @@ public class WinningLottoNumberRepositoryImpl implements WinningLottoNumberRepos
   }
 
   @Override
-  public void saveWinningLotto(String winningNumbers) {
+  public void saveNumber(String winningNumbers) {
     winningLotto.saveWinningNumber(winningNumbers);
   }
 
