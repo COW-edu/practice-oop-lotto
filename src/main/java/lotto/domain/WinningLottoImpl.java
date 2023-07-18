@@ -37,6 +37,17 @@ public class WinningLottoImpl implements WinningLotto {
     return bonusNumber;
   }
 
+  @Override
+  public int calculateWinningCount(List<Integer> lottoList) {
+    int winningCount = 0;
+    for (int LottoNumber : winningNumber) {
+      if (lottoList.contains(LottoNumber)) {
+        winningCount++;
+      }
+    }
+    return winningCount;
+  }
+
   private void setWinningNumber(String initialWinningNumber) {
     winningNumber = Arrays.stream(initialWinningNumber.split(","))
         .map(String::trim)

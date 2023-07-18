@@ -62,16 +62,29 @@ public class LottoServiceImpl implements LottoService {
   }
 
   @Override
-  public int[] countingWinningNumber(int purchasedLottoCounts) {
-    List<Lotto> myLottoList = lottoNumberRepository.findLottoList();
-    List<Integer> winningLottoList = winningLottoNumberRepository.findWinningLotto();
-    Lotto currentLottoList;
+  public List<Integer> countingWinningNumber(int purchasedLottoCounts) {
+    List<Lotto> myLottoList = lottoNumberRepository.findLotteries();
+    int bonusNumber = winningLottoNumberRepository.getBonusNumber();
+    Lotto currentLotto;
     for (int lottoIndex = 0; lottoIndex < purchasedLottoCounts; lottoIndex++) {
-      currentLottoList = myLottoList.get(lottoIndex);
-      int bonusNumber = winningLottoNumberRepository.getBonusNumber();
-      int winningCount = currentLottoList.calculateWinningCount(winningLottoList, bonusNumber);
-      lottoResultRepository.saveLottoResult(winningCount);
+      currentLotto = myLottoList.get(lottoIndex);
+      int winningCount = winningLottoNumberRepository.calculateWinningCount(
+          currentLotto.getNumbers());
+      boolean isBonus = currentLotto.checkBonus(bonusNumber);
+      lottoResultRepository.saveLottoResult(winningCount, isBonus);
     }
-    return lottoResultRepository.findLottoResult();
+    return lottoResultRepository.findLottoResults();
+  }
+
+  @Override
+  public double calculateTotalWinningMoney(WinningRankMessage winningRankMessage,
+      List<Integer> winningLottoCountList,
+      int winningCount) {
+    int winningIndex = winningCount - INDEXING;
+    if (winningCount == 6) {
+      winningIndex = 4;
+    }
+    return Integer.parseInt(winningRankMessage.getWinningMoney().replaceAll(",", ""))
+        * winningLottoCountList.get(winningIndex);
   }
 }

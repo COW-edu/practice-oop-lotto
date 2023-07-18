@@ -9,11 +9,12 @@ public class LottoResultRepositoryImpl implements LottoResultRepository {
   private final List<Integer> lottoResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
   @Override
-  public void saveLottoResult(int winningCount) {
-    boolean isWinning = (winningCount >= RANK_1);
+  public void saveLottoResult(int winningCount, boolean isBonus) {
+    boolean isNotWinning = (winningCount < RANK_FIFTH_COUNT);
+    boolean isBonusRank = isBonus && (winningCount == RANK_SECOND_COUNT);
     int lottoResultIndex = winningCount - INDEXING;
-    if (isWinning) {
-      lottoResult[lottoResultIndex] += 1;
+    if (isNotWinning) {
+      return;
     }
     if (isBonusRank) {
       lottoResult.set(RANK_SECOND_INDEX, lottoResult.get(RANK_SECOND_INDEX) + 1);

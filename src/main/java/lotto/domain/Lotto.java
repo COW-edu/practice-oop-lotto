@@ -27,14 +27,8 @@ public class Lotto {
     return Collections.unmodifiableList(numbers);
   }
 
-  public int calculateWinningCount(List<Integer> winningLottoNumbersList) {
-    int winningCount = 0;
-    for (int LottoNumber : winningLottoNumbersList) {
-      if (numbers.contains(LottoNumber)) {
-        winningCount++;
-      }
-    }
-    return winningCount;
+  public boolean checkBonus(int bonusNumber) {
+    return numbers.contains(bonusNumber);
   }
 
   private void validate(List<Integer> numbers) {
