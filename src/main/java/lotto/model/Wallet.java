@@ -1,6 +1,6 @@
 package lotto.model;
 
-public interface Wallet {
+interface Wallet {
     int getPurchasePrice();
     int getPurchaseAmount();
     void calculatePurchaseAmount();
