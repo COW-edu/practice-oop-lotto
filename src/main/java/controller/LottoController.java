@@ -33,7 +33,7 @@ public class LottoController {
       int payMoney = inputMoney(payLottosData);
       int[] equalCounts = inputWinLottoNumber();
       boolean[] bonusCounts = inputBonusLottoNumber();
-      WinLottoResult winLottoResult = makewinLottoResult(equalCounts, bonusCounts);
+      WinLottoResult winLottoResult = makeWinLottoResult(equalCounts, bonusCounts);
       profitRateCheck(winLottoResult, payMoney);
     } catch (IllegalArgumentException e) {
       output.outPutMessage(e.getMessage());
@@ -63,7 +63,7 @@ public class LottoController {
 
   }
 
-  private WinLottoResult makewinLottoResult(int[] equalCounts, boolean[] bonusCounts) {
+  private WinLottoResult makeWinLottoResult(int[] equalCounts, boolean[] bonusCounts) {
     return lottoStore.makeWinLottoResult(equalCounts, bonusCounts);
   }
 
