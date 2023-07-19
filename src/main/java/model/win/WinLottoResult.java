@@ -3,6 +3,7 @@ package model.win;
 import java.util.Map;
 
 public class WinLottoResult {
+
   private final Map<String, Integer> winCountResult;
 
   public WinLottoResult(Map<String, Integer> winCountResult) {
