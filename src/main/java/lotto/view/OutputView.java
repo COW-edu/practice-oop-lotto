@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.Data.ViewText;
 
+// TODO: Output 관련 기능 추가 구현
 public class OutputView {
 
   public void printPurchaseAmountMessage(int purchaseAmount) {

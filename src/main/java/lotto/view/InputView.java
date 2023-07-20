@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import lotto.Data.ErrorMessage;
 
+// TODO: Input 관련 기능 추가 구현
 public class InputView {
 
   public String readString() {
