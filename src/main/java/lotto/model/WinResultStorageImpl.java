@@ -45,9 +45,10 @@ public class WinResultStorageImpl implements WinResultStorage {
 
             if (accordWinNumber >= 3) {
                 if (accordWinNumber == 5 && accordBonusNumber == 1) {
-                    winResult[4] += 1;
+                    winResult[BONUS_ACCORD_INDEX] += 1;
+                } else {
+                    winResult[accordWinNumber - 3] += 1;
                 }
-                winResult[accordWinNumber - 3] += 1;
             }
         }
     }
