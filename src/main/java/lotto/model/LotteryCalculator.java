@@ -17,22 +17,27 @@ public class LotteryCalculator {
         int[] result = new int[5];
         for (Lotto lotto : lottoTickets) {
             int count = matchAndCountWinningNumbers(lotto, winningNumbers);
-            switch (count) {
-                case 3:
-                    result[0]++;
-                    break;
-                case 4:
-                    result[1]++;
-                    break;
-                case 5:
-                    match5Numbers(result, lotto, bonusNumber);
-                    break;
-                case 6:
-                    result[4]++;
-                    break;
-            }
+            matchNumbers(result, lotto, count, bonusNumber);
         }
         return result;
+    }
+    private static void matchNumbers(int[] result, Lotto lotto, int count, int bonusNumber) {
+        if (count == 3) {
+            result[0]++;
+            return;
+        }
+        if (count == 4) {
+            result[1]++;
+            return;
+        }
+        if (count == 5) {
+            match5Numbers(result, lotto, bonusNumber);
+            return;
+        }
+        if (count == 6) {
+            result[4]++;
+            return;
+        }
     }
     private static void match5Numbers(int[] result, Lotto lotto, int bonusNumber) {
         if (matchBonusNumber(lotto, bonusNumber)) {
