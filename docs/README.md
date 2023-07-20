@@ -4,36 +4,31 @@
 
 ### Model
 
-- [x] Lotto : 로또 번호를 저장하는 객체
-- [x] LottoStorage : 로또들을 모아서 저장하는 객체
-- [x] Wallet : 구입 금액 관련 정보들을 저장하는 객체
-- [x] WinNumbersStorage : 당첨 번호 관련 정보들을 저장하는 객체
-- [x] WinResultStorage : 로또 당첨 결과 관련 정보들을 저장하는 객체
-- [x] WinRewardData : 로또 당첨 상금 관련 정보들을 저장하는 객체(열거형)
-- [x] ErrorMessage : 에러 메시지들을 저장하는 객체(열거형)
+- [x] Lotto : 로또 번호를 관리하는 클래스
+- [x] LottoStorage : 로또들을 모아서 관리하는 클래스
+- [x] Wallet : 구입 금액 관련 정보들을 관리하는 클래스
+- [x] WinNumbersStorage : 당첨 번호 관련 정보들을 관리하는 클래스
+- [x] WinResultStorage : 로또 당첨 결과 관련 정보들을 관리하는 클래스
 
 ### View
 
-- [ ] InputView : 입력 관련 작업들을 처리하는 객체
-- [ ] OutputView : 출력 관련 작업들을 처리하는 객체
-- [ ] ViewText : 출력 메시지들을 저장하는 객체(열거형)
+- [ ] InputView : 입력 관련 작업들을 처리하는 클래스
+- [ ] OutputView : 출력 관련 작업들을 처리하는 클래스
 
 ### Controller
 
-- [ ] Controller : 모델과 뷰 사이에 컨트롤러 역할을 하는 객체
+- [ ] Controller : 모델과 뷰 사이에 컨트롤러 역할을 하는 클래스
 
-### Service
+### Data
 
-- [ ] Service : 서비스 관련 객체들을 모아서 관리하는 객체
-- [ ] PurchasePriceHandler : 구입 금액을 처리하는 객체
-- [ ] WinNumbersGenerator : 로또 당첨 번호를 생성하는 객체
-- [ ] LottoGenerator : 로또를 생성(판매)하는 객체
-- [ ] WinResultCalculator : 로또 당첨 결과를 계산하는 객체
+- [x] ErrorMessage : 에러 메시지들을 저장하는 클래스(열거형)
+- [x] ViewText : 출력 메시지들을 저장하는 클래스(열거형)
+- [x] WinRewardData : 로또 당첨 상금 관련 정보들을 저장하는 클래스(열거형)
 
 ### 그 외
 
-- [ ] Application : main 메소드를 가지는 객체
-- [ ] DIConfig : 의존성 주입을 위한 객체
+- [ ] Application : main 메소드를 가지는 클래스
+- [ ] DIConfig : 의존성 주입을 위한 클래스
 
 ## 예외처리
 
