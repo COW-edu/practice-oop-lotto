@@ -30,6 +30,7 @@ public class WinResultStorageImpl implements WinResultStorage {
     return profitRate;
   }
 
+  // TODO: Stream으로 구현하기
   private void calculateWinResult(List<Lotto> lottoList, List<Integer> winNumbers,
       int bonusNumber) {
     for (Lotto lotto : lottoList) {
