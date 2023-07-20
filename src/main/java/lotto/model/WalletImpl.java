@@ -1,33 +1,34 @@
 package lotto.model;
 
 public class WalletImpl implements Wallet {
-    private final int purchasePrice;
-    private int purchaseAmount;
 
-    WalletImpl(int purchasePrice) {
-        this.purchasePrice = purchasePrice;
-        calculatePurchaseAmount();
-    }
+  private final int purchasePrice;
+  private int purchaseAmount;
 
-    @Override
-    public int getPurchasePrice() {
-        return purchasePrice;
-    }
+  WalletImpl(int purchasePrice) {
+    this.purchasePrice = purchasePrice;
+    calculatePurchaseAmount();
+  }
 
-    @Override
-    public int getPurchaseAmount() {
-        return purchaseAmount;
-    }
+  @Override
+  public int getPurchasePrice() {
+    return purchasePrice;
+  }
 
-    @Override
-    public void calculatePurchaseAmount() {
-        validate();
-        purchaseAmount = purchasePrice / 1000;
-    }
+  @Override
+  public int getPurchaseAmount() {
+    return purchaseAmount;
+  }
 
-    private void validate() {
-        if (purchasePrice % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_PRICE_UNIT.getData());
-        }
+  @Override
+  public void calculatePurchaseAmount() {
+    validate();
+    purchaseAmount = purchasePrice / 1000;
+  }
+
+  private void validate() {
+    if (purchasePrice % 1000 != 0) {
+      throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_PRICE_UNIT.getData());
     }
+  }
 }

@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.List;
 
 interface WinNumbersStorage {
-    List<Integer> getWinNumbers();
-    int getBonusNumber();
+
+  List<Integer> getWinNumbers();
+
+  int getBonusNumber();
 }
