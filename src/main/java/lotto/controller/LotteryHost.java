@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.Lotto;
-import lotto.User;
 import lotto.constants.Prize;
 import lotto.model.LotteryCalculator;
 import lotto.model.LotteryManager;
@@ -30,22 +29,7 @@ public class LotteryHost {
         }
         return lottoTickets;
     }
-    public static void printLottoNumbers(Lotto lotto) {
-        System.out.print("[");
-        for (int i = 0; i < lotto.getNumbers().size(); i++) {
-            System.out.print(lotto.getNumbers().get(i));
-            if (i < lotto.getNumbers().size() - 1) {
-                System.out.print(", ");
-            }
-        }
-        System.out.println("]");
-    }
-    public void printLottoNumbersAndQuantity(List<Lotto> lottoTickets, int numberOfLottery) {
-        Output.print(numberOfLottery + "개를 구매했습니다.");
-        for (Lotto lotto : lottoTickets) {
-            printLottoNumbers(lotto);
-        }
-    }
+
     public void inputWinningNumbers() {
         String winningNumbers = Input.readLine();
         LotteryManager.saveWinningNumbers(winningNumbers);
@@ -67,12 +51,7 @@ public class LotteryHost {
         profit += result[4] * Prize.FIRST_PRIZE.getValue();
         return (Math.round(profit / numberOfLottery * 1000)) / 10000.0;
     }
-    public void printResult(int numberOfLottery) {
-        Output.print("3개 일치 (5,000원) - " + result[0] + "개\n" +
-                "4개 일치 (50,000원) - " + result[1] + "개\n" +
-                "5개 일치 (1,500,000원) - " + result[2] + "개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + result[3] + "개\n" +
-                "6개 일치 (2,000,000,000원) - " + result[4] + "개\n" +
-                "총 수익률은 " + calculateRate(numberOfLottery) + "%입니다.");
+    public int[] getResult() {
+        return this.result;
     }
 }

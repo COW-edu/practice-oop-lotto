@@ -3,9 +3,6 @@ package lotto.model;
 import lotto.Lotto;
 import lotto.validation.LotteryNumberValidator;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class LotteryCalculator {

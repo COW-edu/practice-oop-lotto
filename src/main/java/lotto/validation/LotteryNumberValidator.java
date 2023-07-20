@@ -42,7 +42,4 @@ public class LotteryNumberValidator {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_FORMAT_ERROR_MESSAGE);
         }
     }
-
-
-
 }
