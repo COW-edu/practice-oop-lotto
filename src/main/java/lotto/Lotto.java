@@ -14,11 +14,6 @@ public class Lotto {
         Collections.sort(numbers); // 오름차순 정렬
         this.numbers = numbers;
     }
-//    private void validate(List<Integer> numbers) {
-//        if (numbers.size() != 6) {
-//            throw new IllegalArgumentException();
-//        }
-//    }
     // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
