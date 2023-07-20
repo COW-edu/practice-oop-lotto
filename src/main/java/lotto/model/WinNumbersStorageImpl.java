@@ -24,6 +24,7 @@ public class WinNumbersStorageImpl implements WinNumbersStorage {
     return 0;
   }
 
+  // TODO: Stream으로 구현하기
   private List<Integer> parseWinNumbers(String winNumbersString) {
     String[] winNumbersStringSplit = winNumbersString.split(",");
     if (winNumbersStringSplit.length != 6) {
