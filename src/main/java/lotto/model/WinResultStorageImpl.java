@@ -8,6 +8,7 @@ public class WinResultStorageImpl implements WinResultStorage {
     private static final int FIVE_ACCORD_INDEX = 2;
     private static final int SIX_ACCORD_INDEX = 3;
     private static final int BONUS_ACCORD_INDEX = 4;
+    private static final int GAP_VALUE_BETWEEN_ACCORD_INDEX = 3;
 
     private final int[] winResult = {0, 0, 0, 0, 0};
     private double profitRate;
@@ -47,7 +48,7 @@ public class WinResultStorageImpl implements WinResultStorage {
                 if (accordWinNumber == 5 && accordBonusNumber == 1) {
                     winResult[BONUS_ACCORD_INDEX] += 1;
                 } else {
-                    winResult[accordWinNumber - 3] += 1;
+                    winResult[accordWinNumber - GAP_VALUE_BETWEEN_ACCORD_INDEX] += 1;
                 }
             }
         }
