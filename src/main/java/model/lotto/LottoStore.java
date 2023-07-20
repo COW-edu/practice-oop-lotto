@@ -9,18 +9,18 @@ public class LottoStore {
 
   private static final List<Lotto> lottos = new ArrayList<>();
   private int countOfLotto;
-  private MakeWinResultMachine makeWinResult;
+  private final MakeWinResultMachine makeWinResult;
 
   public LottoStore() {
     makeWinResult = new MakeWinResultMachine();
   }
 
   public List<Lotto> makeLottoList(int payMoney) {
-    countOfLotto = lottoSizeCount(payMoney);
+    countOfLotto = lottosCount(payMoney);
     return makeWinResult.makeLottoList(lottos, countOfLotto);
   }
 
-  public int lottoSizeCount(int payMoney) {
+  public int lottosCount(int payMoney) {
     return payMoney / LottoData.LOTTO_PRICE;
   }
 

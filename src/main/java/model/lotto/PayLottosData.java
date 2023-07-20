@@ -22,7 +22,7 @@ public class PayLottosData {
   }
 
   public void makeLottoData(int lottoMoney) {
-    countOfLotto = lottoStore.lottoSizeCount(lottoMoney);
+    countOfLotto = lottoStore.lottosCount(lottoMoney);
     lottos = lottoStore.makeLottoList(lottoMoney);
   }
 
