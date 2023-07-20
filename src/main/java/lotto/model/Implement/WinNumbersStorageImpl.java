@@ -1,8 +1,9 @@
-package lotto.model;
+package lotto.model.Implement;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Data.ErrorMessage;
+import lotto.model.Interface.WinNumbersStorage;
 
 public class WinNumbersStorageImpl implements WinNumbersStorage {
 

@@ -1,8 +1,9 @@
-package lotto.model;
+package lotto.model.Interface;
 
 import java.util.List;
+import lotto.model.Lotto;
 
-interface LottoStorage {
+public interface LottoStorage {
 
   void addLotto(Lotto lotto);
 

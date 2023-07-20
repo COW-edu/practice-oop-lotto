@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.model.Implement;
 
 import lotto.Data.ErrorMessage;
+import lotto.model.Interface.Wallet;
 
 public class WalletImpl implements Wallet {
 

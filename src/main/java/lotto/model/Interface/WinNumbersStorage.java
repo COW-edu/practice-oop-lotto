@@ -1,8 +1,8 @@
-package lotto.model;
+package lotto.model.Interface;
 
 import java.util.List;
 
-interface WinNumbersStorage {
+public interface WinNumbersStorage {
 
   List<Integer> getWinNumbers();
 

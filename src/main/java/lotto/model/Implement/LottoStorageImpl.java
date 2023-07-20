@@ -1,9 +1,11 @@
-package lotto.model;
+package lotto.model.Implement;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Interface.LottoStorage;
+import lotto.model.Lotto;
 
 public class LottoStorageImpl implements LottoStorage {
 

@@ -1,6 +1,6 @@
-package lotto.model;
+package lotto.model.Interface;
 
-interface Wallet {
+public interface Wallet {
 
   int getPurchasePrice();
 
