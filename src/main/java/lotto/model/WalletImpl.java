@@ -22,8 +22,7 @@ public class WalletImpl implements Wallet {
     return purchaseAmount;
   }
 
-  @Override
-  public void calculatePurchaseAmount() {
+  private void calculatePurchaseAmount() {
     validate();
     purchaseAmount = purchasePrice / 1000;
   }
