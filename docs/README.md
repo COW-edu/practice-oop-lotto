@@ -5,7 +5,7 @@
 ### Model
 
 - [x] Lotto : 로또 번호를 관리하는 클래스
-- [x] LottoStorage : 로또들을 모아서 관리하는 클래스
+- [x] LottoStorage : 로또들을 생성하고 모아서 관리하는 클래스
 - [x] Wallet : 구입 금액 관련 정보들을 관리하는 클래스
 - [x] WinNumbersStorage : 당첨 번호 관련 정보들을 관리하는 클래스
 - [x] WinResultStorage : 로또 당첨 결과 관련 정보들을 관리하는 클래스
