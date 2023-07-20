@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class WalletImpl implements Wallet {
-    private int purchasePrice;
+    private final int purchasePrice;
     private int purchaseAmount;
 
     WalletImpl(int purchasePrice) {
