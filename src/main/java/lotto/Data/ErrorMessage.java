@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.Data;
 
 public enum ErrorMessage {
   ERROR_NULL_INPUT("[ERROR] null 값이 입력되었습니다."),

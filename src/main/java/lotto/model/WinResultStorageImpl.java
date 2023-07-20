@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.Data.WinRewardData;
 
 public class WinResultStorageImpl implements WinResultStorage {
 

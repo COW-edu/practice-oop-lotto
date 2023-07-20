@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.Data;
 
 public enum WinRewardData {
   THREE_ACCORD_REWARD(5000),

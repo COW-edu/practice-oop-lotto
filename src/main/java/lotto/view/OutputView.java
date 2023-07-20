@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
-import lotto.view.ViewText;
+import lotto.Data.ViewText;
 
 public class OutputView {
 

@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.Data;
 
 public enum ViewText {
   INPUT_PURCHASE_PRICE("구입 금액을 입력해 주세요."),

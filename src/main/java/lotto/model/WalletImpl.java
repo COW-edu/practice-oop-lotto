@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.Data.ErrorMessage;
+
 public class WalletImpl implements Wallet {
 
   private final int purchasePrice;
