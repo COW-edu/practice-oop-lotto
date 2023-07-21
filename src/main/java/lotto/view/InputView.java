@@ -19,6 +19,16 @@ public class InputView {
     return lottoController.checkPurchasedLottoCounts(purchaseAmount);
   }
 
+  public void inputWinningNumbers() throws IllegalArgumentException {
+    String winningNumbers = Console.readLine();
+    lottoController.insertWinningLottoNumbers(winningNumbers);
+  }
+
+  public void inputBonusNumber() throws IllegalArgumentException {
+    int bonusNumber = validateInteger(Console.readLine());
+    lottoController.insertBonusNumber(bonusNumber);
+  }
+
   private int validatePurchaseAmount(String inputMoney) {
     int money = validateInteger(inputMoney);
     validateDivided(money);
@@ -36,16 +46,24 @@ public class InputView {
   }
 
   private void validateDivided(int money) {
-    boolean isNotDivided1000 = (money % UNIT != 0);
-    if (isNotDivided1000) {
+
+    if (isNotDividedLottoPrice(money)) {
       throw new IllegalArgumentException(LottoExceptionMessage.NOT_DIVIDED_UNIT.getMessage());
     }
   }
 
+  private boolean isNotDividedLottoPrice(int money) {
+    return money % UNIT != 0;
+  }
+
   private void validateMinimum(int money) {
-    boolean isUnderUnit = (money < UNIT);
-    if (isUnderUnit) {
+
+    if (isUnderUnit(money)) {
       throw new IllegalArgumentException(LottoExceptionMessage.LESS_THAN_MINIMUM.getMessage());
     }
+  }
+
+  private boolean isUnderUnit(int money) {
+    return money < UNIT;
   }
 }

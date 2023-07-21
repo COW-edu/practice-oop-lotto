@@ -14,13 +14,12 @@ public class LottoResultRepositoryImpl implements LottoResultRepository {
 
   @Override
   public void saveLottoResult(int winningCount, boolean isBonus) {
-    boolean isNotWinning = (winningCount < RANK_FIFTH_COUNT);
-    boolean isBonusRank = isBonus && (winningCount == RANK_SECOND_COUNT);
     int lottoResultIndex = winningCount - INDEXING;
-    if (isNotWinning) {
+
+    if (isNotWinning(winningCount)) {
       return;
     }
-    if (isBonusRank) {
+    if (isBonusRank(winningCount, isBonus)) {
       lottoResult.set(RANK_SECOND_INDEX, lottoResult.get(RANK_SECOND_INDEX) + 1);
       return;
     }
@@ -30,5 +29,13 @@ public class LottoResultRepositoryImpl implements LottoResultRepository {
   @Override
   public List<Integer> findLottoResults() {
     return lottoResult;
+  }
+
+  private boolean isBonusRank(int winningCount, boolean isBonus) {
+    return isBonus && (winningCount == RANK_SECOND_COUNT);
+  }
+
+  private boolean isNotWinning(int winningCount) {
+    return winningCount < RANK_FIFTH_COUNT;
   }
 }
