@@ -5,15 +5,8 @@ import java.util.List;
 import java.util.Set;
 import model.lotto.Lotto;
 import model.lotto.LottoData;
-import model.lotto.PayLottosData;
 
 public class CheckedEqualMachine {
-
-  private PayLottosData lottosData;
-
-  public void storedData(PayLottosData lottosData) {
-    this.lottosData = lottosData;
-  }
 
   public int[] checkedWinLottoNumbers(Lotto winLotto) {
     return findEqualCount(winLotto.getNumbers());

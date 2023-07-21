@@ -1,7 +1,6 @@
 package view.output;
 
 import message.ResultMessage;
-import model.lotto.PayLottosData;
 import model.win.WinLottoCount;
 import model.win.WinLottoResult;
 

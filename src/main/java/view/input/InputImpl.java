@@ -7,7 +7,6 @@ import java.util.List;
 import message.ErrorMessage;
 import model.lotto.Lotto;
 import model.lotto.LottoData;
-import model.lotto.PayLottosData;
 
 public class InputImpl implements Input{
 

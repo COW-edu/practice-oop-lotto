@@ -2,8 +2,8 @@ package controller;
 
 import machine.CheckedEqualMachine;
 import message.RequestMessage;
+import model.lotto.Lotto;
 import model.lotto.LottoStore;
-import model.lotto.PayLottosData;
 import model.win.WinLottoResult;
 import machine.ProfitCalculator;
 import view.input.Input;
@@ -28,47 +28,47 @@ public class LottoController {
 
   public void lottoRun() {
     try {
-      PayLottosData payLottosData = lottoStore.makePayLottosData();
-      storedDataForMethod(payLottosData);
-      int payMoney = inputMoney(payLottosData);
-      int[] equalCounts = inputWinLottoNumber();
-      boolean[] bonusCounts = inputBonusLottoNumber();
-      WinLottoResult winLottoResult = makeWinLottoResult(equalCounts, bonusCounts);
+      createPayLottos(inputMoney());
+      int[] equalWinCounts = checkEqualWinLotto(inputWinLottoNumber());
+      boolean[] equalBonusCheck = checkEqualBonusNumber(inputBonusLottoNumber());
+      WinLottoResult winLottoResult = createWinLottoResult(equalWinCounts, equalBonusCheck);
       profitRateCheck(winLottoResult, payMoney);
     } catch (IllegalArgumentException e) {
       output.outPutMessage(e.getMessage());
     }
   }
 
-  public void storedDataForMethod(PayLottosData payLottosData) {
-    checkedEqualMachine.storedData(payLottosData);
-  }
-
-  private int inputMoney(PayLottosData payLottosData) throws IllegalArgumentException {
+  private int inputMoney() throws IllegalArgumentException {
     output.outPutMessage(RequestMessage.BUY_INPUT_MONEY);
-    int payMoney = input.inputMoney();
-    payLottosData.makeLottoData(payMoney);
-    output.outPutBuyLotto(payLottosData);
-    return payMoney;
+    return input.inputMoney();
   }
 
-  private int[] inputWinLottoNumber() throws IllegalArgumentException {
+  private Lotto inputWinLottoNumber() throws IllegalArgumentException {
     output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
-    return checkedEqualMachine.checkedWinLottoNumbers(input.inputWinNumber());
+    return input.inputWinNumber();
   }
 
-  private boolean[] inputBonusLottoNumber() throws IllegalArgumentException {
+  private int inputBonusLottoNumber() throws IllegalArgumentException {
     output.outPutMessage(RequestMessage.INPUT_BONUS_NUMBER);
-    return checkedEqualMachine.checkedBonusLottoNumbers(input.inputBonusNumber());
-
+    return input.inputBonusNumber();
   }
 
-  private WinLottoResult makeWinLottoResult(int[] equalCounts, boolean[] bonusCounts) {
-    return lottoStore.makeWinLottoResult(equalCounts, bonusCounts);
+  private WinLottoResult createWinLottoResult(int[] equalCounts, boolean[] bonusCounts) {
+    return lottoStore.createWinLottoResult(equalCounts, bonusCounts);
   }
 
   private void profitRateCheck(WinLottoResult winLottoResult, int payMoney) {
     double profitRate = profitCalculator.profitRateCalculate(winLottoResult, payMoney);
     output.outPutLottoResult(profitRate, winLottoResult);
+  }
+  private void createPayLottos(int payMoney) {
+    lottoStore.createPayLottos(payMoney);
+  }
+
+  private int[] checkEqualWinLotto(Lotto winLotto){
+    return checkedEqualMachine.checkedWinLottoNumbers(winLotto);
+  }
+  private boolean[] checkEqualBonusNumber(int bonusNumber){
+    return checkedEqualMachine.checkedBonusLottoNumbers(bonusNumber);
   }
 }

@@ -4,21 +4,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 import model.lotto.Lotto;
 import model.lotto.LottoData;
+import model.lotto.PayLottos;
 import model.win.WinLottoCount;
 
 public class MakeWinResultMachine {
-
-  public List<Lotto> makeLottoList(List<Lotto> lottos, int countOfLotto) {
-    for (int i = 0; i < countOfLotto; i++) {
-      List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LottoData.START_LOTTO_NUMBER,
-          LottoData.END_LOTTO_NUMBER,
-          LottoData.COUNT_OF_LOTTO_NUMBER);
-      lottos.add(new Lotto(lottoNumbers));
-    }
-    return lottos;
-  }
 
   public Map<String, Integer> makeWinLottoResultData(int[] equalCounts, boolean[] bonusCounts,
       int countOfLotto) {

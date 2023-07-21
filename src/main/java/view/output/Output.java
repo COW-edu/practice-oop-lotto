@@ -1,6 +1,5 @@
 package view.output;
 
-import model.lotto.PayLottosData;
 import model.win.WinLottoResult;
 
 public interface Output {
