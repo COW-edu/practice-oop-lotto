@@ -1,6 +1,4 @@
 import controller.LottoController;
-import machine.CheckedEqualMachine;
-import machine.ProfitCalculator;
 import model.lotto.LottoStore;
 import view.input.Input;
 import view.input.InputImpl;
@@ -9,7 +7,7 @@ import view.output.Output;
 
 public class LottoAppConfig {
   public LottoController lottoController(){
-    return new LottoController(output(), input(), lottoStore(), checkedEqualMachine(),profitCalculator());
+    return new LottoController(output(), input(), lottoStore());
   }
   private Output output(){
     return new OutPutImpl();
@@ -20,10 +18,5 @@ public class LottoAppConfig {
   private LottoStore lottoStore(){
     return new LottoStore();
   }
-  private CheckedEqualMachine checkedEqualMachine(){
-    return new CheckedEqualMachine();
-  }
-  private ProfitCalculator profitCalculator(){
-    return new ProfitCalculator();
-  }
+
 }
