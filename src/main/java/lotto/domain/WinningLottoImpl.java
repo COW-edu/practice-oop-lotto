@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -14,12 +15,12 @@ public class WinningLottoImpl implements WinningLotto {
   private static final int LOTTO_SIZE = 6;
   private static final String DELIMITER = ",";
 
-  private static List<Integer> winningNumber;
-  private static int bonusNumber;
+  private List<Integer> winningNumbers = new ArrayList<>();
+  private int bonusNumber;
 
   @Override
   public void saveWinningNumber(String initialWinningNumber) {
-    setWinningNumber(initialWinningNumber);
+    setWinningNumbers(initialWinningNumber);
   }
 
   @Override
@@ -27,7 +28,6 @@ public class WinningLottoImpl implements WinningLotto {
     isCorrectRange(bonusNumber);
     this.bonusNumber = bonusNumber;
   }
-
 
   @Override
   public int getBonusNumber() {
@@ -38,7 +38,7 @@ public class WinningLottoImpl implements WinningLotto {
   public int calculateWinningCount(List<Integer> lottoList) {
     int winningCount = 0;
 
-    for (int LottoNumber : winningNumber) {
+    for (int LottoNumber : winningNumbers) {
 
       if (lottoList.contains(LottoNumber)) {
         winningCount++;
@@ -47,14 +47,14 @@ public class WinningLottoImpl implements WinningLotto {
     return winningCount;
   }
 
-  private void setWinningNumber(String initialWinningNumber) {
-    winningNumber = Arrays.stream(initialWinningNumber.split(DELIMITER))
+  private void setWinningNumbers(String initialWinningNumber) {
+    winningNumbers = Arrays.stream(initialWinningNumber.split(DELIMITER))
         .map(String::trim)
         .map(Integer::parseInt)
         .collect(Collectors.toList());
-    validateNotEnoughSize(winningNumber);
-    validateDuplicate(winningNumber);
-    validateCorrectRange(winningNumber);
+    validateNotEnoughSize(winningNumbers);
+    validateDuplicate(winningNumbers);
+    validateCorrectRange(winningNumbers);
   }
 
   private void validateNotEnoughSize(List<Integer> winningNumber) {

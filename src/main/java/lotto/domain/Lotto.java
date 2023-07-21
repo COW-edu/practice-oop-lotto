@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.message.LottoExceptionMessage;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +17,7 @@ public class Lotto {
 
   public Lotto(List<Integer> numbers) {
     validate(numbers);
-    this.numbers = new ArrayList<>(numbers);
+    this.numbers = numbers;
   }
 
   public List<Integer> getNumbers() {
