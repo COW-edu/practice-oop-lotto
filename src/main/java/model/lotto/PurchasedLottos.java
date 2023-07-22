@@ -32,7 +32,6 @@ public class PurchasedLottos {
     return purchasedLottos.stream()
         .map(lotto -> lotto.checkEqualNumber(bonusNumber))
         .collect(Collectors.toList());
-
   }
 
 

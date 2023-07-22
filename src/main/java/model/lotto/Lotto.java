@@ -34,9 +34,9 @@ public class Lotto {
         .anyMatch(number -> number.equals(checkNumber));
   }
 
-  public int checkEqualNumbersCount(List<Integer> numbers) {
-    List<Integer> equalNumbers = numbers.stream()
-        .filter(number -> numbers.stream()
+  public int checkEqualNumbersCount(List<Integer> compareNumbers) {
+    List<Integer> equalNumbers = compareNumbers.stream()
+        .filter(number -> this.numbers.stream()
             .anyMatch(Predicate.isEqual(number)))
         .collect(Collectors.toList());
     return equalNumbers.size();

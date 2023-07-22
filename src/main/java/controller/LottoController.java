@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import message.RequestMessage;
 import model.customer.Customer;
-import model.lotto.Lotto;
 import model.lotto.LottoStore;
 import view.input.Input;
 import view.output.Output;

@@ -1,5 +1,3 @@
-import calculator.Calculator;
-import calculator.ProfitCalculator;
 import controller.LottoController;
 import model.lotto.LottoStore;
 import view.input.Input;
