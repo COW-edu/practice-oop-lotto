@@ -34,12 +34,12 @@ public class OutputView {
         String.format("\n%d개를 구매했습니다.", purchasedLottoCounts));
     lottoController.createLottoList(purchasedLottoCounts);
     List<Lotto> lottoList = lottoController.findLotto();
-    StringBuilder totalStringLottoList = new StringBuilder();
+    StringBuilder totalStringLottos = new StringBuilder();
 
     for (int index = 0; index < purchasedLottoCounts; index++) {
-      totalStringLottoList.append(lottoList.get(index).getNumbers()).append("\n");
+      totalStringLottos.append(lottoList.get(index).getNumbers()).append("\n");
     }
-    System.out.println(totalStringLottoList.toString());
+    System.out.println(totalStringLottos.toString());
   }
 
   public void outputWinningNumbers() {
@@ -60,6 +60,13 @@ public class OutputView {
     System.out.println("\n당첨 통계\n---");
     List<Integer> winningLottoCountList = lottoController.countWinningNumber(purchasedLottoCounts);
 
+    totalWinningMoney = getTotalWinningMoney(totalWinningMoney, winningLottoCountList);
+    return String.format("%.1f",
+        totalWinningMoney / (purchasedLottoCounts * CHANGE_PURCHASE_UNIT) * CHANGE_PERCENT);
+  }
+
+  private double getTotalWinningMoney(double totalWinningMoney,
+      List<Integer> winningLottoCountList) {
     for (int winningCount = RANK_FIFTH; winningCount <= RANK_FIRST;
         winningCount++) {
       totalWinningMoney += calculateTotalWinningMoney(HAS_NOT_BONUS, winningLottoCountList,
@@ -70,8 +77,7 @@ public class OutputView {
             RANK_SECOND);
       }
     }
-    return String.format("%.1f",
-        totalWinningMoney / (purchasedLottoCounts * CHANGE_PURCHASE_UNIT) * CHANGE_PERCENT);
+    return totalWinningMoney;
   }
 
   private double calculateTotalWinningMoney(boolean hasBonus, List<Integer> winningLottoCountList,
