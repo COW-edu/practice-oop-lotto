@@ -16,6 +16,7 @@ public class LottoServiceImpl implements LottoService {
   private static final int LOTTO_COUNT = 6;
   private static final int CHANGE_PURCHASE_UNIT = 1000;
   private static final int INDEXING = 3;
+  private static final int RANK_FIRST_INDEX = 4;
 
   private final LottoNumberRepository lottoNumberRepository;
   private final WinningLottoNumberRepository winningLottoNumberRepository;
@@ -84,8 +85,8 @@ public class LottoServiceImpl implements LottoService {
       int winningCount) {
     int winningIndex = winningCount - INDEXING;
 
-    if (winningCount == 6) {
-      winningIndex = 4;
+    if (winningCount == LOTTO_COUNT) {
+      winningIndex = RANK_FIRST_INDEX;
     }
     return Integer.parseInt(winningRankMessage.getWinningMoney().replaceAll(",", ""))
         * winningLottoCountList.get(winningIndex);
