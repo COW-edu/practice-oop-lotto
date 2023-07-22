@@ -1,3 +1,5 @@
+import calculator.Calculator;
+import calculator.ProfitCalculator;
 import controller.LottoController;
 import model.lotto.LottoStore;
 import view.input.Input;
@@ -6,16 +8,20 @@ import view.output.OutPutImpl;
 import view.output.Output;
 
 public class LottoAppConfig {
-  public LottoController lottoController(){
+
+  public LottoController lottoController() {
     return new LottoController(output(), input(), lottoStore());
   }
-  private Output output(){
+
+  private Output output() {
     return new OutPutImpl();
   }
-  private Input input(){
+
+  private Input input() {
     return new InputImpl();
   }
-  private LottoStore lottoStore(){
+
+  private LottoStore lottoStore() {
     return new LottoStore();
   }
 

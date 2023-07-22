@@ -2,7 +2,6 @@ package view.output;
 
 import message.ResultMessage;
 import model.win.WinLottoCount;
-import model.win.WinLottoResult;
 
 public class OutPutImpl implements Output{
     @Override

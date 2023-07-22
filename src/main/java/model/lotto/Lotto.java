@@ -31,7 +31,8 @@ public class Lotto {
   }
 
   public boolean checkEqualNumber(int checkNumber) {
-    return numbers.stream().anyMatch(number -> number.equals(checkNumber));
+    return numbers.stream()
+        .anyMatch(number -> number.equals(checkNumber));
   }
 
   public int checkEqualNumbersCount(List<Integer> numbers) {

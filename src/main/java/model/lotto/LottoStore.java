@@ -2,43 +2,29 @@ package model.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import machine.MakeWinResultMachine;
-import model.win.WinLottoResult;
+import java.util.Map;
+import model.customer.Customer;
 
 public class LottoStore {
+  private Customer customer;
+  private final LottoStoreService lottoStoreService = new LottoStoreService();
 
-  private final MakeWinResultMachine makeWinResult;
-  private final PayLottos payLottos = new PayLottos();
-
-  public LottoStore() {
-    makeWinResult = new MakeWinResultMachine();
+  public Customer enterCustomer(int payMoney){
+    customer = new Customer(createPurchaseLottos(payMoney),payMoney);
+    return customer;
+  }
+  public double calculateProfitRate(Lotto winLotto, int bonusNumber) {
+    return customer.getProfitRate(createWinLottoResult(winLotto,bonusNumber));
+  }
+//  private Lotto createLotto() {
+//    return lottoStoreService.createLotto();
+//  }
+  private PurchasedLottos createPurchaseLottos(int payMoney) {
+    return lottoStoreService.createPurchaseLottos(payMoney);
   }
 
-  public PayLottos createPayLottos(int payMoney) {
-    payLottos.addPayLotto(createLotto(), payMoney);
-    return payLottos;
-  }
-
-  public Lotto createLotto() {
-    return new Lotto(createLottoNumbers());
-  }
-
-  private List<Integer> createLottoNumbers() {
-    return Randoms.pickUniqueNumbersInRange(LottoData.START_LOTTO_NUMBER,
-        LottoData.END_LOTTO_NUMBER, LottoData.COUNT_OF_LOTTO_NUMBER);
-  }
-
-  public List<Integer> getEqualWinCounts(Lotto winLotto) {
-   return payLottos.getEqualWinCounts(winLotto);
-  }
-
-  public List<Boolean> getEqualBonusNumber(int bonusNumber) {
-    return payLottos.getEqualBonusNumber(bonusNumber);
-  }
-
-  public WinLottoResult createWinLottoResult(int[] equalCounts, boolean[] bonusCounts) {
-    return new WinLottoResult(
-        makeWinResult.makeWinLottoResultData(equalCounts, bonusCounts, countOfLotto));
+  private Map<String, Integer> createWinLottoResult(Lotto winLotto, int bonusNumber) {
+    return lottoStoreService.createWinLottoResult(customer,winLotto,bonusNumber);
   }
 
 
