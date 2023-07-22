@@ -9,26 +9,26 @@ import model.win.WinLottoCount;
 public class OutPutImpl implements Output {
 
   @Override
-  public void outPutMessage(String message) {
+  public void outputMessage(String message) {
     System.out.println(message);
   }
 
   @Override
-  public void outPutBuyLotto(Customer customer) {
-    outPutMessage("\n" + customer.getPurchasedLottoCount() + ResultMessage.BUY_COUNT_MESSAGE);
+  public void outputBuyLotto(Customer customer) {
+    outputMessage("\n" + customer.getPurchasedLottoCount() + ResultMessage.BUY_COUNT_MESSAGE);
     customer.getPurchasedLottos()
-        .forEach(lottoData -> outPutMessage(lottoData));
+        .forEach(lottoData -> outputMessage(lottoData));
   }
 
   @Override
-  public void outPutLottoResult(Map<String, Integer> winLottoResult, double profitRate) {
-    outPutMessage(ResultMessage.WIN_STATISTICS_MESSAGE);
-    outPutMessage(ResultMessage.LINE_DIVIDE);
+  public void outputLottoResult(Map<String, Integer> winLottoResult, double profitRate) {
+    outputMessage(ResultMessage.WIN_STATISTICS_MESSAGE);
+    outputMessage(ResultMessage.LINE_DIVIDE);
     for (WinLottoCount winLottoCount : WinLottoCount.values()) {
-      outPutMessage(
+      outputMessage(
           winLottoCount.getResultMessage() + winLottoResult.get(winLottoCount.getCount()) + "개");
     }
-    outPutMessage(ResultMessage.TOTAL_PROFIT_MESSAGE + profitRate + ResultMessage.PERCENT_MESSAGE);
+    outputMessage(ResultMessage.TOTAL_PROFIT_MESSAGE + profitRate + ResultMessage.PERCENT_MESSAGE);
   }
 
 

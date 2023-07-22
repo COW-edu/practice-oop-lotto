@@ -5,8 +5,8 @@ import model.customer.Customer;
 import model.lotto.LottoStore;
 
 public interface Output {
-  void outPutMessage(String message);
-  void outPutBuyLotto(Customer customer);
-  void outPutLottoResult(Map<String, Integer> winLottoResult, double profitRate);
+  void outputMessage(String message);
+  void outputBuyLotto(Customer customer);
+  void outputLottoResult(Map<String, Integer> winLottoResult, double profitRate);
 
 }

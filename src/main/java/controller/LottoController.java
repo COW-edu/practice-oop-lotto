@@ -30,7 +30,7 @@ public class LottoController {
       double profitRate = calculateProfitRate(winLottoResult);
       printResult(winLottoResult, profitRate);
     } catch (IllegalArgumentException e) {
-      output.outPutMessage(e.getMessage());
+      output.outputMessage(e.getMessage());
     }
   }
 
@@ -39,17 +39,17 @@ public class LottoController {
   }
 
   private int inputMoney() throws IllegalArgumentException {
-    output.outPutMessage(RequestMessage.BUY_INPUT_MONEY);
+    output.outputMessage(RequestMessage.BUY_INPUT_MONEY);
     return input.inputMoney();
   }
 
   private List<Integer> inputWinLottoNumber() throws IllegalArgumentException {
-    output.outPutMessage(RequestMessage.INPUT_WIN_NUMBER);
+    output.outputMessage(RequestMessage.INPUT_WIN_NUMBER);
     return input.inputWinNumber();
   }
 
   private int inputBonusLottoNumber() throws IllegalArgumentException {
-    output.outPutMessage(RequestMessage.INPUT_BONUS_NUMBER);
+    output.outputMessage(RequestMessage.INPUT_BONUS_NUMBER);
     return input.inputBonusNumber();
   }
 
@@ -62,11 +62,11 @@ public class LottoController {
   }
 
   private void printPurchasedLottos(Customer customer) {
-    output.outPutBuyLotto(customer);
+    output.outputBuyLotto(customer);
   }
 
   private void printResult(Map<String, Integer> winLottoResult, double profitRate) {
-    output.outPutLottoResult(winLottoResult, profitRate);
+    output.outputLottoResult(winLottoResult, profitRate);
   }
 
 }
