@@ -12,7 +12,7 @@ public class LottoStoreService {
   public PurchasedLottos createPurchaseLottos(int payMoney) {
     PurchasedLottos purchasedLottos = new PurchasedLottos();
     int countOfLotto = payMoney / LottoData.LOTTO_PRICE;
-    for (int i = 0; i < countOfLotto; i++) {
+    for (int index = 0; index < countOfLotto; index++) {
       purchasedLottos.addPurchasedLotto(createLotto());
     }
     return purchasedLottos;
