@@ -7,6 +7,8 @@ import model.lotto.PurchasedLottos;
 import model.win.WinLottoCount;
 
 public class CustomerService {
+  private final double CALCULATE_CONSTANT_MULTIPLY = 1000.0;
+  private final double CALCULATE_CONSTANT_DIVIDE = 10.0;
 
   public long createWinCount(PurchasedLottos purchasedLottos, double winNumber, Lotto winLotto,
       int bonusNumber) {
@@ -28,8 +30,12 @@ public class CustomerService {
 
   public double createProfitRate(Map<String, Integer> winLottoResult, int payMoney) {
     long profit = profitCalculate(winLottoResult);
-    double profitRate = ((double) profit / payMoney) * 1000.0;
-    return Math.round(profitRate) / 10.0;
+    double profitRate = toDouble(profit,payMoney) * CALCULATE_CONSTANT_MULTIPLY;
+    return Math.round(profitRate) / CALCULATE_CONSTANT_DIVIDE;
+  }
+
+  public double toDouble(long profit, int payMoney){
+    return (double)(profit / payMoney);
   }
 
   private long profitCalculate(Map<String, Integer> winLottoResult) {

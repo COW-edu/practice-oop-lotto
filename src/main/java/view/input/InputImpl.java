@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import message.ErrorMessage;
-import model.lotto.Lotto;
 import model.lotto.LottoData;
 
 public class InputImpl implements Input {
@@ -23,7 +22,7 @@ public class InputImpl implements Input {
   @Override
   public List<Integer> inputWinNumber() throws IllegalArgumentException {
     String inputWinLottoNumber = Console.readLine();
-    String[] winLottoNumbers = inputWinLottoNumber.split(",");
+    String[] winLottoNumbers = inputWinLottoNumber.split(LottoData.SPLIT_LETTER);
     winLottoNumberList = stringToIntList(winLottoNumbers);
     validateCountLottoNumber(winLottoNumberList);
     validateRangeNumber(winLottoNumberList);
