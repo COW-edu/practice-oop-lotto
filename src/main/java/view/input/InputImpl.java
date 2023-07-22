@@ -16,7 +16,7 @@ public class InputImpl implements Input {
   public int inputMoney() throws IllegalArgumentException {
     String inputMoney = Console.readLine();
     validateInteger(inputMoney);
-    validateThousandOne(inputMoney);
+    validateUnit(inputMoney);
     return Integer.parseInt(inputMoney);
   }
 
@@ -25,7 +25,7 @@ public class InputImpl implements Input {
     String inputWinLottoNumber = Console.readLine();
     String[] winLottoNumbers = inputWinLottoNumber.split(",");
     winLottoNumberList = stringToIntList(winLottoNumbers);
-    validateCountLottoNum(winLottoNumberList);
+    validateCountLottoNumber(winLottoNumberList);
     validateRangeNumber(winLottoNumberList);
     validateDuplicated(winLottoNumberList);
     return winLottoNumberList;
@@ -48,7 +48,7 @@ public class InputImpl implements Input {
     return winLottoNumberList;
   }
 
-  private void validateThousandOne(String inputMoney) throws IllegalArgumentException {
+  private void validateUnit(String inputMoney) throws IllegalArgumentException {
     if (Integer.parseInt(inputMoney) % LottoData.LOTTO_PRICE != 0) {
       throw new IllegalArgumentException(ErrorMessage.NOT_THOUSANDONE);
     }
@@ -61,7 +61,7 @@ public class InputImpl implements Input {
     }
   }
 
-  private void validateCountLottoNum(List<Integer> numbers) throws IllegalArgumentException {
+  private void validateCountLottoNumber(List<Integer> numbers) throws IllegalArgumentException {
     if (numbers.size() != 6) {
       throw new IllegalArgumentException(ErrorMessage.NOT_EXACT_COUNT_NUMBER);
     }
