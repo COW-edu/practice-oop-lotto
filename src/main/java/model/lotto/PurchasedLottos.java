@@ -17,7 +17,8 @@ public class PurchasedLottos {
   }
 
   public List<String> getLottosValue() {
-    return purchasedLottos.stream().map(lotto -> String.valueOf(lotto))
+    return purchasedLottos.stream()
+        .map(lotto -> String.valueOf(lotto))
         .collect(Collectors.toList());
   }
 
@@ -28,7 +29,8 @@ public class PurchasedLottos {
   }
 
   public List<Boolean> getEqualBonusNumber(int bonusNumber) {
-    return purchasedLottos.stream().map(lotto -> lotto.checkEqualNumber(bonusNumber))
+    return purchasedLottos.stream()
+        .map(lotto -> lotto.checkEqualNumber(bonusNumber))
         .collect(Collectors.toList());
 
   }

@@ -76,7 +76,9 @@ public class InputImpl implements Input {
   }
 
   private void validateDuplicated(List<Integer> winNumberList) throws IllegalArgumentException {
-    if (winNumberList.size() != winNumberList.stream().distinct().count()) {
+    if (winNumberList.size() != winNumberList.stream()
+        .distinct()
+        .count()) {
       throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNUMBER);
     }
   }
