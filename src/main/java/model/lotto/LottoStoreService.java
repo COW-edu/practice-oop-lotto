@@ -13,21 +13,24 @@ public class LottoStoreService {
     PurchasedLottos purchasedLottos = new PurchasedLottos();
     int countOfLotto = payMoney / LottoData.LOTTO_PRICE;
     for (int i = 0; i < countOfLotto; i++) {
-      purchasedLottos.addPayLotto(createLotto());
+      purchasedLottos.addPurchasedLotto(createLotto());
     }
     return purchasedLottos;
   }
 
-  public Map<String, Integer> createWinLottoResult(Customer customer, Lotto winLotto, int bonusNumber) {
+  public Map<String, Integer> createWinLottoResult(Customer customer, Lotto winLotto,
+      int bonusNumber) {
     Map<String, Integer> winCountContainer = new HashMap<>();
     for (WinLottoCount winLottoCount : WinLottoCount.values()) {
       double winNumber = Double.parseDouble(winLottoCount.getCount());
-      winCountContainer.put(winLottoCount.getCount(), countWin(customer,winNumber, winLotto, bonusNumber));
+      winCountContainer.put(winLottoCount.getCount(),
+          countWin(customer, winNumber, winLotto, bonusNumber));
     }
     return winCountContainer;
   }
+
   private int countWin(Customer customer, double winNumber, Lotto winLotto, int bonusNumber) {
-    return (int)customer.getWinCount(winNumber,winLotto,bonusNumber);
+    return (int) customer.getWinCount(winNumber, winLotto, bonusNumber);
   }
 
   private Lotto createLotto() {

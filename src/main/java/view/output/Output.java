@@ -1,7 +1,12 @@
 package view.output;
 
+import java.util.Map;
+import model.customer.Customer;
+import model.lotto.LottoStore;
+
 public interface Output {
   void outPutMessage(String message);
-  void outPutLottoResult(double profitRate, WinLottoResult winLottoResult);
-  void outPutBuyLotto(PayLottosData lottosData);
+  void outPutBuyLotto(Customer customer);
+  void outPutLottoResult(Map<String, Integer> winLottoResult, double profitRate);
+
 }

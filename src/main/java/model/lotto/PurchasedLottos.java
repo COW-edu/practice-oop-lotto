@@ -1,31 +1,34 @@
 package model.lotto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import model.win.WinLottoCount;
 
 public class PurchasedLottos {
 
-  private final List<Lotto> payLottos = new ArrayList<>();
+  private final List<Lotto> purchasedLottos = new ArrayList<>();
 
-  public void addPayLotto(Lotto lotto) {
-    payLottos.add(lotto);
+  public void addPurchasedLotto(Lotto lotto) {
+    purchasedLottos.add(lotto);
   }
-  public int getpayLottosSize(){
-    return payLottos.size();
+
+  public int getPurchasedLottosCount() {
+    return purchasedLottos.size();
+  }
+
+  public List<String> getLottosValue() {
+    return purchasedLottos.stream().map(lotto -> String.valueOf(lotto))
+        .collect(Collectors.toList());
   }
 
   public List<Integer> getEqualWinCounts(Lotto winLotto) {
-    return payLottos.stream().map(ticket -> ticket.checkEqualNumbersCount(winLotto.getNumbers()))
+    return purchasedLottos.stream()
+        .map(ticket -> ticket.checkEqualNumbersCount(winLotto.getNumbers()))
         .collect(Collectors.toList());
   }
 
   public List<Boolean> getEqualBonusNumber(int bonusNumber) {
-    return payLottos.stream().map(lotto -> lotto.checkEqualNumber(bonusNumber))
+    return purchasedLottos.stream().map(lotto -> lotto.checkEqualNumber(bonusNumber))
         .collect(Collectors.toList());
 
   }

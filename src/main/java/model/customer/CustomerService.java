@@ -8,9 +8,10 @@ import model.win.WinLottoCount;
 
 public class CustomerService {
 
-  public long createWinCount(PurchasedLottos purchasedLottos, double winNumber, Lotto winLotto, int bonusNumber) {
+  public long createWinCount(PurchasedLottos purchasedLottos, double winNumber, Lotto winLotto,
+      int bonusNumber) {
     boolean isInteger = (winNumber % 1 == 0);
-    return IntStream.range(0, purchasedLottos.getpayLottosSize())
+    return IntStream.range(0, purchasedLottos.getPurchasedLottosCount())
         .filter(index -> {
           double countValue = purchasedLottos.getEqualWinCounts(winLotto).get(index);
           boolean isBonusNumberEqual = purchasedLottos.getEqualBonusNumber(bonusNumber).get(index);
@@ -30,6 +31,7 @@ public class CustomerService {
     double profitRate = ((double) profit / payMoney) * 1000.0;
     return Math.round(profitRate) / 10.0;
   }
+
   private long profitCalculate(Map<String, Integer> winLottoResult) {
     long profitTemp = 0;
     for (WinLottoCount wincountdata : WinLottoCount.values()) {
