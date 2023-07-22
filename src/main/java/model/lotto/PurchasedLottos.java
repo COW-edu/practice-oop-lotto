@@ -22,7 +22,6 @@ public class PurchasedLottos {
   public List<Integer> getEqualWinCounts(Lotto winLotto) {
     return payLottos.stream().map(ticket -> ticket.checkEqualNumbersCount(winLotto.getNumbers()))
         .collect(Collectors.toList());
-
   }
 
   public List<Boolean> getEqualBonusNumber(int bonusNumber) {

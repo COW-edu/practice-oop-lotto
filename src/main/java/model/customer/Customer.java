@@ -3,6 +3,7 @@ package model.customer;
 import java.util.Map;
 import model.lotto.Lotto;
 import model.lotto.PurchasedLottos;
+import model.win.WinLottoCount;
 
 public class Customer {
   private final PurchasedLottos purchasedLottos;
@@ -11,13 +12,14 @@ public class Customer {
 
   public Customer(PurchasedLottos purchasedLottos, int payMoney){
     this.purchasedLottos = purchasedLottos;
-    this.payMoney =payMoney;
+    this.payMoney = payMoney;
   }
   
-  public long createWinCount(double winNumber, Lotto winLotto, int bonusNumber) {
+  public long getWinCount(double winNumber, Lotto winLotto, int bonusNumber) {
     return customerService.createWinCount(purchasedLottos,winNumber,winLotto,bonusNumber);
   }
 
   public double getProfitRate(Map<String, Integer> winLottoResult) {
+    return customerService.createProfitRate(winLottoResult,payMoney);
   }
 }

@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import model.customer.Customer;
 import model.win.WinLottoCount;
 
@@ -29,7 +27,7 @@ public class LottoStoreService {
     return winCountContainer;
   }
   private int countWin(Customer customer, double winNumber, Lotto winLotto, int bonusNumber) {
-    return (int)customer.createWinCount(winNumber,winLotto,bonusNumber);
+    return (int)customer.getWinCount(winNumber,winLotto,bonusNumber);
   }
 
   private Lotto createLotto() {
