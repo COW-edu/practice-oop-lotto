@@ -33,6 +33,4 @@ public class PurchasedLottos {
         .map(lotto -> lotto.checkEqualNumber(bonusNumber))
         .collect(Collectors.toList());
   }
-
-
 }

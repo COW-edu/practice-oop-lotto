@@ -29,6 +29,4 @@ public class LottoStore {
   private Lotto createLotto(List<Integer> numbers) {
     return new Lotto(numbers);
   }
-
-
 }
