@@ -10,7 +10,7 @@ import model.win.WinLottoCount;
 public class LottoStoreService {
 
   public PurchasedLottos createPurchaseLottos(int payMoney) {
-    PurchasedLottos purchasedLottos = new PurchasedLottos();
+    PurchasedLottos purchasedLottos = createPurchaseLottos();
     int countOfLotto = payMoney / LottoData.LOTTO_PRICE;
     for (int index = 0; index < countOfLotto; index++) {
       purchasedLottos.addPurchasedLotto(createLotto());
@@ -42,5 +42,8 @@ public class LottoStoreService {
         LottoData.END_LOTTO_NUMBER, LottoData.COUNT_OF_LOTTO_NUMBER);
   }
 
+  private PurchasedLottos createPurchaseLottos(){
+    return new PurchasedLottos();
+  }
 
 }

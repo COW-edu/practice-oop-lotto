@@ -1,10 +1,16 @@
 package model.customer;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CustomerServiceTest {
+
+  private CustomerService customerService;
+
+  @BeforeEach
+  public void BeforeEach() {
+    customerService = new CustomerService();
+  }
 
   @Test
   void createWinCount() {
@@ -13,11 +19,6 @@ class CustomerServiceTest {
 
   @Test
   void createProfitRate() {
-
-  }
-
-  @Test
-  void toDouble() {
 
   }
 }
