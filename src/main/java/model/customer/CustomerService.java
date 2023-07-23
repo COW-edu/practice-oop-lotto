@@ -35,16 +35,16 @@ public class CustomerService {
   }
 
   public double toDouble(long profit, int payMoney){
-    return (double)(profit / payMoney);
+    return ((double)profit / payMoney);
   }
 
   private long profitCalculate(Map<String, Integer> winLottoResult) {
-    long profitTemp = 0;
-    for (WinLottoCount wincountdata : WinLottoCount.values()) {
-      long winningPrice = wincountdata.getLottoWinningPrice();
-      long winningCount = winLottoResult.get(wincountdata.getCount());
-      profitTemp += winningPrice * winningCount;
+    long profitContainer = 0;
+    for (WinLottoCount winLottoCount : WinLottoCount.values()) {
+      long winningPrice = winLottoCount.getLottoWinningPrice();
+      long winningCount = winLottoResult.get(winLottoCount.getCount());
+      profitContainer += winningPrice * winningCount;
     }
-    return profitTemp;
+    return profitContainer;
   }
 }

@@ -24,8 +24,7 @@ public class LottoController {
     try {
       Customer customer = enterCustomer(inputMoney());
       printPurchasedLottos(customer);
-      Map<String, Integer> winLottoResult = createWinLottoResult(inputWinLottoNumber(),
-          inputBonusLottoNumber());
+      Map<String, Integer> winLottoResult = createWinLottoResult(inputWinLottoNumber(), inputBonusLottoNumber());
       double profitRate = calculateProfitRate(winLottoResult);
       printResult(winLottoResult, profitRate);
     } catch (IllegalArgumentException e) {
