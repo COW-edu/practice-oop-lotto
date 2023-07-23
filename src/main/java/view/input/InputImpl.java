@@ -24,9 +24,6 @@ public class InputImpl implements Input {
     String inputWinLottoNumber = Console.readLine();
     String[] winLottoNumbers = inputWinLottoNumber.split(LottoData.SPLIT_LETTER);
     winLottoNumberList = stringToIntList(winLottoNumbers);
-    validateCountLottoNumber(winLottoNumberList);
-    validateRangeNumber(winLottoNumberList);
-    validateDuplicated(winLottoNumberList);
     return winLottoNumberList;
   }
 
@@ -41,9 +38,7 @@ public class InputImpl implements Input {
 
   private List<Integer> stringToIntList(String[] winLottoNumbers) {
     List<Integer> winLottoNumberList = new ArrayList<>();
-    Arrays.stream(winLottoNumbers)
-        .mapToInt(Integer::parseInt)
-        .forEach(winLottoNumberList::add);
+    Arrays.stream(winLottoNumbers).mapToInt(Integer::parseInt).forEach(winLottoNumberList::add);
     return winLottoNumberList;
   }
 
@@ -60,12 +55,6 @@ public class InputImpl implements Input {
     }
   }
 
-  private void validateCountLottoNumber(List<Integer> numbers) throws IllegalArgumentException {
-    if (numbers.size() != 6) {
-      throw new IllegalArgumentException(ErrorMessage.NOT_EXACT_COUNT_NUMBER);
-    }
-  }
-
   private void validateDuplicated(String inputBonusLottoNumber) throws IllegalArgumentException {
     int bonusNumber = Integer.parseInt(inputBonusLottoNumber);
     if (winLottoNumberList.stream()
@@ -74,26 +63,11 @@ public class InputImpl implements Input {
     }
   }
 
-  private void validateDuplicated(List<Integer> winNumberList) throws IllegalArgumentException {
-    if (winNumberList.size() != winNumberList.stream()
-        .distinct()
-        .count()) {
-      throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNUMBER);
-    }
-  }
-
   private void validateRangeNumber(String inputBonusLottoNumber) throws IllegalArgumentException {
     int bonusNumber = Integer.parseInt(inputBonusLottoNumber);
-    if (bonusNumber < 1 || bonusNumber > 45) {
+    if (bonusNumber < LottoData.START_LOTTO_NUMBER || bonusNumber > LottoData.END_LOTTO_NUMBER) {
       throw new IllegalArgumentException(ErrorMessage.NOT_EXACT_RANGE_NUMBER);
     }
   }
 
-  private void validateRangeNumber(List<Integer> winLottoList) throws IllegalArgumentException {
-    for (int number : winLottoList) {
-      if (number < 1 || number > 45) {
-        throw new IllegalArgumentException(ErrorMessage.NOT_EXACT_RANGE_NUMBER);
-      }
-    }
-  }
 }
