@@ -1,7 +1,9 @@
 package lotto.model.Implement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.Data.ErrorMessage;
 import lotto.model.Interface.WinNumbersStorage;
 
@@ -11,7 +13,7 @@ public class WinNumbersStorageImpl implements WinNumbersStorage {
   int bonusNumber;
 
   WinNumbersStorageImpl(String winNumberString, int bonusNumber) {
-    this.winNumbers = parseWinNumbers(winNumberString);
+    parseWinNumbers(winNumberString);
     this.bonusNumber = bonusNumber;
   }
 
@@ -25,20 +27,16 @@ public class WinNumbersStorageImpl implements WinNumbersStorage {
     return 0;
   }
 
-  // TODO: Stream으로 구현하기
-  private List<Integer> parseWinNumbers(String winNumbersString) {
+  private void parseWinNumbers(String winNumbersString) {
     String[] winNumbersStringSplit = winNumbersString.split(",");
     if (winNumbersStringSplit.length != 6) {
       throw new IllegalArgumentException(ErrorMessage.ERROR_WIN_NUMBER_LENGTH.getData());
     }
-    List<Integer> winNumbers = new ArrayList<>();
-    for (String s : winNumbersStringSplit) {
-      try {
-        winNumbers.add(Integer.parseInt(s));
-      } catch (NumberFormatException e) {
-        throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_INTEGER_INPUT.getData());
-      }
+    Stream<String> winNumbersStringStream =  Arrays.stream(winNumbersStringSplit);
+    try {
+      winNumbersStringStream.mapToInt(Integer::parseInt).forEach(x -> winNumbers.add(x));
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_INTEGER_INPUT.getData());
     }
-    return winNumbers;
   }
 }
