@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ApplicationConsoleView implements ApplicationView {
 
+    private static final String SEPARATOR = ",";
     private static final String LINE_BREAK = "\n";
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
-    private static final String PURCHASED_LOTTO_OUTPUT_INTRO_MESSAGE_FORMAT = "%d개를 구매했습니다.\n";
     private static final String LOTTO_RESULTS_OUTPUT_INTRO_MESSAGE = "당첨통계\n---\n";
-    private static final String SEPARATOR = ",";
+    private static final String BONUS_NUMBER_OUTPUT_MESSAGE = ", 보너스 볼 일치";
+    private static final String PURCHASED_LOTTO_OUTPUT_INTRO_MESSAGE_FORMAT = "%d개를 구매했습니다.\n";
     private static final String RETURN_RATE_OUTPUT_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
     private static final String MATCHED_NUMBERS_OUTPUT_MESSAGE_FORMAT = "%d개 일치";
-    private static final String BONUS_NUMBER_OUTPUT_MESSAGE = ", 보너스 볼 일치";
     private static final String WINNING_PRICE_AND_MATCHED_LOTTO_OUTPUT_MESSAGE_FORMAT = " (%s원) - %d개\n";
     public static final double PERCENT_VALUE = 100.0;
 

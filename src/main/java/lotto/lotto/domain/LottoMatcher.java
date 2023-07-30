@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -52,7 +53,7 @@ public class LottoMatcher {
             }
         }
 
-        var sortedRewards = REWARDS.stream().sorted((lr1, lr2) -> lr2.getWinningPrice() - lr1.getWinningPrice()).collect(Collectors.toList());
+        var sortedRewards = REWARDS.stream().sorted(Comparator.comparingInt(LottoReward::getWinningPrice).reversed()).collect(Collectors.toList());
         for (LottoReward lottoReward : sortedRewards) {
             if (lottoReward.match(matchedNumbers, matchedBonusNumbers)) {
                 lotto.finish(lottoReward);

@@ -31,7 +31,6 @@ public class LottoApplication implements Runnable {
         } catch (RuntimeException e) {
             applicationView.printErrorMessage(e.getMessage());
         }
-
     }
 
     private void listLottoResult() {

@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -18,6 +17,7 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     public static final int SIZE_OF_LOTTO_NUMBERS = 6;
+    private static final String NOT_MATCHED_SIZE_ERROR_MESSAGE = "로또 번호들의 개수가 맞지 않습니다.";
     private static final AtomicInteger idGenerator = new AtomicInteger();
 
     private final String id = String.valueOf(idGenerator.incrementAndGet());
@@ -43,7 +43,6 @@ public class Lotto {
         return reward != null;
     }
 
-
     public void finish(LottoReward reward) {
         if (this.reward == null && reward != null) {
             this.reward = reward;
@@ -52,7 +51,7 @@ public class Lotto {
 
     private static void validate(Set<LottoNumber> lottoNumbers) {
         if (lottoNumbers.size() != SIZE_OF_LOTTO_NUMBERS) {
-            throw new IllegalArgumentException("로또 번호들의 개수가 맞지 않습니다.");
+            throw new IllegalArgumentException(NOT_MATCHED_SIZE_ERROR_MESSAGE);
         }
     }
 }

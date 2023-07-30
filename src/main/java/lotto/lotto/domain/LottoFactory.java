@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,6 +12,7 @@ import java.util.stream.IntStream;
 public class LottoFactory {
 
     public static final int LOTTO_PRICE = 1000;
+    private static final String PURCHASE_PRICE_ERROR_MESSAGE = "로또 구입 가격을 확인해주세요.";
 
     public static List<Lotto> create(int purchasePrice) {
         validate(purchasePrice);
@@ -29,20 +28,9 @@ public class LottoFactory {
         return Lotto.from(numbers);
     }
 
-    private static Set<LottoNumber> createRandomLottoNumbers() {
-        Set<LottoNumber> lottoNumbers = new HashSet<>(Lotto.SIZE_OF_LOTTO_NUMBERS);
-
-        while(lottoNumbers.size() < Lotto.SIZE_OF_LOTTO_NUMBERS) {
-            var newLottoNumber = LottoNumber.getRandomInstance();
-            lottoNumbers.add(newLottoNumber);
-        }
-
-        return lottoNumbers;
-    }
-
     private static void validate(int purchasePrice) {
         if (purchasePrice < LOTTO_PRICE || purchasePrice % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("로또 구입 가격을 확인해주세요.");
+            throw new IllegalArgumentException(PURCHASE_PRICE_ERROR_MESSAGE);
         }
     }
 
