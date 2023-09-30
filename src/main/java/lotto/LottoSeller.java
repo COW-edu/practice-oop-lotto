@@ -24,7 +24,7 @@ public class LottoSeller {
         if (lottoAmount % 1000 == 0) {
             return lottoAmount / 1000;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다");
     }
     private int checkIsNumber(String number) {
         try {
