@@ -4,12 +4,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-public class Winning {
+public class Winning extends Lotto{
     private List<Integer> numbers;
+    private int bonus;
     public Winning(List<Integer> numbers) {
-        this.numbers = numbers;
+        super(numbers);
     }
-    public List<Integer> getNumbers() {
-        return numbers;
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+    public int getBonus() {
+        return bonus;
     }
 }

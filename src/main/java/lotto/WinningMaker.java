@@ -26,9 +26,19 @@ public class WinningMaker {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다");
         }
     }
+    private void checkDuplication(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다");
+        }
+    }
     private void checkBoundary(List<Integer> numbers) {
         if(Collections.max(numbers) > 45 || Collections.min(numbers) < 1) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이여야 합니다");
+        }
+    }
+    private void checkBoundary(int number) {
+        if(number > 45 || number < 1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다");
         }
     }
     private List<Integer> sortNumbers(List<Integer> numbers) {
@@ -41,5 +51,13 @@ public class WinningMaker {
         checkBoundary(numbers);
         numbers = sortNumbers(numbers);
         return new Winning(numbers);
+    }
+    public Winning setBonus(Winning winning, String bonusNumber) {
+        int bonus = checkIsNumber(bonusNumber);
+        List<Integer> winningNumbers = winning.getNumbers();
+        checkDuplication(winningNumbers, bonus);
+        checkBoundary(bonus);
+        winning.setBonus(bonus);
+        return winning;
     }
 }

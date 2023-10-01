@@ -3,6 +3,7 @@ package user;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.LottoSeller;
+import lotto.Winning;
 import lotto.WinningMaker;
 
 import java.util.List;
@@ -38,6 +39,8 @@ public class User {
     private void checkWinning() {
         WinningMaker winningMaker = new WinningMaker();
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        winningMaker.makeWinning(Console.readLine());
+        Winning winning = winningMaker.makeWinning(Console.readLine());
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        winningMaker.setBonus(winning, Console.readLine());
     }
 }

@@ -10,12 +10,15 @@ public class LottoSeller {
     }
     public List<Lotto> buyLottoes(String amount) {
         int lottoAmount = calculateLottoAmount(amount);
-        List<Lotto> lottoes = new ArrayList<Lotto>();
-        for (int i = 0; i < lottoAmount; i++) {
-            Lotto lotto = lottoMaker.makeLotto();
-            lottoes.add(lotto);
+        if(lottoAmount > 0) {
+            List<Lotto> lottoes = new ArrayList<Lotto>();
+            for (int i = 0; i < lottoAmount; i++) {
+                Lotto lotto = lottoMaker.makeLotto();
+                lottoes.add(lotto);
+            }
+            return lottoes;
         }
-        return lottoes;
+        throw new IllegalArgumentException("[ERROR] 금액은 1000원 이상이어야 합니다");
     }
     private int calculateLottoAmount(String amount) {
         int lottoAmount = checkIsNumber(amount);
