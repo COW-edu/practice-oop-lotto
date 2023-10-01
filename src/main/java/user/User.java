@@ -9,11 +9,13 @@ import java.util.List;
 public class User {
     private LottoSeller lottoSeller;
     private List<Lotto> lottoes;
+    private WinningChecker winningChecker;
     public User() {
         this.lottoSeller = new LottoSeller();
         order();
         Winning winning = initWinning();
         checkWinning(winning);
+        checkReward();
     }
     private String choiceAmount() {
         return Console.readLine();
@@ -45,7 +47,7 @@ public class User {
         return winning;
     }
     private void checkWinning(Winning winning) {
-        WinningChecker winningChecker = new WinningChecker(winning);
+        this.winningChecker = new WinningChecker(winning);
         for(Lotto lotto : lottoes) {
             winningChecker.setGrades(lotto);
         }
@@ -55,5 +57,13 @@ public class User {
         System.out.println("5개 일치 (1,500,000원) - " + winningChecker.getGradeQuantity(Grade.THIRD) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningChecker.getGradeQuantity(Grade.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + winningChecker.getGradeQuantity(Grade.FIRST) + "개");
+    }
+    private void checkReward() {
+        double reward = 0;
+        List<Grade> grades = winningChecker.getGrades();
+        for(Grade grade : grades) {
+            reward = reward + grade.getReward();
+        }
+        System.out.println("총 수익률은 " + Math.round((reward / (lottoes.size() * 10)) * 100) / 100.0 + "%입니다.");
     }
 }

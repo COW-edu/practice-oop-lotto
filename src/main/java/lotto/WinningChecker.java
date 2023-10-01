@@ -37,7 +37,7 @@ public class WinningChecker {
         if(score == Grade.FIFTH.getScore()) {
             return Grade.FIFTH;
         }
-        return null;
+        return Grade.NONE;
     }
     private boolean checkBonus(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
@@ -49,6 +49,9 @@ public class WinningChecker {
     public void setGrades(Lotto lotto) {
         int a = getScore(lotto);
         this.grades.add(checkGrade(a, lotto));
+    }
+    public List<Grade> getGrades() {
+        return this.grades;
     }
     public int getGradeQuantity(Grade grade) {
         return Collections.frequency(grades, grade);
