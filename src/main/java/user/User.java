@@ -1,19 +1,19 @@
 package user;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
-import lotto.LottoSeller;
-import lotto.Winning;
-import lotto.WinningMaker;
+import lotto.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private LottoSeller lottoSeller;
+    private List<Lotto> lottoes;
     public User() {
         this.lottoSeller = new LottoSeller();
         order();
-        checkWinning();
+        Winning winning = initWinning();
+        checkWinning(winning);
     }
     private String choiceAmount() {
         return Console.readLine();
@@ -30,17 +30,30 @@ public class User {
     }
     private void order() {
         System.out.println("구입금액을 입력해 주세요.");
-        List<Lotto> lottoes = this.lottoSeller.buyLottoes(choiceAmount());
+        this.lottoes = this.lottoSeller.buyLottoes(choiceAmount());
         System.out.println("\n" + lottoes.size() + "개를 구매했습니다.");
         for(Lotto lotto : lottoes) {
             showNum(lotto.getNumbers());
         }
     }
-    private void checkWinning() {
+    private Winning initWinning() {
         WinningMaker winningMaker = new WinningMaker();
         System.out.println("\n당첨 번호를 입력해 주세요.");
         Winning winning = winningMaker.makeWinning(Console.readLine());
         System.out.println("\n보너스 번호를 입력해 주세요.");
         winningMaker.setBonus(winning, Console.readLine());
+        return winning;
+    }
+    private void checkWinning(Winning winning) {
+        WinningChecker winningChecker = new WinningChecker(winning);
+        for(Lotto lotto : lottoes) {
+            winningChecker.setGrades(lotto);
+        }
+        System.out.println("\n당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + winningChecker.getGradeQuantity(Grade.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningChecker.getGradeQuantity(Grade.FOURTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningChecker.getGradeQuantity(Grade.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningChecker.getGradeQuantity(Grade.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningChecker.getGradeQuantity(Grade.FIRST) + "개");
     }
 }
