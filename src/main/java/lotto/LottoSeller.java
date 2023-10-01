@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ public class LottoSeller {
         int lottoAmount = calculateLottoAmount(amount);
         List<Lotto> lottoes = new ArrayList<Lotto>();
         for (int i = 0; i < lottoAmount; i++) {
-            Lotto lotto = lottoMaker.makeLotto(Console.readLine());
+            Lotto lotto = lottoMaker.makeLotto();
             lottoes.add(lotto);
         }
         return lottoes;
