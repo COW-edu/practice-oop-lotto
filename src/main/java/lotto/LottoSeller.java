@@ -31,7 +31,7 @@ public class LottoSeller {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 번호는 숫자여야 합니다");
         }
     }
 }
