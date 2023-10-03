@@ -3,15 +3,16 @@ package user;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class View {
     private LottoSeller lottoSeller;
     private List<Lotto> lottoes;
     private WinningChecker winningChecker;
-    public User() {
+    public View() {
         this.lottoSeller = new LottoSeller();
+    }
+    public void run() {
         order();
         Winning winning = initWinning();
         checkWinning(winning);
