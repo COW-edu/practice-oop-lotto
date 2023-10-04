@@ -1,7 +1,13 @@
 package lotto;
 
 public class Application {
+    private Counter counter;
+    public void run(){
+        counter = new Counter();
+        counter.run();
+    }
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Application main = new Application();
+       main.run();
     }
 }
