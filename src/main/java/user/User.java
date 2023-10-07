@@ -47,11 +47,10 @@ public class User {
         return buyerNumbers;
     }
 
-    private boolean outOfLottoLength(String[] selectNumber) {
+    private void outOfLottoLength(String[] selectNumber) {
         if (selectNumber.length != countRange) {
             ErrorMessage.LOTTOLENGTH.getExceptionMessage();
         }
-        return true;
     }
 
     private boolean convertInteger(String number) {

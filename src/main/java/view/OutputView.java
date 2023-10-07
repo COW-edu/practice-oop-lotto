@@ -14,9 +14,8 @@ public class OutputView {
 
     public void outputReward(List<Rank> rewardList) {
         System.out.println("\n당첨 통계\n---");
-        System.out.println(rewardList);
         Rank[] values = Rank.values();
-        for(int i=0; i<values.length;i++) {
+        for(int i=0; i<values.length-1;i++) {
             System.out.println(values[i].getAnnounceMessage() + " " + Collections.frequency(rewardList, values[i])  + "개");
         }
     }

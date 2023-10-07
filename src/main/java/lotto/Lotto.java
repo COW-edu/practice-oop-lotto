@@ -34,13 +34,12 @@ public class Lotto {
     }
 
     // 입력받은 보너스 번호 검증
-    private boolean convertBonusNum(String number) {
+    private void convertBonusNum(String number) {
         try {
             Integer.valueOf(number);
         } catch (NumberFormatException exception) {
             ErrorMessage.CATCHSTRING.getExceptionMessage();
         }
-        return true;
     }
 
     // 로또 번호 범위 확인

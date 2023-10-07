@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 import Enum.Rank;
 
 public class Reward {
@@ -15,7 +17,7 @@ public class Reward {
 
     // 로또 결과 및 수익률 확인 로직
     public Reward(List<Lotto> lottos, int count, Lotto selectLotto, int bonusNum) {
-        this.lottos = new ArrayList<>(lottos.size());
+        this.lottos = lottos;
         this.count = count;
         this.selectLotto = selectLotto;
         this.bonusNum = bonusNum;
@@ -45,32 +47,39 @@ public class Reward {
     private List<Rank> addRankList(int rankResult) {
         for(Rank rank : Rank.values()) {
             if(rankResult == rank.getCountMatch()) {
-                saveRank(rankResult, rank);
+                saveRank(rankResult);
                 break;
             }
         }
         return this.rankList;
     }
 
-    private Rank bonusCheck(int rankResult, Rank rank) {
-        List<Integer> lottoNumber = this.lotto.getLottoNumbers();
-        if(rankResult == 5) {
-            if(lottoNumber.contains(this.bonusNum)) {
-                return Rank.SECOND;
-            }
-            return Rank.THIRD;
-        }
-        return rank;
-    }
-
     // 자동화 했지만 2등과 3등을 비교하는 과정에서 막힘;;
-    private void saveRank(int rankResult, Rank rank) {
-        if(bonusCheck(rankResult, rank) == Rank.SECOND) {
+    private void saveRank(int rankResult) {
+        if(rankResult == Rank.FIRST.getCountMatch()) {
+            this.rankList.add(Rank.FIRST);
+        }
+        if(rankResult == Rank.SECOND.getCountMatch() && bonusCheck()) {
             this.rankList.add(Rank.SECOND);
         }
-        if(bonusCheck(rankResult, rank) != Rank.SECOND) {
-            this.rankList.add(bonusCheck(rankResult, rank));
+        if(rankResult == Rank.THIRD.getCountMatch() && !bonusCheck()) {
+            this.rankList.add(Rank.THIRD);
         }
+        if(rankResult == Rank.FOURTH.getCountMatch()) {
+            this.rankList.add(Rank.FOURTH);
+        }
+        if(rankResult == Rank.FIFTH.getCountMatch()) {
+            this.rankList.add(Rank.FIFTH);
+        }
+        this.rankList.add(Rank.MISS);
+    }
+
+    private boolean bonusCheck() {
+        List<Integer> lottoNumber = this.lotto.getLottoNumbers();
+            if(lottoNumber.contains(this.bonusNum)) {
+                return Rank.SECOND.getBonus();
+            }
+         return false;
     }
 
     public double getPercentage() {
