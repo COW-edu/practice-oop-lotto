@@ -1,47 +1,67 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
-import lotto.LottoNumbers;
+import lotto.RandomLotto;
 import lotto.Reward;
 import user.User;
+import Enum.Rank;
+import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
 public class Controller {
 
     private User user;
+    private Lotto lotto;
     private List<Lotto> lottos;
-    private LottoNumbers lottoNumbers;
+    private RandomLotto randomLotto;
     private Lotto selectLotto;
+    private InputView inputView;
+    private OutputView outputView;
 
-    public Controller() {
-        user = new User();
-        lottoNumbers = new LottoNumbers();
+    public Controller(User user, RandomLotto randomLotto,
+                      InputView inputView, OutputView outputView) {
+        this.user = user;
+        this.randomLotto = randomLotto;
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void start() {
         // 로또 구매
-        System.out.println("구입 금액을 입력해주세요: ");
-        int count = user.lottoCount();
+        inputView.inputMoney();
+        int count = user.lottoCount(Integer.parseInt(Console.readLine()));
+        outputView.announcePayment(count);
 
         // 입력 금액에 해당하는 로또 번호 출력
-        lottos = lottoNumbers.makeList(count);
+        lottos = randomLotto.makeList(count);
+        outputView.announceRandomLottos(lottos);
 
-        // 당첨 번호 & 보너스 번호 입력
-        System.out.println("당첨 번호를 입력해주세요.");
-        selectLotto = lottoNumbers.checkOutOfRange(user.getUserLottoNumber());
+        // 사용자로부터 당첨 번호 입력 & 입력한 번호로 로또 생성
+        inputView.inputLottoNum();
+        this.lotto = new Lotto(user.userLottoNumber(user.getUserLotto()));
 
-        // 보너스 번호 입력
-        System.out.println("보너스 번호를 입력해주세요.");
-        int bonusNumber = lottoNumbers.checkDuplication(selectLotto, user.getUserLottoBonus());
+        // 로또 범위 검증 후 변환
+        lotto.checkOutOfRange(this.lotto);
+        this.selectLotto = this.lotto;
+
+        // 사용자로부터 보너스 번호 입력
+        inputView.inputBonusNum();
+        String userBonusStr = user.getUserLottoBonus();
+
+        // 입력한 보너스 번호 검증 후 변환
+        int userBonusNumber = lotto.userBonusNum(userBonusStr);
+        lotto.checkDuplication(selectLotto, userBonusNumber);
 
         // 번호 비교 후 당첨금 배분
-        System.out.println("\n당첨 통계\n---");
-        Reward reward = new Reward(lottos, count);
-        reward.compareLotto(selectLotto, bonusNumber);
+        Reward reward = new Reward(lottos, count, selectLotto, userBonusNumber);
+        outputView.outputReward(reward.compareLotto());
 
         // 수익률 출력
-        reward.getPercentage();
+        double profit = reward.getPercentage();
+        outputView.announceReward(profit);
     }
 
 }

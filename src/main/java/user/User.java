@@ -1,77 +1,71 @@
 package user;
 
 import camp.nextstep.edu.missionutils.Console;
-import exception.ExceptionMessage;
-import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import Enum.ErrorMessage;
 
 public class User {
 
-    private List<Integer> buyerNumbers;
+    private int payment;
+    private final static int price = 1000;
+    private static final int countRange = 6;
 
     public User() {
         // 사용자 로또 구매 후 번호 생성 및 exception 처리
     }
 
-    public int lottoCount() {
-        String count = Console.readLine();
-        int payment = Integer.parseInt(count);
-        int lottoCount = checkCount(payment);
-        System.out.println(lottoCount + "개를 구매했습니다.");
-        return lottoCount;
+    public int lottoCount(int money) {
+        // TODO 입력의 책임과 고객에 대한 데이터 관리 및 로직 처리 분리
+        this.payment = money;
+        checkCount(payment);
+        return payment/price;
     }
 
-    private int checkCount(int payment) {
-        if (payment%1000 != 0) {
-            ExceptionMessage.outOfBuyingRange();
+    private void checkCount(int payment) {
+        if (payment%price != 0) {
+            ErrorMessage.BUYINGRANGE.getExceptionMessage();
             throw new IllegalArgumentException();
         }
-        return payment/1000;
     }
 
-    public Lotto getUserLottoNumber() {
+    public String[] getUserLotto() {
         String numberLine = Console.readLine();
         String[] selectNumber = numberLine.split(",");
-        String[] checkNumber = outOfLottoLength(selectNumber);
-        buyerNumbers = new ArrayList<>();
-        for (int i=0; i<checkNumber.length;i++) {
-            buyerNumbers.add(convertInteger(checkNumber[i]));
-        }
-        return new Lotto(buyerNumbers);
-    }
-
-    public int getUserLottoBonus() {
-        String bonusNumber = Console.readLine();
-        System.out.println("보너스 숫자 : " + bonusNumber);
-        return convertBonusNum(bonusNumber);
-    }
-
-    private String[] outOfLottoLength(String[] selectNumber) {
-        if (selectNumber.length != 6) {
-            ExceptionMessage.outOfLottoLength();
-        }
         return selectNumber;
     }
 
-    private int convertInteger(String number) {
+    public List<Integer> userLottoNumber(String[] userLottoString) {
+        outOfLottoLength(userLottoString);
+        List<Integer> buyerNumbers = new ArrayList<>();
+        for (String checkedInput: userLottoString) {
+            if(convertInteger(checkedInput)) {
+                buyerNumbers.add(Integer.parseInt(checkedInput));
+            }
+        }
+        return buyerNumbers;
+    }
+
+    private boolean outOfLottoLength(String[] selectNumber) {
+        if (selectNumber.length != countRange) {
+            ErrorMessage.LOTTOLENGTH.getExceptionMessage();
+        }
+        return true;
+    }
+
+    private boolean convertInteger(String number) {
         try {
             Integer.valueOf(number);
         } catch (NumberFormatException exception) {
-            ExceptionMessage.catchString();
+            ErrorMessage.CATCHSTRING.getExceptionMessage();
         }
-        return Integer.parseInt(number);
+        return true;
     }
 
-    private int convertBonusNum(String number) {
-        try {
-            Integer.valueOf(number);
-        } catch (NumberFormatException exception) {
-            ExceptionMessage.catchBonusNumber();
-        }
-        return Integer.parseInt(number);
+    public String getUserLottoBonus() {
+        String bonusNumberStr = Console.readLine();
+        return bonusNumberStr;
     }
-
 
 }

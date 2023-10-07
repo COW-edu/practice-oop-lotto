@@ -10,22 +10,24 @@ public enum Rank {
 
     private int countMatch;
     private int reward;
-    private String announce;
+    private String announceMessage;
 
-    Rank(int countMatch, int reward, String announce) {
+    Rank(int countMatch, int reward, String announceMessage) {
         this.countMatch = countMatch;
         this.reward = reward;
-        this.announce = announce;
-}
+        this.announceMessage = announceMessage;
+    }
 
     public int getCountMatch() {
         return this.countMatch;
     }
 
-    public double getReward() {return this.reward;}
+    public double getReward() {
+        return this.reward;
+    }
 
-    public String getAnnounce() {
-        return this.announce;
+    public String getAnnounceMessage() {
+        return this.announceMessage;
     }
 
 }
