@@ -22,4 +22,8 @@ public class Money {
         return money / 1000;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
 }

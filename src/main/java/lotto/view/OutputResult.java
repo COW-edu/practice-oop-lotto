@@ -13,6 +13,7 @@ public class OutputResult {
         printOutputMessage(5, Result.THIRD);
         System.out.println(5 + "개 일치, 보너스 볼 일치 (" + Result.SECOND.getPrize() + ")" + "-" + Result.SECOND.getTotalCount() + "개");
         printOutputMessage(6, Result.FIRST);
+        System.out.println();
     }
 
     private static void printOutputMessage(int n, Result result){

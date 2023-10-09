@@ -7,9 +7,10 @@ import lotto.view.InputWinningNumbers;
 
 import java.util.List;
 
-import static lotto.domain.Result.calculateResult;
+import static lotto.domain.ResultCalculator.calculateResult;
 import static lotto.view.OutputLottoCount.printLottoCount;
 import static lotto.view.OutputLottoList.printLottoList;
+import static lotto.view.OutputRate.printRate;
 import static lotto.view.OutputResult.printResult;
 
 public class LottoController {
@@ -21,13 +22,23 @@ public class LottoController {
         Lottos lottos = getLottos(money);
         printLottoList(lottos);
 
-        WinningLotto winningLotto = getWinningLotto(lottos);
+        WinningLotto winningLotto = getWinningLotto();
+
         calculateResult(winningLotto, lottos);
         printResult();
 
+        Rate rate = getRate(money);
+        printRate(rate);
     }
 
-    private WinningLotto getWinningLotto(Lottos lottos) {
+    private Rate getRate(Money money) {
+        RateCalculator rateCalculator = new RateCalculator();
+        double rate = rateCalculator.calculateRate(money);
+
+        return new Rate(rate);
+    }
+
+    private WinningLotto getWinningLotto() {
         InputWinningNumbers inputWinningNumbers = new InputWinningNumbers();
         InputBonusNumber inputBonusNumber = new InputBonusNumber();
 

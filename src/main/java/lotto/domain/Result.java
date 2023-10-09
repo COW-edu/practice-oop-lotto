@@ -13,6 +13,15 @@ public enum Result {
     private final int prize;
     private int totalCount;
 
+    Result(int requiredMatchCount, int prize, int totalCount) {
+        this.requiredMatchCount = requiredMatchCount;
+        this.prize = prize;
+        this.totalCount = totalCount;
+    }
+
+    public int getRequiredMatchCount() {
+        return requiredMatchCount;
+    }
     public int getPrize() {
         return prize;
     }
@@ -21,42 +30,8 @@ public enum Result {
         return totalCount;
     }
 
-    Result(int requiredMatchCount, int prize, int totalCount) {
-        this.requiredMatchCount = requiredMatchCount;
-        this.prize = prize;
-        this.totalCount = totalCount;
+    public void plusTotalCount() {
+        totalCount += 1;
     }
 
-    public static void calculateResult(WinningLotto winningLotto, Lottos lottos) {
-        for (Lotto lotto : lottos.getLottos()) {
-            List<Integer> winningNumbers = winningLotto.getWinningLotto().getNumbers();
-            int matchCount = 0;
-            boolean containBonusNumber = false;
-
-            for(int n : winningNumbers) {
-                if(lotto.getNumbers().contains(n)){
-                    matchCount++;
-                } else if(lotto.getNumbers().contains(winningLotto.getBonusNumber())){
-                    containBonusNumber = true;
-                }
-            }
-
-            if(matchCount == FIRST.requiredMatchCount) {
-                FIRST.totalCount++;
-            }
-            else if(matchCount == SECOND.requiredMatchCount && containBonusNumber) {
-                SECOND.totalCount++;
-            }
-            else if(matchCount == THIRD.requiredMatchCount) {
-                THIRD.totalCount++;
-            }
-            else if(matchCount == FOURTH.requiredMatchCount) {
-                FOURTH.totalCount++;
-            }
-            else if(matchCount == FIFTH.requiredMatchCount) {
-                FIFTH.totalCount++;
-            }
-        }
-
-    }
 }
