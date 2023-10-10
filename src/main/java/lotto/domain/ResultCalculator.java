@@ -40,8 +40,8 @@ public class ResultCalculator {
     }
 
     private void checkContainBonusNumber(WinningLotto winningLotto, Lotto lotto, List<Integer> winningNumbers) {
-        for(int n : winningNumbers) {
-            if(lotto.getNumbers().contains(n)){
+        for(int winningNumber : winningNumbers) {
+            if(lotto.getNumbers().contains(winningNumber)){
                 matchCount++;
             } else if(lotto.getNumbers().contains(winningLotto.getBonusNumber())){
                 containBonusNumber = true;

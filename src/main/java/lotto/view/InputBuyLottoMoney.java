@@ -6,10 +6,10 @@ public class InputBuyLottoMoney extends Input {
 
     public int getValue() {
         System.out.println(INPUT_MESSAGE);
-        int input = Integer.parseInt(input());
-        validate(input);
+        int inputBuyLottoMoney = Integer.parseInt(input());
+        validate(inputBuyLottoMoney);
         System.out.println();
-        return input;
+        return inputBuyLottoMoney;
     }
 
     private void validate(int input) {

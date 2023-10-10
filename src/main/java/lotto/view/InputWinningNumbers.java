@@ -11,8 +11,8 @@ public class InputWinningNumbers extends Input {
     public List<Integer> getValue() {
 
         System.out.println(INPUT_MESSAGE);
-        String userInput = input();
-        List<Integer> winningNumberList = userInputToWinningNumberList(userInput);
+        String inputWinningNumber = input();
+        List<Integer> winningNumberList = userInputToWinningNumberList(inputWinningNumber);
         System.out.println();
 
         return winningNumberList;
