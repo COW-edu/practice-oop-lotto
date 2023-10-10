@@ -10,7 +10,7 @@ public class OutputRate {
 
     public static void printRate(Rate rate){
         System.out.print(OUTPUT_MESSAGE_1);
-        System.out.printf(String.format("%.1f", rate.getRateOfReturn()));
+        System.out.printf(String.format(ROUND_NUMBER, rate.getRateOfReturn()));
         System.out.println(OUTPUT_MESSAGE_2);
     }
 

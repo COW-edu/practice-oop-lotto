@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
-
 public enum Result {
     FIRST(6, 2000000000, 0),
     SECOND(5, 30000000, 0),

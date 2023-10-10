@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.domain.Result;
 
 public class OutputResult {
-    private static final String OUTPUT_MESSAGE = "개 일치";
 
     public static void printResult() {
         System.out.println("당첨 통계");
