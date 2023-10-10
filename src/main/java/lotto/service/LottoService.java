@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.Domain.Lotto;
 import lotto.Domain.WinningLotto;
 import lotto.config.ErrorMessage;
+import lotto.config.Prize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,21 +129,23 @@ public class LottoService {
      */
     public double calEarningRate(int[] checkedRankList, int purchaseMoney) {
         double tempSum = 0.0;
+
+
         for (int i = 3; i < checkedRankList.length; i++) {
             if (checkedRankList[i] != 0 && i == 3) {
-                tempSum += checkedRankList[i] * 5000;
+                tempSum += checkedRankList[i] * Prize.FIFTH.getWinningMoney();
             }
             if (checkedRankList[i] != 0 && i == 4) {
-                tempSum += checkedRankList[i] * 50000;
+                tempSum += checkedRankList[i] * Prize.FOURTH.getWinningMoney();
             }
             if (checkedRankList[i] != 0 && i == 5) {
-                tempSum += checkedRankList[i] * 1500000;
+                tempSum += checkedRankList[i] * Prize.THIRD.getWinningMoney();
             }
             if (checkedRankList[i] != 0 && i == 6) {
-                tempSum += checkedRankList[i] * 2000000000;
+                tempSum += checkedRankList[i] * Prize.FIRST.getWinningMoney();
             }
             if (checkedRankList[i] != 0 && i == 7) {
-                tempSum += checkedRankList[i] * 30000000;
+                tempSum += checkedRankList[i] * Prize.SECOND.getWinningMoney();
             }
         }
         double resultPercent = Math.round(tempSum / (double) purchaseMoney * 100.0) / 100.0 * 100;
