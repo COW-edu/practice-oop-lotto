@@ -5,7 +5,7 @@ public class InputBuyLottoMoney extends Input {
 
     public int getValue() {
         System.out.println(INPUT_MESSAGE);
-        int input = input();
+        int input = Integer.parseInt(input());
         validate(input);
         System.out.println();
         return input;

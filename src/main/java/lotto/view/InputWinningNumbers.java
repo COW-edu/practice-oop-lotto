@@ -9,7 +9,7 @@ public class InputWinningNumbers extends Input {
     public List<Integer> getValue() {
 
         System.out.println(INPUT_MESSAGE);
-        int userInput = input();
+        String userInput = input();
         List<Integer> winningNumberList = userInputToWinningNumberList(userInput);
         System.out.println();
 
@@ -24,11 +24,10 @@ public class InputWinningNumbers extends Input {
         }
     }
 
-    private List<Integer> userInputToWinningNumberList(int userInput) {
+    private List<Integer> userInputToWinningNumberList(String userInput) {
         List<Integer> winningNumberList = new ArrayList<>();
 
-        String stringInput = Integer.toString(userInput);
-        String[] inputNumbers = stringInput.split(",");
+        String[] inputNumbers = userInput.split(",");
         for(String number : inputNumbers) {
             int winningNumber = Integer.parseInt(number);
             validate(winningNumber);

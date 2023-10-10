@@ -5,10 +5,9 @@ public class InputBonusNumber extends Input {
 
     public int getValue() {
         System.out.println(INPUT_MESSAGE);
-        String input = input();
-        int bonusNumber = Integer.parseInt(input);
-        validate(bonusNumber);
-        return bonusNumber;
+        int inputBonusNumber = Integer.parseInt(input());
+        validate(inputBonusNumber);
+        return inputBonusNumber;
     }
 
     private void validate(int number) {
