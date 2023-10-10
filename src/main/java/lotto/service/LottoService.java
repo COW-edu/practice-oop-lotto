@@ -130,7 +130,6 @@ public class LottoService {
     public double calEarningRate(int[] checkedRankList, int purchaseMoney) {
         double tempSum = 0.0;
 
-
         for (int i = 3; i < checkedRankList.length; i++) {
             if (checkedRankList[i] != 0 && i == 3) {
                 tempSum += checkedRankList[i] * Prize.FIFTH.getWinningMoney();

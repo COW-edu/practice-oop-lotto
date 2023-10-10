@@ -15,7 +15,7 @@ public class LottoController {
     // field Element
     private int purchaseMoney;
     public int purchaseAmount;
-    public int bonusNum;
+    public int bonusNumber;
     private List<Lotto> selectedLottoNumList;
     private List<Integer> winningNumList;
     private int[] checkedRankList;
@@ -45,9 +45,9 @@ public class LottoController {
         this.outputView.outputSelectedLottoNum(this.selectedLottoNumList);
 
         this.winningNumList = lottoService.convertWinningNum(this.inputView.inputWinningNum());
-        this.bonusNum = inputView.inputBonus();
+        this.bonusNumber = inputView.inputBonus();
 
-        this.checkedRankList = lottoService.checkNum(selectedLottoNumList, winningNumList, bonusNum);
+        this.checkedRankList = lottoService.checkNum(selectedLottoNumList, winningNumList, bonusNumber);
 
         this.outputView.outputWinningStatistic(this.checkedRankList);
         this.outputView.outputMoneyPercent(lottoService.calEarningRate(this.checkedRankList, this.purchaseMoney));
