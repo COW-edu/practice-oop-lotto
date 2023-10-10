@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.Domain.Lotto;
+import lotto.Domain.WinningLotto;
 import lotto.config.ErrorMessage;
 
 import java.util.ArrayList;
@@ -12,11 +13,18 @@ public class LottoService {
     // MAGIC NUMBER
     private static final int PURCHASE_PRICE = 1000;
     private static final int SECOND_RANK_KEY = 7;
-    // components
+    private static final int LOTTO_LIST_SIZE = 6;
+    private static final int LOTTO_NUMBER_RANGE_FIRST = 1;
+    private static final int LOTTO_NUMBER_RANGE_LAST = 45;
+    private static final int RANKING_LIST_SIZE = 8;
+    private static final int SELECTED_FIVE = 5;
+    private static final String SPLIT_UNIT = ",";
 
+    // components
+    private static WinningLotto winningLotto;
 
     public LottoService() {
-
+        this.winningLotto = new WinningLotto();
     }
 
     // validation
@@ -36,33 +44,15 @@ public class LottoService {
 
     /**
      * [VALIDATION]
-     * [INPUT] 6개입력 / 범위 1 ~ 45 / 중복 수
-     */
-    private void validateInputWinningNum(List<Integer> winningNumList) {
-        if (winningNumList.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_LOTTONUM_COUNT.getErrorMessage());
-        }
-        for (int checkNum : winningNumList) {
-            if (checkNum < 1 && checkNum > 45) {
-                throw new IllegalArgumentException(ErrorMessage.ERROR_WINNINGNUMBER_UNREASONABLE_RANGE.getErrorMessage());
-            }
-        }
-        if (winningNumList.size() != winningNumList.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_LOTTONUM_DUPLICATE.getErrorMessage());
-        }
-    }
-
-    /**
-     * [VALIDATION]
      * [INPUT] 정수 입력 / 1 ~ 45의 수 / winningNumList 중복확인
      */
-    private void validateInputBonusNum(int bounusNum, List<Integer> winningNumList) {
-        if (bounusNum < 1 && bounusNum > 45) {
+    private void validateInputBonusNum(int bonusNum, List<Integer> winningNumList) {
+        if (bonusNum < LOTTO_NUMBER_RANGE_FIRST && bonusNum > LOTTO_NUMBER_RANGE_LAST) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_WINNINGNUMBER_UNREASONABLE_RANGE.getErrorMessage());
         }
-       if(winningNumList.contains(bounusNum)){
-           throw new IllegalArgumentException(ErrorMessage.ERROR_BONUSNUM_DUPLICATE.getErrorMessage());
-       }
+        if (winningNumList.contains(bonusNum)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_BONUSNUM_DUPLICATE.getErrorMessage());
+        }
     }
 
     // func
@@ -83,7 +73,7 @@ public class LottoService {
     public List<Lotto> createMember(int purchaseAmount) {
         List<Lotto> selectedLottoNum = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            List<Integer> member = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> member = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_RANGE_FIRST, LOTTO_NUMBER_RANGE_LAST, LOTTO_LIST_SIZE);
             Lotto lotto = new Lotto(member);
             selectedLottoNum.add(lotto);
         }
@@ -97,12 +87,11 @@ public class LottoService {
     public ArrayList<Integer> convertWinningNum(String winngingNumStr) {
         ArrayList<Integer> winningNumlist = new ArrayList<>();
 
-        String[] tempStr = winngingNumStr.split(",");
+        String[] tempStr = winngingNumStr.split(SPLIT_UNIT);
         for (String temp : tempStr) {
             winningNumlist.add(Integer.parseInt(temp));
         }
-
-        validateInputWinningNum(winningNumlist);
+        winningLotto.setWinningNumlist(winningNumlist);
         return winningNumlist;
     }
 
@@ -110,10 +99,11 @@ public class LottoService {
      * [FUNC]
      * 당첨번호와 로또번호 비교 / (조건)BONUS번호도 비교
      */
-    // service part 당첨번호 확인(2개 리스트 받아서 확인 후 랭킹 리스트만 반환)
-    public int[] checkNum(List<Lotto> selectedLottoNumList, List<Integer> winningNumList, int inputBonusNum) {
+    public int[] checkNum(List<Lotto> selectedLottoNumList, List<Integer> winningNumList, int bonusNum) {
+        validateInputBonusNum(bonusNum, winningNumList);
+
         List<Integer> tempList;
-        int[] checkedRankList = new int[8];
+        int[] checkedRankList = new int[RANKING_LIST_SIZE];
 
         for (Lotto selectedLott : selectedLottoNumList) {
             List<Integer> tempSelected = selectedLott.getLottoList();
@@ -125,7 +115,7 @@ public class LottoService {
 
             // 5개 맞췄을 때 bonus 검증
             // BONUS넘 가져와야함
-            if (tempList.size() == 5 && tempSelected.contains(inputBonusNum)) {
+            if (tempList.size() == SELECTED_FIVE && tempSelected.contains(bonusNum)) {
                 checkedRankList[SECOND_RANK_KEY]++;
             }
         }

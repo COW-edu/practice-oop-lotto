@@ -5,15 +5,9 @@ import lotto.controller.LottoController;
 
 public class InputView {
 
-
     public InputView() {
 
     }
-
-    // 추후 업데이트
-//    public void lottoRun() {
-//        inputPurchaseMoney();
-//    }
 
     public int inputPurchaseMoney() {
         System.out.println("구입금액을 입력해 주세요.");

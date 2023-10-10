@@ -46,13 +46,11 @@ public class LottoController {
 
         this.winningNumList = lottoService.convertWinningNum(this.inputView.inputWinningNum());
         this.bonusNum = inputView.inputBonus();
+
         this.checkedRankList = lottoService.checkNum(selectedLottoNumList, winningNumList, bonusNum);
+
         this.outputView.outputWinningStatistic(this.checkedRankList);
         this.outputView.outputMoneyPercent(lottoService.calEarningRate(this.checkedRankList, this.purchaseMoney));
-    }
-
-    private void validateInputPurchaseMoney(final int purchaseMoney) {
-        this.lottoService.validatePurchaseAmount(purchaseMoney);
     }
 
 }
