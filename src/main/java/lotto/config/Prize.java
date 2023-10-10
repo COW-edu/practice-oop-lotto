@@ -1,6 +1,6 @@
 package lotto.config;
 
-public enum WinningPrint {
+public enum Prize {
 
     FIRST(6, 2000000000, false),
     SECOND(5, 30000000, true),
@@ -14,7 +14,7 @@ public enum WinningPrint {
     private int winningMoney;
     private boolean isBonus;
 
-    private WinningPrint(int winningCount, int winningMoney, boolean isBonus) {
+    private Prize(int winningCount, int winningMoney, boolean isBonus) {
         this.winningCount = winningCount;
         this.winningMoney = winningMoney;
         this.isBonus = isBonus;
