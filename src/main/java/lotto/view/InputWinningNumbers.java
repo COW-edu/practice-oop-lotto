@@ -20,9 +20,9 @@ public class InputWinningNumbers extends Input {
 
     private void validate(int number) {
         if(number > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
+            throw new IllegalArgumentException("[ERROR] : 1 ~ 45 사이의 번호를 입력해 주세요.");
         } else if (number < MIN_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] : 1 ~ 45 사이의 번호를 입력해 주세요.");
         }
     }
 
