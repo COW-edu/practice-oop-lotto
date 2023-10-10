@@ -1,9 +1,9 @@
-package lotto;
+package Model;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Validate.*;
+import static Model.Validator.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,12 +14,11 @@ public class Lotto {
     }
 
     private void validate_Lotto(List<Integer> numbers){
-        validate_Size(numbers);
-        validate_Range(numbers);
-        validate_Dup(numbers);
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers(){
         return numbers;
     }

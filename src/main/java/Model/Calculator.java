@@ -1,8 +1,9 @@
-package lotto;
+package Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculate {
+public class Calculator {
     public static List<Prize> calculateResult(List<Lotto> purchasedLottoList, WinningNum winningNum, int bonusNumber) {
         List<Prize> prizeList = new ArrayList<>();
 

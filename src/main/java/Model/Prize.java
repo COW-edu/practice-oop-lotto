@@ -1,11 +1,11 @@
-package lotto;
+package Model;
 
 public enum Prize {
-    FirstPrize(6, false, 2000000000),
-    SecondPrize(5, true, 30000000),
-    ThirdPrize(5, false, 1500000),
-    FourthPrize(4, false, 50000),
-    FifthPrize(3, false, 5000),
+    FirstPrize(6, false, 2_000_000_000),
+    SecondPrize(5, true, 30_000_000),
+    ThirdPrize(5, false, 1_500_000),
+    FourthPrize(4, false, 50_000),
+    FifthPrize(3, false, 5_000),
     NoPrize(0, false, 0);
 
     private final int matchCount;
@@ -17,14 +17,15 @@ public enum Prize {
         this.matchCount = matchCount;
         this.bonusNumMatch = bonusMatch;
         this.prizeMoney = prizeMoney;
-        this.winnersCount = 0;
     }
 
     public int getMatchCount() {
         return matchCount;
     }
 
-    public boolean isBonusNumMatch() {return bonusNumMatch;}
+    public boolean isBonusNumMatch() {
+        return bonusNumMatch;
+    }
 
     public int getPrizeMoney() {
         return prizeMoney;

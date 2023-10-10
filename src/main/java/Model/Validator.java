@@ -1,15 +1,15 @@
-package lotto;
+package Model;
 
 import java.util.List;
 
-public class Validate {
+public class Validator {
 
-    static void validate_Size(List<Integer> numbers){
+    static void validateSize(List<Integer> numbers){
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입니다.");
         }
     }
-    static void validate_Range(List<Integer> numbers) {
+    static void validateRange(List<Integer> numbers) {
         for(int num: numbers){
             if(num < 1 || num > 45){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -17,13 +17,13 @@ public class Validate {
         }
     }
 
-    static void validate_Dup(List<Integer> numbers){
+    static void validateDuplicate(List<Integer> numbers){
         if(numbers.size() != numbers.stream().distinct().count()){
             throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 포함되어 있습니다");
         }
     }
 
-    static void validate_Money(String money) {
+    static void validateMoney(String money) {
         try{
             Integer.parseInt(money);
         }catch (NumberFormatException ex){
@@ -34,7 +34,7 @@ public class Validate {
             throw new IllegalArgumentException("[ERROR] 입력한 금액은 1000원 단위여야 합니다.");
         }
     }
-    static void validate_Bonus(String bonusNum){
+    static void validateBonus(String bonusNum){
         try {
             int bonus = Integer.parseInt(bonusNum);
             if (bonus < 1 || bonus > 45) {

@@ -1,10 +1,10 @@
-package lotto;
+package Model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Validate.*;
+import static Model.Validator.*;
 
 public class WinningNum {
     private final List<Integer> winningNums;
@@ -15,9 +15,9 @@ public class WinningNum {
     }
 
     private void validate_Lotto(List<Integer> winningNums){
-        validate_Size(winningNums);
-        validate_Range(winningNums);
-        validate_Dup(winningNums);
+        validateSize(winningNums);
+        validateRange(winningNums);
+        validateDuplicate(winningNums);
     }
 
     public List<Integer> getWinningNumbers() {
