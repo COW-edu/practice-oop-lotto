@@ -49,7 +49,7 @@ public class LottoController {
     }
 
     private Lottos getLottos(Money money) {
-        LottoFactory lottoGenerator = new LottoFactory();
+        LottosFactory lottoGenerator = new LottosFactory();
         return new Lottos(lottoGenerator.makeLottos(money));
     }
 

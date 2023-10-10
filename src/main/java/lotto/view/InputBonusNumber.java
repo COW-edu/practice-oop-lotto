@@ -11,7 +11,7 @@ public class InputBonusNumber extends Input {
         return bonusNumber;
     }
 
-    public void validate(int number) {
+    private void validate(int number) {
         if(number > 45) {
             throw new IllegalArgumentException();
         } else if (number < 0) {

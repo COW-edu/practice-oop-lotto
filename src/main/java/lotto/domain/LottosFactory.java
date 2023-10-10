@@ -5,7 +5,7 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class LottoFactory {
+public class LottosFactory {
     private static final Integer MIN_NUM = 1;
     private static final Integer MAX_NUM = 45;
     private static final Integer PICK_NUMBER_OF_LOTTO = 6;
