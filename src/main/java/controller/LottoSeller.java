@@ -7,6 +7,8 @@ import java.util.List;
 
 public class LottoSeller {
 
+    private static final int LOTTO_PRICE = 1000;
+
     private LottoMaker lottoMaker;
 
     public LottoSeller() {
@@ -26,6 +28,6 @@ public class LottoSeller {
     }
 
     private int calculateLottoAmount(int amount) {
-        return amount / 1000;
+        return amount / LOTTO_PRICE;
     }
 }

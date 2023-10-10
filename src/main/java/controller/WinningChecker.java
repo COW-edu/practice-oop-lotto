@@ -64,12 +64,7 @@ public class WinningChecker {
     private boolean checkBonus(Lotto lotto, WinningLotto winningLotto) {
         List<Integer> numbers = lotto.getNumbers();
         int bonusNumber = winningLotto.getBonus();
-
-        if(numbers.contains(bonusNumber)) {
-            return true;
-        }
-
-        return false;
+        return numbers.contains(bonusNumber);
     }
 
     public double checkReward(List<Grade> grades) {
