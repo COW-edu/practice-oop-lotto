@@ -27,11 +27,13 @@ public class WinningChecker {
     private int rateScore(Lotto lotto, WinningLotto winningLotto) {
         int score = 0;
         List<Integer> numbers = lotto.getNumbers();
+
         for(int winningNumber : winningLotto.getNumbers()) {
             if(numbers.contains(winningNumber)) {
                 score++;
             }
         }
+
         return score;
     }
 
