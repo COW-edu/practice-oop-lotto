@@ -1,6 +1,7 @@
 package lotto.Constant;
 
 public enum MatchingNumberCount {
+    // enum 클래스 이용
     THREE(3, 5000),
     FOUR(4, 50000),
     FIVE(5, 1500000),

@@ -1,7 +1,7 @@
 package lotto.Constant;
 
 public class LottoRule {
-
+    // 로또 규칙 상수
     public static final int LOTTO_ROW_SIZE = 6;
     public static final int LOTTO_FIRST_NUMBER = 1;
     public static final int LOTTO_LAST_NUMBER = 45;
