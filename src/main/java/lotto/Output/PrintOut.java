@@ -5,14 +5,11 @@ import lotto.Constant.MatchingNumberCount;
 import lotto.Entity.Lotto;
 
 public class PrintOut {
-
+    //출력 돕는 객체
     public PrintOut() {
 
     }
 
-    public static void enter() {
-        System.out.println();
-    }
 
     public void printLottoList(ArrayList<Lotto> lottoLists) {
         for (Lotto lotto : lottoLists) {
