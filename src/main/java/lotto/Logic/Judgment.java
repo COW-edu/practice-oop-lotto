@@ -9,7 +9,7 @@ import java.util.List;
 import lotto.Entity.Lotto;
 
 public class Judgment {
-
+    // 결과 판단 담당
     private ArrayList<Lotto> lottoArrayList;
     private List<Integer> winningLottos;
     private final List<Integer> resultCountlist;
