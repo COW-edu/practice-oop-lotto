@@ -11,7 +11,7 @@ import java.util.List;
 import lotto.Entity.Lotto;
 
 public class LottoMachine {
-
+    // LottoMachine 구현
     private final ArrayList<Lotto> lottoLists;
 
     public LottoMachine() {
