@@ -4,7 +4,7 @@ import java.util.Map;
 import lotto.Constant.MatchingNumberCount;
 
 public class Calculator {
-
+    //계산기
     public static int totalMoney;
     public static double rateOfReturn;
 
