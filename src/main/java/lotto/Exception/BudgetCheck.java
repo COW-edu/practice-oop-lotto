@@ -1,7 +1,7 @@
 package lotto.Exception;
 
 public class BudgetCheck {
-
+    //예외처리
     private static final int LOTTO_ONE_PRICE = 1000;
 
     public int check(int budget) {

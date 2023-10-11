@@ -1,7 +1,7 @@
 package lotto.Exception;
 
 public class InputTypeCheck extends IllegalArgumentException {
-
+    //예외처리
     public static String inputInt(String input) {
         if (input.matches("-?\\d+(\\.\\d+)?")) {
             return input;

@@ -3,7 +3,7 @@ package lotto.Exception;
 import static lotto.Constant.LottoRule.LOTTO_ROW_SIZE;
 
 public class CheckWinningLotto {
-
+    //예외처리
     public static boolean checkListRange(String[] winningNum) {
         if (winningNum.length == LOTTO_ROW_SIZE) {
             return true;
