@@ -13,9 +13,6 @@ public class Lotto {
         this.numbers = lottoRow;
     }
 
-    public int getLottoRowSize() {
-        return LOTTO_ROW_SIZE;
-    }
 
     public List<Integer> getNumbers() {
         return numbers;

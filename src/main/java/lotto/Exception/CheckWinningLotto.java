@@ -4,9 +4,9 @@ import static lotto.Constant.LottoRule.LOTTO_ROW_SIZE;
 
 public class CheckWinningLotto {
     //예외처리
-    public static boolean checkListRange(String[] winningNum) {
+    public static void checkListRange(String[] winningNum) {
         if (winningNum.length == LOTTO_ROW_SIZE) {
-            return true;
+            return;
         }
         try {
             throw new IllegalAccessException("[ERROR] 로또 번호는 6개를 입력해야합니다.");

@@ -10,7 +10,6 @@ public enum MatchingNumberCount {
 
     private final int matchingNumber;
     private final int winningPrice;
-    private int count;
 
     MatchingNumberCount(int matchingNumber, int winningPrice) {
         this.matchingNumber = matchingNumber;
