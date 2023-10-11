@@ -5,7 +5,7 @@ import static lotto.Constant.LottoRule.LOTTO_ROW_SIZE;
 import java.util.List;
 
 public class Lotto {
-
+    // Lotto 구현
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> lottoRow) {
