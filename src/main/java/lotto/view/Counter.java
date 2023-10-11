@@ -14,9 +14,10 @@ import lotto.Logic.LottoMachine;
 import lotto.Output.PrintOut;
 
 public class Counter {
+    //Counter 객체
 
-    private final BudgetCheck budgetCheck;
     private final LottoMachine machine;
+    private final BudgetCheck budgetCheck;
     private final WinLotto winLotto;
     private final Judgment judgment;
     private ArrayList<Lotto> lottoLists;
