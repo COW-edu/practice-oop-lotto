@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.Exception.CheckWinningLotto;
 
 public class WinLotto {
-
+    // 당첨 로또
     public final List<Integer> winningLotto;
 
     public WinLotto() {
