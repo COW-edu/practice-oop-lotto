@@ -31,13 +31,18 @@ public class FlowController {
     public void run() {
         outputView.requestAmount();
         int amount = inputView.requestAmount();
+
         List<Lotto> lottos = lottoSeller.buyLottos(amount);
+
         outputView.showOrder(lottos);
+
         outputView.requestWinning();
         List<Integer> numbers = inputView.requestWinning();
         outputView.requestBonus();
         int bonus = inputView.requestBonus(numbers);
+
         WinningLotto winningLotto = winningMaker.makeWinning(numbers, bonus);
+
         List<Grade> grades = winningChecker.rateGrades(lottos, winningLotto);
         outputView.showResult(grades);
         double reward = winningChecker.checkReward(grades);
