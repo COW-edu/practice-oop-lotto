@@ -13,7 +13,7 @@ public class FlowController {
     private InputView inputView;
     private OutputView outputView;
     private LottoSeller lottoSeller;
-    private WinningMaker winningMaker;
+    private WinningLottoFactory winningLottoFactory;
     private WinningChecker winningChecker;
 
     public FlowController(InputView inputView, OutputView outputView) {
@@ -24,7 +24,7 @@ public class FlowController {
 
     private void initialize() {
         this.lottoSeller = new LottoSeller();
-        this.winningMaker = new WinningMaker();
+        this.winningLottoFactory = new WinningLottoFactory();
         this.winningChecker = new WinningChecker();
     }
 
@@ -41,7 +41,7 @@ public class FlowController {
         outputView.requestBonus();
         int bonus = inputView.requestBonus(numbers);
 
-        WinningLotto winningLotto = winningMaker.makeWinning(numbers, bonus);
+        WinningLotto winningLotto = winningLottoFactory.makeWinning(numbers, bonus);
 
         List<Grade> grades = winningChecker.rateGrades(lottos, winningLotto);
         outputView.showResult(grades);

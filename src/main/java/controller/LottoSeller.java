@@ -9,18 +9,18 @@ public class LottoSeller {
 
     private static final int LOTTO_PRICE = 1000;
 
-    private LottoMaker lottoMaker;
+    private LottoFactory lottoFactory;
 
     public LottoSeller() {
-        this.lottoMaker = new LottoMaker();
+        this.lottoFactory = new LottoFactory();
     }
 
     public List<Lotto> buyLottos(int amount) {
         int lottoAmount = calculateLottoAmount(amount);
-        List<Lotto> lottos = new ArrayList<Lotto>();
+        List<Lotto> lottos = new ArrayList<Lotto>(lottoAmount);
 
         for (int i = 0; i < lottoAmount; i++) {
-            Lotto lotto = lottoMaker.makeLotto();
+            Lotto lotto = lottoFactory.makeLotto();
             lottos.add(lotto);
         }
 

@@ -13,13 +13,17 @@ public class OutputView {
     private static final String COMMA = ", ";
 
     public void showNumber(List<Integer> numbers) {
-        int count = 0;
-        System.out.print(OPENING_BRACKET + numbers.get(count));
-        count++;
+        boolean isFirst = true;
 
-        while (count < numbers.size()) {
-            System.out.print(COMMA + numbers.get(count));
-            count++;
+        for (int number : numbers) {
+            String prefix = COMMA;
+
+            if (isFirst) {
+                prefix = OPENING_BRACKET;
+                isFirst = false;
+            }
+
+            System.out.print(prefix + number);
         }
 
         System.out.println(CLOSING_BRACKET);

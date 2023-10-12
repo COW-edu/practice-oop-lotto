@@ -5,7 +5,7 @@ import model.WinningLotto;
 import java.util.Collections;
 import java.util.List;
 
-public class WinningMaker {
+public class WinningLottoFactory {
     private List<Integer> sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
         return numbers;
