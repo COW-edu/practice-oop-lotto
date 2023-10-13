@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.Lotto.*;
+
 public class RandomLotto {
 
     private List<Integer> lottoNumbers;
     private List<Integer> lotto = new ArrayList<>();
-
-    private static final int startRange = 1;
-    private static final int endRange = 45;
-    private static final int countRange = 6;
 
     public RandomLotto() {
         // 로또 번호 랜덤 생성
@@ -33,7 +31,7 @@ public class RandomLotto {
     }
 
     public List<Integer> selecting() {
-        lottoNumbers = Randoms.pickUniqueNumbersInRange(startRange, endRange, countRange);
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT_RANGE);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

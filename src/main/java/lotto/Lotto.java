@@ -5,10 +5,14 @@ import Enum.ErrorMessage;
 import java.util.List;
 
 public class Lotto {
+    // validate에 필요한 모든 매직 넘버 public으로 처리(RandomLotto, User 클래스에서 사용)
+    public final static int PRICE = 1000;
+    public static final int COUNT_RANGE = 6;
+
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 45;
+
     private final List<Integer> numbers;
-    // 매직 넘버
-    private static final int startRange = 1;
-    private static final int endRange = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -46,7 +50,7 @@ public class Lotto {
     public boolean checkOutOfRange(Lotto userLottoNumber) {
         List<Integer> userLottoNum = userLottoNumber.getLottoNumbers();
         for(int i=0; i<userLottoNum.size();i++) {
-            if(userLottoNum.get(i) < startRange || userLottoNum.get(i) > endRange) {
+            if(userLottoNum.get(i) < MIN_RANGE || userLottoNum.get(i) > MAX_RANGE) {
                 ErrorMessage.LOTTORANGE.getExceptionMessage();
                 throw new IllegalArgumentException();
             }
