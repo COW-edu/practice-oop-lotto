@@ -2,7 +2,6 @@ package lotto;
 
 import controller.Controller;
 import user.User;
-import view.InputView;
 import view.OutputView;
 
 public class Application {
@@ -11,10 +10,9 @@ public class Application {
 
         User user = new User();
         RandomLotto randomLotto = new RandomLotto();
-        InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        Controller controller = new Controller(user, randomLotto, inputView, outputView);
+        Controller controller = new Controller(user, randomLotto, outputView);
         controller.start();
     }
 }

@@ -8,15 +8,26 @@ import Enum.Rank;
 
 public class OutputView {
 
+    public void inputMoney() {
+        System.out.println("구입 금액을 입력해주세요.");
+    }
+
+    public void inputLottoNum() {
+        System.out.println("당첨 번호를 입력해주세요.");
+    }
+
+    public void inputBonusNum() {
+        System.out.println("보너스 번호를 입력해주세요.");
+    }
+
     public void announcePayment(int payment) {
         System.out.println(payment + "개를 구매했습니다.");
     }
 
-    public void outputReward(List<Rank> rewardList) {
+    public void outputReward(List<String> rewardList) {
         System.out.println("\n당첨 통계\n---");
-        Rank[] values = Rank.values();
-        for(int i=0; i<values.length-1;i++) {
-            System.out.println(values[i].getAnnounceMessage() + " " + Collections.frequency(rewardList, values[i])  + "개");
+        for(String announce : rewardList) {
+            System.out.println(announce);
         }
     }
 

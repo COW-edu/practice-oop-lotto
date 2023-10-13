@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import Enum.Rank;
@@ -91,4 +92,12 @@ public class Reward {
         return profit;
     }
 
+    public List<String> makeAnnounce(List<Rank> rewardList) {
+        List<String> announce = new ArrayList<>();
+        Rank[] values = Rank.values();
+        for(int i=0; i<values.length-1;i++) {
+            announce.add(values[i].getAnnounceMessage() + " " + Collections.frequency(rewardList, values[i])  + "개");
+        }
+        return announce;
+    }
 }

@@ -5,9 +5,8 @@ import lotto.Lotto;
 import lotto.RandomLotto;
 import lotto.Reward;
 import user.User;
-import Enum.Rank;
-import view.InputView;
 import view.OutputView;
+import Enum.Rank;
 
 import java.util.List;
 
@@ -18,20 +17,17 @@ public class Controller {
     private List<Lotto> lottos;
     private RandomLotto randomLotto;
     private Lotto selectLotto;
-    private InputView inputView;
     private OutputView outputView;
 
-    public Controller(User user, RandomLotto randomLotto,
-                      InputView inputView, OutputView outputView) {
+    public Controller(User user, RandomLotto randomLotto, OutputView outputView) {
         this.user = user;
         this.randomLotto = randomLotto;
-        this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void start() {
         // 로또 구매
-        inputView.inputMoney();
+        outputView.inputMoney();
         int count = user.lottoCount(Integer.parseInt(Console.readLine()));
         outputView.announcePayment(count);
 
@@ -40,7 +36,7 @@ public class Controller {
         outputView.announceRandomLottos(lottos);
 
         // 사용자로부터 당첨 번호 입력 & 입력한 번호로 로또 생성
-        inputView.inputLottoNum();
+        outputView.inputLottoNum();
         this.lotto = new Lotto(user.userLottoNumber(user.getUserLotto()));
 
         // 로또 범위 검증 후 변환
@@ -48,7 +44,7 @@ public class Controller {
         this.selectLotto = this.lotto;
 
         // 사용자로부터 보너스 번호 입력
-        inputView.inputBonusNum();
+        outputView.inputBonusNum();
         String userBonusStr = user.getUserLottoBonus();
 
         // 입력한 보너스 번호 검증 후 변환
@@ -57,7 +53,8 @@ public class Controller {
 
         // 번호 비교 후 당첨금 배분
         Reward reward = new Reward(lottos, count, selectLotto, userBonusNumber);
-        outputView.outputReward(reward.compareLotto());
+        List<Rank> rewardList = reward.compareLotto();
+        outputView.outputReward(reward.makeAnnounce(rewardList));
 
         // 수익률 출력
         double profit = reward.getPercentage();
