@@ -12,12 +12,12 @@ import java.util.List;
 
 public class Controller {
 
-    private User user;
-    private Lotto lotto;
+    private final User user;
+    private final RandomLotto randomLotto;
+    private final OutputView outputView;
+
     private List<Lotto> lottos;
-    private RandomLotto randomLotto;
     private Lotto selectLotto;
-    private OutputView outputView;
 
     public Controller(User user, RandomLotto randomLotto, OutputView outputView) {
         this.user = user;
@@ -35,21 +35,16 @@ public class Controller {
         lottos = randomLotto.makeList(count);
         outputView.announceRandomLottos(lottos);
 
-        // 사용자로부터 당첨 번호 입력 & 입력한 번호로 로또 생성
+        // 사용자로부터 당첨 번호 입력 & 입력한 번호로 로또 생성(생성 시 검증)
         outputView.inputLottoNum();
-        this.lotto = new Lotto(user.userLottoNumber(user.getUserLotto()));
-
-        // 로또 범위 검증 후 변환
-        lotto.checkOutOfRange(this.lotto);
-        this.selectLotto = this.lotto;
+        this.selectLotto = new Lotto(user.userLottoNumber(Console.readLine()));
 
         // 사용자로부터 보너스 번호 입력
         outputView.inputBonusNum();
         String userBonusStr = user.getUserLottoBonus();
 
         // 입력한 보너스 번호 검증 후 변환
-        int userBonusNumber = lotto.userBonusNum(userBonusStr);
-        lotto.checkDuplication(selectLotto, userBonusNumber);
+        int userBonusNumber = this.selectLotto.userBonusNum(userBonusStr);
 
         // 번호 비교 후 당첨금 배분
         Reward reward = new Reward(lottos, count, selectLotto, userBonusNumber);

@@ -16,6 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkOutOfRange(numbers);
         this.numbers = numbers;
     }
 
@@ -34,6 +35,7 @@ public class Lotto {
     // 검증 후 반환
     public int userBonusNum(String userBonusStr) {
         convertBonusNum(userBonusStr);
+        checkDuplication(Integer.parseInt(userBonusStr));
         return Integer.parseInt(userBonusStr);
     }
 
@@ -47,21 +49,18 @@ public class Lotto {
     }
 
     // 로또 번호 범위 확인
-    public boolean checkOutOfRange(Lotto userLottoNumber) {
-        List<Integer> userLottoNum = userLottoNumber.getLottoNumbers();
-        for(int i=0; i<userLottoNum.size();i++) {
-            if(userLottoNum.get(i) < MIN_RANGE || userLottoNum.get(i) > MAX_RANGE) {
+    public boolean checkOutOfRange(List<Integer> userLottoNumber) {
+        for(int i=0; i<userLottoNumber.size();i++) {
+            if(userLottoNumber.get(i) < MIN_RANGE || userLottoNumber.get(i) > MAX_RANGE) {
                 ErrorMessage.LOTTORANGE.getExceptionMessage();
-                throw new IllegalArgumentException();
             }
         }
         return true;
     }
 
     // 선택한 6개의 숫자와 보너스 숫자 중복 확인 로직
-    public boolean checkDuplication(Lotto selectNumber, int bonusNumber) {
-        List<Integer> selectLottoNum = selectNumber.getLottoNumbers();
-        if(selectLottoNum.contains(bonusNumber)) {
+    private boolean checkDuplication(int bonusNumber) {
+        if(this.numbers.contains(bonusNumber)) {
             ErrorMessage.DUPLICATE.getExceptionMessage();
             throw new IllegalArgumentException();
         }

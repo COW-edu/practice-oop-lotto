@@ -30,16 +30,12 @@ public class User {
         }
     }
 
-    public String[] getUserLotto() {
-        String numberLine = Console.readLine();
-        String[] selectNumber = numberLine.split(",");
-        return selectNumber;
-    }
+    public List<Integer> userLottoNumber(String userLottoString) {
+        String[] selectNumber = userLottoString.split(",");
+        outOfLottoLength(selectNumber);
 
-    public List<Integer> userLottoNumber(String[] userLottoString) {
-        outOfLottoLength(userLottoString);
         List<Integer> buyerNumbers = new ArrayList<>();
-        for (String checkedInput: userLottoString) {
+        for (String checkedInput: selectNumber) {
             if(convertInteger(checkedInput)) {
                 buyerNumbers.add(Integer.parseInt(checkedInput));
             }

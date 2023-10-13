@@ -9,9 +9,10 @@ import Enum.Rank;
 
 public class Reward {
 
+    private final int count;
+
     private List<Rank> rankList;
     private List<Lotto> lottos;
-    private final int count;
     private int bonusNum;
     private Lotto selectLotto;
     private Lotto lotto;
@@ -27,13 +28,12 @@ public class Reward {
 
     public List<Rank> compareLotto() {
         for(Lotto lotto : this.lottos) {
-            int rankResult = getResult(lotto);
-            this.rankList = addRankList(rankResult);
+            this.rankList = addRankList(countResult(lotto));
         }
         return this.rankList;
     }
 
-    private int getResult(Lotto lotto) {
+    private int countResult(Lotto lotto) {
         int result = 0;
         this.lotto = lotto;
         List<Integer> lottoNumber = this.lotto.getLottoNumbers();
