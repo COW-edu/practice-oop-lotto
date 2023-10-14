@@ -3,7 +3,11 @@ package user;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import Enum.ErrorMessage;
 
 import static lotto.Lotto.*;
@@ -17,7 +21,6 @@ public class User {
     }
 
     public int lottoCount(int money) {
-        // TODO 입력의 책임과 고객에 대한 데이터 관리 및 로직 처리 분리
         this.payment = money;
         checkCount(payment);
         return payment/PRICE;
@@ -34,13 +37,10 @@ public class User {
         String[] selectNumber = userLottoString.split(",");
         outOfLottoLength(selectNumber);
 
-        List<Integer> buyerNumbers = new ArrayList<>();
-        for (String checkedInput: selectNumber) {
-            if(convertInteger(checkedInput)) {
-                buyerNumbers.add(Integer.parseInt(checkedInput));
-            }
-        }
-        return buyerNumbers;
+        return Arrays.stream(selectNumber)
+                .filter(this::convertInteger)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private void outOfLottoLength(String[] selectNumber) {

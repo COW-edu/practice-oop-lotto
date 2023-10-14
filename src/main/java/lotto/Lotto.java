@@ -5,7 +5,6 @@ import Enum.ErrorMessage;
 import java.util.List;
 
 public class Lotto {
-    // validate에 필요한 모든 매직 넘버 public으로 처리(RandomLotto, User 클래스에서 사용)
     public final static int PRICE = 1000;
     public static final int COUNT_RANGE = 6;
 
@@ -15,6 +14,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        // TODO checkOutOfRange 함수 테스트
         validate(numbers);
         checkOutOfRange(numbers);
         this.numbers = numbers;
@@ -50,12 +50,8 @@ public class Lotto {
 
     // 로또 번호 범위 확인
     public boolean checkOutOfRange(List<Integer> userLottoNumber) {
-        for(int i=0; i<userLottoNumber.size();i++) {
-            if(userLottoNumber.get(i) < MIN_RANGE || userLottoNumber.get(i) > MAX_RANGE) {
-                ErrorMessage.LOTTORANGE.getExceptionMessage();
-            }
-        }
-        return true;
+        return userLottoNumber.stream()
+                .allMatch(number -> number >= MIN_RANGE && number <= MAX_RANGE);
     }
 
     // 선택한 6개의 숫자와 보너스 숫자 중복 확인 로직

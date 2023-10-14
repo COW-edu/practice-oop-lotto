@@ -34,15 +34,11 @@ public class Reward {
     }
 
     private int countResult(Lotto lotto) {
-        int result = 0;
         this.lotto = lotto;
         List<Integer> lottoNumber = this.lotto.getLottoNumbers();
-        for(int selectNumber : this.selectLotto.getLottoNumbers()) {
-            if(lottoNumber.contains(selectNumber)) {
-                result++;
-            }
-        }
-        return result;
+        return (int) this.selectLotto.getLottoNumbers().stream()
+                .filter(selectNumber -> lottoNumber.contains(selectNumber))
+                .count();
     }
 
     private List<Rank> addRankList(int rankResult) {
@@ -55,7 +51,6 @@ public class Reward {
         return this.rankList;
     }
 
-    // 자동화 했지만 2등과 3등을 비교하는 과정에서 막힘;;
     private void saveRank(int rankResult) {
         if(rankResult == Rank.FIRST.getCountMatch()) {
             this.rankList.add(Rank.FIRST);
