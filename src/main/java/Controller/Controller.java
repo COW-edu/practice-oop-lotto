@@ -7,25 +7,33 @@ import Model.*;
 import java.util.List;
 
 public class Controller {
-    public static void Start(){
+    public Controller(){
+
+    }
+    public void Start(){
         Input input = new Input();
-        System.out.println("금액을 입력하시오: ");
-        Money money = new Money(input.InputMoney());
+        Output output = new Output();
+
+        output.printMoneyMessage();
+        String moneyInput = input.getInput();
+        Money money = new Money(moneyInput);
 
         new PurchasedLotto(Money.getAmountOfLotto());
 
-        System.out.println(Money.getAmountOfLotto() + "개를 구매했습니다.");
+        output.printBuyLottoMessage();
         for (Lotto lotto : PurchasedLotto.getPurchasedLotto()) {
             System.out.println(lotto);
         }
 
-        System.out.println("로또 번호를 입력하시오(1~45): ");
-        WinningNum winningNum = new WinningNum(input.InputLottoNums());
+        output.printLottoNumberMessage();
+        String lottoNumsInput = input.getInput();
+        WinningNum winningNumber = new WinningNum(lottoNumsInput);
 
-        System.out.println("보너스 번호를 입력하시오(1~45): ");
-        BonusNum bonusNum = new BonusNum(input.InputBonus());
+        output.printBonusNumberMessage();
+        String bonusInput = input.getInput();
+        BonusNum bonusNumber = new BonusNum(bonusInput);
 
-        List<Prize> prizeList = Calculator.calculateResult(PurchasedLotto.getPurchasedLotto(), winningNum, bonusNum.getBonusNumber());
+        List<Prize> prizeList = Calculator.calculateResult(PurchasedLotto.getPurchasedLotto(), winningNumber, bonusNumber.getBonusNumber());
 
         Output.printResult(prizeList);
 

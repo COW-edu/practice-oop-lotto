@@ -10,7 +10,7 @@ public class PurchasedLotto {
 
     public PurchasedLotto(int amountOfLotto) {
         purchasedLottoList = IntStream.range(0, amountOfLotto)
-                .mapToObj(i -> LottoFactory.MakeLotto())
+                .mapToObj(i -> LottoFactory.makeLotto())
                 .collect(Collectors.toList());
     }
 

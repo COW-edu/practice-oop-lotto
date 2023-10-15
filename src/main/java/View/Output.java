@@ -1,10 +1,26 @@
 package View;
 
+import Model.Money;
 import Model.Prize;
 
 import java.util.List;
 
 public class Output {
+    public void printMoneyMessage() {
+        System.out.print("금액을 입력하시오: ");
+    }
+
+    public void printLottoNumberMessage() {
+        System.out.print("로또 번호를 입력하시오: ");
+    }
+
+    public void printBonusNumberMessage() {
+        System.out.print("보너스 번호를 입력하시오: ");
+    }
+
+    public void printBuyLottoMessage(){
+        System.out.println(Money.getAmountOfLotto() + "개를 구매했습니다.");
+    }
     public static void printResult(List<Prize> prizeList) {
         System.out.println("당첨 통계");
         System.out.println("---");
