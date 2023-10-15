@@ -45,14 +45,18 @@ public class Lotto {
         try {
             Integer.valueOf(number);
         } catch (NumberFormatException exception) {
-            ErrorMessage.CATCHSTRING.getExceptionMessage();
+            ErrorMessage.CATCHSTRING.announceException();
         }
     }
 
     // 로또 번호 범위 확인
-    public boolean checkOutOfRange(List<Integer> userLottoNumber) {
-        return userLottoNumber.stream()
-                .allMatch(number -> number >= MIN_RANGE && number <= MAX_RANGE);
+    public void checkOutOfRange(List<Integer> userLottoNumber) {
+        boolean range = userLottoNumber.stream()
+                            .anyMatch(number -> number < MIN_RANGE || number > MAX_RANGE);
+        if(range) {
+            ErrorMessage.LOTTORANGE.announceException();
+            throw new IllegalArgumentException();
+        }
     }
 
     private boolean checkDuplicateLotto(List<Integer> lottoNumbers) {
@@ -60,7 +64,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if(duplicate != lottoNumbers.size()) {
-            ErrorMessage.DUPLICATEBONUS.getExceptionMessage();
+            ErrorMessage.DUPLICATE.announceException();
             throw new IllegalArgumentException();
         }
         return true;
@@ -69,7 +73,7 @@ public class Lotto {
     // 선택한 6개의 숫자와 보너스 숫자 중복 확인 로직
     private boolean checkDuplicateBonus(int bonusNumber) {
         if(this.numbers.contains(bonusNumber)) {
-            ErrorMessage.DUPLICATEBONUS.getExceptionMessage();
+            ErrorMessage.DUPLICATEBONUS.announceException();
             throw new IllegalArgumentException();
         }
         return true;

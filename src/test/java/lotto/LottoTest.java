@@ -6,6 +6,7 @@ import user.User;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -50,6 +51,13 @@ class LottoTest {
 
         // When & Then
         assertThatThrownBy(() -> user.lottoCount(500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("선택한 로또 번호가 범위를 벗어난 경우 예외 처리")
+    @Test
+    void checkOutOfRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

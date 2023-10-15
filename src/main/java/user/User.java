@@ -2,11 +2,9 @@ package user;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import Enum.ErrorMessage;
 
@@ -28,7 +26,8 @@ public class User {
 
     private void checkCount(int payment) {
         if (payment%PRICE != 0) {
-            ErrorMessage.BUYINGRANGE.getExceptionMessage();
+            String error = ErrorMessage.BUYINGRANGE.announceException();
+            System.out.println(error);
             throw new IllegalArgumentException();
         }
     }
@@ -46,7 +45,7 @@ public class User {
         try {
             Integer.valueOf(number);
         } catch (NumberFormatException exception) {
-            ErrorMessage.CATCHSTRING.getExceptionMessage();
+            ErrorMessage.CATCHSTRING.announceException();
         }
         return true;
     }
