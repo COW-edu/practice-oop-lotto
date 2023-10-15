@@ -41,4 +41,15 @@ class LottoTest {
         assertNotEquals(0, count);
         System.out.println("해당 금액은 1000원 단위입니다.");
     }
+
+    @DisplayName("로또 구매 금액이 1000원 이하인 경우 예외가 발생한다.")
+    @Test
+    void priceException() {
+        // Given
+        User user = new User();
+
+        // When & Then
+        assertThatThrownBy(() -> user.lottoCount(500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
