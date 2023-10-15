@@ -5,7 +5,7 @@ import static Model.Validator.validateMoney;
 public class Money {
 
     private static int money = 0;
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     public Money(String money) {
         validateMoney(money);

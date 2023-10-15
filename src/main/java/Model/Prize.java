@@ -1,12 +1,12 @@
 package Model;
 
 public enum Prize {
-    FirstPrize(6, false, 2_000_000_000),
-    SecondPrize(5, true, 30_000_000),
-    ThirdPrize(5, false, 1_500_000),
-    FourthPrize(4, false, 50_000),
-    FifthPrize(3, false, 5_000),
-    NoPrize(0, false, 0);
+    FIRSTPRIZE(6, false, 2_000_000_000),
+    SECONDPRIZE(5, true, 30_000_000),
+    THIRDPRIZE(5, false, 1_500_000),
+    FOURTHPRIZE(4, false, 50_000),
+    FIFTHPRIZE(3, false, 5_000),
+    NOPRIZE(0, false, 0);
 
     private final int matchCount;
     private final boolean bonusNumMatch;
@@ -45,6 +45,6 @@ public enum Prize {
                 return prize;
             }
         }
-        return NoPrize;
+        return NOPRIZE;
     }
 }

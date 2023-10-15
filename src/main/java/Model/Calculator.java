@@ -23,7 +23,7 @@ public class Calculator {
                 .mapToInt(Prize::getPrizeMoney)
                 .sum();
 
-        return (double) totalPrizeMoney / totalMoneySpent * 100;
+        return totalPrizeMoney / totalMoneySpent * 100.0;
     }
 
     private static int countMatchedNumbers(Lotto lotto, List<Integer> winningNumbers) {

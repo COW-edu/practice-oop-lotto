@@ -10,7 +10,7 @@ public class WinningNum {
     private final List<Integer> winningNums;
 
     public WinningNum(String NumbersInput) {
-        this.winningNums = parseNums(NumbersInput);
+        this.winningNums = parseNumbers(NumbersInput);
         validate_Lotto(winningNums);
     }
 
@@ -24,7 +24,7 @@ public class WinningNum {
         return winningNums;
     }
 
-    private List<Integer> parseNums(String input) {
+    private List<Integer> parseNumbers(String input) {
         List<Integer> numbers = new ArrayList<>();
         String[] number_Str = input.split(",");
         for (String numberString : number_Str) {
