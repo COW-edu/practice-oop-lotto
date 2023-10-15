@@ -19,14 +19,14 @@ public class InputView {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
 
-        String winngingNumStr = Console.readLine();
-        return winngingNumStr;
+        String winningNumberString = Console.readLine();
+        return winningNumberString;
     }
 
     public int inputBonus() {
         System.out.println();
         System.out.println("보너스 번호를 입력해주세요.");
-        int inputBonusNum = Integer.parseInt(Console.readLine());
-        return inputBonusNum;
+        int inputBonusNumber = Integer.parseInt(Console.readLine());
+        return inputBonusNumber;
     }
 }

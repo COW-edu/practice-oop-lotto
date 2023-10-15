@@ -17,7 +17,7 @@ public class LottoController {
     public int purchaseAmount;
     public int bonusNumber;
     private List<Lotto> selectedLottoNumList;
-    private List<Integer> winningNumList;
+    private List<Integer> winningNumber;
     private int[] checkedRankList;
 
     public LottoController() {
@@ -28,29 +28,21 @@ public class LottoController {
 
 
     public void lottoGameRun() {
-        // winningNum에 대한 vaildation 작성 해야함
-        /*
-          - validation 처리 해야 됨
-          1. 정수 입력
-          2. 1~45 수
-          3. winningNum 중복
-       */
-
         // let's go
-        this.purchaseMoney = inputView.inputPurchaseMoney();
-        this.purchaseAmount = this.lottoService.calculatePurchaseAmount(this.purchaseMoney);
-        outputView.outputLottoAmount(this.purchaseAmount);
+        purchaseMoney = inputView.inputPurchaseMoney();
+        purchaseAmount = lottoService.calculatePurchaseAmount(purchaseMoney);
+        outputView.outputLottoAmount(purchaseAmount);
 
-        this.selectedLottoNumList = lottoService.createMember(this.purchaseAmount);
-        this.outputView.outputSelectedLottoNum(this.selectedLottoNumList);
+        this.selectedLottoNumList = lottoService.createLottoMember(purchaseAmount);
+        this.outputView.outputSelectedLottoNum(selectedLottoNumList);
 
-        this.winningNumList = lottoService.convertWinningNum(this.inputView.inputWinningNum());
+        this.winningNumber = lottoService.convertWinningNumber(inputView.inputWinningNum());
         this.bonusNumber = inputView.inputBonus();
 
-        this.checkedRankList = lottoService.checkNum(selectedLottoNumList, winningNumList, bonusNumber);
+        this.checkedRankList = lottoService.compareLottoNumber(selectedLottoNumList, winningNumber, bonusNumber);
 
-        this.outputView.outputWinningStatistic(this.checkedRankList);
-        this.outputView.outputMoneyPercent(lottoService.calEarningRate(this.checkedRankList, this.purchaseMoney));
+        this.outputView.outputWinningStatistic(checkedRankList);
+        this.outputView.outputMoneyPercent(lottoService.calculateEarningRate(checkedRankList, purchaseMoney));
     }
 
 }

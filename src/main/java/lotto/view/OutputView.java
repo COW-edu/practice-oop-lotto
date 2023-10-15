@@ -15,10 +15,11 @@ public class OutputView {
     }
 
     public void outputSelectedLottoNum(List<Lotto> selectedLottoNumList) {
-        for (Lotto temp : selectedLottoNumList) {
-            System.out.println(temp.getLottoList());
+        for (Lotto lotto : selectedLottoNumList) {
+            System.out.println(lotto.getLottoList());
         }
     }
+
 
     public void outputWinningStatistic(int[] checkedRankList) {
         System.out.println();

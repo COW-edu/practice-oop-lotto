@@ -18,7 +18,7 @@ public class LottoService {
     private static final int LOTTO_NUMBER_RANGE_FIRST = 1;
     private static final int LOTTO_NUMBER_RANGE_LAST = 45;
     private static final int RANKING_LIST_SIZE = 8;
-    private static final int SELECTED_FIVE = 5;
+    private static final int SELECTED_SECOND_RANK_KEY = 5;
     private static final String SPLIT_UNIT = ",";
 
     // components
@@ -30,10 +30,7 @@ public class LottoService {
 
     // validation
 
-    /**
-     * [VALIDATION]
-     * [INPUT] 1000원으로 나뉘는지 / 1000원보다 큰지
-     */
+
     public void validatePurchaseAmount(int purchaseMoney) {
         if (purchaseMoney % PURCHASE_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASEMONEY_NO_DIVISION.getErrorMessage());
@@ -43,11 +40,8 @@ public class LottoService {
         }
     }
 
-    /**
-     * [VALIDATION]
-     * [INPUT] 정수 입력 / 1 ~ 45의 수 / winningNumList 중복확인
-     */
-    private void validateInputBonusNum(int bonusNum, List<Integer> winningNumList) {
+
+    private void validateInputBonusNumber(int bonusNum, List<Integer> winningNumList) {
         if (bonusNum < LOTTO_NUMBER_RANGE_FIRST && bonusNum > LOTTO_NUMBER_RANGE_LAST) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_WINNINGNUMBER_UNREASONABLE_RANGE.getErrorMessage());
         }
@@ -58,50 +52,36 @@ public class LottoService {
 
     // func
 
-    /**
-     * [FUNC]
-     * 구입금액을 통한 개수 계산
-     */
+
     public int calculatePurchaseAmount(int purchaseMoney) {
         validatePurchaseAmount(purchaseMoney);
         return purchaseMoney / PURCHASE_PRICE;
     }
 
-    /**
-     * [FUNC]
-     * 로또 개수에 따른 로또번호 생성
-     */
-    public List<Lotto> createMember(int purchaseAmount) {
-        List<Lotto> selectedLottoNum = new ArrayList<>();
+
+    public List<Lotto> createLottoMember(int purchaseAmount) {
+        List<Lotto> selectedLottoNumber = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> member = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_RANGE_FIRST, LOTTO_NUMBER_RANGE_LAST, LOTTO_LIST_SIZE);
             Lotto lotto = new Lotto(member);
-            selectedLottoNum.add(lotto);
+            selectedLottoNumber.add(lotto);
         }
-        return selectedLottoNum;
+        return selectedLottoNumber;
     }
 
-    /**
-     * [FUNC]
-     * INPUT값으로 받은 당첨번호 리스트에 저장
-     */
-    public ArrayList<Integer> convertWinningNum(String winngingNumStr) {
-        ArrayList<Integer> winningNumlist = new ArrayList<>();
+    public ArrayList<Integer> convertWinningNumber(String winngingNumberString) {
+        ArrayList<Integer> winningNumber = new ArrayList<>();
 
-        String[] tempStr = winngingNumStr.split(SPLIT_UNIT);
+        String[] tempStr = winngingNumberString.split(SPLIT_UNIT);
         for (String temp : tempStr) {
-            winningNumlist.add(Integer.parseInt(temp));
+            winningNumber.add(Integer.parseInt(temp));
         }
-        winningLotto.setWinningNumlist(winningNumlist);
-        return winningNumlist;
+        winningLotto.setWinningNumlist(winningNumber);
+        return winningNumber;
     }
 
-    /**
-     * [FUNC]
-     * 당첨번호와 로또번호 비교 / (조건)BONUS번호도 비교
-     */
-    public int[] checkNum(List<Lotto> selectedLottoNumList, List<Integer> winningNumList, int bonusNum) {
-        validateInputBonusNum(bonusNum, winningNumList);
+    public int[] compareLottoNumber(List<Lotto> selectedLottoNumList, List<Integer> winningNumList, int bonusNum) {
+        validateInputBonusNumber(bonusNum, winningNumList);
 
         List<Integer> tempList;
         int[] checkedRankList = new int[RANKING_LIST_SIZE];
@@ -114,21 +94,24 @@ public class LottoService {
 
             checkedRankList[tempList.size()]++;
 
-            // 5개 맞췄을 때 bonus 검증
-            // BONUS넘 가져와야함
-            if (tempList.size() == SELECTED_FIVE && tempSelected.contains(bonusNum)) {
+            if (tempList.size() == SELECTED_SECOND_RANK_KEY && tempSelected.contains(bonusNum)) {
                 checkedRankList[SECOND_RANK_KEY]++;
             }
         }
         return checkedRankList;
     }
 
-    /**
-     * [FUNC]
-     * 당첨List에서 당첨금 합 / 수익률 계산
-     */
-    public double calEarningRate(int[] checkedRankList, int purchaseMoney) {
+
+    public double calculateEarningRate(int[] checkedRankList, int purchaseMoney) {
         double tempSum = 0.0;
+
+//        List<String> humanNames = humans.stream()
+//                .map(h -> h.getName())
+//                .collect(Collectors.toList());
+//
+//        for(Prize prize : Prize.values()){
+//            prize.get
+//        }
 
         for (int i = 3; i < checkedRankList.length; i++) {
             if (checkedRankList[i] != 0 && i == 3) {
