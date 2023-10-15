@@ -35,18 +35,11 @@ public class User {
 
     public List<Integer> userLottoNumber(String userLottoString) {
         String[] selectNumber = userLottoString.split(",");
-        outOfLottoLength(selectNumber);
 
         return Arrays.stream(selectNumber)
                 .filter(this::convertInteger)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-    }
-
-    private void outOfLottoLength(String[] selectNumber) {
-        if (selectNumber.length != COUNT_RANGE) {
-            ErrorMessage.LOTTOLENGTH.getExceptionMessage();
-        }
     }
 
     private boolean convertInteger(String number) {
