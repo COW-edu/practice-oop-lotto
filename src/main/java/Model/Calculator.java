@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    public static List<Prize> calculateResult(List<Lotto> purchasedLottoList, WinningNum winningNum, int bonusNumber) {
+    public List<Prize> calculateResult(List<Lotto> purchasedLottoList, WinningNum winningNum, int bonusNumber) {
         List<Prize> prizeList = new ArrayList<>();
 
         for (Lotto lotto : purchasedLottoList) {
@@ -18,7 +18,7 @@ public class Calculator {
         return prizeList;
     }
 
-    public static double calculateProfit(List<Prize> prizeList, int totalMoneySpent) {
+    public double calculateProfit(List<Prize> prizeList, int totalMoneySpent) {
         int totalPrizeMoney = prizeList.stream()
                 .mapToInt(Prize::getPrizeMoney)
                 .sum();

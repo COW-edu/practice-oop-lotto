@@ -6,14 +6,18 @@ import java.util.stream.Collectors;
 import static Model.Validator.*;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate_Lotto(numbers);
-        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
+        this.numbers = sortNumbers(numbers);
     }
 
-    private void validate_Lotto(List<Integer> numbers){
+    public List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
+    }
+
+    public void validate_Lotto(List<Integer> numbers){
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);

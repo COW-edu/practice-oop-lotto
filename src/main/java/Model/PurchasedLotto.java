@@ -9,7 +9,11 @@ public class PurchasedLotto {
     private static List<Lotto> purchasedLottoList;
 
     public PurchasedLotto(int amountOfLotto) {
-        purchasedLottoList = IntStream.range(0, amountOfLotto)
+        purchasedLottoList = makePurchasedList(amountOfLotto);
+    }
+
+    private List<Lotto> makePurchasedList(int amountOfLotto){
+        return IntStream.range(0, amountOfLotto)
                 .mapToObj(i -> LottoFactory.makeLotto())
                 .collect(Collectors.toList());
     }

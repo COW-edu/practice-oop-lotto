@@ -13,6 +13,7 @@ public class Controller {
     public void Start(){
         Input input = new Input();
         Output output = new Output();
+        Calculator calculator = new Calculator();
 
         output.printMoneyMessage();
         String moneyInput = input.getInput();
@@ -29,15 +30,16 @@ public class Controller {
         String lottoNumsInput = input.getInput();
         WinningNum winningNumber = new WinningNum(lottoNumsInput);
 
+
         output.printBonusNumberMessage();
         String bonusInput = input.getInput();
         BonusNum bonusNumber = new BonusNum(bonusInput);
 
-        List<Prize> prizeList = Calculator.calculateResult(PurchasedLotto.getPurchasedLotto(), winningNumber, bonusNumber.getBonusNumber());
+        List<Prize> prizeList = calculator.calculateResult(PurchasedLotto.getPurchasedLotto(), winningNumber, bonusNumber.getBonusNumber());
 
         Output.printResult(prizeList);
 
-        double totalProfitRate = Calculator.calculateProfit(prizeList, money.getMoney());
+        double totalProfitRate = calculator.calculateProfit(prizeList, money.getMoney());
         Output.printProfit(totalProfitRate);
     }
 }

@@ -30,6 +30,10 @@ public class WinningNum {
         for (String numberString : number_Str) {
             numbers.add(Integer.parseInt(numberString.trim()));
         }
+        return sortNumbers(numbers);
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers){
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 }
