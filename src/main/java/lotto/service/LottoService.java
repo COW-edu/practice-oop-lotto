@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.Domain.Lotto;
 import lotto.Domain.WinningLotto;
 import lotto.config.ErrorMessage;
-import lotto.config.Prize;
+import lotto.Domain.Prize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,23 +29,26 @@ public class LottoService {
     }
 
     // validation
-
-
-    public void validatePurchaseAmount(int purchaseMoney) {
-        if (purchaseMoney % PURCHASE_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASEMONEY_NO_DIVISION.getErrorMessage());
-        }
-        if (purchaseMoney < PURCHASE_PRICE) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASEMONEY_UNDER_1000.getErrorMessage());
-        }
+    private void validatePurchase(int purchaseMoney) {
+        validatePurchaseAmount(purchaseMoney);
+        validatePurchaseMinimumMoney(purchaseMoney);
     }
 
 
-    private void validateInputBonusNumber(int bonusNum, List<Integer> winningNumList) {
-        if (bonusNum < LOTTO_NUMBER_RANGE_FIRST && bonusNum > LOTTO_NUMBER_RANGE_LAST) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_WINNINGNUMBER_UNREASONABLE_RANGE.getErrorMessage());
+    private void validatePurchaseAmount(int purchaseMoney) {
+        if (purchaseMoney % PURCHASE_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASEMONEY_NO_DIVISION.getErrorMessage());
         }
-        if (winningNumList.contains(bonusNum)) {
+    }
+
+    private void validatePurchaseMinimumMoney(int purchaseMoney) {
+        if (purchaseMoney < PURCHASE_PRICE) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASEMONEY_MINIMUM_MONEY.getErrorMessage());
+        }
+    }
+
+    private void validateBonusNumberDuplicate(int bonusNumber, List<Integer> winningNumList) {
+        if (winningNumList.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_BONUSNUM_DUPLICATE.getErrorMessage());
         }
     }
@@ -54,7 +57,8 @@ public class LottoService {
 
 
     public int calculatePurchaseAmount(int purchaseMoney) {
-        validatePurchaseAmount(purchaseMoney);
+        validatePurchase(purchaseMoney);
+
         return purchaseMoney / PURCHASE_PRICE;
     }
 
@@ -81,7 +85,7 @@ public class LottoService {
     }
 
     public int[] compareLottoNumber(List<Lotto> selectedLottoNumList, List<Integer> winningNumList, int bonusNum) {
-        validateInputBonusNumber(bonusNum, winningNumList);
+        validateBonusNumberDuplicate(bonusNum, winningNumList);
 
         List<Integer> tempList;
         int[] checkedRankList = new int[RANKING_LIST_SIZE];

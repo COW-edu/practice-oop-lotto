@@ -1,9 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.config.ErrorMessage;
 import lotto.controller.LottoController;
 
 public class InputView {
+    private static int LOTTO_NUMBER_RANGE_FIRST = 1;
+    private static int LOTTO_NUMBER_RANGE_LAST = 45;
 
     public InputView() {
 
@@ -26,7 +29,15 @@ public class InputView {
     public int inputBonus() {
         System.out.println();
         System.out.println("보너스 번호를 입력해주세요.");
-        int inputBonusNumber = Integer.parseInt(Console.readLine());
-        return inputBonusNumber;
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        validateRangeNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private void validateRangeNumber(int bonusNumber) {
+        if (bonusNumber < LOTTO_NUMBER_RANGE_FIRST && bonusNumber > LOTTO_NUMBER_RANGE_LAST) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_WINNINGNUMBER_UNREASONABLE_RANGE.getErrorMessage());
+        }
     }
 }

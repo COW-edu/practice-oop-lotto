@@ -2,7 +2,7 @@ package lotto.config;
 
 public enum ErrorMessage {
     // [INPUT] PURCHASEMONEY
-    ERROR_PURCHASEMONEY_UNDER_1000("[ERROR] 입력한 값이 1000보다 작습니다."),
+    ERROR_PURCHASEMONEY_MINIMUM_MONEY("[ERROR] 입력한 값이 1000보다 작습니다."),
     ERROR_PURCHASEMONEY_NO_DIVISION("[ERROR] 입력한 값이 1000으로 나누어지지 않습니다."),
 
     // [INPUT] WINNINGNUMBER

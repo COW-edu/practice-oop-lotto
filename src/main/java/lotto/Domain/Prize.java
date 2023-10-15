@@ -1,4 +1,4 @@
-package lotto.config;
+package lotto.Domain;
 
 public enum Prize {
 
