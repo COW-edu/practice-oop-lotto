@@ -9,7 +9,6 @@ import java.util.List;
 public class Controller {
     Input input = new Input();
     Output output = new Output();
-    Calculator calculator = new Calculator();
     public Controller(){
 
     }
@@ -53,6 +52,7 @@ public class Controller {
     }
 
     public void start_Prize(){
+        Calculator calculator = new Calculator();
         List<Prize> prizeList = calculator.calculateResult(PurchasedLotto.getPurchasedLotto(), BonusNum.getBonusNumber());
         Output.printResult(prizeList);
 
