@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +9,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplication(numbers);
+        checkBoundary(numbers);
         this.numbers = numbers;
     }
 
@@ -20,6 +22,12 @@ public class Lotto {
     private void checkDuplication(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다");
+        }
+    }
+
+    private void checkBoundary(List<Integer> numbers) {
+        if(Collections.max(numbers) > 45 || Collections.min(numbers) < 1) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이여야 합니다");
         }
     }
 

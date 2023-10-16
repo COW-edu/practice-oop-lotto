@@ -20,8 +20,6 @@ public class InputView {
     public List<Integer> requestWinning() {
         String input = Console.readLine();
         List<Integer> numbers = splitNumber(input);
-        checkDuplication(numbers);
-        checkBoundary(numbers);
         return numbers;
     }
 
@@ -53,21 +51,9 @@ public class InputView {
         }
     }
 
-    private void checkDuplication(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다");
-        }
-    }
-
     private void checkDuplication(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다");
-        }
-    }
-
-    private void checkBoundary(List<Integer> numbers) {
-        if(Collections.max(numbers) > 45 || Collections.min(numbers) < 1) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이여야 합니다");
         }
     }
 
