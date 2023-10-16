@@ -24,16 +24,16 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
 
         ResultCalculator resultCalculator = new ResultCalculator();
-        resultCalculator.calculateResult(winningLotto, lottos);
-        printResult();
+        ResultPrize resultPrize = resultCalculator.calculateResult(winningLotto, lottos);
+        printResult(resultPrize);
 
-        double rate = getRate(money);
+        double rate = getRate(money, resultPrize);
         printRate(rate);
     }
 
-    private double getRate(Money money) {
+    private double getRate(Money money, ResultPrize resultPrize) {
         RateCalculator rateCalculator = new RateCalculator();
-        return rateCalculator.calculateRate(money);
+        return rateCalculator.calculateRate(money, resultPrize);
     }
 
     private WinningLotto getWinningLotto() {

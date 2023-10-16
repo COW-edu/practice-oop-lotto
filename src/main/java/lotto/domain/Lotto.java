@@ -17,9 +17,11 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] : 6개의 번호를 입력하시오.");
         }
     }
-
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public boolean contains(Integer lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 }

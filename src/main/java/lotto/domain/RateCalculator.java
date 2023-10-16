@@ -1,19 +1,15 @@
 package lotto.domain;
 
-import static lotto.domain.Result.*;
-
 public class RateCalculator {
 
-    public double calculateRate(Money money) {
+    public double calculateRate(Money money, ResultPrize resultPrize) {
         double initialMoney = money.getMoney();
         double winningAmount = 0;
 
-        winningAmount += FIRST.getPrize() * FIRST.getTotalCount();
-        winningAmount += SECOND.getPrize() * SECOND.getTotalCount();
-        winningAmount += THIRD.getPrize() * THIRD.getTotalCount();
-        winningAmount += FOURTH.getPrize() * FOURTH.getTotalCount();
-        winningAmount += FIFTH.getPrize() * FIFTH.getTotalCount();
-        
+        for(Result result : Result.values()) {
+            winningAmount += resultPrize.getResultPrize().get(result) * result.getPrize();
+        }
+
         return winningAmount / initialMoney * 100;
     }
 

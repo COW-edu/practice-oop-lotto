@@ -1,51 +1,27 @@
 package lotto.domain;
 
-import java.util.List;
-
-import static lotto.domain.Result.*;
+import java.util.stream.Stream;
 
 public class ResultCalculator {
+    public ResultPrize calculateResult(WinningLotto winningLotto, Lottos lottos) {
+        ResultPrize resultPrize = new ResultPrize();
+        resultPrize.initializeResult();
 
-    private int matchCount;
-    private boolean containBonusNumber;
-
-    public void calculateResult(WinningLotto winningLotto, Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            List<Integer> winningNumbers = winningLotto.getWinningLotto().getNumbers();
-            matchCount = 0;
-            containBonusNumber = false;
+            int matchCount = winningLotto.countMatchingNumbers(lotto);
+            boolean containBonusNumber = winningLotto.containsBonusNumber(lotto);
 
-            checkContainBonusNumber(winningLotto, lotto, winningNumbers);
-            checkPrize();
+            Result result = getResult(matchCount, containBonusNumber);
+            resultPrize.plusTotalCount(result);
         }
 
+        return resultPrize;
     }
 
-    private void checkPrize() {
-        if(FIRST.getRequiredMatchCount() == matchCount) {
-            FIRST.plusTotalCount();
-        }
-        if((SECOND.getRequiredMatchCount() == matchCount) && (containBonusNumber)) {
-            SECOND.plusTotalCount();
-        }
-        if(THIRD.getRequiredMatchCount() == matchCount) {
-            THIRD.plusTotalCount();
-        }
-        if(FOURTH.getRequiredMatchCount() == matchCount) {
-            FOURTH.plusTotalCount();
-        }
-        if(FIFTH.getRequiredMatchCount() == matchCount) {
-            FIFTH.plusTotalCount();
-        }
-    }
-
-    private void checkContainBonusNumber(WinningLotto winningLotto, Lotto lotto, List<Integer> winningNumbers) {
-        for(int winningNumber : winningNumbers) {
-            if(lotto.getNumbers().contains(winningNumber)){
-                matchCount++;
-            } else if(lotto.getNumbers().contains(winningLotto.getBonusNumber())){
-                containBonusNumber = true;
-            }
-        }
+    private Result getResult(int matchCount, boolean containBonusNumber) {
+        return Stream.of(Result.values())
+                .filter(result -> result.getRequiredMatchCount() == matchCount && (result != Result.SECOND || containBonusNumber))
+                .findFirst()
+                .orElse(null);
     }
 }
