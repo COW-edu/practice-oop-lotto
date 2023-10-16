@@ -13,7 +13,7 @@ public class RateCalculator {
         winningAmount += THIRD.getPrize() * THIRD.getTotalCount();
         winningAmount += FOURTH.getPrize() * FOURTH.getTotalCount();
         winningAmount += FIFTH.getPrize() * FIFTH.getTotalCount();
-
+        
         return winningAmount / initialMoney * 100;
     }
 
