@@ -2,7 +2,6 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class InputView {
@@ -25,10 +24,7 @@ public class InputView {
 
     public int requestBonus(List<Integer> numbers) {
         String input = Console.readLine();
-        int bonus = checkIsNumber(input);
-        checkDuplication(numbers, bonus);
-        checkBoundary(bonus);
-        return bonus;
+        return checkIsNumber(input);
     }
 
     private int checkIsNumber(String number) {
@@ -48,18 +44,6 @@ public class InputView {
     private void checkUnit(int amount) {
         if(amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다");
-        }
-    }
-
-    private void checkDuplication(List<Integer> numbers, int number) {
-        if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다");
-        }
-    }
-
-    private void checkBoundary(int number) {
-        if(number > 45 || number < 1) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다");
         }
     }
 
