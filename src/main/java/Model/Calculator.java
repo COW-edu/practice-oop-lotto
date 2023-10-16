@@ -26,7 +26,7 @@ public class Calculator {
         return totalPrizeMoney / totalMoneySpent * 100.0;
     }
 
-    private static int countMatchedNumbers(Lotto lotto, List<Integer> winningNumbers) {
+    private int countMatchedNumbers(Lotto lotto, List<Integer> winningNumbers) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
