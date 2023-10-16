@@ -29,20 +29,28 @@ public class FlowController {
     }
 
     public void run() {
+        List<Lotto> lottos = buyLotto();
+        WinningLotto winningLotto = makeWinningLotto();
+        showResult(lottos, winningLotto);
+    }
+
+    private List<Lotto> buyLotto() {
         outputView.requestAmount();
         int amount = inputView.requestAmount();
-
         List<Lotto> lottos = lottoSeller.buyLottos(amount);
-
         outputView.showOrder(lottos);
+        return lottos;
+    }
 
+    private WinningLotto makeWinningLotto() {
         outputView.requestWinning();
         List<Integer> numbers = inputView.requestWinning();
         outputView.requestBonus();
         int bonus = inputView.requestBonus(numbers);
+        return winningLottoFactory.makeWinning(numbers, bonus);
+    }
 
-        WinningLotto winningLotto = winningLottoFactory.makeWinning(numbers, bonus);
-
+    private void showResult(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Grade> grades = winningChecker.rateGrades(lottos, winningLotto);
         outputView.showResult(grades);
         double reward = winningChecker.checkReward(grades);
