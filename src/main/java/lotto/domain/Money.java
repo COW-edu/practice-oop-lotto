@@ -10,18 +10,14 @@ public class Money {
         validate(money);
     }
 
-    private void validate(int money){
-        if(money == MONEY_REMAIN_ZERO) {
+    private void validate(int money) {
+        if (money == MONEY_REMAIN_ZERO) {
             throw new IllegalArgumentException();
         }
 
         if ((money % LOTTO_PRICE) != MONEY_REMAIN_ZERO) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public int getCount() {
-        return money / 1000;
     }
 
     public int getMoney() {
