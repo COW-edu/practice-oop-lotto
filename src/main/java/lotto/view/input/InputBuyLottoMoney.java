@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.input;
 
 public class InputBuyLottoMoney extends Input {
     private static final String INPUT_MESSAGE = "구입금액을 입력해 주세요";

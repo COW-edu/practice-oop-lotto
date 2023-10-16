@@ -1,16 +1,16 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.view.InputBonusNumber;
-import lotto.view.InputBuyLottoMoney;
-import lotto.view.InputWinningNumbers;
+import lotto.view.input.InputBonusNumber;
+import lotto.view.input.InputBuyLottoMoney;
+import lotto.view.input.InputWinningNumbers;
 
 import java.util.List;
 
-import static lotto.view.OutputLottoCount.printLottoCount;
-import static lotto.view.OutputLottoList.printLottoList;
-import static lotto.view.OutputRate.printRate;
-import static lotto.view.OutputResult.printResult;
+import static lotto.view.output.OutputLottoCount.printLottoCount;
+import static lotto.view.output.OutputLottoList.printLottoList;
+import static lotto.view.output.OutputRate.printRate;
+import static lotto.view.output.OutputResult.printResult;
 
 public class LottoController {
 

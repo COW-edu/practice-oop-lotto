@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.input;
 
 public class InputBonusNumber extends Input {
     private static final String INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
