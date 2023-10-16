@@ -12,21 +12,15 @@ public class OutputView {
     private static final String CLOSING_BRACKET = "]";
     private static final String COMMA = ", ";
 
-    public void showNumber(List<Integer> numbers) {
-        boolean isFirst = true;
-
-        for (int number : numbers) {
-            String prefix = COMMA;
-
-            if (isFirst) {
-                prefix = OPENING_BRACKET;
-                isFirst = false;
-            }
-
-            System.out.print(prefix + number);
-        }
-
-        System.out.println(CLOSING_BRACKET);
+    private void showNumber(List<Integer> numbers) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(OPENING_BRACKET);
+        numbers.stream()
+                .sorted(Integer::compareTo)
+                .forEach(number -> stringBuilder.append(number).append(COMMA));
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        stringBuilder.append(CLOSING_BRACKET);
+        System.out.println(stringBuilder.toString());
     }
 
     public void requestAmount() {

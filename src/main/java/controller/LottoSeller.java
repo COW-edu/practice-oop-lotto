@@ -4,6 +4,8 @@ import model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoSeller {
 
@@ -17,12 +19,9 @@ public class LottoSeller {
 
     public List<Lotto> buyLottos(int amount) {
         int lottoAmount = calculateLottoAmount(amount);
-        List<Lotto> lottos = new ArrayList<Lotto>(lottoAmount);
-
-        for (int i = 0; i < lottoAmount; i++) {
-            Lotto lotto = lottoFactory.makeLotto();
-            lottos.add(lotto);
-        }
+        List<Lotto> lottos = IntStream.rangeClosed(1, lottoAmount)
+                .mapToObj(i -> lottoFactory.makeLotto())
+                .collect(Collectors.toList());
 
         return lottos;
     }
