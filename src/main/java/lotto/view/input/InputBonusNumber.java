@@ -7,16 +7,29 @@ public class InputBonusNumber extends Input {
 
     public int getValue() {
         System.out.println(INPUT_MESSAGE);
-        int inputBonusNumber = Integer.parseInt(input());
-        validate(inputBonusNumber);
+
+        String input = input();
+        validateInputForm(input);
+
+        int inputBonusNumber = Integer.parseInt(input);
+        validateRange(inputBonusNumber);
+
         return inputBonusNumber;
     }
 
-    private void validate(int number) {
+    private void validateRange(int number) {
         if(number > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] : 1 ~ 45 사이의 번호를 입력해 주세요.");
-        } else if (number < MIN_NUMBER) {
+        }
+
+        if (number < MIN_NUMBER) {
             throw new IllegalArgumentException("[ERROR] : 1 ~ 45 사이의 번호를 입력해 주세요.");
+        }
+    }
+
+    private void validateInputForm(String input) {
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] : 잘못된 입력 값입니다.");
         }
     }
 }
