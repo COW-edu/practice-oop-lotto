@@ -22,7 +22,7 @@ public class LottoController {
         Money money = getBuyLottoMoney();
         outputLottoCount.printLottoCount(money);
 
-        Lottos lottos = getLottos(money);
+        Lottos lottos = getLottos(new LottosFactory(), money);
         outputLottoList.printLottoList(lottos);
 
         WinningLotto winningLotto = getWinningLotto();
@@ -31,12 +31,11 @@ public class LottoController {
         ResultPrize resultPrize = resultCalculator.calculateResult(winningLotto, lottos);
         outputResult.printResult(resultPrize);
 
-        double rate = getRate(money, resultPrize);
+        double rate = getRate(new RateCalculator(), money, resultPrize);
         outputRate.printRate(rate);
     }
 
-    private double getRate(Money money, ResultPrize resultPrize) {
-        RateCalculator rateCalculator = new RateCalculator();
+    private double getRate(RateCalculator rateCalculator, Money money, ResultPrize resultPrize) {
         return rateCalculator.calculateRate(money, resultPrize);
     }
 
@@ -50,14 +49,15 @@ public class LottoController {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private Lottos getLottos(Money money) {
-        LottosFactory lottoGenerator = new LottosFactory();
-        return new Lottos(lottoGenerator.makeLottos(money));
+    private Lottos getLottos(LottosFactory lottosFactory, Money money) {
+        return new Lottos(lottosFactory.makeLottos(money));
     }
 
     private Money getBuyLottoMoney() {
         InputBuyLottoMoney inputBuyLottoMoney = new InputBuyLottoMoney();
+
         int money = inputBuyLottoMoney.getValue();
+
         return new Money(money);
     }
 
