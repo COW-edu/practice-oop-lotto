@@ -1,14 +1,18 @@
 package Model;
 
+import static Model.Validator.validateBonus;
+
 public class BonusNum {
-    private final int bonusNumber;
+    private static int bonusNumber = 0;
 
     public BonusNum(String bonusNumberInput) {
-        this.bonusNumber = Integer.parseInt(bonusNumberInput);
-        Validator.validateBonus(String.valueOf(bonusNumber));
+        bonusNumber = Integer.parseInt(bonusNumberInput);
+    }
+    public void validate_Bonus(String bonusNumberInput){
+        validateBonus(bonusNumberInput);
     }
 
-    public int getBonusNumber() {
+    public static int getBonusNumber() {
         return bonusNumber;
     }
 }

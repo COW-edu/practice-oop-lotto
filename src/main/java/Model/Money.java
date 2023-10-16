@@ -1,6 +1,6 @@
 package Model;
 
-import static Model.Validator.validateMoney;
+import static Model.Validator.*;
 
 public class Money {
 
@@ -8,12 +8,15 @@ public class Money {
     public static final int LOTTO_PRICE = 1000;
 
     public Money(String money) {
-        validateMoney(money);
         Money.money = Integer.parseInt(money);
     }
 
-    public int getMoney() {
+    public static int getMoney() {
         return money;
+    }
+
+    public void validate_Money(String money){
+        validateMoney(money);
     }
 
     public static int getAmountOfLotto(){

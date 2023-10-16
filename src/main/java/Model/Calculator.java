@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    public List<Prize> calculateResult(List<Lotto> purchasedLottoList, WinningNum winningNum, int bonusNumber) {
+    public List<Prize> calculateResult(List<Lotto> purchasedLottoList, int bonusNumber) {
         List<Prize> prizeList = new ArrayList<>();
 
         for (Lotto lotto : purchasedLottoList) {
-            int matchCount = countMatchedNumbers(lotto, winningNum.getWinningNumbers());
+            int matchCount = countMatchedNumbers(lotto, WinningNum.getWinningNumbers());
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
             Prize prize = Prize.calculatePrize(matchCount, bonusMatch);
             prizeList.add(prize);

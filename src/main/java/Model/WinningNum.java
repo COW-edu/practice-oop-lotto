@@ -7,20 +7,19 @@ import java.util.stream.Collectors;
 import static Model.Validator.*;
 
 public class WinningNum {
-    private final List<Integer> winningNums;
+    private static List<Integer> winningNums = null;
 
     public WinningNum(String NumbersInput) {
-        this.winningNums = parseNumbers(NumbersInput);
-        validate_Lotto(winningNums);
+        winningNums = parseNumbers(NumbersInput);
     }
 
-    private void validate_Lotto(List<Integer> winningNums){
+    public void validate_Lotto(){
         validateSize(winningNums);
         validateRange(winningNums);
         validateDuplicate(winningNums);
     }
 
-    public List<Integer> getWinningNumbers() {
+    public static List<Integer> getWinningNumbers() {
         return winningNums;
     }
 

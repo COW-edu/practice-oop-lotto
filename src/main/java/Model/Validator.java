@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.List;
-import Model.Money;
 
 public class Validator {
     static final int LOTTO_SIZE = 6;
