@@ -1,8 +1,8 @@
 package lotto.domain;
 
 public class Money {
-    private static final int ZERO = 0;
-    private static final int THOUSAND = 1000;
+    private static final int MONEY_REMAIN_ZERO = 0;
+    private static final int LOTTO_PRICE = 1000;
     private final int money;
 
     public Money(int money) {
@@ -11,9 +11,11 @@ public class Money {
     }
 
     private void validate(int money){
-        if(money == ZERO) {
+        if(money == MONEY_REMAIN_ZERO) {
             throw new IllegalArgumentException();
-        } else if ((money % THOUSAND) != ZERO) {
+        }
+
+        if ((money % LOTTO_PRICE) != MONEY_REMAIN_ZERO) {
             throw new IllegalArgumentException();
         }
     }
