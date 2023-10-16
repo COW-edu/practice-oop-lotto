@@ -4,31 +4,35 @@ import lotto.domain.*;
 import lotto.view.input.InputBonusNumber;
 import lotto.view.input.InputBuyLottoMoney;
 import lotto.view.input.InputWinningNumbers;
+import lotto.view.output.OutputLottoCount;
+import lotto.view.output.OutputLottoList;
+import lotto.view.output.OutputRate;
+import lotto.view.output.OutputResult;
 
 import java.util.List;
 
-import static lotto.view.output.OutputLottoCount.printLottoCount;
-import static lotto.view.output.OutputLottoList.printLottoList;
-import static lotto.view.output.OutputRate.printRate;
-import static lotto.view.output.OutputResult.printResult;
-
 public class LottoController {
+
+    private final OutputLottoCount outputLottoCount = new OutputLottoCount();
+    private final OutputLottoList outputLottoList = new OutputLottoList();
+    private final OutputResult outputResult = new OutputResult();
+    private final OutputRate outputRate = new OutputRate();
 
     public void start() {
         Money money = getBuyLottoMoney();
-        printLottoCount(money);
+        outputLottoCount.printLottoCount(money);
 
         Lottos lottos = getLottos(money);
-        printLottoList(lottos);
+        outputLottoList.printLottoList(lottos);
 
         WinningLotto winningLotto = getWinningLotto();
 
         ResultCalculator resultCalculator = new ResultCalculator();
         ResultPrize resultPrize = resultCalculator.calculateResult(winningLotto, lottos);
-        printResult(resultPrize);
+        outputResult.printResult(resultPrize);
 
         double rate = getRate(money, resultPrize);
-        printRate(rate);
+        outputRate.printRate(rate);
     }
 
     private double getRate(Money money, ResultPrize resultPrize) {
