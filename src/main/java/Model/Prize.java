@@ -8,6 +8,12 @@ public enum Prize {
     FIFTHPRIZE(3, false, 5_000),
     NOPRIZE(0, false, 0);
 
+    public static final int WIN_FIFTH_PRIZE = 3;
+    public static final int WIN_FOURTH_PRIZE = 4;
+    public static final int WIN_THIRD_PRIZE = 5;
+    public static final int WIN_SECOND_PRIZE = 7;
+    public static final int WIN_FIRST_PRIZE = 6;
+
     private final int matchCount;
     private final boolean bonusNumMatch;
     private final int prizeMoney;

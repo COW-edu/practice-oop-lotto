@@ -3,7 +3,10 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Model.Prize.*;
+
 public class Calculator {
+
     public List<Prize> calculateResult(List<Lotto> purchasedLottoList, int bonusNumber) {
         List<Prize> prizeList = new ArrayList<>();
 
@@ -16,6 +19,22 @@ public class Calculator {
         }
 
         return prizeList;
+    }
+
+    public int[] setPrize(List<Prize> prizeList){
+        int[] matchingCounts = new int[WIN_SECOND_PRIZE+1];
+
+        for (Prize prize : prizeList) {
+            int matchCount = prize.getMatchCount();
+            int winnersCount = prize.getWinnersCount();
+
+            if (matchCount == WIN_THIRD_PRIZE && prize.isBonusNumMatch()) {
+                matchingCounts[WIN_SECOND_PRIZE] += winnersCount;
+            } else {
+                matchingCounts[matchCount] += winnersCount;
+            }
+        }
+        return matchingCounts;
     }
 
     public double calculateProfit(List<Prize> prizeList, int totalMoneySpent) {

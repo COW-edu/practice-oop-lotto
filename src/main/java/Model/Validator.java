@@ -2,13 +2,10 @@ package Model;
 
 import java.util.List;
 
+import static Model.Money.LOTTO_PRICE;
+import static Util.LottoFactory.*;
+
 public class Validator {
-    static final int LOTTO_SIZE = 6;
-    static final int LOTTO_NUMBER_MINIMUM = 1;
-    static final int LOTTO_NUMBER_MAXIMUM = 45;
-    static final int LOTTO_PRICE = 1000;
-
-
     static void validateSize(List<Integer> numbers){
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입니다.");
