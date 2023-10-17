@@ -11,8 +11,8 @@ public class InputView {
     public int requestAmount() {
         String input = Console.readLine();
         int amount = checkIsNumber(input);
-        checkUnit(amount);
         checkMinimum(amount);
+        checkUnit(amount);
         return amount;
     }
 
@@ -52,7 +52,7 @@ public class InputView {
         List<Integer> numbers = new ArrayList<Integer>();
 
         numberList.stream()
-                .map(this::checkIsNumber) // 또는 number -> checkIsNumber(number)
+                .map(this::checkIsNumber)
                 .forEach(numbers::add);
 
         return numbers;
