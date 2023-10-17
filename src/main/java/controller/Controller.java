@@ -18,17 +18,20 @@ public class Controller {
 
     private List<Lotto> lottos;
     private Lotto selectLotto;
+    private static int count;
 
     public Controller(User user, RandomLotto randomLotto, OutputView outputView) {
         this.user = user;
         this.randomLotto = randomLotto;
         this.outputView = outputView;
+        this.count = 0;
     }
 
     public void start() {
         // 로또 구매
         outputView.inputMoney();
-        int count = user.lottoCount(Integer.parseInt(Console.readLine()));
+        count = user.lottoCount(Integer.parseInt(Console.readLine()));
+
         outputView.announcePayment(count);
 
         // 입력 금액에 해당하는 로또 번호 출력

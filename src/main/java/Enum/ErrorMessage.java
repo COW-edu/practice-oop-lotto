@@ -14,7 +14,7 @@ public enum ErrorMessage {
     private String exceptionMessage;
 
     ErrorMessage(String exception) {
-        this.exceptionMessage = exceptionMessage;
+        this.exceptionMessage = exception;
     }
 
     public String announceException() {

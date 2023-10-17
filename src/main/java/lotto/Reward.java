@@ -80,18 +80,18 @@ public class Reward {
 
     public double getPercentage() {
         double rewardMoney = 0;
-        for(Rank rank : rankList) {
+        for(Rank rank : this.rankList) {
             rewardMoney += rank.getReward();
         }
-        double profit = (rewardMoney/(this.count*1_000))/100;
+        double profit = rewardMoney / (lottos.size() * 10);
         return profit;
     }
 
     public List<String> makeAnnounce(List<Rank> rewardList) {
         List<String> announce = new ArrayList<>();
         Rank[] values = Rank.values();
-        for(int i=0; i<values.length-1;i++) {
-            announce.add(values[i].getAnnounceMessage() + " " + Collections.frequency(rewardList, values[i])  + "개");
+        for(int i=1; i<values.length;i++) {
+            announce.add(values[i].getAnnounceMessage() + Collections.frequency(rewardList, values[i])  + "개");
         }
         return announce;
     }

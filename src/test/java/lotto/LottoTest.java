@@ -2,6 +2,8 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import user.User;
 
 import java.lang.reflect.InvocationTargetException;
@@ -30,13 +32,14 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
     @DisplayName("로또 구매 금액이 1000원 단위인지 확인한다.")
-    @Test
-    void userLottoNumber() {
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 3000})
+    void userLottoNumber(int money) {
         // Given
         User user = new User();
 
         // When
-        int count = user.lottoCount(10000);
+        int count = user.lottoCount(money);
 
         // Then
         assertNotEquals(0, count);
@@ -50,7 +53,7 @@ class LottoTest {
         User user = new User();
 
         // When & Then
-        assertThatThrownBy(() -> user.lottoCount(500))
+        assertThatThrownBy(() -> user.lottoCount(999))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
