@@ -15,15 +15,11 @@ public class FlowController {
     private LottoSeller lottoSeller;
     private WinningChecker winningChecker;
 
-    public FlowController(InputView inputView, OutputView outputView) {
+    public FlowController(InputView inputView, OutputView outputView, LottoSeller lottoSeller, WinningChecker winningChecker) {
         this.inputView = inputView;
         this.outputView = outputView;
-        initialize();
-    }
-
-    private void initialize() {
-        this.lottoSeller = new LottoSeller();
-        this.winningChecker = new WinningChecker();
+        this.lottoSeller = lottoSeller;
+        this.winningChecker = winningChecker;
     }
 
     public void run() {
