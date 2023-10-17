@@ -35,7 +35,5 @@ public class RandomLotto {
     public List<Integer> selecting() {
         lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT_RANGE);
         return lottoNumbers.stream().sorted().collect(Collectors.toList());
-//        Collections.sort(lottoNumbers);
-//        return lottoNumbers;
     }
 }
