@@ -29,9 +29,14 @@ public class FlowController {
     }
 
     public void run() {
-        List<Lotto> lottos = buyLotto();
-        WinningLotto winningLotto = makeWinningLotto();
-        showResult(lottos, winningLotto);
+        try {
+            List<Lotto> lottos = buyLotto();
+            WinningLotto winningLotto = makeWinningLotto();
+            showResult(lottos, winningLotto);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private List<Lotto> buyLotto() {
