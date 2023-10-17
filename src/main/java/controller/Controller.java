@@ -37,6 +37,7 @@ public class Controller {
             selectLottoNumber();
             selectBonusNumber();
             decideReward();
+            announceProfit();
         } catch(IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
         }
@@ -75,7 +76,9 @@ public class Controller {
         this.reward.setReward(lottos, count, selectLotto, userBonusNumber);
         List<Rank> rewardList = reward.compareLotto();
         outputView.outputReward(reward.makeAnnounce(rewardList));
+    }
 
+    private void announceProfit() {
         // 수익률 출력
         double profit = reward.getPercentage();
         outputView.announceReward(profit);
