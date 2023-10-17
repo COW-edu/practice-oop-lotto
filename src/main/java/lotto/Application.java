@@ -13,8 +13,9 @@ public class Application {
         User user = new User();
         RandomLotto randomLotto = new RandomLotto();
         OutputView outputView = new OutputView();
+        Reward reward = new Reward();
 
-        Controller controller = new Controller(user, randomLotto, outputView);
+        Controller controller = new Controller(user, randomLotto, outputView, reward);
         controller.start();
     }
 }

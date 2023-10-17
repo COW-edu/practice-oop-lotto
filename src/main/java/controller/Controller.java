@@ -18,13 +18,15 @@ public class Controller {
 
     private List<Lotto> lottos;
     private Lotto selectLotto;
+    private Reward reward;
     private static int userBonusNumber;
     private static int count;
 
-    public Controller(User user, RandomLotto randomLotto, OutputView outputView) {
+    public Controller(User user, RandomLotto randomLotto, OutputView outputView, Reward reward) {
         this.user = user;
         this.randomLotto = randomLotto;
         this.outputView = outputView;
+        this.reward = reward;
         this.count = 0;
     }
 
@@ -70,7 +72,7 @@ public class Controller {
 
     private void decideReward() {
         // 번호 비교 후 당첨금 배분
-        Reward reward = new Reward(lottos, count, selectLotto, userBonusNumber);
+        this.reward.setReward(lottos, count, selectLotto, userBonusNumber);
         List<Rank> rewardList = reward.compareLotto();
         outputView.outputReward(reward.makeAnnounce(rewardList));
 

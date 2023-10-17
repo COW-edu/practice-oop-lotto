@@ -14,7 +14,7 @@ import static lotto.Lotto.PRICE;
 
 public class Reward {
 
-    private final int count;
+    private int count = 0;
 
     private List<Rank> rankList;
     private List<Lotto> lottos;
@@ -23,12 +23,15 @@ public class Reward {
     private Lotto lotto;
 
     // 로또 결과 및 수익률 확인 로직
-    public Reward(List<Lotto> lottos, int count, Lotto selectLotto, int bonusNum) {
+    public Reward() {
+        this.rankList = new ArrayList<>();
+    }
+
+    public void setReward(List<Lotto> lottos, int count, Lotto selectLotto, int bonusNum) {
         this.lottos = lottos;
         this.count = count;
         this.selectLotto = selectLotto;
         this.bonusNum = bonusNum;
-        this.rankList = new ArrayList<>();
     }
 
     public List<Rank> compareLotto() {
