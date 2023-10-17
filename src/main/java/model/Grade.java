@@ -29,4 +29,30 @@ public enum Grade {
     public String getAnnounce() {
         return announce;
     }
+
+    public static Grade checkGrade(int score, Lotto lotto, WinningLotto winningLotto) {
+
+        if(score == Grade.FIRST.getScore()) {
+            return Grade.FIRST;
+        }
+
+        if(score == Grade.SECOND.getScore()) {
+
+            if(winningLotto.checkBonus(lotto)) {
+                return Grade.SECOND;
+            }
+
+            return Grade.THIRD;
+        }
+
+        if(score == Grade.FOURTH.getScore()) {
+            return Grade.FOURTH;
+        }
+
+        if(score == Grade.FIFTH.getScore()) {
+            return Grade.FIFTH;
+        }
+
+        return null;
+    }
 }

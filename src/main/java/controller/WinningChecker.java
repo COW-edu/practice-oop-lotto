@@ -14,7 +14,7 @@ public class WinningChecker {
 
         for(Lotto lotto : lottos) {
             int score = rateScore(lotto, winningLotto);
-            Grade grade = checkGrade(score, lotto, winningLotto);
+            Grade grade = Grade.checkGrade(score, lotto, winningLotto);
 
             if(grade != null) {
                 grades.add(grade);
@@ -35,32 +35,6 @@ public class WinningChecker {
         }
 
         return score;
-    }
-
-    private Grade checkGrade(int score, Lotto lotto, WinningLotto winningLotto) {
-
-        if(score == Grade.FIRST.getScore()) {
-            return Grade.FIRST;
-        }
-
-        if(score == Grade.SECOND.getScore()) {
-
-            if(winningLotto.checkBonus(lotto)) {
-                return Grade.SECOND;
-            }
-
-            return Grade.THIRD;
-        }
-
-        if(score == Grade.FOURTH.getScore()) {
-            return Grade.FOURTH;
-        }
-
-        if(score == Grade.FIFTH.getScore()) {
-            return Grade.FIFTH;
-        }
-
-        return null;
     }
 
     public double checkReward(List<Grade> grades) {
