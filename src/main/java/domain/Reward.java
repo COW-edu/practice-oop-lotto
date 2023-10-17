@@ -1,28 +1,21 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import Enum.Rank;
-import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
-
-import static lotto.Lotto.PRICE;
 
 public class Reward {
 
-    private int count = 0;
+    private int count;
+    private int bonusNum;
 
     private List<Rank> rankList;
     private List<Lotto> lottos;
-    private int bonusNum;
     private Lotto selectLotto;
     private Lotto lotto;
 
-    // 로또 결과 및 수익률 확인 로직
     public Reward() {
         this.rankList = new ArrayList<>();
     }

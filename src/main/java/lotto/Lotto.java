@@ -1,7 +1,6 @@
 package lotto;
 
 import Enum.ErrorMessage;
-
 import java.util.List;
 
 public class Lotto {
@@ -14,7 +13,6 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        // TODO checkOutOfRange 함수 테스트
         validate(numbers);
         checkOutOfRange(numbers);
         checkDuplicateLotto(numbers);
@@ -33,14 +31,12 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    // 검증 후 반환
     public int userBonusNum(String userBonusStr) {
         convertBonusNum(userBonusStr);
         checkDuplicateBonus(Integer.parseInt(userBonusStr));
         return Integer.parseInt(userBonusStr);
     }
 
-    // 입력받은 보너스 번호 검증
     private void convertBonusNum(String number) {
         try {
             Integer.valueOf(number);
@@ -49,7 +45,6 @@ public class Lotto {
         }
     }
 
-    // 로또 번호 범위 확인
     public void checkOutOfRange(List<Integer> userLottoNumber) {
         boolean range = userLottoNumber.stream()
                             .anyMatch(number -> number < MIN_RANGE || number > MAX_RANGE);
@@ -70,7 +65,6 @@ public class Lotto {
         return true;
     }
 
-    // 선택한 6개의 숫자와 보너스 숫자 중복 확인 로직
     private boolean checkDuplicateBonus(int bonusNumber) {
         if(this.numbers.contains(bonusNumber)) {
             ErrorMessage.DUPLICATEBONUS.announceException();

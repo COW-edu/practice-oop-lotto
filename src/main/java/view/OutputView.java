@@ -1,10 +1,7 @@
 package view;
 
 import lotto.Lotto;
-
-import java.util.Collections;
 import java.util.List;
-import Enum.Rank;
 
 public class OutputView {
 
