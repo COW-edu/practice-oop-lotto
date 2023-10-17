@@ -22,7 +22,7 @@ public class InputView {
         return numbers;
     }
 
-    public int requestBonus(List<Integer> numbers) {
+    public int requestBonus() {
         String input = Console.readLine();
         return checkIsNumber(input);
     }

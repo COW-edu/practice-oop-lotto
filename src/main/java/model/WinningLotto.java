@@ -30,4 +30,9 @@ public class WinningLotto extends Lotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다");
         }
     }
+
+    public boolean checkBonus(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        return numbers.contains(this.bonus);
+    }
 }

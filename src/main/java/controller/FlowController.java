@@ -51,7 +51,7 @@ public class FlowController {
         outputView.requestWinning();
         List<Integer> numbers = inputView.requestWinning();
         outputView.requestBonus();
-        int bonus = inputView.requestBonus(numbers);
+        int bonus = inputView.requestBonus();
         return winningLottoFactory.makeWinning(numbers, bonus);
     }
 

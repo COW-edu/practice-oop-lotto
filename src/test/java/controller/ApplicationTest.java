@@ -1,7 +1,10 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -50,6 +53,16 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @DisplayName("금액이 잘못되면 예외가 발생한다")
+    @ValueSource(strings = {"0", "1500"})
+    void 금액_테스트(String amount) {
+        assertSimpleTest(() -> {
+            runException(amount);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

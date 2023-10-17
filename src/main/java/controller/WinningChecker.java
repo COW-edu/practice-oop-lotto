@@ -45,7 +45,7 @@ public class WinningChecker {
 
         if(score == Grade.SECOND.getScore()) {
 
-            if(checkBonus(lotto, winningLotto)) {
+            if(winningLotto.checkBonus(lotto)) {
                 return Grade.SECOND;
             }
 
@@ -61,12 +61,6 @@ public class WinningChecker {
         }
 
         return null;
-    }
-
-    private boolean checkBonus(Lotto lotto, WinningLotto winningLotto) {
-        List<Integer> numbers = lotto.getNumbers();
-        int bonusNumber = winningLotto.getBonus();
-        return numbers.contains(bonusNumber);
     }
 
     public double checkReward(List<Grade> grades) {
