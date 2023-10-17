@@ -1,7 +1,8 @@
-package lotto.Constant;
+package lotto.constant;
 
 public enum MatchingNumberCount {
-    // enum 클래스 이용
+    ONE(1, 0),
+    TWO(2, 0),
     THREE(3, 5000),
     FOUR(4, 50000),
     FIVE(5, 1500000),
