@@ -13,10 +13,6 @@ public class WinningLotto extends Lotto {
         this.bonus = bonus;
     }
 
-    public int getBonus() {
-        return bonus;
-    }
-
     private void checkDuplication(List<Integer> numbers, int bonus) {
         if (numbers.contains(bonus)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다");

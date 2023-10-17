@@ -15,11 +15,13 @@ public class OutputView {
     private void showNumber(List<Integer> numbers) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(OPENING_BRACKET);
+
         numbers.stream()
                 .sorted(Integer::compareTo)
                 .forEach(number -> stringBuilder.append(number).append(COMMA));
         stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
         stringBuilder.append(CLOSING_BRACKET);
+
         System.out.println(stringBuilder.toString());
     }
 
