@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.View.Counter;
+import lotto.view.Counter;
 
 public class Application implements Runnable {
 
