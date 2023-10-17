@@ -11,16 +11,10 @@ public class LottoSeller {
 
     private static final int LOTTO_PRICE = 1000;
 
-    private LottoFactory lottoFactory;
-
-    public LottoSeller() {
-        this.lottoFactory = new LottoFactory();
-    }
-
     public List<Lotto> buyLottos(int amount) {
         int lottoAmount = calculateLottoAmount(amount);
         List<Lotto> lottos = IntStream.rangeClosed(1, lottoAmount)
-                .mapToObj(i -> lottoFactory.makeLotto())
+                .mapToObj(i -> LottoFactory.makeLotto())
                 .collect(Collectors.toList());
 
         return lottos;

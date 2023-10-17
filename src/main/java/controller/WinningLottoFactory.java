@@ -7,7 +7,7 @@ import java.util.List;
 
 public class WinningLottoFactory {
 
-    public WinningLotto makeWinning(List<Integer> numbers, int bonus) {
+    public static WinningLotto makeWinning(List<Integer> numbers, int bonus) {
         return new WinningLotto(numbers, bonus);
     }
 }
