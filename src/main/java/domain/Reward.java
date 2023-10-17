@@ -83,7 +83,7 @@ public class Reward {
             if(lottoNumber.contains(this.bonusNum)) {
                 return Rank.SECOND.getBonus();
             }
-         return false;
+            return false;
     }
 
     public double getPercentage() {

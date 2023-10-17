@@ -69,4 +69,11 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("선택한 로또 번호와 보너스 번호가 중복인 경우 예외가 발생한다.")
+    @Test
+    void checkDuplicateBonusNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).userBonusNum("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
