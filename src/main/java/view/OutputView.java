@@ -40,4 +40,8 @@ public class OutputView {
     public void announceReward(double profit) {
         System.out.println("총 수익률은 " + profit + "%입니다.");
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }

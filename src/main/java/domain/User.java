@@ -1,14 +1,13 @@
-package user;
+package domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import Enum.ErrorMessage;
 
-import static lotto.Lotto.*;
+import static lotto.Lotto.PRICE;
 
 public class User {
 
@@ -18,8 +17,9 @@ public class User {
         // 사용자 로또 구매 후 번호 생성 및 exception 처리
     }
 
-    public int lottoCount(int money) {
-        this.payment = money;
+    public int lottoCount(String money) {
+        convertInteger(money);
+        int payment = Integer.parseInt(money);
         checkCount(payment);
         return payment/PRICE;
     }
@@ -28,7 +28,7 @@ public class User {
         if (payment%PRICE != 0) {
             String error = ErrorMessage.BUYINGRANGE.announceException();
             System.out.println(error);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(error);
         }
     }
 
@@ -45,7 +45,7 @@ public class User {
         try {
             Integer.valueOf(number);
         } catch (NumberFormatException exception) {
-            ErrorMessage.CATCHSTRING.announceException();
+            throw new IllegalArgumentException(ErrorMessage.CATCHSTRING.announceException());
         }
         return true;
     }

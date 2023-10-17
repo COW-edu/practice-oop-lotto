@@ -1,11 +1,16 @@
-package lotto;
+package domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import Enum.Rank;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
+
+import static lotto.Lotto.PRICE;
 
 public class Reward {
 
@@ -95,4 +100,6 @@ public class Reward {
         }
         return announce;
     }
+
+
 }

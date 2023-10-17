@@ -1,7 +1,9 @@
 package lotto;
 
 import controller.Controller;
-import user.User;
+import domain.Reward;
+import domain.User;
+import lotto.RandomLotto;
 import view.OutputView;
 
 public class Application {

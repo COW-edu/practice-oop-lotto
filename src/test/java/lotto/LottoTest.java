@@ -1,14 +1,11 @@
 package lotto;
 
+import domain.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import user.User;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -34,7 +31,7 @@ class LottoTest {
     @DisplayName("로또 구매 금액이 1000원 단위인지 확인한다.")
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 3000})
-    void userLottoNumber(int money) {
+    void userLottoNumber(String money) {
         // Given
         User user = new User();
 
@@ -49,7 +46,7 @@ class LottoTest {
     @DisplayName("로또 구매 금액이 1000원 단위가 아닌 경우를 확인한다.")
     @ParameterizedTest
     @ValueSource(ints = {100, 200, 500, 1500})
-    void lottoMoneyException(int money) {
+    void lottoMoneyException(String money) {
 
         assertThatThrownBy(() -> new User().lottoCount(money)).isInstanceOf(IllegalArgumentException.class);
 
@@ -62,7 +59,7 @@ class LottoTest {
         User user = new User();
 
         // When & Then
-        assertThatThrownBy(() -> user.lottoCount(999))
+        assertThatThrownBy(() -> user.lottoCount("999"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
