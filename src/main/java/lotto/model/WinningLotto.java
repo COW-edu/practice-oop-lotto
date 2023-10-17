@@ -1,21 +1,17 @@
 package lotto.model;
 
-import java.util.List;
+public class WinningLotto {
+	private Lotto winningNumbers;
+	private int bonusBall;
 
-public class WinningResult {
-	private List<Integer> winningNumbers;
-	// private final Lotto lotto;
-	private int bonusball;
-
-	public WinningResult(Lotto lotto, int bonusball) {
-		this.lotto = lotto;
-		this.bonusball = bonusball;
+	public WinningLotto(Lotto winningNumbers, int bonusBall) {
+		this.winningNumbers = winningNumbers;
+		this.bonusBall = bonusBall;
 	}
 
 	public Ranking match(Lotto playerNumber) {
-		int countOfMatch = playerNumber.countMatch(lotto);
-		boolean bonusCheck = playerNumber.containNumber(bonusball);
+		int countOfMatch = playerNumber.countMatch(winningNumbers);
+		boolean bonusCheck = playerNumber.containNumber(bonusBall);
 		return Ranking.valueOf(countOfMatch, bonusCheck);
 	}
-
 }
