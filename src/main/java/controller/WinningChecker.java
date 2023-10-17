@@ -25,25 +25,17 @@ public class WinningChecker {
     }
 
     private int rateScore(Lotto lotto, WinningLotto winningLotto) {
-        int score = 0;
         List<Integer> numbers = lotto.getNumbers();
-
-        for(int winningNumber : winningLotto.getNumbers()) {
-            if(numbers.contains(winningNumber)) {
-                score++;
-            }
-        }
-
+        int score = (int) winningLotto.getNumbers().stream()
+                .filter(numbers::contains)
+                .count();
         return score;
     }
 
     public double checkReward(List<Grade> grades) {
-        double reward = 0;
-
-        for(Grade grade : grades) {
-            reward = reward + grade.getReward();
-        }
-
+        double reward = grades.stream()
+                .mapToInt(Grade::getReward)
+                .sum();
         return reward;
     }
 

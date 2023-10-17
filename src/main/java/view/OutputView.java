@@ -30,9 +30,9 @@ public class OutputView {
     public void showOrder(List<Lotto> lottos) {
         System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
 
-        for(Lotto lotto : lottos) {
-            showNumber(lotto.getNumbers());
-        }
+        lottos.stream()
+                .map(Lotto::getNumbers)
+                .forEach(this::showNumber);
     }
 
     public void requestWinning() {

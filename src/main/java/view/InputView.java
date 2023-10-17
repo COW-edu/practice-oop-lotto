@@ -48,12 +48,12 @@ public class InputView {
     }
 
     private List<Integer> splitNumber(String input) {
-        String[] numberList = input.split(SEPARATOR);
+        List<String> numberList = List.of(input.split(SEPARATOR));
         List<Integer> numbers = new ArrayList<Integer>();
 
-        for(String number : numberList) {
-            numbers.add(checkIsNumber(number));
-        }
+        numberList.stream()
+                .map(this::checkIsNumber) // 또는 number -> checkIsNumber(number)
+                .forEach(numbers::add);
 
         return numbers;
     }

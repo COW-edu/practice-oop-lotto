@@ -16,7 +16,6 @@ public class LottoSeller {
         List<Lotto> lottos = IntStream.rangeClosed(1, lottoAmount)
                 .mapToObj(i -> LottoFactory.makeLotto())
                 .collect(Collectors.toList());
-
         return lottos;
     }
 
