@@ -14,16 +14,16 @@ public class LottoController {
 
     // field Element
     private int purchaseMoney;
-    public int purchaseAmount;
-    public int bonusNumber;
+    private int purchaseAmount;
+    private int bonusNumber;
     private List<Lotto> selectedLottoNumList;
     private List<Integer> winningNumber;
     private int[] checkedRankList;
 
-    public LottoController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.lottoService = new LottoService();
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.lottoService = lottoService;
     }
 
 
@@ -33,16 +33,16 @@ public class LottoController {
         purchaseAmount = lottoService.calculatePurchaseAmount(purchaseMoney);
         outputView.outputLottoAmount(purchaseAmount);
 
-        this.selectedLottoNumList = lottoService.createLottoMember(purchaseAmount);
-        this.outputView.outputSelectedLottoNum(selectedLottoNumList);
+        selectedLottoNumList = lottoService.createLottoMember(purchaseAmount);
+        outputView.outputSelectedLottoNum(selectedLottoNumList);
 
-        this.winningNumber = lottoService.convertWinningNumber(inputView.inputWinningNum());
-        this.bonusNumber = inputView.inputBonus();
+        winningNumber = lottoService.convertWinningNumber(inputView.inputWinningNum());
+        bonusNumber = inputView.inputBonus();
 
-        this.checkedRankList = lottoService.compareLottoNumber(selectedLottoNumList, winningNumber, bonusNumber);
+        checkedRankList = lottoService.compareLottoNumber(selectedLottoNumList, winningNumber, bonusNumber);
 
-        this.outputView.outputWinningStatistic(checkedRankList);
-        this.outputView.outputMoneyPercent(lottoService.calculateEarningRate(checkedRankList, purchaseMoney));
+        outputView.outputWinningStatistic(checkedRankList);
+        outputView.outputMoneyPercent(lottoService.calculateEarningRate(checkedRankList, purchaseMoney));
     }
 
 }

@@ -27,21 +27,21 @@ public class WinningLotto {
 
     private void validateWinningNumberSize(List<Integer> winningNumList) {
         if (winningNumList.size() != LOTTO_LIST_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_LOTTONUM_COUNT.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_LOTTO_NUMBER_COUNT.getErrorMessage());
         }
     }
 
     private void validateWinningNumberRange(List<Integer> winningNumList) {
         for (int checkNum : winningNumList) {
             if (checkNum < LOTTO_NUMBER_RANGE_FIRST && checkNum > LOTTO_NUMBER_RANGE_LAST) {
-                throw new IllegalArgumentException(ErrorMessage.ERROR_WINNINGNUMBER_UNREASONABLE_RANGE.getErrorMessage());
+                throw new IllegalArgumentException(ErrorMessage.ERROR_WINNING_NUMBER_UNREASONABLE_RANGE.getErrorMessage());
             }
         }
     }
 
     private void validateWinningNumberDuplicate(List<Integer> winningNumList) {
         if (winningNumList.size() != winningNumList.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_LOTTONUM_DUPLICATE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_LOTTO_NUMBER_DUPLICATE.getErrorMessage());
         }
     }
 }

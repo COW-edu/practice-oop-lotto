@@ -1,5 +1,6 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Domain.Lotto;
 import lotto.Domain.WinningLotto;
 import lotto.config.ErrorMessage;
@@ -15,14 +16,14 @@ public class LottoService {
     private static final int PURCHASE_PRICE = 1000;
     private static final int SECOND_RANK_KEY = 7;
     private static final int LOTTO_LIST_SIZE = 6;
-    private static final int LOTTO_NUMBER_RANGE_FIRST = 1;
-    private static final int LOTTO_NUMBER_RANGE_LAST = 45;
+    private static final int LOTTO_NUMBER_RANGE_FRONT = 1;
+    private static final int LOTTO_NUMBER_RANGE_BACK = 45;
     private static final int RANKING_LIST_SIZE = 8;
     private static final int SELECTED_SECOND_RANK_KEY = 5;
     private static final String SPLIT_UNIT = ",";
 
     // components
-    private static WinningLotto winningLotto;
+    private final WinningLotto winningLotto;
 
     public LottoService() {
         this.winningLotto = new WinningLotto();
@@ -37,19 +38,19 @@ public class LottoService {
 
     private void validatePurchaseAmount(int purchaseMoney) {
         if (purchaseMoney % PURCHASE_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASEMONEY_NO_DIVISION.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_MONEY_NO_DIVISION.getErrorMessage());
         }
     }
 
     private void validatePurchaseMinimumMoney(int purchaseMoney) {
         if (purchaseMoney < PURCHASE_PRICE) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASEMONEY_MINIMUM_MONEY.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_MONEY_MINIMUMBER_MONEY.getErrorMessage());
         }
     }
 
     private void validateBonusNumberDuplicate(int bonusNumber, List<Integer> winningNumList) {
         if (winningNumList.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_BONUSNUM_DUPLICATE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_BONUS_NUMBER_DUPLICATE.getErrorMessage());
         }
     }
 
@@ -66,7 +67,7 @@ public class LottoService {
     public List<Lotto> createLottoMember(int purchaseAmount) {
         List<Lotto> selectedLottoNumber = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            List<Integer> member = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_RANGE_FIRST, LOTTO_NUMBER_RANGE_LAST, LOTTO_LIST_SIZE);
+            List<Integer> member = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_RANGE_FRONT, LOTTO_NUMBER_RANGE_BACK, LOTTO_LIST_SIZE);
             Lotto lotto = new Lotto(member);
             selectedLottoNumber.add(lotto);
         }
@@ -90,11 +91,12 @@ public class LottoService {
         List<Integer> tempList;
         int[] checkedRankList = new int[RANKING_LIST_SIZE];
 
-        for (Lotto selectedLott : selectedLottoNumList) {
-            List<Integer> tempSelected = selectedLott.getLottoList();
+        for (Lotto lotto : selectedLottoNumList) {
+            List<Integer> tempSelected = lotto.getLottoList();
 
-            tempList = tempSelected.stream().filter(o -> winningNumList.stream()
-                    .anyMatch(Predicate.isEqual(o))).collect(Collectors.toList());
+            tempList = tempSelected.stream()
+                    .filter(o -> winningNumList.stream().anyMatch(Predicate.isEqual(o)))
+                    .collect(Collectors.toList());
 
             checkedRankList[tempList.size()]++;
 
