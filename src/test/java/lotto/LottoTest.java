@@ -30,7 +30,7 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
     @DisplayName("로또 구매 금액이 1000원 단위인지 확인한다.")
     @ParameterizedTest
-    @ValueSource(ints = {1000, 2000, 3000})
+    @ValueSource(strings = {"1000", "2000", "3000"})
     void userLottoNumber(String money) {
         // Given
         User user = new User();
@@ -45,7 +45,7 @@ class LottoTest {
 
     @DisplayName("로또 구매 금액이 1000원 단위가 아닌 경우를 확인한다.")
     @ParameterizedTest
-    @ValueSource(ints = {100, 200, 500, 1500})
+    @ValueSource(strings = {"100", "200", "500", "1500"})
     void lottoMoneyException(String money) {
 
         assertThatThrownBy(() -> new User().lottoCount(money)).isInstanceOf(IllegalArgumentException.class);

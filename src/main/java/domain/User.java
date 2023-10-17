@@ -14,12 +14,12 @@ public class User {
     private int payment;
 
     public User() {
-        // 사용자 로또 구매 후 번호 생성 및 exception 처리
+
     }
 
     public int lottoCount(String money) {
         convertInteger(money);
-        int payment = Integer.parseInt(money);
+        payment = Integer.parseInt(money);
         checkCount(payment);
         return payment/PRICE;
     }
