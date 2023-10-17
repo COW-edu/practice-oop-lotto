@@ -6,8 +6,7 @@ import lotto.Domain.WinningLotto;
 import lotto.config.ErrorMessage;
 import lotto.Domain.Prize;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -110,14 +109,6 @@ public class LottoService {
 
     public double calculateEarningRate(int[] checkedRankList, int purchaseMoney) {
         double tempSum = 0.0;
-
-//        List<String> humanNames = humans.stream()
-//                .map(h -> h.getName())
-//                .collect(Collectors.toList());
-//
-//        for(Prize prize : Prize.values()){
-//            prize.get
-//        }
 
         for (int i = 3; i < checkedRankList.length; i++) {
             if (checkedRankList[i] != 0 && i == 3) {

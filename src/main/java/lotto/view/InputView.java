@@ -16,8 +16,7 @@ public class InputView {
     }
 
     public int inputPurchaseMoney() {
-        System.out.println(INPUT_LOTTO_MONEY);
-        int inputPurchaseAmount = Integer.parseInt(Console.readLine());
+        int inputPurchaseAmount = inputIntegerStandard(INPUT_LOTTO_MONEY);
         return inputPurchaseAmount;
     }
 
@@ -29,12 +28,17 @@ public class InputView {
     }
 
     public int inputBonus() {
-        System.out.println("\n" + INPUT_BONUS_NUMBER);
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = inputIntegerStandard(INPUT_BONUS_NUMBER);
 
         validateRangeNumber(bonusNumber);
         return bonusNumber;
     }
+
+    private int inputIntegerStandard(String message) {
+        System.out.println("\n" + message);
+        return Integer.parseInt(Console.readLine());
+    }
+
 
     private void validateRangeNumber(int bonusNumber) {
         if (bonusNumber < LOTTO_NUMBER_RANGE_FIRST && bonusNumber > LOTTO_NUMBER_RANGE_LAST) {

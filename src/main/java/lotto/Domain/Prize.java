@@ -14,6 +14,7 @@ public enum Prize {
     private int winningMoney;
     private boolean isBonus;
 
+
     private Prize(int winningCount, int winningMoney, boolean isBonus) {
         this.winningCount = winningCount;
         this.winningMoney = winningMoney;
