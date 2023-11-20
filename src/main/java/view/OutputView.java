@@ -5,6 +5,14 @@ import java.util.List;
 
 public class OutputView {
 
+    public void customerRequest() {
+        System.out.println("1. 로또 구매");
+        System.out.println("2. 당첨 번호 입력");
+        System.out.println("3. 보너스 번호 입력");
+        System.out.println("4. 결과 확인");
+        System.out.println("5. 종료");
+    }
+
     public void inputMoney() {
         System.out.println("구입 금액을 입력해주세요.");
     }
