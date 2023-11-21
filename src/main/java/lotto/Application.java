@@ -1,13 +1,13 @@
 package lotto;
 
-import lotto.view.Counter;
+import lotto.control.FrontController;
 
 public class Application implements Runnable {
 
     @Override
     public void run() {
-        Counter counter = new Counter();
-        counter.run();
+        FrontController frontController = new FrontController();
+        frontController.run();
     }
 
     public static void main(String[] args) {
