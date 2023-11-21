@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import static Model.Validator.*;
 
 public class Lotto {
+
+    private Long id;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,6 +26,14 @@ public class Lotto {
 
     public List<Integer> getNumbers(){
         return numbers;
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 
     @Override
