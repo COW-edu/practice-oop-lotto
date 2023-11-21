@@ -1,6 +1,7 @@
 package Enum;
 
 import static lotto.Lotto.*;
+import static controller.CustomerController.*;
 
 public enum ErrorMessage {
 

@@ -2,17 +2,15 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.Customer;
-import lotto.Lotto;
 import Enum.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Lotto.PRICE;
-
 public class CustomerController {
 
+    public static final int PRICE = 1000;
     private static int count;
 
     private Customer customer;
@@ -42,18 +40,19 @@ public class CustomerController {
 
     public List<Integer> userLottoNumber(String userLottoString) {
         String[] selectNumber = userLottoString.split(",");
-
-        return Arrays.stream(selectNumber)
+        List<Integer> test = Arrays.stream(selectNumber)
                 .filter(this::convertInteger)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+        return test;
     }
 
     public int selectBonusNumber() {
         String userBonusStr = Console.readLine();
         convertInteger(userBonusStr);
-        checkDuplicateBonus(Integer.parseInt(userBonusStr));
-        return Integer.parseInt(userBonusStr);
+        int bonusNumber = Integer.parseInt(userBonusStr);
+        checkDuplicateBonus(bonusNumber);
+        return bonusNumber;
     }
 
     private boolean convertInteger(String number) {
@@ -73,12 +72,16 @@ public class CustomerController {
         }
     }
 
-    private boolean checkDuplicateBonus(int bonusNumber) {
+    private void checkDuplicateBonus(int bonusNumber) {
         if(customer.getSelectNumber().contains(bonusNumber)) {
-            ErrorMessage.DUPLICATEBONUS.announceException();
+            String error = ErrorMessage.DUPLICATEBONUS.announceException();
+            System.out.println(error);
             throw new IllegalArgumentException();
         }
         customer.setBonusNumber(bonusNumber);
-        return true;
+    }
+
+    public List<Integer> getSelectLotto() {
+        return customer.getSelectNumber();
     }
 }

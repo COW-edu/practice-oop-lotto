@@ -1,101 +1,38 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import Enum.Rank;
 import lotto.Lotto;
 
 public class Reward {
 
-    private int count;
-    private int bonusNum;
-
-    private List<Rank> rankList;
     private List<Lotto> lottos;
     private Lotto selectLotto;
-    private Lotto lotto;
+    public double profit;
 
     public Reward() {
-        this.rankList = new ArrayList<>();
+
     }
 
-    public void setReward(List<Lotto> lottos, int count, Lotto selectLotto, int bonusNum) {
+    public void setReward(List<Lotto> lottos, Lotto selectLotto) {
         this.lottos = lottos;
-        this.count = count;
         this.selectLotto = selectLotto;
-        this.bonusNum = bonusNum;
     }
 
-    public List<Rank> compareLotto() {
-        for(Lotto lotto : this.lottos) {
-            this.rankList = addRankList(countResult(lotto));
-        }
-        return this.rankList;
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
-    private int countResult(Lotto lotto) {
-        this.lotto = lotto;
-        List<Integer> lottoNumber = this.lotto.getLottoNumbers();
-        return (int) this.selectLotto.getLottoNumbers().stream()
-                .filter(selectNumber -> lottoNumber.contains(selectNumber))
-                .count();
+    public Lotto getSelectLotto() {
+        return selectLotto;
     }
 
-    private List<Rank> addRankList(int rankResult) {
-        for(Rank rank : Rank.values()) {
-            if(rankResult == rank.getCountMatch()) {
-                saveRank(rankResult);
-                break;
-            }
-        }
-        return this.rankList;
+    public void setProfit(double profit) {
+        this.profit = profit;
     }
 
-    private void saveRank(int rankResult) {
-        if(rankResult == Rank.FIRST.getCountMatch()) {
-            this.rankList.add(Rank.FIRST);
-        }
-        if(rankResult == Rank.SECOND.getCountMatch() && bonusCheck()) {
-            this.rankList.add(Rank.SECOND);
-        }
-        if(rankResult == Rank.THIRD.getCountMatch() && !bonusCheck()) {
-            this.rankList.add(Rank.THIRD);
-        }
-        if(rankResult == Rank.FOURTH.getCountMatch()) {
-            this.rankList.add(Rank.FOURTH);
-        }
-        if(rankResult == Rank.FIFTH.getCountMatch()) {
-            this.rankList.add(Rank.FIFTH);
-        }
-        this.rankList.add(Rank.MISS);
-    }
-
-    private boolean bonusCheck() {
-        List<Integer> lottoNumber = this.lotto.getLottoNumbers();
-            if(lottoNumber.contains(this.bonusNum)) {
-                return Rank.SECOND.getBonus();
-            }
-            return false;
-    }
-
-    public double getPercentage() {
-        double rewardMoney = 0;
-        for(Rank rank : this.rankList) {
-            rewardMoney += rank.getReward();
-        }
-        double profit = rewardMoney / (lottos.size() * 10);
+    public double getProfit() {
         return profit;
     }
-
-    public List<String> makeAnnounce(List<Rank> rewardList) {
-        List<String> announce = new ArrayList<>();
-        Rank[] values = Rank.values();
-        for(int i=1; i<values.length;i++) {
-            announce.add(values[i].getAnnounceMessage() + Collections.frequency(rewardList, values[i])  + "개");
-        }
-        return announce;
-    }
-
-
 }

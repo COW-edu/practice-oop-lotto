@@ -4,7 +4,6 @@ import Enum.ErrorMessage;
 import java.util.List;
 
 public class Lotto {
-    public final static int PRICE = 1000;
     public static final int COUNT_RANGE = 6;
 
     public static final int MIN_RANGE = 1;
@@ -31,10 +30,6 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    public void userBonusNum(int userBonusStr) {
-        checkDuplicateBonus(userBonusStr);
-    }
-
     public void checkOutOfRange(List<Integer> userLottoNumber) {
         boolean range = userLottoNumber.stream()
                             .anyMatch(number -> number < MIN_RANGE || number > MAX_RANGE);
@@ -50,14 +45,6 @@ public class Lotto {
                 .count();
         if(duplicate != lottoNumbers.size()) {
             ErrorMessage.DUPLICATE.announceException();
-            throw new IllegalArgumentException();
-        }
-        return true;
-    }
-
-    private boolean checkDuplicateBonus(int bonusNumber) {
-        if(this.numbers.contains(bonusNumber)) {
-            ErrorMessage.DUPLICATEBONUS.announceException();
             throw new IllegalArgumentException();
         }
         return true;
