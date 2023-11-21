@@ -1,10 +1,11 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Domain.Lotto;
-import lotto.Domain.WinningLotto;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.config.ErrorMessage;
-import lotto.Domain.Prize;
+import lotto.domain.Prize;
+import lotto.repository.LottoRepository;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -23,24 +24,27 @@ public class LottoService {
 
     // components
     private final WinningLotto winningLotto;
+    private final LottoRepository lottoRepository;
 
     public LottoService() {
         this.winningLotto = new WinningLotto();
+        this.lottoRepository = new LottoRepository();
     }
 
     // validation
+    //
     private void validatePurchase(int purchaseMoney) {
         validatePurchaseAmount(purchaseMoney);
         validatePurchaseMinimumMoney(purchaseMoney);
     }
 
-
+    //
     private void validatePurchaseAmount(int purchaseMoney) {
         if (purchaseMoney % PURCHASE_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_MONEY_NO_DIVISION.getErrorMessage());
         }
     }
-
+    //
     private void validatePurchaseMinimumMoney(int purchaseMoney) {
         if (purchaseMoney < PURCHASE_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_MONEY_MINIMUMBER_MONEY.getErrorMessage());
@@ -55,10 +59,9 @@ public class LottoService {
 
     // func
 
-
+    //
     public int calculatePurchaseAmount(int purchaseMoney) {
         validatePurchase(purchaseMoney);
-
         return purchaseMoney / PURCHASE_PRICE;
     }
 
@@ -68,6 +71,8 @@ public class LottoService {
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> member = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_RANGE_FRONT, LOTTO_NUMBER_RANGE_BACK, LOTTO_LIST_SIZE);
             Lotto lotto = new Lotto(member);
+
+            lottoRepository.save(lotto);
             selectedLottoNumber.add(lotto);
         }
         return selectedLottoNumber;

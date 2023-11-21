@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.domain;
 
 import lotto.config.ErrorMessage;
 
@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private Long id;
     private static final int LOTTO_SIZE = 6;
 
     public Lotto(List<Integer> numbers) {
@@ -15,6 +16,14 @@ public class Lotto {
 
     public List<Integer> getLottoList() {
         return this.numbers;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     private void validate(List<Integer> numbers) {
