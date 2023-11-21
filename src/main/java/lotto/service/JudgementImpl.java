@@ -4,13 +4,14 @@ import static lotto.constant.LottoRule.LOTTO_ROW_SIZE;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.entity.Lotto;
 import lotto.entity.WinLotto;
 
 public class JudgementImpl implements Judgement {
 
-    private List<Integer> resultList = new ArrayList<>();
+    private final List<Integer> resultList = new ArrayList<>();
 
     private WinLotto winLotto;
     private int bonusNumber;
@@ -18,11 +19,9 @@ public class JudgementImpl implements Judgement {
     public List<Integer> resultJudge(List<Lotto> lottoList, WinLotto winLotto, int bonusNumber) {
         this.winLotto = winLotto;
         this.bonusNumber = bonusNumber;
-        lottoList.forEach(lotto -> {
-            resultList.add(rowCompare(lotto));
-        });
-        return resultList;
-        
+        return lottoList.stream()
+            .map(this::rowCompare)
+            .collect(Collectors.toList());
     }
 
     public Integer rowCompare(Lotto lotto) {
