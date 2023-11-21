@@ -11,7 +11,6 @@ public class LottoController {
 
     private List<Lotto> lottos;
     private Lotto selectLotto;
-    private int bonusNumber;
 
     public LottoController() {
 
@@ -27,8 +26,4 @@ public class LottoController {
         return selectLotto;
     }
 
-    public int makeBonusNumber(String selectBonusNumber) {
-        bonusNumber = this.selectLotto.userBonusNum(selectBonusNumber);
-        return bonusNumber;
-    }
 }

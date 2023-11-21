@@ -31,18 +31,8 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    public int userBonusNum(String userBonusStr) {
-        convertBonusNum(userBonusStr);
-        checkDuplicateBonus(Integer.parseInt(userBonusStr));
-        return Integer.parseInt(userBonusStr);
-    }
-
-    private void convertBonusNum(String number) {
-        try {
-            Integer.valueOf(number);
-        } catch (NumberFormatException exception) {
-            ErrorMessage.CATCHSTRING.announceException();
-        }
+    public void userBonusNum(int userBonusStr) {
+        checkDuplicateBonus(userBonusStr);
     }
 
     public void checkOutOfRange(List<Integer> userLottoNumber) {

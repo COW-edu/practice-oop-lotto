@@ -1,58 +1,42 @@
 package domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import Enum.ErrorMessage;
-
-import static lotto.Lotto.PRICE;
 
 public class Customer {
 
     private int payment;
+    private List<Integer> selectNumber;
+    private int bonusNumber;
 
     public Customer() {
 
     }
 
-    public int lottoCount(String money) {
-        convertInteger(money);
-        payment = Integer.parseInt(money);
-        checkCount(payment);
-        return payment/PRICE;
+    public void setPayment(int payment) {
+        this.payment = payment;
     }
 
-    private void checkCount(int payment) {
-        if (payment%PRICE != 0) {
-            String error = ErrorMessage.BUYINGRANGE.announceException();
-            System.out.println(error);
-            throw new IllegalArgumentException(error);
-        }
+    public int getPayment() {
+        return payment;
     }
 
-    public List<Integer> userLottoNumber(String userLottoString) {
-        String[] selectNumber = userLottoString.split(",");
-
-        return Arrays.stream(selectNumber)
-                .filter(this::convertInteger)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+    public void setSelectNumber(List<Integer> selectNumber) {
+        this.selectNumber = selectNumber;
     }
 
-    private boolean convertInteger(String number) {
-        try {
-            Integer.valueOf(number);
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.CATCHSTRING.announceException());
-        }
-        return true;
+    public List<Integer> getSelectNumber() {
+        return selectNumber;
     }
 
-    public String getUserLottoBonus() {
-        String bonusNumberStr = Console.readLine();
-        return bonusNumberStr;
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
 }

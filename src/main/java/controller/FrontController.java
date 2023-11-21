@@ -65,7 +65,7 @@ public class FrontController {
         }
         if(requestNumber.equals("3")) {
             outputView.inputBonusNum();
-            this.userBonusNum = lottoController.makeBonusNumber(customerController.selectBonusNumber());
+            this.userBonusNum = customerController.selectBonusNumber();
 
         }
         if(requestNumber.equals("4")) {
