@@ -12,8 +12,4 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return lottos;
     }
-
-    public List<Integer> getLottoNumber(int i) {
-        return lottos.get(i).getNumbers();
-    }
 }

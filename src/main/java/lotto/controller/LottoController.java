@@ -31,12 +31,9 @@ public class LottoController {
         ResultPrize resultPrize = resultCalculator.calculateResult(winningLotto, lottos);
         outputResult.printResult(resultPrize);
 
-        double rate = getRate(new RateCalculator(), money, resultPrize);
+        RateCalculator rateCalculator = new RateCalculator();
+        double rate = rateCalculator.calculateRate(money, resultPrize);
         outputRate.printRate(rate);
-    }
-
-    private double getRate(RateCalculator rateCalculator, Money money, ResultPrize resultPrize) {
-        return rateCalculator.calculateRate(money, resultPrize);
     }
 
     private WinningLotto getWinningLotto() {
