@@ -4,19 +4,31 @@ import Model.Money;
 
 import static Model.Prize.*;
 
-public class Output {
+public class OutputView {
+    public void RequestMenu() {
+        System.out.println("1. 로또 구매");
+        System.out.println("2. 당첨 번호 입력");
+        System.out.println("3. 보너스 번호 입력");
+        System.out.println("4. 결과 확인");
+        System.out.println("5. 종료");
+    }
+
     public void printMoneyMessage() {
         System.out.print("금액을 입력하시오: ");
     }
+
     public void printLottoNumberMessage() {
         System.out.print("로또 번호를 입력하시오: ");
     }
+
     public void printBonusNumberMessage() {
         System.out.print("보너스 번호를 입력하시오: ");
     }
+
     public void printBuyLottoMessage(){
         System.out.println(Money.getAmountOfLotto() + "개를 구매했습니다.");
     }
+
     public void printResult(int[] matchingCounts) {
         System.out.println("당첨 통계");
         System.out.println("---");
