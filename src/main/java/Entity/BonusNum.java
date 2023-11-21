@@ -1,6 +1,6 @@
-package Model;
+package Entity;
 
-import static Model.Validator.validateBonus;
+import static Service.Validator.validateBonus;
 
 public class BonusNum {
     private static int bonusNumber = 0;

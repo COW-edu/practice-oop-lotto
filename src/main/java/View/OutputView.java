@@ -1,11 +1,11 @@
 package View;
 
-import Model.Lotto;
-import Model.Money;
+import Entity.Lotto;
+import Entity.Money;
 
 import java.util.List;
 
-import static Model.Prize.*;
+import static Entity.Prize.*;
 
 public class OutputView {
     public void RequestMenu() {

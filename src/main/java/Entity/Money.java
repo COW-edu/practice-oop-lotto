@@ -1,6 +1,6 @@
-package Model;
+package Entity;
 
-import static Model.Validator.*;
+import static Service.Validator.*;
 
 public class Money {
 

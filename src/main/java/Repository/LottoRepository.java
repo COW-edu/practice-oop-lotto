@@ -1,6 +1,6 @@
 package Repository;
 
-import Model.Lotto;
+import Entity.Lotto;
 
 import java.util.ArrayList;
 import java.util.HashMap;

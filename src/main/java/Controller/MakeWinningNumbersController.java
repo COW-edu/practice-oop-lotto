@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.WinningNum;
+import Entity.WinningNum;
 import View.InputView;
 import View.OutputView;
 

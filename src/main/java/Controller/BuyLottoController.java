@@ -1,8 +1,8 @@
 package Controller;
 
-import Model.Lotto;
-import Model.Money;
-import Model.PurchasedLotto;
+import Entity.Lotto;
+import Entity.Money;
+import Entity.PurchasedLotto;
 import Repository.LottoRepository;
 import View.InputView;
 import View.OutputView;

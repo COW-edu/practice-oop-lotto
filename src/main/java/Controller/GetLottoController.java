@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.Lotto;
+import Entity.Lotto;
 import Repository.LottoRepository;
 import View.OutputView;
 

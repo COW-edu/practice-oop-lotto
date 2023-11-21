@@ -1,9 +1,9 @@
-package Model;
+package Entity;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static Model.Validator.*;
+import static Service.Validator.*;
 
 public class Lotto {
 

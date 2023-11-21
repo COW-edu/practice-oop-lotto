@@ -1,9 +1,13 @@
-package Model;
+package Service;
+
+import Entity.Lotto;
+import Entity.Prize;
+import Entity.WinningNum;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static Model.Prize.*;
+import static Entity.Prize.*;
 
 public class Calculator {
 

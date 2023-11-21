@@ -1,6 +1,6 @@
-package Util;
+package Service;
 
-import Model.Lotto;
+import Entity.Lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoFactory {

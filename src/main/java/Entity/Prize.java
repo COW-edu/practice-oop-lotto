@@ -1,4 +1,4 @@
-package Model;
+package Entity;
 
 public enum Prize {
     FIRSTPRIZE(6, false, 2_000_000_000),

@@ -1,6 +1,6 @@
-package Model;
+package Entity;
 
-import Util.LottoFactory;
+import Service.LottoFactory;
 
 import java.util.Collections;
 import java.util.List;

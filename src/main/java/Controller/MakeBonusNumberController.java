@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.BonusNum;
+import Entity.BonusNum;
 import View.InputView;
 import View.OutputView;
 

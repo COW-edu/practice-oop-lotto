@@ -1,10 +1,10 @@
-package Model;
+package Entity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static Model.Validator.*;
+import static Service.Validator.*;
 
 public class WinningNum {
     private static List<Integer> winningNums = null;

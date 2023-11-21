@@ -1,7 +1,8 @@
 package Controller;
 
-import Model.*;
+import Entity.*;
 import Repository.LottoRepository;
+import Service.Calculator;
 import View.OutputView;
 
 import java.util.List;
