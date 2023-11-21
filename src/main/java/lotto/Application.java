@@ -14,8 +14,7 @@ public class Application {
         RandomLotto randomLotto = new RandomLotto();
         OutputView outputView = new OutputView();
         Reward reward = new Reward();
-
-
+        
         FrontController frontController = new FrontController(user, randomLotto, outputView, reward);
         frontController.run();
     }

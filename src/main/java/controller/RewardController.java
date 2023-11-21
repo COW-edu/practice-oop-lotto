@@ -3,28 +3,26 @@ package controller;
 import domain.Reward;
 import lotto.Lotto;
 import Enum.Rank;
-import view.OutputView;
 
 import java.util.List;
 
 public class RewardController {
 
     private final Reward reward;
-    private final OutputView outputView;
+    private List<Rank> rewardList;
 
-    public RewardController(OutputView outputView, Reward reward) {
+    public RewardController(Reward reward) {
         this.reward = reward;
-        this.outputView = outputView;
     }
 
-    public void decideReward(List<Lotto> lottos, int count, Lotto selectLotto, int userBonusNumber) {
+    public List<Rank> decideReward(List<Lotto> lottos, int count, Lotto selectLotto, int userBonusNumber) {
         this.reward.setReward(lottos, count, selectLotto, userBonusNumber);
-        List<Rank> rewardList = reward.compareLotto();
-        outputView.outputReward(reward.makeAnnounce(rewardList));
+        this.rewardList = reward.compareLotto();
+        return rewardList;
     }
 
-    public void announceProfit() {
+    public double announceProfit() {
         double profit = reward.getPercentage();
-        outputView.announceReward(profit);
+        return profit;
     }
 }

@@ -3,6 +3,7 @@ package controller;
 import camp.nextstep.edu.missionutils.Console;
 import domain.Reward;
 import domain.User;
+import Enum.Rank;
 import lotto.Lotto;
 import lotto.RandomLotto;
 import view.OutputView;
@@ -15,6 +16,7 @@ public class FrontController {
     private boolean start = true;
     private static int count;
     private static int userBonusNum;
+    private static double profit;
 
     private final User user;
     private final RandomLotto randomLotto;
@@ -35,9 +37,9 @@ public class FrontController {
         this.outputView = outputView;
         this.reward = reward;
 
-        this.customerController = new CustomerController(outputView, user);
-        this.lottoController = new LottoController(outputView);
-        this.rewardController = new RewardController(outputView, reward);
+        this.customerController = new CustomerController(user);
+        this.lottoController = new LottoController();
+        this.rewardController = new RewardController(reward);
     }
 
     public void run() {
@@ -50,18 +52,27 @@ public class FrontController {
 
     private void service(String requestNumber) {
         if(requestNumber.equals("1")) {
+            outputView.inputMoney();
             count = customerController.buyingLotto();
+            outputView.announcePayment(count);
+
             this.lottos = lottoController.makeRandomLottos(randomLotto, count);
+            outputView.announceRandomLottos(lottos);
         }
         if(requestNumber.equals("2")) {
+            outputView.inputLottoNum();
             this.selectLotto = customerController.selectLottoNumber();
         }
         if(requestNumber.equals("3")) {
+            outputView.inputBonusNum();
             this.userBonusNum = customerController.selectBonusNumber();
         }
         if(requestNumber.equals("4")) {
-            rewardController.decideReward(lottos, count, selectLotto, userBonusNum);
-            rewardController.announceProfit();
+            List<Rank> rewardList = rewardController.decideReward(lottos, count, selectLotto, userBonusNum);
+            outputView.outputReward(reward.makeAnnounce(rewardList));
+
+            profit = rewardController.announceProfit();
+            outputView.announceReward(profit);
         }
         if(requestNumber.equals("5")) {
             this.start = false;
