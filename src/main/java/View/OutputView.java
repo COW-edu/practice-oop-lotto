@@ -1,6 +1,9 @@
 package View;
 
+import Model.Lotto;
 import Model.Money;
+
+import java.util.List;
 
 import static Model.Prize.*;
 
@@ -9,9 +12,17 @@ public class OutputView {
         System.out.println("1. 로또 구매");
         System.out.println("2. 당첨 번호 입력");
         System.out.println("3. 보너스 번호 입력");
-        System.out.println("4. 결과 확인");
-        System.out.println("5. 종료");
+        System.out.println("4. 구매한 로또 조회");
+        System.out.println("5. 결과 확인");
+        System.out.println("6. 종료");
         System.out.print("메뉴 선택: ");
+    }
+
+    public void printLottos(List<Lotto> lottos) {
+        System.out.println("구매한 로또 목록: ");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void printMoneyMessage() {

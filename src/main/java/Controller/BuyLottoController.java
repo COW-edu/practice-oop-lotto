@@ -3,10 +3,13 @@ package Controller;
 import Model.Lotto;
 import Model.Money;
 import Model.PurchasedLotto;
+import Repository.LottoRepository;
 import View.InputView;
 import View.OutputView;
 
 public class BuyLottoController implements Controllable{
+    private static final LottoRepository lottoRepository = LottoRepository.getInstance();
+
     OutputView outputView = new OutputView();
     @Override
     public void process(){
@@ -20,7 +23,8 @@ public class BuyLottoController implements Controllable{
         outputView.printBuyLottoMessage();
         for (Lotto lotto : PurchasedLotto.getPurchasedLotto()) {
             lotto.validate_Lotto();
-            System.out.println(lotto);
+            Lotto saveLotto = lottoRepository.save(lotto);
+            System.out.println(saveLotto);
         }
     }
 }
