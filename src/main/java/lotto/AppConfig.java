@@ -1,10 +1,12 @@
 package lotto;
 
-import lotto.constant.TotalResultMap;
-import lotto.entity.User;
 import lotto.logic.Calculator;
+import lotto.logic.CalculatorImpl;
 import lotto.logic.LottoMachine;
+import lotto.logic.LottoMachineImpl;
+import lotto.repository.BudgetRepository;
 import lotto.repository.LottoRepository;
+import lotto.repository.MemoreyBudgetRepository;
 import lotto.repository.MemoryLottoRepository;
 import lotto.repository.MemoryResultRepository;
 import lotto.repository.MemoryWinningLottoRepository;
@@ -12,10 +14,16 @@ import lotto.repository.ResultRepository;
 import lotto.repository.WinningLottoRepository;
 import lotto.service.BuyLottoService;
 import lotto.service.BuyLottoServiceImpl;
+import lotto.service.DefineBonusService;
+import lotto.service.DefineBonusServiceImpl;
 import lotto.service.DefineWinningImpl;
 import lotto.service.DefineWinningLotto;
 import lotto.service.JudgMentServiceImpl;
 import lotto.service.JudgeMentService;
+import lotto.service.Judgement;
+import lotto.service.JudgementImpl;
+import lotto.service.StatisticsService;
+import lotto.service.StatisticsServiceImpl;
 
 
 public class AppConfig {
@@ -24,15 +32,14 @@ public class AppConfig {
     private static WinningLottoRepository winningLottoRepositoryInstance;
     private static ResultRepository resultRepositoryInstance;
 
-    private static User user;
+    private static BudgetRepository budgetRepository;
 
     public BuyLottoService buyLottoService() {
-        return new BuyLottoServiceImpl(user(), lottoMachine(), lottoRepository());
-        //getRepositroy가 중복되는 게 불편
+        return new BuyLottoServiceImpl(budgetRepository(), lottoMachine(), lottoRepository());
     }
 
     public static LottoMachine lottoMachine() {
-        return new LottoMachine(lottoRepository());
+        return new LottoMachineImpl();
     }
 
     public static synchronized LottoRepository lottoRepository() {
@@ -42,18 +49,22 @@ public class AppConfig {
         return lottoRepositoryInstance;
     }
 
-    public static User user() {
-        if (user == null) {
-            user = new User();
+    public static synchronized BudgetRepository budgetRepository() {
+        if (budgetRepository == null) {
+            budgetRepository = new MemoreyBudgetRepository();
         }
-        return user;
+        return budgetRepository;
+    }
+
+    public DefineBonusService defineBonusService() {
+        return new DefineBonusServiceImpl(winningLottoRepositroy());
     }
 
     public DefineWinningLotto defineWinningLotto() {
         return new DefineWinningImpl(winningLottoRepositroy());
     }
 
-    public WinningLottoRepository winningLottoRepositroy() {
+    public static synchronized WinningLottoRepository winningLottoRepositroy() {
         if (winningLottoRepositoryInstance == null) {
             winningLottoRepositoryInstance = new MemoryWinningLottoRepository();
         }
@@ -61,20 +72,24 @@ public class AppConfig {
     }
 
     public JudgeMentService judgeMentService() {
-        return new JudgMentServiceImpl(lottoRepository(), winningLottoRepositroy(), ResultRepository(),
-            TotalResultMap(), Calculator(), user()
+        return new JudgMentServiceImpl(lottoRepository(), winningLottoRepositroy(), resultRepository(), judgement()
         );
     }
 
-    private static Calculator Calculator() {
-        return new Calculator();
+    public StatisticsService statisticsService() {
+        return new StatisticsServiceImpl(calculator(), budgetRepository(), resultRepository());
     }
 
-    private static TotalResultMap TotalResultMap() {
-        return new TotalResultMap();
+    private static Judgement judgement() {
+        return new JudgementImpl();
     }
 
-    private static ResultRepository ResultRepository() {
+    private static Calculator calculator() {
+        return new CalculatorImpl();
+    }
+
+
+    private static ResultRepository resultRepository() {
         if (resultRepositoryInstance == null) {
             resultRepositoryInstance = new MemoryResultRepository();
         }
