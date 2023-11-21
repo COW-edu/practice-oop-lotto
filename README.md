@@ -1,4 +1,4 @@
-# 객체지향 코드 연습 - 로또([우아한테크코스 프리코스 - lotto](https://github.com/woowacourse-precourse/java-lotto))
+# 객체지향 코드 연습 - 로또([우아한테크코스 프리코스 - controller](https://github.com/woowacourse-precourse/java-lotto))
 
 ## 🔍 진행 방식
 
@@ -179,7 +179,7 @@ BUILD SUCCESSFUL in 0s
 - Java Enum을 적용한다.
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-    - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
+    - 단위 테스트 작성이 익숙하지 않다면 `test/java/controller/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
 ### 라이브러리
 
@@ -224,7 +224,7 @@ public class Lotto {
 
 ## ✏️ 과제 진행 요구 사항
 
-- 미션은 [practice-oop-lotto](https://github.com/COW-edu/practice-oop-lotto) 저장소를 Fork & Clone해 시작한다.
+- 미션은 [practice-oop-controller](https://github.com/COW-edu/practice-oop-lotto) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
