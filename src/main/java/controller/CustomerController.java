@@ -33,14 +33,15 @@ public class CustomerController {
     }
 
     public List<Integer> selectLottoNumber() {
-        List<Integer> selectNum = userLottoNumber((Console.readLine()));
+        String userLottoString = Console.readLine();
+        List<Integer> selectNum = userLottoNumber(userLottoString);
         customer.setSelectNumber(selectNum);
         return selectNum;
     }
 
     public List<Integer> userLottoNumber(String userLottoString) {
         String[] selectNumber = userLottoString.split(",");
-        List<Integer> test = Arrays.stream(selectNumber)
+        List<Integer> test =  Arrays.stream(selectNumber)
                 .filter(this::convertInteger)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -81,7 +82,4 @@ public class CustomerController {
         customer.setBonusNumber(bonusNumber);
     }
 
-    public List<Integer> getSelectLotto() {
-        return customer.getSelectNumber();
-    }
 }

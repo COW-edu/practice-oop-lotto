@@ -1,8 +1,5 @@
 package domain;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
-
 import java.util.List;
 
 public class Customer {

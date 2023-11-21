@@ -12,6 +12,8 @@ public class RewardController {
 
     private final Reward reward;
     private List<Rank> rewardList;
+    private List<Lotto> lottos;
+    private Lotto selectLotto;
     private int userBonusNumber;
     private List<Rank> rankList;
 
@@ -21,14 +23,15 @@ public class RewardController {
     }
 
     public List<Rank> decideReward(List<Lotto> lottos, Lotto selectLotto, int userBonusNumber) {
-        this.reward.setReward(lottos, selectLotto);
+        this.lottos = lottos;
+        this.selectLotto = selectLotto;
         this.rewardList = compareLotto();
         this.userBonusNumber = userBonusNumber;
         return rewardList;
     }
 
     public List<Rank> compareLotto() {
-        for(Lotto lotto : reward.getLottos()) {
+        for(Lotto lotto : this.lottos) {
             rankList = addRankList(countResult(lotto), lotto);
         }
         return rankList;
@@ -46,7 +49,7 @@ public class RewardController {
 
     private int countResult(Lotto lotto) {
         List<Integer> lottoNumber = lotto.getLottoNumbers();
-        return (int) reward.getSelectLotto().getLottoNumbers().stream()
+        return (int) this.selectLotto.getLottoNumbers().stream()
                 .filter(selectNumber -> lottoNumber.contains(selectNumber))
                 .count();
     }
@@ -88,7 +91,7 @@ public class RewardController {
         for(Rank rank : this.rankList) {
             rewardMoney += rank.getReward();
         }
-        double profit = rewardMoney / (reward.getLottos().size() * 10);
+        double profit = rewardMoney / (this.lottos.size() * 10);
         reward.setProfit(profit);
     }
 
