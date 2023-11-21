@@ -11,9 +11,10 @@ public class FrontController {
     private final HashMap<Integer, Service> serviceHashMap = new HashMap<>();
 
 
-    private AppConfig appConfig = new AppConfig();
+    private final AppConfig appConfig;
 
     public FrontController() {
+        appConfig = new AppConfig();
         serviceHashMap.put(1, appConfig.buyLottoService());
         serviceHashMap.put(2, appConfig.defineWinningLotto());
         serviceHashMap.put(3, appConfig.defineBonusService());
