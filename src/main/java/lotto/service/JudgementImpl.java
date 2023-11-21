@@ -2,7 +2,6 @@ package lotto.service;
 
 import static lotto.constant.LottoRule.LOTTO_ROW_SIZE;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,7 +10,6 @@ import lotto.entity.WinLotto;
 
 public class JudgementImpl implements Judgement {
 
-    private final List<Integer> resultList = new ArrayList<>();
 
     private WinLotto winLotto;
     private int bonusNumber;
