@@ -1,7 +1,7 @@
 package lotto.view.output;
 
-import lotto.domain.Result;
-import lotto.domain.ResultPrize;
+import lotto.model.Result;
+import lotto.model.ResultPrize;
 
 public class OutputResult {
 

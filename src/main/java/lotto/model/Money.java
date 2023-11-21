@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 public class Money {
     private static final int NO_BALANCE = 0;

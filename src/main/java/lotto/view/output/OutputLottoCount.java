@@ -1,6 +1,6 @@
 package lotto.view.output;
 
-import lotto.domain.Money;
+import lotto.model.Money;
 
 public class OutputLottoCount {
 

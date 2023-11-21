@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.model.*;
 import lotto.view.input.InputBonusNumber;
 import lotto.view.input.InputBuyLottoMoney;
 import lotto.view.input.InputWinningNumbers;

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 public enum Result {
     FIRST(6, 2_000_000_000),

@@ -1,6 +1,6 @@
 package lotto.view.output;
 
-import lotto.domain.Lottos;
+import lotto.model.Lottos;
 
 public class OutputLottoList {
     public void printLottoList(Lottos lottos) {
