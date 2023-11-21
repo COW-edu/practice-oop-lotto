@@ -61,11 +61,12 @@ public class FrontController {
         }
         if(requestNumber.equals("2")) {
             outputView.inputLottoNum();
-            this.selectLotto = customerController.selectLottoNumber();
+            this.selectLotto = lottoController.makeCustomerLotto(customerController.selectLottoNumber());
         }
         if(requestNumber.equals("3")) {
             outputView.inputBonusNum();
-            this.userBonusNum = customerController.selectBonusNumber();
+            this.userBonusNum = lottoController.makeBonusNumber(customerController.selectBonusNumber());
+
         }
         if(requestNumber.equals("4")) {
             List<Rank> rewardList = rewardController.decideReward(lottos, count, selectLotto, userBonusNum);

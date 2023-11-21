@@ -5,6 +5,8 @@ import domain.User;
 import lotto.Lotto;
 import view.OutputView;
 
+import java.util.List;
+
 public class CustomerController {
 
     private static int count;
@@ -23,14 +25,13 @@ public class CustomerController {
         return count;
     }
 
-    public Lotto selectLottoNumber() {
-        this.selectLotto = new Lotto(user.userLottoNumber(Console.readLine()));
-        return selectLotto;
+    public List<Integer> selectLottoNumber() {
+        List<Integer> selectNum = user.userLottoNumber((Console.readLine()));
+        return selectNum;
     }
 
-    public int selectBonusNumber() {
+    public String selectBonusNumber() {
         String userBonusStr = user.getUserLottoBonus();
-        userBonusNumber = this.selectLotto.userBonusNum(userBonusStr);
-        return userBonusNumber;
+        return userBonusStr;
     }
 }
