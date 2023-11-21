@@ -5,11 +5,12 @@ import View.OutputView;
 
 import java.util.List;
 
-public class PrizeController {
+public class CalculateController implements Controllable{
     Calculator calculator = new Calculator();
     OutputView outputView = new OutputView();
 
-    public void service(){
+    @Override
+    public void process(){
         List<Prize> prizeList = calculator.calculateResult(PurchasedLotto.getPurchasedLotto(), BonusNum.getBonusNumber());
         outputView.printResult(calculator.setPrize(prizeList));
 

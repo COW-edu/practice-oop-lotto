@@ -6,9 +6,10 @@ import Model.PurchasedLotto;
 import View.InputView;
 import View.OutputView;
 
-public class BuyLottoController {
+public class BuyLottoController implements Controllable{
     OutputView outputView = new OutputView();
-    public void service(){
+    @Override
+    public void process(){
         outputView.printMoneyMessage();
         String moneyInput = InputView.getInput();
         Money money = new Money(moneyInput);

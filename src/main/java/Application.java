@@ -1,8 +1,8 @@
-import Controller.Controller;
+import Controller.FrontController;
 
 public class Application {
     public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.Start();
+        FrontController frontController = new FrontController();
+        frontController.run();
     }
 }

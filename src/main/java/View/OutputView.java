@@ -11,6 +11,7 @@ public class OutputView {
         System.out.println("3. 보너스 번호 입력");
         System.out.println("4. 결과 확인");
         System.out.println("5. 종료");
+        System.out.print("메뉴 선택: ");
     }
 
     public void printMoneyMessage() {
