@@ -9,11 +9,11 @@ import Enum.ErrorMessage;
 
 import static lotto.Lotto.PRICE;
 
-public class User {
+public class Customer {
 
     private int payment;
 
-    public User() {
+    public Customer() {
 
     }
 

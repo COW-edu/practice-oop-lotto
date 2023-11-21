@@ -1,6 +1,6 @@
 package lotto;
 
-import domain.User;
+import domain.Customer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,10 +33,10 @@ class LottoTest {
     @ValueSource(strings = {"1000", "2000", "3000"})
     void userLottoNumber(String money) {
         // Given
-        User user = new User();
+        Customer customer = new Customer();
 
         // When
-        int count = user.lottoCount(money);
+        int count = customer.lottoCount(money);
 
         // Then
         assertNotEquals(0, count);
@@ -48,7 +48,7 @@ class LottoTest {
     @ValueSource(strings = {"100", "200", "500", "1500"})
     void lottoMoneyException(String money) {
 
-        assertThatThrownBy(() -> new User().lottoCount(money)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Customer().lottoCount(money)).isInstanceOf(IllegalArgumentException.class);
 
     }
 
@@ -56,10 +56,10 @@ class LottoTest {
     @Test
     void priceException() {
         // Given
-        User user = new User();
+        Customer customer = new Customer();
 
         // When & Then
-        assertThatThrownBy(() -> user.lottoCount("999"))
+        assertThatThrownBy(() -> customer.lottoCount("999"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

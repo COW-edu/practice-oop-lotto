@@ -1,21 +1,19 @@
 package lotto;
 
-import controller.CustomerController;
 import controller.FrontController;
-import controller.LottoController;
 import domain.Reward;
-import domain.User;
+import domain.Customer;
 import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        User user = new User();
+        Customer customer = new Customer();
         RandomLotto randomLotto = new RandomLotto();
         OutputView outputView = new OutputView();
         Reward reward = new Reward();
-        
-        FrontController frontController = new FrontController(user, randomLotto, outputView, reward);
+
+        FrontController frontController = new FrontController(customer, randomLotto, outputView, reward);
         frontController.run();
     }
 }

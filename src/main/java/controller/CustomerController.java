@@ -1,9 +1,8 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.User;
+import domain.Customer;
 import lotto.Lotto;
-import view.OutputView;
 
 import java.util.List;
 
@@ -13,25 +12,25 @@ public class CustomerController {
     private static int userBonusNumber;
 
     private Lotto selectLotto;
-    private User user;
+    private Customer customer;
 
-    public CustomerController(User user) {
+    public CustomerController(Customer customer) {
         this.count = 0;
-        this.user = user;
+        this.customer = customer;
     }
 
     public int buyingLotto() {
-        count = user.lottoCount(Console.readLine());
+        count = customer.lottoCount(Console.readLine());
         return count;
     }
 
     public List<Integer> selectLottoNumber() {
-        List<Integer> selectNum = user.userLottoNumber((Console.readLine()));
+        List<Integer> selectNum = customer.userLottoNumber((Console.readLine()));
         return selectNum;
     }
 
     public String selectBonusNumber() {
-        String userBonusStr = user.getUserLottoBonus();
+        String userBonusStr = customer.getUserLottoBonus();
         return userBonusStr;
     }
 }

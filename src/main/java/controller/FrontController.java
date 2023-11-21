@@ -2,7 +2,7 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.Reward;
-import domain.User;
+import domain.Customer;
 import Enum.Rank;
 import lotto.Lotto;
 import lotto.RandomLotto;
@@ -18,7 +18,7 @@ public class FrontController {
     private static int userBonusNum;
     private static double profit;
 
-    private final User user;
+    private final Customer customer;
     private final RandomLotto randomLotto;
     private final OutputView outputView;
     private final Reward reward;
@@ -29,15 +29,15 @@ public class FrontController {
     private final LottoController lottoController;
     private final RewardController rewardController;
 
-    public FrontController(User user, RandomLotto randomLotto, OutputView outputView, Reward reward) {
+    public FrontController(Customer customer, RandomLotto randomLotto, OutputView outputView, Reward reward) {
         this.count = 0;
 
-        this.user = user;
+        this.customer = customer;
         this.randomLotto = randomLotto;
         this.outputView = outputView;
         this.reward = reward;
 
-        this.customerController = new CustomerController(user);
+        this.customerController = new CustomerController(customer);
         this.lottoController = new LottoController();
         this.rewardController = new RewardController(reward);
     }
