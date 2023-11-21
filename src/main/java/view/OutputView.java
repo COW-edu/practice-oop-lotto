@@ -25,24 +25,12 @@ public class OutputView {
         System.out.println(stringBuilder.toString());
     }
 
-    public void requestAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-    }
-
     public void showOrder(List<Lotto> lottos) {
         System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
 
         lottos.stream()
                 .map(Lotto::getNumbers)
                 .forEach(this::showNumber);
-    }
-
-    public void requestWinning() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-    }
-
-    public void requestBonus() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     public void showResult(List<Grade> grades) {

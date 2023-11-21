@@ -1,13 +1,16 @@
 package controller;
 
-import model.Grade;
-import model.Lotto;
-import model.WinningLotto;
+import model.*;
+import view.InputView;
+import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinningChecker {
+public class WinningCheckController implements Controller{
+
+    private static final LottoRepository lottoRepository = LottoRepository.getInstance();
+    private static final WinningLottoRepository winningLottoRepository = WinningLottoRepository.getInstance();
 
     public List<Grade> rateGrades(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Grade> grades = new ArrayList<>();
@@ -41,5 +44,16 @@ public class WinningChecker {
 
     public double checkRewardRate(List<Lotto> lottos, double reward) {
         return Math.round((reward / (lottos.size() * 10)) * 100) / 100.0;
+    }
+
+    @Override
+    public void service(InputView inputView, OutputView outputView) {
+        List<Lotto> lottos = lottoRepository.findAll();
+        WinningLotto winningLotto = winningLottoRepository.getWinningLotto();
+        List<Grade> grades = rateGrades(lottos, winningLotto);
+        double reward = checkReward(grades);
+        double rewardRate = checkRewardRate(lottos, reward);
+        outputView.showResult(grades);
+        outputView.showRewardRate(rewardRate);
     }
 }
