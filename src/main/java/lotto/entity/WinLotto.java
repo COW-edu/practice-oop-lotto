@@ -8,21 +8,26 @@ import lotto.exception.LottoException;
 
 public class WinLotto extends LottoException {
 
-    public List<Integer> winningLotto;
+    private List<Integer> winningLotto;
 
     public WinLotto() {
         this.winningLotto = new ArrayList<>();
     }
 
-    public List<Integer> drawNumber(String[] winningNum) {
-        checkListRange(winningNum);
-        this.winningLotto = Arrays.stream(winningNum)
+    public List<Integer> getWinningLotto() {
+        return winningLotto;
+    }
+
+    public WinLotto drawNumber(String winningNum) {
+        String[] winnngNumber = winningNum.split(",");
+        checkListRange(winnngNumber);
+        this.winningLotto = Arrays.stream(winnngNumber)
             .map(String::trim)
             .map(Integer::valueOf)
             .map(WinLotto::checkNumberRange)
             .collect(Collectors.toList());
         duplicateNumberCheck(winningLotto);
-        return winningLotto;
+        return this;
     }
 
 }
