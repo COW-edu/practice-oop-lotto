@@ -28,13 +28,6 @@ public class LottoPurchaseController implements Controller {
         outputView.outputLottoAmount(purchaseAmount);
     }
 
-//    public int purchaseRun(int purchaseMoney) {
-//        int purchaseMoney = inputView.inputPurchaseMoney();
-//        int purchaseAmount = calculatePurchaseAmount(purchaseMoney);
-//        outputView.outputLottoAmount(purchaseAmount);
-//        return purchaseAmount;
-//    }
-
     public int calculatePurchaseAmount(int purchaseMoney) {
         validatePurchase(purchaseMoney);
         return purchaseMoney / PURCHASE_PRICE;

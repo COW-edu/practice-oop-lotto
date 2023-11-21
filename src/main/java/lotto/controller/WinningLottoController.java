@@ -43,7 +43,12 @@ public class WinningLottoController implements Controller {
         int[] checkedRankList = compareLottoNumber(selectedLottoNumList, winningNumber, bonusNumber);
 
         outputView.outputWinningStatistic(checkedRankList);
-        outputView.outputMoneyPercent(calculateEarningRate(checkedRankList, purchaseMoney));
+        double profit = calculateEarningRate(checkedRankList, purchaseMoney);
+        outputView.outputMoneyPercent(profit);
+
+        model.put("WinningLotto", checkedRankList);
+        model.put("WinningLottoProfit", profit);
+
     }
 
 

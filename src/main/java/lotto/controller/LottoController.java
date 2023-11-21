@@ -41,29 +41,6 @@ public class LottoController implements Controller {
     }
 
 
-//    public void lottoGameRun() {
-//        purchaseMoney = inputView.inputPurchaseMoney();
-//        purchaseAmount = lottoService.calculatePurchaseAmount(purchaseMoney);
-//        outputView.outputLottoAmount(purchaseAmount);
-//
-//        //
-//
-//        selectedLottoNumList = lottoService.createLottoMember(purchaseAmount);
-//        outputView.outputSelectedLottoNum(selectedLottoNumList);
-//
-//        // //
-//
-//        winningNumber = lottoService.convertWinningNumber(inputView.inputWinningNum());
-//        bonusNumber = inputView.inputBonus();
-//
-//        //
-//
-//        checkedRankList = lottoService.compareLottoNumber(selectedLottoNumList, winningNumber, bonusNumber);
-//
-//        outputView.outputWinningStatistic(checkedRankList);
-//        outputView.outputMoneyPercent(lottoService.calculateEarningRate(checkedRankList, purchaseMoney));
-//    }
-
     public List<Lotto> createLottoMember(int purchaseAmount) {
         List<Lotto> selectedLottoNumber = new ArrayList<>();
 

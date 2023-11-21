@@ -26,16 +26,8 @@ public class LottoFrontController {
 
     public void run() {
         Map<String, Object> model = new HashMap<>();
-
         for (Controller controller : controllersMap.values()) {
             controller.service(model);
         }
-
-
-//        Iterator<Integer> iter = controllersMap.keySet().iterator();
-//        while (iter.hasNext()) {
-//            int key = iter.next();
-//            controllersMap.get(key).service(model);
-//        }
     }
 }
