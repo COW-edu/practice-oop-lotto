@@ -16,5 +16,12 @@ public class Lotto {
         }
     }
 
+    private void validate(int money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
     // TODO: 추가 기능 구현
 }
