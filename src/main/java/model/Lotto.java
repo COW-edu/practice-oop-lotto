@@ -1,9 +1,11 @@
-package lotto;
+package model;
 
 import java.util.List;
 
+//
 public class Lotto {
     private final List<Integer> numbers;
+    private CalculateSheet calculateSheet;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,12 +18,8 @@ public class Lotto {
         }
     }
 
-    private void validate(int money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-
     // TODO: 추가 기능 구현
+
+
+
 }
