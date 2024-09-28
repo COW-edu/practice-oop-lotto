@@ -17,7 +17,7 @@ public class CalculateSheet {
     }
 
     // 랜덤으로 숫자를 뽑아 리스트에 넣어주는 메서드
-    public List<Integer> lottoNumbers(int lottoCount) {
+    public List<Integer> lottoNumbers() {
         List<Integer> randNum = new ArrayList<Integer>();
         Random random = new Random();
 

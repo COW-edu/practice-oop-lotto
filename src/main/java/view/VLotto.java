@@ -26,7 +26,6 @@ public class VLotto {
 
     // 구매한 로또 번호 리스트 출력
     public void displayLottoNumber(List<Integer> numbers) {
-
-
+        System.out.println(numbers);
     }
 }
