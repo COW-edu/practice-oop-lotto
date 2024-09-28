@@ -25,14 +25,15 @@
 - 기능 구현을 완료한 뒤 아래 가이드에 따라 테스트를 실행했을 때 모든 테스트가 성공하는지 확인한다.
 - **테스트가 실패할 경우 0점으로 처리**되므로, 반드시 확인 후 제출한다.
 
-### 테스트 실행 가이드
 
-- 터미널에서 `java -version`을 실행하여 Java 버전이 11인지 확인한다. Eclipse 또는 IntelliJ IDEA와 같은 IDE에서 Java 11로 실행되는지 확인한다.
-- 터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean build -x test` 명령을 실행하고,   
-  Windows 사용자의 경우  `gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.
+### ~~테스트 실행 가이드~~
+
+- ~~터미널에서 `java -version`을 실행하여 Java 버전이 11인지 확인한다. Eclipse 또는 IntelliJ IDEA와 같은 IDE에서 Java 11로 실행되는지 확인한다.~~
+- ~~터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean build` 명령을 실행하고,   
+  Windows 사용자의 경우  `gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.~~
 
 ```
-BUILD SUCCESSFUL in 0s
+BUILD SUCCESSFUL in 0
 ```
 
 ---
