@@ -1,4 +1,5 @@
 package lotto.service;
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.repository.LottoRepository;
 import java.util.ArrayList;
@@ -16,14 +17,13 @@ public class LottoServiceImpl implements LottoService {
     public List<Lotto> purchaseLotto(int amount) {
         int numberOfLotto = amount / 1000;
         List<Lotto> purchasedLotto = new ArrayList<>();
+
         for (int i = 0; i < numberOfLotto; i++) {
-            Lotto lotto = lottoRepository.createLotto();
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(lottoNumbers);
             purchasedLotto.add(lotto);
         }
         return purchasedLotto;
     }
-
-
-
 
 }
