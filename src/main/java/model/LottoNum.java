@@ -11,7 +11,6 @@ public class LottoNum {
     private static final int LOTTO_SIZE = 6;
 
     private ErrorMessage errorMessage = new ErrorMessage();
-
     // 금액을 입력받고 몇 장을 샀는지 확인하는 메서드
     public int buyLotto(int money) {
         if (money%1000 != 0) {
@@ -37,14 +36,14 @@ public class LottoNum {
 
         String[] number = numbers.split(",");
         for (String num : number) {
-            try {
-                result.add(Integer.parseInt(num));
-            } catch (NumberFormatException e) {
-                System.err.println(errorMessage.ERROR_NUM);
-            }
+            result.add(Integer.parseInt(num));
         }
-
         return result;
+    }
+
+    public void validate(int bonusNum) {
+        if (1 > bonusNum || bonusNum > 45)
+            throw new NumberFormatException();
     }
 
 
