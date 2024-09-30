@@ -12,14 +12,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개의 숫자로 구성되어야 합니다.");
+            throw new IllegalArgumentException(Rank.ExceptionCode.LOTTO_NUMBER_RULE1.getMessage());
         }
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+
+        // Stream을 사용
+        boolean isValid = numbers.stream()
+                .allMatch(number -> number >= 1 && number <= 45);
+
+        if (!isValid) {
+            throw new IllegalArgumentException(Rank.ExceptionCode.LOTTO_NUMBER_RULE2.getMessage());
         }
     }
+
 
     public List<Integer> getNumbers() {
         return numbers;

@@ -2,13 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoGame {
 
-    private final UserInterface ui = new UserInterface();
+    private final UserInterFace ui = new UserInterFace();
+    private static final int Price = 1000;
     private List<Lotto> purchasedLottos;
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -29,16 +31,17 @@ public class LottoGame {
     }
 
     private List<Lotto> purchaseLottos(int amount) {
-        int numberOfLottos = amount / 1000;
-        List<Lotto> lottos = new ArrayList<>();
+        int numberOfLottos = amount / Price;
 
-        for (int i = 0; i < numberOfLottos; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            lottos.add(new Lotto(numbers));
-        }
-        return lottos;
+        return IntStream.range(0, numberOfLottos)
+                .mapToObj(i -> {
+                    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+                    Collections.sort(numbers);
+                    return new Lotto(numbers);
+                })
+                .collect(Collectors.toList());
     }
+
 
     private void printResults() {
         int[] results = new int[Rank.values().length];
