@@ -1,11 +1,8 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
-public class Lotto {
+public class Lotto implements Iterable<Integer> {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,5 +14,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR]");
         }
+    }
+
+
+    @Override
+    public Iterator<Integer> iterator() {
+        return numbers.iterator();
     }
 }
