@@ -1,4 +1,4 @@
-package lotto;
+package lottoModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LottoMaker {
 
-    List<List<Integer>> lottoSaved = new ArrayList<>();
+    static List<List<Integer>> lottoSaved = new ArrayList<>();
     //생성된 로또 숫자는 배열에 저장
     private List<Integer> makeNum() {
         List<Integer> lottoNum = new ArrayList<>();

@@ -1,8 +1,5 @@
-package lotto;
+import lottoController.LottoService;
 
-import java.util.*;
-
-import static lotto.LottoRank.*;
 import static org.assertj.core.internal.bytebuddy.utility.RandomString.make;
 
 public class Application {

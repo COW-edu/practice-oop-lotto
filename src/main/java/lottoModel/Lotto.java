@@ -1,4 +1,4 @@
-package lotto;
+package lottoModel;
 
 import java.util.*;
 //외부에서 들어온 숫자가 맞나만 관리하면 된다.
