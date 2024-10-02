@@ -1,33 +1,27 @@
 package lottoController;
 
 import lottoModel.Lotto;
-import lottoModel.LottoComparison;
-import lottoModel.LottoMaker;
-import lottoView.LottoViewer;
+import lottoModel.Comparator;
+import lottoView.LottoInput;
+import lottoView.LottoOutput;
 
-//로또 생성 및 계산
+
 public class LottoService {
-    static LottoMaker lottoMaker = new LottoMaker();
-    private final LottoViewer lottoViewer = new LottoViewer();
-    private final LottoComparison lottoComparison = new LottoComparison();
+    private final LottoInput lottoInput = new LottoInput();
+    private final LottoOutput lottoOutput = new LottoOutput();
+    private final Comparator comparator = new Comparator();
 
     public void run() {
-        int inputMoney = lottoViewer.getInputMoney();
-        generateLottoNum(inputMoney);
+        int inputMoney = lottoInput.getInputMoney();
+        lottoOutput.generateLottoNum(inputMoney);
 
-        Lotto userLotto = lottoViewer.inputNumber();
-        int bonusNum = lottoViewer.getBonusNum();
+        Lotto userLotto = lottoInput.inputNumber();
+        int bonusNum = lottoInput.getBonusNum();
+        comparator.lottoComparison(userLotto, bonusNum);
+        lottoOutput.print(inputMoney);
 
-        lottoComparison.lottoComparison(userLotto, bonusNum);
 
-        lottoViewer.print(inputMoney);
     }
 
-    private void generateLottoNum(int inputMoney) {
-
-        int amount = inputMoney / 1000;
-        System.out.println(amount + "개를 구매했습니다.");
-        lottoMaker.generate(amount);
-    }
 
 }

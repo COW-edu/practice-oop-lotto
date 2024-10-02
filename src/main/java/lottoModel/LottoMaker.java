@@ -7,8 +7,7 @@ import java.util.List;
 public class LottoMaker {
 
     static List<List<Integer>> lottoSaved = new ArrayList<>();
-    //생성된 로또 숫자는 배열에 저장
-    private List<Integer> makeNum() {
+    private static List<Integer> createNum() {
         List<Integer> lottoNum = new ArrayList<>();
         while (lottoNum.size() < 6) {
             int lotto = (int) ((Math.random() * 45) + 1);
@@ -21,11 +20,10 @@ public class LottoMaker {
     }
 
 
-    public void generate(int amount) {
+    public static void generate(int amount) {
 
-        //숫자 받아서 그만큼 로또 생성하기
         for (int i = 0; i < amount; i++) {
-            List<Integer> lotto = makeNum();
+            List<Integer> lotto = createNum();
             System.out.println(lotto);
             lottoSaved.add(lotto);
         }
