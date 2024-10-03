@@ -1,6 +1,7 @@
 package lottoView;
 
 import lottoModel.Lotto;
+import lottoModel.UNIT;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,13 +14,20 @@ public class LottoInput {
 
     public int getBonusNum() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNum = sc.nextInt();
-        return bonusNum;
+        int bonusNumber = sc.nextInt();
+        if (bonusNumber < UNIT.MIN_NUMBER || bonusNumber > UNIT.MAX_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 1부터 45사이의 숫자를 입력해 주세요.");
+        }
+        return bonusNumber;
+
     }
 
     public int getInputMoney() {
         System.out.println("구입 금액을 입력해 주세요.");
         int inputMoney = sc.nextInt();
+        if (inputMoney % UNIT.UNIT_MONEY != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
+        }
         return inputMoney;
     }
 
@@ -29,7 +37,14 @@ public class LottoInput {
         String inputNum = sc.next();
         String[] targetNum = inputNum.split(",");
         for (String num : targetNum) {
-            numbers.add(Integer.parseInt(num.trim()));
+            int addNumber = Integer.parseInt(num.trim());
+            if (addNumber > UNIT.MAX_NUMBER) {
+                throw new NumberFormatException("[ERROR] 1번에서 45번 이내의 숫자를 입력해 주세요.");
+            }
+            if (numbers.contains(addNumber)){
+                throw new NumberFormatException("[ERROR] 중복된 숫자가 입력되었습니다.");
+            }
+            numbers.add(addNumber);
         }
         Collections.sort(numbers);
         return new Lotto(numbers);
