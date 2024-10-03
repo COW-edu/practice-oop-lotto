@@ -1,6 +1,10 @@
 package lottoModel;
 
+import exception.ErrorCode;
+
 import java.util.*;
+
+import static exception.ErrorCode.*;
 
 public class Lotto implements Iterable<Integer> {
     private final List<Integer> numbers;
@@ -12,7 +16,7 @@ public class Lotto implements Iterable<Integer> {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getErrorCode());
         }
     }
 

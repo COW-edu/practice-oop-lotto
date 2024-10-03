@@ -1,5 +1,6 @@
 package lottoView;
 
+import exception.ErrorCode;
 import lottoModel.Lotto;
 import lottoModel.UNIT;
 
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+
+import static exception.ErrorCode.*;
 
 
 public class LottoInput {
@@ -16,7 +19,7 @@ public class LottoInput {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = sc.nextInt();
         if (bonusNumber < UNIT.MIN_NUMBER || bonusNumber > UNIT.MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 1부터 45사이의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(OUT_OF_RANGE.getErrorCode());
         }
         return bonusNumber;
 
@@ -26,7 +29,7 @@ public class LottoInput {
         System.out.println("구입 금액을 입력해 주세요.");
         int inputMoney = sc.nextInt();
         if (inputMoney % UNIT.UNIT_MONEY != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(OUT_OF_UNIT.getErrorCode());
         }
         return inputMoney;
     }
@@ -39,10 +42,10 @@ public class LottoInput {
         for (String num : targetNum) {
             int addNumber = Integer.parseInt(num.trim());
             if (addNumber > UNIT.MAX_NUMBER) {
-                throw new NumberFormatException("[ERROR] 1번에서 45번 이내의 숫자를 입력해 주세요.");
+                throw new NumberFormatException(OUT_OF_RANGE.getErrorCode());
             }
             if (numbers.contains(addNumber)){
-                throw new NumberFormatException("[ERROR] 중복된 숫자가 입력되었습니다.");
+                throw new NumberFormatException(DUPLICATE_NUMBER.getErrorCode());
             }
             numbers.add(addNumber);
         }

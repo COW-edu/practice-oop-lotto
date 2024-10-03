@@ -2,11 +2,10 @@ package lottoView;
 
 import lottoModel.LottoMaker;
 import lottoModel.LottoRank;
-import lottoModel.OutputMessage;
 import lottoModel.UNIT;
 
 import static lottoModel.LottoRank.*;
-import static lottoModel.OutputMessage.*;
+import static lottoView.OutputMessage.*;
 
 public class LottoOutput {
 
@@ -29,14 +28,16 @@ public class LottoOutput {
         printEachMessage(SECOND,SECOND_OUTPUT);
         printEachMessage(FIRST,FIRST_OUTPUT);
 
-        double totalPrice = Math.round(((FIFTH.getLottoTotalPrize()
-                + FOURTH.getLottoTotalPrize()
-                + THIRD.getLottoTotalPrize()
-                + SECOND.getLottoTotalPrize()
-                + FIRST.getLottoTotalPrize()) / inputMoney * UNIT.PERCENT_UNIT) * 10) / 10.0;
+        double totalPrice = getTotalPrice(inputMoney);
         System.out.println("총 수익률은 " + totalPrice + "% 입니다.");
+    }
 
-
+    private static double getTotalPrice(int inputMoney) {
+        return Math.round(((FIFTH.getLottoTotalPrize() +
+                FOURTH.getLottoTotalPrize() +
+                THIRD.getLottoTotalPrize() +
+                SECOND.getLottoTotalPrize() +
+                FIRST.getLottoTotalPrize()) / inputMoney * UNIT.PERCENT_UNIT) * 10) / 10.0;
     }
 
     private static void printEachMessage(LottoRank rank, OutputMessage output) {
