@@ -1,5 +1,7 @@
 package lottoModel;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,14 +10,8 @@ public class LottoMaker {
 
     static List<List<Integer>> lottoSaved = new ArrayList<>();
     private static List<Integer> createNum() {
-        List<Integer> lottoNum = new ArrayList<>();
-        while (lottoNum.size() < 6) {
-            int lotto = (int) ((Math.random() * 45) + 1);
-            if (!lottoNum.contains(lotto)) {
-                lottoNum.add(lotto);
-            }
-        }
-        Collections.sort(lottoNum); //정렬 추가
+        List<Integer> lottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lottoNum);
         return lottoNum;
     }
 
