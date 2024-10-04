@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 import java.util.Scanner;
 
-public class VLotto {
+public class LottoView {
     private final Scanner sc = new Scanner(System.in);
 
     // 금액 입력받기
@@ -35,5 +35,16 @@ public class VLotto {
     // 구매한 로또 번호 리스트 출력
     public void displayLottoNumber(List<Integer> numbers) {
         System.out.println(numbers);
+    }
+
+    // 당첨 통계 출력
+    public void displayWinningList(int threeCount, int fourCount, int fiveCount, int fiveBonusCount, int sixCount) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - "+ threeCount +"개");
+        System.out.println("4개 일치 (50,000원) - "+ fourCount +"개");
+        System.out.println("5개 일치 (1,500,000원) - "+ fiveCount +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ fiveBonusCount +"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+ sixCount +"개");
     }
 }

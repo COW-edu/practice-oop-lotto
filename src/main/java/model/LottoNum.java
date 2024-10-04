@@ -10,7 +10,8 @@ public class LottoNum {
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_SIZE = 6;
 
-    private ErrorMessage errorMessage = new ErrorMessage();
+    private ErrorMessage errorMessage;
+
     // 금액을 입력받고 몇 장을 샀는지 확인하는 메서드
     public int buyLotto(int money) {
         if (money%1000 != 0) {

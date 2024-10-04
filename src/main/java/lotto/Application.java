@@ -1,22 +1,19 @@
 package lotto;
 
-import controller.CLotto;
-import model.Lotto;
+import controller.LottoController;
 import model.LottoNum;
-import view.VLotto;
-
-import java.util.ArrayList;
-import java.util.List;
+import model.WinChecker;
+import view.LottoView;
 
 public class Application {
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
+    public Application() {
         LottoNum lottoNum = new LottoNum();
-        VLotto vLotto = new VLotto();
-        CLotto cLotto = new CLotto(lottoNum, vLotto);
+        LottoView lottoView = new LottoView();
+        LottoController lottoController = new LottoController(lottoNum, lottoView);
 
-        cLotto.run();
+        lottoController.run();
     }
-
-
+    public static void main(String[] args) {
+        Application app = new Application();
+    }
 }
