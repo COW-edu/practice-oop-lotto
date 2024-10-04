@@ -1,5 +1,6 @@
 package model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import valueObject.ErrorMessage;
 
 import java.util.ArrayList;
@@ -22,13 +23,8 @@ public class LottoNum {
 
     // 랜덤으로 숫자를 뽑아 리스트에 넣어주는 메서드
     public List<Integer> lottoNumbers() {
-        List<Integer> randNum = new ArrayList<Integer>();
-        Random random = new Random();
-
-        for (int j = 0; j < LOTTO_SIZE; j++) {
-            randNum.add(random.nextInt(45) + 1);
-        }
-        return randNum;
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers;
     }
 
     // String 분리하여 배열에 저장하고 배열을 리턴하는 메서드

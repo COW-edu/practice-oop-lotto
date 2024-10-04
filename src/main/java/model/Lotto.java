@@ -7,7 +7,7 @@ import java.util.List;
 //
 public class Lotto {
     private final List<Integer> numbers;
-    private ErrorMessage errorMessage = new ErrorMessage();
+    private ErrorMessage errorMessage;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
