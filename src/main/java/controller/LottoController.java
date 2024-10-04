@@ -2,6 +2,7 @@ package controller;
 
 import model.LottoNum;
 import model.Lotto;
+import model.RateCalculator;
 import model.WinChecker;
 import valueObject.ErrorMessage;
 import view.LottoView;
@@ -13,6 +14,7 @@ public class LottoController {
     private LottoNum lottoNum;
     private Lotto mLotto;
     private WinChecker winChecker;
+    private RateCalculator rateCalculator;
     private LottoView lottoView;
     private ErrorMessage errorMessage;
 
@@ -48,10 +50,16 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.err.println(errorMessage.ERROR_COUNT);
         }
+        int threeCount = winChecker.getThreeCount();
+        int fourCount = winChecker.getFourCount();
+        int fiveCount = winChecker.getFiveCount();
+        int fiveBonusCount = winChecker.getFiveBonusCount();
+        int sixCount = winChecker.getSixCount();
         // 당첨 통계 보여주는 메서드에 WinChecker의 당첨 정보 넘겨주기
-        lottoView.displayWinningList(winChecker.getThreeCount(),
-                winChecker.getFourCount(), winChecker.getFiveCount(),
-                winChecker.getFiveBonusCount(), winChecker.getSixCount());
-
+        lottoView.displayWinningList(threeCount, fourCount, fiveCount, fiveBonusCount, sixCount);
+        // 수익률 계산
+        rateCalculator = new RateCalculator();
+        int totalMoney = rateCalculator.calculateWinMoney(threeCount, fourCount, fiveCount, fiveBonusCount, sixCount);
+        lottoView.displayReturn(rateCalculator.calculateRate(money, totalMoney));
     }
 }

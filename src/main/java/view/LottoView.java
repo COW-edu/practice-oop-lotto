@@ -47,4 +47,8 @@ public class LottoView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ fiveBonusCount +"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+ sixCount +"개");
     }
+
+    public void displayReturn(double rateReturn) {
+        System.out.println("총 수익률은 "+rateReturn+"%입니다.");
+    }
 }
