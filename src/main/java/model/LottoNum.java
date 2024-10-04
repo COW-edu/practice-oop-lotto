@@ -20,13 +20,11 @@ public class LottoNum {
         }
         return money / LOTTO_PRICE;
     }
-
     // 랜덤으로 숫자를 뽑아 리스트에 넣어주는 메서드
-    public List<Integer> lottoNumbers() {
+    public List<Integer> create() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
-
     // String 분리하여 배열에 저장하고 배열을 리턴하는 메서드
     public List<Integer> splitNum(String numbers) {
         List<Integer> result = new ArrayList<>();
