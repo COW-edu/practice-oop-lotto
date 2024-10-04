@@ -42,7 +42,7 @@ public class CLotto {
             mLotto = new Lotto(winningNumberList);
             int bonusNumber = vLotto.getBonusNumber();
             lottoNum.validate(bonusNumber); // 보너스 번호 범위 확인
-            winCheck = new WinCheck(winningNumberList, userLottos);
+            winCheck = new WinCheck(winningNumberList, bonusNumber, userLottos);
         } catch (NumberFormatException e) {
             System.err.println(errorMessage.ERROR_NUM);
         } catch (IllegalArgumentException e) {
