@@ -17,7 +17,7 @@ public class MakeLottoLists {
   public List<List<Integer>> makeInputLottoList(int price) {
     int LOTTO_COUNT = price / 1000;
 
-    CheckError.dividedThousand(price);  // 가격 유효성 검사
+    CheckError.dividedThousand(price);
 
     for (int i = 0; i < LOTTO_COUNT; i++) {
       List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -25,7 +25,7 @@ public class MakeLottoLists {
     }
 
     PrintStrings.printLottos(saveLottos, LOTTO_COUNT);
-    return saveLottos;  // 반환 타입에 제네릭 추가
+    return saveLottos;
   }
 
   public List<List<Integer>> makeWinLottoList() {
@@ -34,6 +34,6 @@ public class MakeLottoLists {
       winLottos.add(numbers);
     }
 
-    return winLottos;  // 반환 타입에 제네릭 추가
+    return winLottos;
   }
 }
