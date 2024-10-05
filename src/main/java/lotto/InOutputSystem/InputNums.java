@@ -1,6 +1,7 @@
-package lotto;
+package lotto.InOutputSystem;
 
 import java.util.Scanner;
+import lotto.manageError.CheckError;
 
 public class InputNums {
   static Scanner scanner = new Scanner(System.in);
@@ -21,7 +22,7 @@ public class InputNums {
   public static int bonusNum(){
     System.out.println("\n보너스 번호를 입력해 주세요.");
     int bonusNum = scanner.nextInt();
-    CheckError.isNumRange(bonusNum);
+    CheckError.numRange(bonusNum);
     return bonusNum;
   }
 }
