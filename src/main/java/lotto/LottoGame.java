@@ -12,10 +12,11 @@ public class LottoGame {
     public static final int LOTTO_PRICE = 1000;
 
     public LottoGame() {
-        this.inputHandler = new InputHandler();
+        this.outputHandler = new OutputHandler();
+        this.inputHandler = new InputHandler(outputHandler);
         this.lottoGenerator = new LottoGenerator();
         this.resultCalculator = new ResultCalculator();
-        this.outputHandler = new OutputHandler();
+
     }
 
     public void start() {

@@ -11,16 +11,19 @@ public class OutputHandler {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
+    public void printInputPrompt(String message) {
+        System.out.println(message);
+    }
 
     public void printStatistics(int[] matchCounts, int totalCost) {
         System.out.println("3개 일치 (5,000원) - " + matchCounts[3] + "개");
         System.out.println("4개 일치 (50,000원) - " + matchCounts[4] + "개");
         System.out.println("5개 일치 (1,500,000원) - " + matchCounts[5] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCounts[6] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCounts[7] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matchCounts[6] + "개");
 
         double totalPrize = matchCounts[3] * PRICE_THREE + matchCounts[4] * PRICE_FOUR
-                + matchCounts[5] * PRICE_FIVE + matchCounts[6] * PRICE_SIX;
+                + matchCounts[5] * PRICE_FIVE +  matchCounts[7] * PRICE_FIVE_BONUS + matchCounts[6] * PRICE_SIX;
         double profitRate = (totalPrize / totalCost) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }

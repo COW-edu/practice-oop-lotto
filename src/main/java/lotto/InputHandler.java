@@ -11,9 +11,14 @@ public class InputHandler {
     private static final int WINNING_NUMBER_COUNT = 6;
     private static final int BONUS_NUMBER_MIN = 1;
     private static final int BONUS_NUMBER_MAX = 45;
+    private final OutputHandler outputHandler;
+
+    public InputHandler(OutputHandler outputHandler) {
+        this.outputHandler = outputHandler;
+    }
 
     public int getMoney() {
-        System.out.println("구입 금액을 입력해 주세요.");
+        outputHandler.printInputPrompt("구입 금액을 입력해 주세요.");
         String input = Console.readLine();
         validateMoney(input);
         return Integer.parseInt(input);
@@ -26,13 +31,13 @@ public class InputHandler {
     }
 
     public List<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
+        outputHandler.printInputPrompt("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
         String input = Console.readLine();
         return parseWinningNumbers(input);
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        outputHandler.printInputPrompt("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         int bonusNumber = Integer.parseInt(input.trim());
         if (bonusNumber < BONUS_NUMBER_MIN || bonusNumber > BONUS_NUMBER_MAX || winningNumbers.contains(bonusNumber)) {
