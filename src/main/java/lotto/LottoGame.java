@@ -16,7 +16,6 @@ public class LottoGame {
         this.inputHandler = new InputHandler(outputHandler);
         this.lottoGenerator = new LottoGenerator();
         this.resultCalculator = new ResultCalculator();
-
     }
 
     public void start() {
