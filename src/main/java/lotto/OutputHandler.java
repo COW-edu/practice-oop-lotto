@@ -22,8 +22,7 @@ public class OutputHandler {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCounts[7] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matchCounts[6] + "개");
 
-        double totalPrize = matchCounts[3] * PRICE_THREE + matchCounts[4] * PRICE_FOUR
-                + matchCounts[5] * PRICE_FIVE +  matchCounts[7] * PRICE_FIVE_BONUS + matchCounts[6] * PRICE_SIX;
+        double totalPrize = matchCounts[3] * PRICE_THREE + matchCounts[4] * PRICE_FOUR + matchCounts[5] * PRICE_FIVE +  matchCounts[7] * PRICE_FIVE_BONUS + matchCounts[6] * PRICE_SIX;
         double profitRate = (totalPrize / totalCost) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
