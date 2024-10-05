@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,6 +30,7 @@ public class LottoController {
     private void purchaseLottos() {
         outputView.printInputLottoPriceMessage();
         int amount = inputView.inputPlayerPrice();
+        Lotto.validatePurchaseAmount(amount); //유효성 검사
         lottoService.purchaseLottos(amount);
     }
 
