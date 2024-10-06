@@ -7,10 +7,12 @@ import java.util.List;
 
 public class Application {
 
+    private static final int pricePerLotto = 1000;
+
     public static void main(String[] args) {
         try {
             int purchaseAmount = inputPurchaseAmount();
-            boolean validatePurchaseAmount = validatePurchaseAmount(purchaseAmount);
+            validatePurchaseAmount(purchaseAmount);
             List<Lotto> purchasedLotto = generateLotto(purchaseAmount);
             printPurchasedLotto(purchasedLotto);
             List<Integer> winningNumbers = inputWinningNumbers();
@@ -25,24 +27,27 @@ public class Application {
     }
 
     private static int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        String inputPurchaseAmount = "구입금액을 입력해 주세요.";
+        System.out.println(inputPurchaseAmount);
         return Integer.parseInt(Console.readLine());
     }
 
-    private static boolean validatePurchaseAmount(int purchaseAmount) {
+    private static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 음수가 될 수 없습니다.");
+            String negativePurchaseAmountError = "[ERROR] 구입 금액은 음수가 될 수 없습니다.";
+            throw new IllegalArgumentException(negativePurchaseAmountError);
         }
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        if (purchaseAmount % pricePerLotto != 0) {
+            String multiplesPurchaseAmountError = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
+            throw new IllegalArgumentException(multiplesPurchaseAmountError);
         }
-        return true;
     }
 
     private static List<Lotto> generateLotto(int purchaseAmount) {
         List<Lotto> purchasedLotto = new ArrayList<>();
-        int numberOfLotto = purchaseAmount / 1000;
-        System.out.println(numberOfLotto + "개를 구매했습니다.");
+        int numberOfLotto = purchaseAmount / pricePerLotto;
+        String purchasedNumberOfLotto = numberOfLotto + "개를 구매했습니다.";
+        System.out.println(purchasedNumberOfLotto);
         for (int i = 0; i < numberOfLotto; i++) {
             purchasedLotto.add(Lotto.generate());
         }
@@ -56,14 +61,16 @@ public class Application {
     }
 
     private static List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해주세요.");
+        String inputWinningNumbers = "당첨 번호를 입력해주세요.";
+        System.out.println(inputWinningNumbers);
         List<Integer> winningNumbers = parseInputNumbers(Console.readLine());
         new Lotto(winningNumbers);
         return winningNumbers;
     }
 
     public static int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해주세요.");
+        String inputBonusNumber = "보너스 번호를 입력해주세요.";
+        System.out.println(inputBonusNumber);
         int bonusNumber = Integer.parseInt(Console.readLine());
         Lotto.validateRange(bonusNumber);
         return bonusNumber;
@@ -92,7 +99,8 @@ public class Application {
         int[] rankCount = countRanks(results);
         printRankResults(rankCount);
         double yield = LottoCalculator.calculateYield(results, purchaseAmount);
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+        String printResults = "총 수익률은 " + yield + "%입니다.";
+        System.out.println(printResults);
     }
 
     private static int[] countRanks(List<LottoRank> results) {
@@ -104,10 +112,12 @@ public class Application {
     }
 
     private static void printRankResults(int[] rankCount) {
-        System.out.println("당첨 통계\n---");
+        String printRankResultsHeader = "당첨 통계\n---";
+        System.out.println(printRankResultsHeader);
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
-                System.out.println(rank.getResultMessage() + " - " + rankCount[rank.ordinal()] + "개");
+                String printRankResults = rank.getResultMessage() + " - " + rankCount[rank.ordinal()] + "개";
+                System.out.println(printRankResults);
             }
         }
     }

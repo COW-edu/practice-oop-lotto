@@ -14,6 +14,7 @@ public class LottoCalculator {
         int totalPrize = results.stream()
                 .mapToInt(LottoRank::getPrizeMoney)
                 .sum();
-        return (totalPrize / (double) purchaseAmount) * 100;
+        int percentConversion = 100;
+        return (totalPrize / (double) purchaseAmount) * percentConversion;
     }
 }
