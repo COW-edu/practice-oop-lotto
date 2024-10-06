@@ -21,28 +21,42 @@ public class LottoController {
     }
 
     public void run() {
-
         purchaseLottos();
-
         inputWinningNumbers();
     }
 
     private void purchaseLottos() {
         outputView.printInputLottoPriceMessage();
-        int amount = inputView.inputPlayerPrice();
-        Lotto.validatePurchaseAmount(amount); //유효성 검사
-        lottoService.purchaseLottos(amount);
+
+        while (true) {
+            int amount = inputView.inputPlayerPrice();
+            try {
+                lottoService.purchaseLottos(amount);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printInputLottoPriceMessage();
+            }
+        }
     }
 
     private void inputWinningNumbers() {
-        outputView.printInputLottoWinningMessage();
-        List<Integer> winningNumbers = inputView.inputLottoWinningNum();
+        List<Integer> winningNumbers;
 
+        while (true) {
+            outputView.printInputLottoWinningMessage();
+            try {
+                winningNumbers = inputView.inputLottoWinningNum();
+                Lotto lotto = new Lotto(winningNumbers);  // 유효성 검사 수행
+                break;
+            } catch (IllegalArgumentException e) {
+//                outputView.printErrorMessage();
+            }
+        }
         outputView.printInputBonusNumberMessage();
         int bonusNumber = inputBonusNumber();
-
         lottoService.inputWinningNumbers(winningNumbers, bonusNumber);
     }
 
-}
 
+
+}
