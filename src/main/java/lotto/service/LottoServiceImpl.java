@@ -20,12 +20,19 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public void purchaseLottos(int amount) {
-        int numberOfLotto = amount / LOOTO_AMOUNT;
+        Lotto.validatePurchaseAmount(amount);
 
+        int numberOfLotto = amount / LOOTO_AMOUNT;
         IntStream.range(0, numberOfLotto).forEach(i -> {
             Lotto lotto = Lotto.createRandomLotto(); // Lotto도메인에서 팩토리 메소드 호출
             saveLottoNums(lotto);
         });
+    }
+
+    private void outputPurchasedLottos() {
+        List<Lotto> purchasedLottos = lottoRepository.findAllLotto();
+        OutputView.printTicketCount(purchasedLottos.size());
+        purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers())); // 각 로또 번호 출력
     }
 
     @Override
@@ -33,6 +40,8 @@ public class LottoServiceImpl implements LottoService {
         try {
             WinningNumbers winningNumbersObj = new WinningNumbers(winningNumbers, bonusNumber);
             lottoRepository.saveWinningNumbers(winningNumbersObj);
+
+            outputPurchasedLottos();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage();
         }
