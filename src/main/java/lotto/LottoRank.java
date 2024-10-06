@@ -1,3 +1,5 @@
+// 3주차 코드입니다 2주차로 잘못올려서 다시올립니다 ㅜㅜ
+
 package lotto;
 
 public enum LottoRank {
