@@ -2,12 +2,12 @@ package model;
 
 import valueObject.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //
 public class Lotto {
     private final List<Integer> numbers;
-    private ErrorMessage errorMessage;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -19,5 +19,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    // TODO: 추가 기능 구현
+
+    // String 분리하여 배열에 저장하고 배열을 리턴하는 메서드
+    public List<Integer> splitNumbers(String numbers) {
+        List<Integer> result = new ArrayList<>();
+
+        String[] number = numbers.split(",");
+        for (String num : number) {
+            result.add(Integer.parseInt(num));
+        }
+        return result;
+    }
 }

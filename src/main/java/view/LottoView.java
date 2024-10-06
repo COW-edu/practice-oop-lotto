@@ -33,8 +33,8 @@ public class LottoView {
     }
 
     // 구매한 로또 번호 리스트 출력
-    public void displayLottoNumber(List<Integer> numbers) {
-        System.out.println(numbers);
+    public void displayLottoNumber(List<Integer> lottos) {
+        System.out.println(lottos);
     }
 
     // 당첨 통계 출력
