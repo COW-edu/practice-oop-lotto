@@ -11,5 +11,5 @@ public interface LottoRepository {
 
     void saveWinningNumbers(WinningNumbers winningNumbers);
 
-//    WinningNumbers findWinningNumbers();
+    WinningNumbers findWinningNumbers();
 }

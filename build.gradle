@@ -20,3 +20,6 @@ java {
 test {
     useJUnitPlatform()
 }
+tasks.withType(JavaExec) {
+    jvmArgs '--add-opens', 'java.base/java.util=ALL-UNNAMED'
+}

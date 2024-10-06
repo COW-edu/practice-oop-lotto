@@ -49,14 +49,12 @@ public class LottoController {
                 Lotto lotto = new Lotto(winningNumbers);  // 유효성 검사 수행
                 break;
             } catch (IllegalArgumentException e) {
-//                outputView.printErrorMessage();
+
             }
         }
         outputView.printInputBonusNumberMessage();
         int bonusNumber = inputBonusNumber();
         lottoService.inputWinningNumbers(winningNumbers, bonusNumber);
     }
-
-
 
 }

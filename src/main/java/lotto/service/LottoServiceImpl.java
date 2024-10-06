@@ -4,7 +4,6 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.WinningNumbers;
 import lotto.repository.LottoRepository;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.stream.IntStream;
 public class LottoServiceImpl implements LottoService {
 
     private final LottoRepository lottoRepository;
-    private LottoResult lottoResult;
+    private final LottoResult lottoResult;
     private static final int LOOTO_AMOUNT = 1000;
 
     public LottoServiceImpl(LottoRepository lottoRepository) {

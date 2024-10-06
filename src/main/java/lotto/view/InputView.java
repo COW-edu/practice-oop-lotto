@@ -20,7 +20,7 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    //for문 서비스 쪽으로 옮겨야 함
+    //for문 서비스 쪽으로 옮겨야 하는데 못하겠네..
     public static List<Integer> numberList(String winningNumber) {
         String[] result = winningNumber.split(",");
         winningNumberList = new ArrayList<>();
