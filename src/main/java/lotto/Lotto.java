@@ -1,33 +1,32 @@
 package lotto;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final Set<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        // 입력 받은 번호 리스트의 유효성 검사 후 유효하면 객체로 저장.
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new TreeSet<>(numbers);  // TreeSet으로 정렬된 번호 저장
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) { // 6개 인지...
-            throw new IllegalArgumentException(Rank.ExceptionCode.LOTTO_NUMBER_RULE1.getMessage());
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(Constant.ERROR_INVALID_NUMBER);
         }
-
-        // Stream을 사용, 번호가 1에서 45 사이에 있는지...
-        boolean isValid = numbers.stream()
-                .allMatch(number -> number >= 1 && number <= 45);
-
-        // 유효하지 않은 번호가 있으면 예외
-        if (!isValid) {
-            throw new IllegalArgumentException(Rank.ExceptionCode.LOTTO_NUMBER_RULE2.getMessage());
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(Constant.ERROR_INVALID_NUMBER);
+            }
+        }
+        if (new TreeSet<>(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException(Constant.ERROR_DUPLICATE_NUMBER);
         }
     }
 
-
-    public List<Integer> getNumbers() {
+    public Set<Integer> getNumbers() {
         return numbers;
     }
 }
