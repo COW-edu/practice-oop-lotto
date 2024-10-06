@@ -8,14 +8,14 @@ public class WinLottoMaker {
   public static List<Integer> makeWinLotto(String winNumbersAsString) {
     String[] winNumbersAsStrings = winNumbersAsString.split(",");
 
-    List<Integer> winNums = ErrorCheckingAndParsing.isNumsAsString(winNumbersAsStrings);
-    ErrorCheckingAndParsing.isOnlySixNums(winNums);
+    List<Integer> winNumbers = ErrorCheckingAndParsing.isNumsAsString(winNumbersAsStrings);
+    ErrorCheckingAndParsing.isOnlySixNums(winNumbers);
 
-    for (int i = 0; i < winNums.size(); i++) {
-      ErrorCheckingAndParsing.numRange(winNums.get(i));
+    for (int i = 0; i < winNumbers.size(); i++) {
+      ErrorCheckingAndParsing.confirmNumRange(winNumbers.get(i));
     }
 
-    return winNums;
+    return winNumbers;
   }
 
 }
