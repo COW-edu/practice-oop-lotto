@@ -1,10 +1,12 @@
-package lotto;
+package lotto.view;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import lotto.machine.LottoSeller;
+import lotto.machine.WinningSystem;
+import lotto.constant.Constant;
+import lotto.machine.Lotto;
+
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class LottoKiosk {
     private final LottoSeller lottoSeller;
@@ -43,12 +45,9 @@ public class LottoKiosk {
             try {
                 System.out.println(Constant.PROMPT_PURCHASE_AMOUNT);
                 int amount = scanner.nextInt();
-                if (amount % 1000 != 0) {
-                    throw new IllegalArgumentException(Constant.ERROR_INVALID_AMOUNT);
-                }
                 return amount;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(Constant.ERROR_INVALID_AMOUNT);
                 scanner.nextLine(); // 잘못된 입력 처리 후 입력 버퍼 비우기
             }
         }
@@ -59,51 +58,21 @@ public class LottoKiosk {
             try {
                 System.out.println(Constant.PROMPT_WINNING_NUMBERS);
                 String winningNumbersInput = scanner.next();
-                return parseWinningNumbers(winningNumbersInput);
+                // 입력된 번호를 Lotto 객체에서 처리
+                return Lotto.parseWinningNumbers(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private List<Integer> parseWinningNumbers(String input) {
-        String[] split = input.split(",");
-        List<String> errorMessages = new ArrayList<>();
-
-        // 숫자 변환 및 예외 처리
-        List<Integer> numbers = Arrays.stream(split)
-                .map(String::trim)  // 공백 제거
-                .map(num -> {
-                    int number = Integer.parseInt(num);
-                    if (number < 1 || number > 45) {
-                        errorMessages.add(Constant.ERROR_INVALID_NUMBER);
-                    }
-                    return number;
-                })
-                .collect(Collectors.toList());
-
-        // 숫자 개수 체크
-        if (numbers.size() != 6) {
-            errorMessages.add(Constant.ERROR_NUMBER_COUNT);
-        }
-
-        // 예외 발생: 1~45 범위를 벗어난 숫자 또는 6개 이상 입력
-        if (!errorMessages.isEmpty()) {
-            throw new IllegalArgumentException(String.join(" ", errorMessages));
-        }
-
-        return numbers;
-    }
-
-
     private int requestBonusNumber(Scanner scanner) {
         while (true) {
             try {
                 System.out.println(Constant.PROMPT_BONUS_NUMBER);
                 int bonusNumber = scanner.nextInt();
-                if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw new IllegalArgumentException(Constant.ERROR_INVALID_NUMBER);
-                }
+                // 보너스 번호 유효성 검사는 Lotto 클래스에서 처리
+                Lotto.validateBonusNumber(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

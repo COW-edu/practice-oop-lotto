@@ -1,4 +1,6 @@
-package lotto;
+package lotto.machine;
+
+import lotto.constant.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +28,6 @@ public class LottoSeller {
                 .boxed()                // int형을 Integer로 변환
                 .collect(Collectors.toList());  // 리스트로 수집
     }
-}
 
+
+}

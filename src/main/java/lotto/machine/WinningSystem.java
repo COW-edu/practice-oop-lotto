@@ -1,4 +1,7 @@
-package lotto;
+package lotto.machine;
+
+import lotto.repository.Memory;
+import lotto.constant.Constant;
 
 import java.util.List;
 

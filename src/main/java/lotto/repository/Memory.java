@@ -1,4 +1,6 @@
-package lotto;
+package lotto.repository;
+
+import lotto.machine.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
