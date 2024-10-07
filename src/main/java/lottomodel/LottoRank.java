@@ -1,4 +1,4 @@
-package lottoModel;
+package lottomodel;
 
 public enum LottoRank {
     FIRST(1000000000, 0),
@@ -19,7 +19,6 @@ public enum LottoRank {
     public int getLottoPrize() {
         return lottoPrize;
     }
-
 
     public int getQuantity() {
         return quantity;

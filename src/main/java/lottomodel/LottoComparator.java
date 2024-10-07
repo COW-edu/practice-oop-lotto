@@ -1,19 +1,23 @@
-package lottoModel;
+package lottomodel;
 
 import java.util.Iterator;
-import java.util.List;
 
-import static lottoModel.LottoRank.*;
-import static lottoModel.LottoRank.FIFTH;
+import static lottomodel.LottoRank.*;
+import static lottomodel.LottoRank.FIFTH;
 
-public class Comparator {
+public class LottoComparator {
 
-    public void lottoComparison(Lotto userLotto, int bonusNum) {
-        Iterator<List<Integer>> lottoList = lottoSavedLooping();
-        while (lottoList.hasNext()) {
-            List<Integer> current = lottoList.next();
+    private final LottoRepository lottoRepository;
+
+    public LottoComparator(LottoRepository lottoRepository) {
+        this.lottoRepository = lottoRepository;
+    }
+
+    public void compare(Lotto userLotto, int bonusNumber) {
+        Iterator<Lotto> lottoNumbers = lottoRepository.getLottoSaved().iterator();
+        while (lottoNumbers.hasNext()) {
+            Lotto current = lottoNumbers.next();
             int sameNumbers = 0;
-
 
             for (Integer element : userLotto) {
                 if (current.contains(element)) {
@@ -24,7 +28,7 @@ public class Comparator {
                 FIRST.setQuantity(FIRST.getQuantity() + 1);
                 continue;
             }
-            if (sameNumbers == 5 && current.contains(bonusNum)) {
+            if (sameNumbers == 5 && current.contains(bonusNumber)) {
                 SECOND.setQuantity(SECOND.getQuantity() + 1);
                 continue;
             }
@@ -44,9 +48,4 @@ public class Comparator {
             }
         }
     }
-
-    private static Iterator<List<Integer>> lottoSavedLooping() {
-        return LottoMaker.lottoSaved.iterator();
-    }
-
 }

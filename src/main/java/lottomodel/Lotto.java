@@ -1,10 +1,8 @@
-package lottoModel;
-
-import exception.ErrorCode;
+package lottomodel;
 
 import java.util.*;
 
-import static exception.ErrorCode.*;
+import static exception.ErrorMessage.*;
 
 public class Lotto implements Iterable<Integer> {
     private final List<Integer> numbers;
@@ -16,13 +14,20 @@ public class Lotto implements Iterable<Integer> {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getErrorCode());
+            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getErrorMessage());
         }
     }
-
 
     @Override
     public Iterator<Integer> iterator() {
         return numbers.iterator();
+    }
+
+    public boolean contains(Integer element) {
+        return numbers.contains(element);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

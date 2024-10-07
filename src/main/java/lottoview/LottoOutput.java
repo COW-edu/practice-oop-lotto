@@ -1,25 +1,16 @@
-package lottoView;
+package lottoview;
 
-import lottoModel.LottoMaker;
-import lottoModel.LottoRank;
-import lottoModel.UNIT;
+import lottomodel.Lotto;
+import lottomodel.LottoRank;
+import lottomodel.Unit;
 
-import static lottoModel.LottoRank.*;
-import static lottoView.OutputMessage.*;
+import java.util.List;
+
+import static lottomodel.LottoRank.*;
+import static lottoview.OutputMessage.*;
 
 public class LottoOutput {
-
-
-    public void generateLottoNum(int inputMoney) {
-        int unitMoney = 1000;
-        int amount = inputMoney / unitMoney;
-        System.out.println(String.format(AMOUNT_OUTPUT.getMessage(), amount));
-        LottoMaker.generate(amount);
-    }
-
-
-
-    public void print(int inputMoney) {
+    public void resultPrint(int inputMoney) {
         System.out.println("당첨 통계");
         System.out.println("---");
         printEachMessage(FIFTH,FIFTH_OUTPUT);
@@ -37,10 +28,14 @@ public class LottoOutput {
                 FOURTH.getLottoTotalPrize() +
                 THIRD.getLottoTotalPrize() +
                 SECOND.getLottoTotalPrize() +
-                FIRST.getLottoTotalPrize()) / inputMoney * UNIT.PERCENT_UNIT) * 10) / 10.0;
+                FIRST.getLottoTotalPrize()) / inputMoney * Unit.PERCENT_UNIT.getValue()) * 10) / 10.0;
     }
 
-    private static void printEachMessage(LottoRank rank, OutputMessage output) {
+    private void printEachMessage(LottoRank rank, OutputMessage output) {
         System.out.println(String.format(output.getMessage(),rank.getQuantity()));
+    }
+
+    public void printLottoNumbers(Lotto lotto) {
+        System.out.println(lotto.getNumbers());
     }
 }
