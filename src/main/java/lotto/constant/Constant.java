@@ -8,7 +8,7 @@ public class Constant {
     public static final String ERROR_NUMBER_COUNT = "[ERROR] 로또 번호는 정확히 6개를 입력해야 합니다.";
 
     // User Prompt Messages
-    public static final String PROMPT_PURCHASE_AMOUNT = "구입 금액을 입력해 주세요.";
+    public static final String PROMPT_PURCHASE_AMOUNT = "구입 금액을 입력해 주세요: ";
     public static final String PROMPT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요. (1~45 숫자 6개를 쉼표로 구분해서 입력)";
     public static final String PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요. (1~45 사이 숫자)";
     public static final String PURCHASED_TICKETS = "%d개를 구매했습니다.";

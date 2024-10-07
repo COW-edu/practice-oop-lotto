@@ -2,7 +2,6 @@ package lotto.machine;
 
 import lotto.constant.Constant;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -37,10 +36,8 @@ public class Lotto {
     // 당첨 번호 파싱 및 검증 처리
     public static List<Integer> parseWinningNumbers(String input) {
         String[] split = input.split(",");
-        List<String> errorMessages = new ArrayList<>();
+        List<Integer> numbers;
 
-        // 숫자 변환 및 예외 처리
-        List<Integer> numbers = new ArrayList<>();
         try {
             numbers = List.of(split).stream()
                     .map(String::trim)  // 공백 제거

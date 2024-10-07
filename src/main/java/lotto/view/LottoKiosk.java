@@ -26,9 +26,7 @@ public class LottoKiosk {
         // 로또 발행
         List<Lotto> tickets = lottoSeller.sellLotto(amount);
         System.out.printf(Constant.PURCHASED_TICKETS, tickets.size());
-        for (Lotto ticket : tickets) {
-            System.out.println(ticket.getNumbers());
-        }
+        tickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
 
         // 당첨 번호 입력
         List<Integer> winningNumbers = requestWinningNumbers(scanner);
