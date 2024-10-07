@@ -1,4 +1,4 @@
-package lottomodel;
+package lotto_model;
 
 public class LottoService {
     private final LottoComparator lottoComparator;

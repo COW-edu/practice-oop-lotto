@@ -1,9 +1,9 @@
-package lottomodel;
+package lotto_model;
 
 import java.util.Iterator;
 
-import static lottomodel.LottoRank.*;
-import static lottomodel.LottoRank.FIFTH;
+import static lotto_model.LottoRank.*;
+import static lotto_model.LottoRank.FIFTH;
 
 public class LottoComparator {
 

@@ -1,4 +1,4 @@
-package lottomodel;
+package lotto_model;
 
 import java.util.ArrayList;
 import java.util.List;

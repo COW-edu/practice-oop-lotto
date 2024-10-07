@@ -1,13 +1,11 @@
-package lottoview;
+package lotto_view;
 
-import lottomodel.Lotto;
-import lottomodel.LottoRank;
-import lottomodel.Unit;
+import lotto_model.Lotto;
+import lotto_model.LottoRank;
+import lotto_model.Unit;
 
-import java.util.List;
-
-import static lottomodel.LottoRank.*;
-import static lottoview.OutputMessage.*;
+import static lotto_model.LottoRank.*;
+import static lotto_view.OutputMessage.*;
 
 public class LottoOutput {
     public void resultPrint(int inputMoney) {

@@ -1,8 +1,8 @@
-package lottomodel;
+package lotto_model;
 
 import java.util.*;
 
-import static exception.ErrorMessage.*;
+import static lotto_exception.ErrorMessage.*;
 
 public class Lotto implements Iterable<Integer> {
     private final List<Integer> numbers;

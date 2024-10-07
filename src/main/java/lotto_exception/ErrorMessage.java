@@ -1,4 +1,4 @@
-package exception;
+package lotto_exception;
 
 public enum ErrorMessage {
     OUT_OF_RANGE("[ERROR] 1부터 45사이의 숫자를 입력해 주세요."),

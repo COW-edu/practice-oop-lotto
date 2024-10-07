@@ -1,14 +1,14 @@
-package lottoview;
+package lotto_view;
 
-import lottomodel.Lotto;
-import lottomodel.Unit;
+import lotto_model.Lotto;
+import lotto_model.Unit;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import static exception.ErrorMessage.*;
+import static lotto_exception.ErrorMessage.*;
 
 
 public class LottoInput {

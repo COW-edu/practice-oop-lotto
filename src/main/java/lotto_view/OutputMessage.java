@@ -1,4 +1,4 @@
-package lottoview;
+package lotto_view;
 
 public enum OutputMessage {
     AMOUNT_OUTPUT("%s개를 구매했습니다."),

@@ -1,10 +1,10 @@
-import lottocontroller.LottoController;
-import lottomodel.LottoComparator;
-import lottomodel.LottoGenerator;
-import lottomodel.LottoRepository;
-import lottomodel.LottoService;
-import lottoview.LottoInput;
-import lottoview.LottoOutput;
+import lotto_controller.LottoController;
+import lotto_model.LottoComparator;
+import lotto_model.LottoGenerator;
+import lotto_model.LottoRepository;
+import lotto_model.LottoService;
+import lotto_view.LottoInput;
+import lotto_view.LottoOutput;
 
 public class AppConfig {
     public LottoInput lottoInput() {

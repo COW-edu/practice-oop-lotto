@@ -1,11 +1,10 @@
-package lottomodel;
+package lotto_model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Collections;
-import java.util.List;
 
-import static lottoview.OutputMessage.AMOUNT_OUTPUT;
+import static lotto_view.OutputMessage.AMOUNT_OUTPUT;
 
 public class LottoGenerator {
     private final LottoRepository lottoRepository;

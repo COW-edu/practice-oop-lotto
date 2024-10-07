@@ -1,9 +1,9 @@
-package lottocontroller;
+package lotto_controller;
 
-import lottomodel.Lotto;
-import lottomodel.LottoService;
-import lottoview.LottoInput;
-import lottoview.LottoOutput;
+import lotto_model.Lotto;
+import lotto_model.LottoService;
+import lotto_view.LottoInput;
+import lotto_view.LottoOutput;
 
 public class LottoController {
     private final LottoInput lottoInput;
