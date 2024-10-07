@@ -14,14 +14,9 @@ public class UserNumber {
     private static final int MAX_NUM = 45;
     private static final int MIN_PRICE = 0;
 
+    public UserNumber() {
 
-//    // 구매한 로또 번호들을 리스트 안에 넣어주는 메서드
-//    public List<List<Integer>> createList(int count, List<Integer> lotto) {
-//        for (int i = 0; i < count; i++) {
-//            lottos.add(lotto);
-//        }
-//        return lottos;
-//    }
+    }
 
 //    public List<List<Integer>> getLottos() {
 //        return lottos;
@@ -39,6 +34,15 @@ public class UserNumber {
         numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
+    // 구매한 로또 번호들을 리스트 안에 넣어주는 메서드
+    public List<List<Integer>> create(int count, List<Integer> lotto) {
+        List<List<Integer>> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lottos.add(lotto);
+        }
+        return lottos;
+    }
+
 
 
 

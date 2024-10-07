@@ -1,10 +1,6 @@
 package model;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import valueObject.ErrorMessage;
-
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 //
@@ -34,7 +30,7 @@ public class Lotto {
         return result;
     }
     private void validate(List<Integer> numbers, int bonusNumber) {
-        if (numbers.size() != 6) {
+        if (numbers.size() > LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
         if (bonusNumber < MIN_NUM || bonusNumber > MAX_NUM) {

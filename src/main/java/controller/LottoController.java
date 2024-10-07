@@ -4,23 +4,27 @@ import model.UserNumber;
 import model.Lotto;
 import model.RateCalculator;
 import model.WinChecker;
-import valueObject.ErrorMessage;
+import constants.ErrorMessage;
 import view.LottoView;
 
 import java.util.*;
 
 public class LottoController {
     private UserNumber userNumber;
-    private Lotto mLotto;
+    private Lotto lotto;
     private WinChecker winChecker;
     private RateCalculator rateCalculator;
     private LottoView lottoView;
     private ErrorMessage errorMessage;
 
 
-    public LottoController(UserNumber userNumber, LottoView lottoView) {
+    public LottoController(UserNumber userNumber, Lotto lotto, WinChecker winChecker, RateCalculator rateCalculator,  LottoView lottoView, ErrorMessage errorMessage) {
         this.userNumber = userNumber;
         this.lottoView = lottoView;
+        this.lotto = lotto;
+        this.winChecker = winChecker;
+        this.rateCalculator = rateCalculator;
+        this.errorMessage = errorMessage;
     }
 
     public void run() {
@@ -29,20 +33,15 @@ public class LottoController {
             int lottoCount = userNumber.buy(money);
             lottoView.displayLottoCount(lottoCount);
 
-            List<List<Integer>> lottosList = new ArrayList<>();
-            for (int i = 0; i < lottoCount; i++) {
-                List<Integer> lottoNumbersList = userNumber.create();
-                lottoView.displayLottoNumber(lottoNumbersList);
-                lottosList.add(lottoNumbersList);
-            }
+            List<List<Integer>> lottos = new ArrayList<>();
+            lottoView.displayLottoNumber(lottos);
 
             // 당첨 번호 및 보너스 번호 입력받기
             String winningNumber = lottoView.getWinningNumber();
             int bonusNumber = lottoView.getBonusNumber();
-            mLotto = new Lotto(winningNumber, bonusNumber);
-            List<Integer> winningNumberList = mLotto.split(winningNumber);// 보너스 번호 범위 확인
-            winChecker = new WinChecker(winningNumberList, bonusNumber, lottosList);
-
+            lotto = new Lotto(winningNumber, bonusNumber);
+            List<Integer> winningNumbers = lotto.split(winningNumber);// 보너스 번호 범위 확인
+            winChecker = new WinChecker(winningNumbers, bonusNumber, lottos);
 
             int threeCount = winChecker.getThreeCount();
             int fourCount = winChecker.getFourCount();
