@@ -18,14 +18,20 @@ public class LottoResult {
     private static final int FOURTH_PRIZE_AMOUNT = 50_000;
     private static final int FIFTH_PRIZE_AMOUNT = 5_000;
 
+    private static final String THREE_MATCH = "3개 일치";
+    private static final String FOUR_MATCH = "4개 일치";
+    private static final String FIVE_MATCH = "5개 일치";
+    private static final String FIVE_MATCH_BONUS = "5개 일치, 보너스 볼 일치";
+    private static final String SIX_MATCH = "6개 일치";
+
     private final Map<String, Integer> prizeCounts = new LinkedHashMap<>();
 
     public LottoResult() {
-        prizeCounts.put("3개 일치", 0);
-        prizeCounts.put("4개 일치", 0);
-        prizeCounts.put("5개 일치", 0);
-        prizeCounts.put("5개 일치, 보너스 볼 일치", 0);
-        prizeCounts.put("6개 일치", 0);
+        prizeCounts.put(THREE_MATCH, 0);
+        prizeCounts.put(FOUR_MATCH, 0);
+        prizeCounts.put(FIVE_MATCH, 0);
+        prizeCounts.put(FIVE_MATCH_BONUS, 0);
+        prizeCounts.put(SIX_MATCH, 0);
     }
 
     public void updateResult(int matchCount, boolean hasBonus) {
