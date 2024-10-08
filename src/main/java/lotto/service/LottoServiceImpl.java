@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.WinningNumbers;
 import lotto.repository.LottoRepository;
+import lotto.view.ErrorMessage;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.stream.IntStream;
 
 public class LottoServiceImpl implements LottoService {
 
+    private static final int LOOTO_AMOUNT = 1000;
+
     private final LottoRepository lottoRepository;
     private final LottoResult lottoResult;
-    private static final int LOOTO_AMOUNT = 1000;
+
 
     public LottoServiceImpl(LottoRepository lottoRepository) {
         this.lottoRepository = lottoRepository;
@@ -46,7 +49,7 @@ public class LottoServiceImpl implements LottoService {
             outputPurchasedLottos();
             checkAndPrintResults();
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage();
+            OutputView.printErrorMessage(ErrorMessage.ERROR_MESSAGE);
         }
     }
 
