@@ -10,6 +10,10 @@ import lotto.view.OutputView;
 
 public class AppConfig {
 
+    public LottoController lottoController() {
+        return new LottoController(lottoService(), inputView(), outputView());
+    }
+
     private InputView inputView() {
         return new InputView();
     }
@@ -24,10 +28,6 @@ public class AppConfig {
 
     private LottoService lottoService() {
         return new LottoServiceImpl(lottoRepository());
-    }
-
-    public LottoController lottoController() {
-        return new LottoController(lottoService(), inputView(), outputView());
     }
 
 }
