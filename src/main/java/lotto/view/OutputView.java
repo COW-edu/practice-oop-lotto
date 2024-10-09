@@ -1,5 +1,9 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+
+import java.util.List;
+
 public class OutputView {
     private static final String TICKET_COUNT = "개를 구매했습니다.";
     private static final String INPUT_LOTTO_PRICE = "구입금액을 입력해 주세요.";
@@ -24,6 +28,10 @@ public class OutputView {
 
     public static void printErrorMessage(ErrorMessage errorMessage) {
         System.out.println(errorMessage.getMessage());
+    }
+
+    public static void printLottoNumbers(List<Lotto> purchasedLottos) {
+        purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
 }
