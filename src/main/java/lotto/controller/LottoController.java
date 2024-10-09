@@ -27,12 +27,13 @@ public class LottoController {
 
     private void purchaseLottos() {
         outputView.printInputLottoPriceMessage();
-
-        while (true) {
+        boolean isPurchasing = true;
+        while (isPurchasing) {
             int amount = inputView.inputPlayerPrice();
+
             try {
                 lottoService.purchaseLottos(amount);
-                break;
+                isPurchasing = false;
             } catch (IllegalArgumentException e) {
                 outputView.printInputLottoPriceMessage();
             }
@@ -41,7 +42,6 @@ public class LottoController {
 
     private void inputWinningNumbers() {
         List<Integer> winningNumbers;
-
         while (true) {
             outputView.printInputLottoWinningMessage();
             try {
