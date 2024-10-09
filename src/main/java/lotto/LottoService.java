@@ -1,5 +1,7 @@
 package lotto;
 
+import constant.LottoInformation;
+
 import java.util.ArrayList;
 import java.util.List;
 

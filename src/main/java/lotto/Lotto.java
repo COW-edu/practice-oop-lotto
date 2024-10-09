@@ -3,6 +3,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import constant.ErrorMessage;
 
 import java.util.*;
 
@@ -27,16 +28,14 @@ public class Lotto {
 
     private void validateNumber(List<Integer> numbers) {
         if (numbers.size() != countNumber) {
-            String numbersSizeError = "[ERROR] 로또 번호는 6개여야 합니다.";
-            throw new IllegalArgumentException(numbersSizeError);
+            throw new IllegalArgumentException(ErrorMessage.NUMBERS_SIZE_ERROR);
         }
     }
 
     private void validateRedundancy(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != countNumber) {
-            String uniqueNumbersError = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
-            throw new IllegalArgumentException(uniqueNumbersError);
+            throw new IllegalArgumentException(ErrorMessage.UNIQUE_NUMBERS_ERROR);
         }
     }
 
@@ -49,8 +48,7 @@ public class Lotto {
     // 범위 검증 메서드를 static으로 변경 (단일 숫자 검증)
     public static void validateRange(int number) {
         if (number < minimumNumber || number > maximumNumber) {
-            String rangeNumberError = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-            throw new IllegalArgumentException(rangeNumberError);
+            throw new IllegalArgumentException(ErrorMessage.RANGE_NUMBER_ERROR);
         }
     }
 

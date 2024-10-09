@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import constant.ErrorMessage;
+import constant.LottoInformation;
+import constant.LottoMessage;
 
 import java.util.List;
 
@@ -8,24 +11,22 @@ import java.util.List;
 public class LottoView {
 
     public int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(LottoMessage.INPUT_PURCHASE_AMOUNT);
         int price = Integer.parseInt(Console.readLine());
         validatePurchaseAmount(price);
         return price;
     }
 
     public void printPurchaseMessage(int numberOfLotto) {
-        String purchasedNumberOfLotto = numberOfLotto + "개를 구매했습니다.";
-        System.out.println(purchasedNumberOfLotto);
+        System.out.println(numberOfLotto + LottoMessage.PURCHASED_NUMBER_OF_LOTTO);
     }
 
     private static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.negativePurchaseAmountError);
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_PURCHASE_AMOUNT_ERROR);
         }
         if (purchaseAmount % LottoInformation.PRICE_PER_LOTTO != 0) {
-            String multiplesPurchaseAmountError = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
-            throw new IllegalArgumentException(multiplesPurchaseAmountError);
+            throw new IllegalArgumentException(ErrorMessage.MULTIPLES_PURCHASE_AMOUNT_ERROR);
         }
     }
 

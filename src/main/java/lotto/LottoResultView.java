@@ -1,5 +1,8 @@
 package lotto;
 
+import constant.LottoMessage;
+import constant.LottoRank;
+
 import java.util.List;
 
 public class LottoResultView {
@@ -7,11 +10,10 @@ public class LottoResultView {
     LottoCalculator lottoCalculator = new LottoCalculator();
 
     private static void printRankResults(int[] rankCount) {
-        String printRankResultsHeader = "당첨 통계\n---";
-        System.out.println(printRankResultsHeader);
+        System.out.println(LottoMessage.PRINT_RANK_RESULTS_HEADER);
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
-                String printRankResults = rank.getResultMessage() + " - " + rankCount[rank.ordinal()] + "개";
+                String printRankResults = String.format(LottoMessage.PRINT_RANK_RESULT_FORMAT, rank.getResultMessage(), rankCount[rank.ordinal()]);
                 System.out.println(printRankResults);
             }
         }
@@ -21,7 +23,7 @@ public class LottoResultView {
         int[] rankCount = lottoCalculator.countRanks(results);
         printRankResults(rankCount);
         double yield = LottoCalculator.calculateYield(results, purchaseAmount);
-        String printResults = "총 수익률은 " + yield + "%입니다.";
+        String printResults = String.format(LottoMessage.PRINT_RESULTS, yield);
         System.out.println(printResults);
     }
 

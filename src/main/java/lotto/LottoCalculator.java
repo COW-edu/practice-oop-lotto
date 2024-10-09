@@ -2,6 +2,8 @@
 
 package lotto;
 
+import constant.LottoRank;
+
 import java.util.ArrayList;
 import java.util.List;
 

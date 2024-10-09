@@ -1,11 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import constant.LottoMessage;
 
 public class BonusLottoView {
     public int inputBonusNumber() {
-        String inputBonusNumber = "보너스 번호를 입력해주세요.";
-        System.out.println(inputBonusNumber);
+        System.out.println(LottoMessage.INPUT_BONUS_NUMBER);
         int bonusNumber = Integer.parseInt(Console.readLine());
         Lotto.validateRange(bonusNumber);
         return bonusNumber;

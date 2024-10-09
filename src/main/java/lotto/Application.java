@@ -2,9 +2,8 @@
 
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import constant.LottoRank;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
