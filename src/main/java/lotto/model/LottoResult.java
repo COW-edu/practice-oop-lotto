@@ -36,15 +36,27 @@ public class LottoResult {
 
     public void updateResult(int matchCount, boolean hasBonus) {
         if (matchCount == FIRST_PRIZE_COUNT) {
-            prizeCounts.put("6개 일치", prizeCounts.get("6개 일치") + 1);
-        } else if (matchCount == SECOND_PRIZE_COUNT && hasBonus) {
-            prizeCounts.put("5개 일치, 보너스 볼 일치", prizeCounts.get("5개 일치, 보너스 볼 일치") + 1);
-        } else if (matchCount == THIRD_PRIZE_COUNT) {
-            prizeCounts.put("5개 일치", prizeCounts.get("5개 일치") + 1);
-        } else if (matchCount == FOURTH_PRIZE_COUNT) {
-            prizeCounts.put("4개 일치", prizeCounts.get("4개 일치") + 1);
-        } else if (matchCount == FIFTH_PRIZE_COUNT) {
-            prizeCounts.put("3개 일치", prizeCounts.get("3개 일치") + 1);
+            prizeCounts.put(SIX_MATCH, prizeCounts.get(SIX_MATCH) + 1);
+            return;
+        }
+
+        if (matchCount == SECOND_PRIZE_COUNT && hasBonus) {
+            prizeCounts.put(FIVE_MATCH_BONUS, prizeCounts.get(FIVE_MATCH_BONUS) + 1);
+            return;
+        }
+
+        if (matchCount == SECOND_PRIZE_COUNT) {
+            prizeCounts.put(FIVE_MATCH, prizeCounts.get(FIVE_MATCH) + 1);
+            return;
+        }
+
+        if (matchCount == FOURTH_PRIZE_COUNT) {
+            prizeCounts.put(FOUR_MATCH, prizeCounts.get(FOUR_MATCH) + 1);
+            return;
+        }
+
+        if (matchCount == FIFTH_PRIZE_COUNT) {
+            prizeCounts.put(THREE_MATCH, prizeCounts.get(THREE_MATCH) + 1);
         }
     }
 
@@ -64,15 +76,15 @@ public class LottoResult {
 
     public int getPrizeAmount(String prize) {
         switch (prize) {
-            case "6개 일치":
+            case SIX_MATCH:
                 return FIRST_PRIZE_AMOUNT;
-            case "5개 일치, 보너스 볼 일치":
+            case FIVE_MATCH_BONUS:
                 return SECOND_PRIZE_AMOUNT;
-            case "5개 일치":
+            case FIVE_MATCH:
                 return THIRD_PRIZE_AMOUNT;
-            case "4개 일치":
+            case FOUR_MATCH:
                 return FOURTH_PRIZE_AMOUNT;
-            case "3개 일치":
+            case THREE_MATCH:
                 return FIFTH_PRIZE_AMOUNT;
             default:
                 return 0;
