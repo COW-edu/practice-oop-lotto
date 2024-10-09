@@ -26,7 +26,7 @@ public class LottoRepositoryImpl implements LottoRepository {
     }
     @Override
     public WinningNumbers findWinningNumbers() {
-        return winningNumbersStorage.isEmpty() ? null : winningNumbersStorage.get(0); // 6개중 첫 번째 저장된 당첨 번호 반환
+        return winningNumbersStorage.isEmpty() ? null : winningNumbersStorage.get(winningNumbersStorage.size() - 1);
     }
 
 }
