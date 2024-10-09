@@ -9,10 +9,10 @@ import java.util.List;
 public class Lotto {
 
     private final List<Integer> numbers; //로또 갯수 저장필드
-    private static final int LOOTO_AMOUNT = 1000;
+    private static final int LOTTO_AMOUNT = 1000;
     private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 1;
-    private static final int COUNT = 1;
+    private static final int END_INCLUSIVE = 45;
+    private static final int COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -29,11 +29,11 @@ public class Lotto {
     }
 
     public static void validatePurchaseAmount(int amount) {
-        if (amount < LOOTO_AMOUNT) {
+        if (amount < LOTTO_AMOUNT) {
             OutputView.printErrorMessage(ErrorMessage.ERROR_MINIMUM_PURCHASE_AMOUNT);
             throw new IllegalArgumentException();
         }
-        if (amount % LOOTO_AMOUNT != 0) {
+        if (amount % LOTTO_AMOUNT != 0) {
             OutputView.printErrorMessage(ErrorMessage.ERROR_INVALID_PURCHASE_AMOUNT);
             throw new IllegalArgumentException();
         }
