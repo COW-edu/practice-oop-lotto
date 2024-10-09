@@ -18,9 +18,9 @@ public class LottoServiceImpl implements LottoService {
     private final LottoResult lottoResult;
 
 
-    public LottoServiceImpl(LottoRepository lottoRepository) {
+    public LottoServiceImpl(LottoRepository lottoRepository, LottoResult lottoResult) {
         this.lottoRepository = lottoRepository;
-        this.lottoResult = new LottoResult();
+        this.lottoResult = lottoResult;
     }
 
     @Override
@@ -29,15 +29,8 @@ public class LottoServiceImpl implements LottoService {
 
         int numberOfLotto = amount / LOOTO_AMOUNT;
         IntStream.range(0, numberOfLotto).forEach(i -> {
-            Lotto lotto = Lotto.createRandomLotto(); // Lotto도메인에서 팩토리 메소드 호출
-            saveLottoNums(lotto);
+            saveLottoNums(Lotto.createRandomLotto());
         });
-    }
-
-    private void outputPurchasedLottos() {
-        List<Lotto> purchasedLottos = lottoRepository.findAllLotto();
-        OutputView.printTicketCount(purchasedLottos.size());
-        purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers())); // 각 로또 번호 출력
     }
 
     @Override
@@ -52,7 +45,6 @@ public class LottoServiceImpl implements LottoService {
             OutputView.printErrorMessage(ErrorMessage.ERROR_MESSAGE);
         }
     }
-
 
     public void saveLottoNums(Lotto lotto){
         lottoRepository.saveLotto(lotto);
@@ -72,11 +64,17 @@ public class LottoServiceImpl implements LottoService {
             boolean hasBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
             lottoResult.updateResult(matchCount, hasBonus); // 결과 업데이트
         }
-        lottoResult.printResult(); // 결과 출력
+        lottoResult.printResult();
 
-    // 수익률 계산 및 출력
     double yield = lottoResult.calculateYield(purchasedLottos.size() * LOOTO_AMOUNT);
     System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
-}
+
+    }
+
+    private void outputPurchasedLottos() {
+        List<Lotto> purchasedLottos = lottoRepository.findAllLotto();
+        OutputView.printTicketCount(purchasedLottos.size());
+        OutputView.printLottoNumbers(purchasedLottos);
+    }
 
 }
