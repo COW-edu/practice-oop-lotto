@@ -3,6 +3,7 @@
 package lotto;
 
 import constant.LottoRank;
+import constant.ResultInformation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,7 @@ public class LottoCalculator {
         int totalPrize = results.stream()
                 .mapToInt(LottoRank::getPrizeMoney)
                 .sum();
-        int percentConversion = 100;
-        return (totalPrize / (double) purchaseAmount) * percentConversion;
+        return (totalPrize / (double) purchaseAmount) * ResultInformation.PERCENT_CONVERSION;
     }
 
     public List<LottoRank> calculateResults(List<Lotto> purchasedLotto, WinLotto winLotto) {
