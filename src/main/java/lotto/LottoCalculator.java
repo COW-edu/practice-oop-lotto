@@ -2,9 +2,14 @@
 
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoCalculator {
+
+    WinLottoView winLottoView = new WinLottoView();
+    BonusLottoView bonusLottoView = new BonusLottoView();
+    private List<LottoRank> results;
 
     public static LottoRank calculateRank(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
@@ -18,5 +23,24 @@ public class LottoCalculator {
                 .sum();
         int percentConversion = 100;
         return (totalPrize / (double) purchaseAmount) * percentConversion;
+    }
+
+    public List<LottoRank> calculateResults(List<Lotto> purchasedLotto, WinLotto winLotto) {
+        List<LottoRank> results = new ArrayList<>();
+        List<Integer> winningNumbers = winLotto.getWinningNumbers();
+        int bonusNumber = winLotto.getBonusNumber();
+        for (Lotto lotto : purchasedLotto) {
+            LottoRank lottoRank = LottoCalculator.calculateRank(lotto.getNumbers(), winningNumbers, bonusNumber);
+            results.add(lottoRank);
+        }
+        return results;
+    }
+
+    public int[] countRanks(List<LottoRank> results) {
+        int[] rankCount = new int[LottoRank.values().length];
+        for (LottoRank rank : results) {
+            rankCount[rank.ordinal()]++;
+        }
+        return rankCount;
     }
 }
