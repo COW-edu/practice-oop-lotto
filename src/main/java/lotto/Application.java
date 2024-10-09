@@ -22,9 +22,9 @@ public class Application {
             lottoView.printPurchaseMessage(purchasedLotto.size());
             lottoView.printPurchasedLotto(purchasedLotto);
 
-            List<Integer> winningNumbers = winLottoView.inputWinningNumbers();
+            Lotto winningNumbers = winLottoView.inputWinningNumbers();
             int bonusNumber = bonusLottoView.inputBonusNumber();
-            WinLotto winLotto = new WinLotto(winningNumbers, bonusNumber);
+            WinLotto winLotto = new WinLotto(winningNumbers.getNumbers(), bonusNumber);
             List<LottoRank> results = lottoCalculator.calculateResults(purchasedLotto, winLotto);
 
             lottoResultView.printResults(results, purchaseAmount);

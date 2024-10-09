@@ -8,11 +8,10 @@ import java.util.List;
 
 public class WinLottoView {
 
-    public List<Integer> inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         System.out.println(LottoMessage.INPUT_WINNING_NUMBERS);
         List<Integer> winningNumbers = parseInputNumbers(Console.readLine());
-        new Lotto(winningNumbers);
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
     private List<Integer> parseInputNumbers(String winningNumbers) {

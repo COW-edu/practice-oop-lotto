@@ -13,10 +13,9 @@ public class WinLotto {
     }
 
     public List<Integer> getWinningNumbers() {
-        return lotto.getNumbers();  // Lotto 객체의 번호를 반환
+        return lotto.getNumbers();
     }
 
-    // 보너스 번호를 반환하는 메서드
     public int getBonusNumber() {
         return bonusNumber;
     }
