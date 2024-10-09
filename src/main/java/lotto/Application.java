@@ -1,20 +1,16 @@
 package lotto;
 
-import controller.LottoController;
-import model.Lotto;
-import model.UserNumber;
-import model.WinChecker;
-import view.LottoView;
+import controller.LottoControllerImpl;
+import view.InputViewImpl;
+import view.OutputViewImpl;
 
 public class Application {
     public Application() {
-        UserNumber userNumber = new UserNumber();
-        LottoView lottoView = new LottoView();
-        Lotto lotto = new Lotto(lottoView.getWinningNumber(), lottoView.getBonusNumber());
-        WinChecker winChecker = new WinChecker(userNumber.create(userNumber.buy(lottoView.getMoneyInput())));
-        LottoController lottoController = new LottoController(userNumber, lottoView, lotto, );
+        InputViewImpl inputViewImpl = new InputViewImpl();
+        OutputViewImpl outputViewImpl = new OutputViewImpl();
+        LottoControllerImpl lottoControllerImpl = new LottoControllerImpl(inputViewImpl, outputViewImpl);
 
-        lottoController.run();
+        lottoControllerImpl.run();
     }
     public static void main(String[] args) {
         Application app = new Application();
