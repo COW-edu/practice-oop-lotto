@@ -2,7 +2,7 @@
 
 package constant;
 
-public enum     LottoRank {
+public enum LottoRank {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     THIRD(5, 1_500_000, "5개 일치 (1,500,000원)"),
@@ -20,6 +20,10 @@ public enum     LottoRank {
         this.resultMessage = resultMessage;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrizeMoney() {
         return prizeMoney;
     }
@@ -29,19 +33,19 @@ public enum     LottoRank {
     }
 
     public static LottoRank valueOf(int matchCount, boolean matchBonus) {
-        if (matchCount == 6) {
+        if (matchCount == FIRST.getMatchCount()) {
             return FIRST;
         }
-        if (matchCount == 5 && matchBonus) {
+        if (matchCount == SECOND.getMatchCount() && matchBonus) {
             return SECOND;
         }
-        if (matchCount == 5) {
+        if (matchCount == THIRD.getMatchCount()) {
             return THIRD;
         }
-        if (matchCount == 4) {
+        if (matchCount == FOURTH.getMatchCount()) {
             return FOURTH;
         }
-        if (matchCount == 3) {
+        if (matchCount == FIFTH.getMatchCount()) {
             return FIFTH;
         }
         return NONE;
