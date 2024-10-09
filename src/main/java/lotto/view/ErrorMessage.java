@@ -7,7 +7,7 @@ public enum ErrorMessage {
     ERROR_MESSAGE("[ERROR] 로또 번호를 6개 입력해 주세요."),
     ERROR_INVALID_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 
-    private String message;
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = message;
