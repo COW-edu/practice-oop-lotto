@@ -27,10 +27,10 @@ public class LottoController {
 
     private void purchaseLottos() {
         outputView.printInputLottoPriceMessage();
+
         boolean isPurchasing = true;
         while (isPurchasing) {
             int amount = inputView.inputPlayerPrice();
-
             try {
                 lottoService.purchaseLottos(amount);
                 isPurchasing = false;
@@ -41,17 +41,20 @@ public class LottoController {
     }
 
     private void inputWinningNumbers() {
-        List<Integer> winningNumbers;
-        while (true) {
+        List<Integer> winningNumbers = null;
+        boolean isInputting = true;
+
+        while (isInputting) {
             outputView.printInputLottoWinningMessage();
             try {
                 winningNumbers = inputView.inputLottoWinningNum();
-                Lotto lotto = new Lotto(winningNumbers);  // 유효성 검사 수행
-                break;
+                new Lotto(winningNumbers);  // 유효성 검사 수행
+                isInputting = false;
             } catch (IllegalArgumentException e) {
 
             }
         }
+
         outputView.printInputBonusNumberMessage();
         int bonusNumber = inputBonusNumber();
         lottoService.inputWinningNumbers(winningNumbers, bonusNumber);
