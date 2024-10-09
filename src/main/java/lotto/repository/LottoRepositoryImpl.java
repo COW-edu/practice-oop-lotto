@@ -22,8 +22,9 @@ public class LottoRepositoryImpl implements LottoRepository {
 
     @Override
     public void saveWinningNumbers(WinningNumbers winningNumbers) {
-        winningNumbersStorage.add(winningNumbers); // 당첨 번호 저장
+        winningNumbersStorage.add(winningNumbers);
     }
+
     @Override
     public WinningNumbers findWinningNumbers() {
         return winningNumbersStorage.isEmpty() ? null : winningNumbersStorage.get(winningNumbersStorage.size() - 1);

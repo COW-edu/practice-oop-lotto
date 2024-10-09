@@ -12,5 +12,4 @@ public interface LottoService {
     void inputWinningNumbers(List<Integer> winningNumbers, int bonusNumber);
 
     void checkAndPrintResults();
-
 }
