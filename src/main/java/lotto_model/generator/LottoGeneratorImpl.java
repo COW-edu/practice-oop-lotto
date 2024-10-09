@@ -1,6 +1,9 @@
-package lotto_model;
+package lotto_model.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto_model.data.LottoRepository;
+import lotto_model.lotto.Lotto;
+import lotto_model.lotto.Unit;
 
 import java.util.Collections;
 

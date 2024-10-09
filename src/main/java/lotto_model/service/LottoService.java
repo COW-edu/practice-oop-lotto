@@ -1,4 +1,6 @@
-package lotto_model;
+package lotto_model.service;
+
+import lotto_model.lotto.Lotto;
 
 public interface LottoService {
     void lottoCompare(Lotto targetLotto, int bonusNumber);

@@ -1,4 +1,4 @@
-package lotto_model;
+package lotto_model.lotto;
 
 public enum Unit {
     UNIT_MONEY(1000),

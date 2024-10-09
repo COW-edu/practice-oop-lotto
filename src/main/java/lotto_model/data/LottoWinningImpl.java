@@ -1,13 +1,21 @@
-package lotto_model;
+package lotto_model.data;
 
 import lotto_exception.ErrorMessage;
+import lotto_model.lotto.LottoRank;
 
 public class LottoWinningImpl implements LottoWinning {
-    int first = 0;
-    int second = 0;
-    int third = 0;
-    int fourth = 0;
-    int fifth = 0;
+    private final static LottoWinningImpl instance = new LottoWinningImpl();
+
+    public static LottoWinningImpl getInstance() {
+        return instance;
+    }
+
+
+    private int first = 0;
+    private int second = 0;
+    private int third = 0;
+    private int fourth = 0;
+    private int fifth = 0;
 
     @Override
     public void addFirst() {

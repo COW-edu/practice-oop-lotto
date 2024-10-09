@@ -1,4 +1,8 @@
-package lotto_model;
+package lotto_model.service;
+
+import lotto_model.comparator.LottoComparator;
+import lotto_model.generator.LottoGenerator;
+import lotto_model.lotto.Lotto;
 
 public class LottoServiceImpl implements LottoService {
     private final LottoComparator lottoComparator;

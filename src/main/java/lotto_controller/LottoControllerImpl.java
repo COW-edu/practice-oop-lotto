@@ -1,7 +1,7 @@
 package lotto_controller;
 
-import lotto_model.Lotto;
-import lotto_model.LottoService;
+import lotto_model.lotto.Lotto;
+import lotto_model.service.LottoService;
 import lotto_view.LottoInput;
 import lotto_view.LottoOutput;
 

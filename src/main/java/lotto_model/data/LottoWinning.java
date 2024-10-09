@@ -1,4 +1,6 @@
-package lotto_model;
+package lotto_model.data;
+
+import lotto_model.lotto.LottoRank;
 
 public interface LottoWinning {
     void addFirst();

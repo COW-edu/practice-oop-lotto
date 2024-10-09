@@ -1,6 +1,15 @@
 import lotto_controller.LottoController;
 import lotto_controller.LottoControllerImpl;
-import lotto_model.*;
+import lotto_model.comparator.LottoComparator;
+import lotto_model.comparator.LottoComparatorImpl;
+import lotto_model.data.LottoRepository;
+import lotto_model.data.LottoRepositoryImpl;
+import lotto_model.data.LottoWinning;
+import lotto_model.data.LottoWinningImpl;
+import lotto_model.generator.LottoGenerator;
+import lotto_model.generator.LottoGeneratorImpl;
+import lotto_model.service.LottoService;
+import lotto_model.service.LottoServiceImpl;
 import lotto_view.LottoInput;
 import lotto_view.LottoInputImpl;
 import lotto_view.LottoOutput;
@@ -28,7 +37,7 @@ public class AppConfig {
     }
 
     public LottoWinning lottoWinning() {
-        return new LottoWinningImpl();
+        return LottoWinningImpl.getInstance();
     }
 
     public LottoService lottoService() {

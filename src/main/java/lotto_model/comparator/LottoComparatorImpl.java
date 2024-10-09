@@ -1,4 +1,8 @@
-package lotto_model;
+package lotto_model.comparator;
+
+import lotto_model.data.LottoRepository;
+import lotto_model.data.LottoWinning;
+import lotto_model.lotto.Lotto;
 
 import java.util.Iterator;
 

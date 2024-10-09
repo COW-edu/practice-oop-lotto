@@ -1,8 +1,8 @@
 package lotto_view;
 
-import lotto_model.LottoWinning;
-import lotto_model.Unit;
-import static lotto_model.LottoRank.*;
+import lotto_model.data.LottoWinning;
+import lotto_model.lotto.Unit;
+import static lotto_model.lotto.LottoRank.*;
 import static lotto_view.OutputMessage.*;
 
 public class LottoOutputImpl implements LottoOutput {
@@ -12,6 +12,7 @@ public class LottoOutputImpl implements LottoOutput {
         this.lottoWinning = lottoWinning;
     }
 
+    @Override
     public void resultPrint(int inputMoney) {
         System.out.println("당첨 통계");
         System.out.println("---");

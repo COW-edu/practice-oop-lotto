@@ -1,7 +1,7 @@
 package lotto_view;
 
-import lotto_model.Lotto;
-import lotto_model.Unit;
+import lotto_model.lotto.Lotto;
+import lotto_model.lotto.Unit;
 
 import java.util.ArrayList;
 import java.util.Collections;
