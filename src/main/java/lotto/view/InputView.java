@@ -6,13 +6,11 @@ import java.util.List;
 
 public class InputView {
 
-    private static List<Integer> winningNumberList;
-
-    public static int inputPlayerPrice() {
+    public int inputPlayerPrice() {
         return Integer.parseInt(Console.readLine());
     }
 
-    public static List<Integer> inputLottoWinningNum() {
+    public List<Integer> inputLottoWinningNum() {
         return numberList(Console.readLine());
     }
 
@@ -23,7 +21,7 @@ public class InputView {
     //for문 서비스 쪽으로 옮겨야 하는데 못하겠네..
     public static List<Integer> numberList(String winningNumber) {
         String[] result = winningNumber.split(",");
-        winningNumberList = new ArrayList<>();
+        List<Integer> winningNumberList = new ArrayList<>();
         for (int i = 0; i < result.length; i++) {
             winningNumberList.add(conventToInt(result[i]));
         }
