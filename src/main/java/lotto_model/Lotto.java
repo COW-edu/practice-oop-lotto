@@ -4,7 +4,7 @@ import java.util.*;
 
 import static lotto_exception.ErrorMessage.*;
 
-public class Lotto implements Iterable<Integer> {
+public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,11 +16,6 @@ public class Lotto implements Iterable<Integer> {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getErrorMessage());
         }
-    }
-
-    @Override
-    public Iterator<Integer> iterator() {
-        return numbers.iterator();
     }
 
     public boolean contains(Integer element) {
