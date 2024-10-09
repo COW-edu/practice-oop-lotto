@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.model.LottoResult;
 import lotto.repository.LottoRepository;
 import lotto.repository.LottoRepositoryImpl;
 import lotto.service.LottoService;
@@ -27,7 +28,7 @@ public class AppConfig {
     }
 
     private LottoService lottoService() {
-        return new LottoServiceImpl(lottoRepository());
+        return new LottoServiceImpl(lottoRepository(),new LottoResult());
     }
 
 }
