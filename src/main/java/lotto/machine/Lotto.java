@@ -1,61 +1,51 @@
 package lotto.machine;
 
-import lotto.constant.Constant;
+import lotto.constant.Error;
 
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 public class Lotto {
-    private final Set<Integer> numbers;
+
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = new TreeSet<>(numbers);  // TreeSet으로 정렬된 번호 저장
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(Constant.ERROR_NUMBER_COUNT);
-        }
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(Constant.ERROR_INVALID_NUMBER);
-            }
-        }
-        if (new TreeSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException(Constant.ERROR_DUPLICATE_NUMBER);
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplicates(numbers);
+    }
+
+    // 개수 유효성 검사
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(Error.ERROR_NUMBER_COUNT.getMessage());
         }
     }
 
-    public Set<Integer> getNumbers() {
+    // 숫자 범위 유효성 검사
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
+            throw new IllegalArgumentException(Error.ERROR_INVALID_NUMBER.getMessage());
+        }
+    }
+
+    // 중복 유효성 검사
+    private void validateDuplicates(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(Error.ERROR_DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
+    // 로또 번호 반환
+    public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    // 당첨 번호 파싱 및 검증 처리
-    public static List<Integer> parseWinningNumbers(String input) {
-        String[] split = input.split(",");
-        List<Integer> numbers;
-
-        try {
-            numbers = List.of(split).stream()
-                    .map(String::trim)  // 공백 제거
-                    .map(Integer::parseInt)  // 문자열을 숫자로 변환
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Constant.ERROR_INVALID_NUMBER);
-        }
-
-        // 유효성 검사
-        Lotto lotto = new Lotto(numbers);
-        return lotto.getNumbers().stream().collect(Collectors.toList());
-    }
-
-    // 보너스 번호 유효성 검사
-    public static void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(Constant.ERROR_INVALID_NUMBER);
-        }
     }
 }

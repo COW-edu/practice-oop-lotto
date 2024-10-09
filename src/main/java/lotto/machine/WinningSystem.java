@@ -1,9 +1,11 @@
 package lotto.machine;
 
+import lotto.constant.Rank.RankEnum;
 import lotto.repository.Memory;
-import lotto.constant.Constant;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WinningSystem {
     private final Memory memory;
@@ -12,33 +14,30 @@ public class WinningSystem {
         this.memory = memory;
     }
 
-    public void checkWinning(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
+    public Map<RankEnum, Integer> checkWinning(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
         memory.saveTickets(tickets);
         memory.saveWinningNumbers(winningNumbers, bonusNumber);
 
-        int[] matchCount = new int[Constant.Rank.values().length];
+        Map<RankEnum, Integer> matchCount = new HashMap<>();
 
         tickets.forEach(ticket -> {
             int match = (int) ticket.getNumbers().stream()
                     .filter(winningNumbers::contains)
                     .count();
             boolean matchBonus = ticket.getNumbers().contains(bonusNumber);
-            Constant.Rank rank = Constant.Rank.findRank(match, matchBonus);
-            matchCount[rank.ordinal()]++;
+            RankEnum rank = findRank(match, matchBonus);
+
+            matchCount.put(rank, matchCount.getOrDefault(rank, 0) + 1);
         });
 
-
-        printResult(matchCount);
+        return matchCount; // 결과를 LottoKiosk에 반환
     }
 
-    private void printResult(int[] matchCount) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        for (Constant.Rank rank : Constant.Rank.values()) {
-            if (rank != Constant.Rank.NONE) {
-                // Use the getter method to access matchCount
-                System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + matchCount[rank.ordinal()] + "개");
-            }
-        }
+    // Rank 계산 로직
+    private RankEnum findRank(int matchCount, boolean matchBonus) {
+        return java.util.Arrays.stream(RankEnum.values())
+                .filter(rank -> rank.getMatchCount() == matchCount && rank.isMatchBonus() == matchBonus)
+                .findFirst()
+                .orElse(RankEnum.NONE);
     }
 }

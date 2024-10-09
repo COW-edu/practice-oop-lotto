@@ -1,22 +1,25 @@
 package lotto.machine;
 
-import lotto.constant.Constant;
+import lotto.constant.Error;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoSeller {
+    int DEFAULT_AMOUNT = 1000;
+
     public List<Lotto> sellLotto(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(Constant.ERROR_INVALID_AMOUNT);
+        if (amount % DEFAULT_AMOUNT != 0) {
+            throw new IllegalArgumentException(Error.ERROR_INVALID_AMOUNT.getMessage());
         }
-        int ticketCount = amount / 1000;
-        List<Lotto> lottoTickets = new ArrayList<>();
+        int ticketCount = amount / DEFAULT_AMOUNT;
         LottoNumberGenerator generator = new LottoNumberGenerator();
 
-        for (int i = 0; i < ticketCount; i++) {
-            lottoTickets.add(new Lotto(generator.generateRandomNumbers()));
-        }
+        // 로또 티켓을 생성
+        List<Lotto> lottoTickets = java.util.stream.IntStream.range(0, ticketCount)
+                .mapToObj(i -> new Lotto(generator.generateRandomNumbers()))
+                .collect(Collectors.toList());
+
         return lottoTickets;
     }
 }

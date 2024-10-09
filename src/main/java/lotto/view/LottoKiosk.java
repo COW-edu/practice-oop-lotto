@@ -1,12 +1,13 @@
 package lotto.view;
 
-import lotto.machine.LottoSeller;
-import lotto.machine.WinningSystem;
-import lotto.constant.Constant;
-import lotto.machine.Lotto;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.Error;
+import lotto.constant.Prompt;
+import lotto.constant.Rank.RankEnum;
+import lotto.machine.*;
 
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 
 public class LottoKiosk {
     private final LottoSeller lottoSeller;
@@ -18,63 +19,71 @@ public class LottoKiosk {
     }
 
     public void start() {
-        Scanner scanner = new Scanner(System.in);
-
         // 구입 금액 입력
-        int amount = requestAmount(scanner);
+        int amount = requestAmount();
 
         // 로또 발행
         List<Lotto> tickets = lottoSeller.sellLotto(amount);
-        System.out.printf(Constant.PURCHASED_TICKETS, tickets.size());
+        System.out.println(Prompt.purchasedTickets(tickets.size()));  // 동적 메시지 생성
         tickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
 
         // 당첨 번호 입력
-        List<Integer> winningNumbers = requestWinningNumbers(scanner);
+        List<Integer> winningNumbers = requestWinningNumbers();
 
         // 보너스 번호 입력
-        int bonusNumber = requestBonusNumber(scanner);
+        int bonusNumber = requestBonusNumber();
 
-        // 당첨 확인
-        winningSystem.checkWinning(tickets, winningNumbers, bonusNumber);
+        // 당첨 확인 및 결과 출력
+        Map<RankEnum, Integer> matchCount = winningSystem.checkWinning(tickets, winningNumbers, bonusNumber);
+        printResult(matchCount);
     }
 
-    private int requestAmount(Scanner scanner) {
+    private int requestAmount() {
         while (true) {
             try {
-                System.out.println(Constant.PROMPT_PURCHASE_AMOUNT);
-                int amount = scanner.nextInt();
+                System.out.println(Prompt.PROMPT_PURCHASE_AMOUNT.getMessage());
+                // Console API로 사용자 입력 처리
+                String input = Console.readLine();
+                int amount = Integer.parseInt(input);
                 return amount;
-            } catch (IllegalArgumentException e) {
-                System.out.println(Constant.ERROR_INVALID_AMOUNT);
-                scanner.nextLine(); // 잘못된 입력 처리 후 입력 버퍼 비우기
+            } catch (NumberFormatException e) {
+                System.out.println(Error.ERROR_INVALID_AMOUNT);
             }
         }
     }
 
-    private List<Integer> requestWinningNumbers(Scanner scanner) {
+    private List<Integer> requestWinningNumbers() {
         while (true) {
             try {
-                System.out.println(Constant.PROMPT_WINNING_NUMBERS);
-                String winningNumbersInput = scanner.next();
-                // 입력된 번호를 Lotto 객체에서 처리
-                return Lotto.parseWinningNumbers(winningNumbersInput);
+                System.out.println(Prompt.PROMPT_WINNING_NUMBERS.getMessage());
+                String input = Console.readLine();
+                return LottoParser.parseWinningNumbers(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private int requestBonusNumber(Scanner scanner) {
+    private int requestBonusNumber() {
         while (true) {
             try {
-                System.out.println(Constant.PROMPT_BONUS_NUMBER);
-                int bonusNumber = scanner.nextInt();
-                // 보너스 번호 유효성 검사는 Lotto 클래스에서 처리
-                Lotto.validateBonusNumber(bonusNumber);
+                System.out.println(Prompt.PROMPT_BONUS_NUMBER.getMessage());
+                String input = Console.readLine();
+                int bonusNumber = Integer.parseInt(input);
+                BonusNumberValidator.validateBonusNumber(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                scanner.nextLine(); // 잘못된 입력 처리 후 입력 버퍼 비우기
+            }
+        }
+    }
+
+    private void printResult(Map<RankEnum, Integer> matchCount) {
+        System.out.println(Prompt.WINNING_STATISTICS.getMessage());
+        System.out.println("---");
+        for (RankEnum rank : RankEnum.values()) {
+            if (rank != RankEnum.NONE) {
+                System.out.println(Prompt.countCorrect(rank.getMatchCount(), rank.getPrize(), matchCount.getOrDefault(rank, 0)));
             }
         }
     }

@@ -1,16 +1,12 @@
 package lotto.machine;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class LottoNumberGenerator {
     public List<Integer> generateRandomNumbers() {
-        Random random = new Random();
-        return random.ints(1, 46)  // 1 ~ 45 사이의 난수 생성
-                .distinct()            // 중복 제거
-                .limit(6)     // 6개의 숫자만 선택
-                .boxed()              // int형을 Integer로 변환
-                .collect(Collectors.toList());  // 리스트로 수집
+        // Randoms API를 사용하여 1 ~ 45 범위의 6개의 중복되지 않은 숫자 생성
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

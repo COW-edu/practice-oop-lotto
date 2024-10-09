@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.machine.KioskStart;
+import lotto.machine.KioskStarter;
 import lotto.lottomachine.KioskStart;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class KioskStartTest extends NsTest {
+class KioskStarterTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
@@ -58,6 +58,6 @@ class KioskStartTest extends NsTest {
 
     @Override
     public void runMain() {
-        KioskStart.main(new String[]{});
+        KioskStarter.main(new String[]{});
     }
 }
