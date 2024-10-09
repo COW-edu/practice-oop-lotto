@@ -39,7 +39,7 @@ public class LottoCalculator {
     }
 
     public int[] countRanks(List<LottoRank> results) {
-        int[] rankCount = new int[LottoRank.values().length];
+        int[] rankCount = LottoRank.getRankNumbers();
         for (LottoRank rank : results) {
             rankCount[rank.getMatchCount()]++;
         }

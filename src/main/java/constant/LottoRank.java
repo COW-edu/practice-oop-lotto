@@ -32,6 +32,10 @@ public enum LottoRank {
         return resultMessage;
     }
 
+    public static int[] getRankNumbers() {
+        return new int[LottoRank.values().length];
+    }
+
     public static LottoRank valueOf(int matchCount, boolean matchBonus) {
         if (matchCount == FIRST.getMatchCount()) {
             return FIRST;
