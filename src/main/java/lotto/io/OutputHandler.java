@@ -18,9 +18,8 @@ public class OutputHandler {
   LottoMatchCounter lottoMatchCounter;
   ProfitCalculator profitCalculator;
 
-  public OutputHandler(InputHandler inputHandler, MyLottoMaker myLottoMaker){
+  public OutputHandler(MyLottoMaker myLottoMaker){
     this.myLottoMaker = myLottoMaker;
-    this.inputHandler = inputHandler;
     printLottos(myLottoMaker);
   }
 
