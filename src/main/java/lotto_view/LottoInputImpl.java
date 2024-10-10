@@ -11,19 +11,9 @@ import java.util.Scanner;
 import static lotto_exception.ErrorMessage.*;
 
 
-public class LottoInputImpl implements LottoInput{
+public class LottoInputImpl implements LottoInput {
     Scanner sc = new Scanner(System.in);
-
-    @Override
-    public int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = sc.nextInt();
-        if (bonusNumber < Unit.MIN_NUMBER.getValue() || bonusNumber > Unit.MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException(OUT_OF_RANGE.getErrorMessage());
-        }
-        return bonusNumber;
-
-    }
+    private final List<Integer> numbers = new ArrayList<>();
 
     @Override
     public int getInputMoney() {
@@ -38,20 +28,32 @@ public class LottoInputImpl implements LottoInput{
     @Override
     public Lotto inputNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> numbers = new ArrayList<>();
         String inputNum = sc.next();
         String[] targetNum = inputNum.split(",");
-        for (String num : targetNum) {
-            int addNumber = Integer.parseInt(num.trim());
+        for (String number : targetNum) {
+            int addNumber = Integer.parseInt(number.trim());
             if (addNumber > Unit.MAX_NUMBER.getValue()) {
                 throw new NumberFormatException(OUT_OF_RANGE.getErrorMessage());
             }
-            if (numbers.contains(addNumber)){
+            if (numbers.contains(addNumber)) {
                 throw new NumberFormatException(DUPLICATE_NUMBER.getErrorMessage());
             }
             numbers.add(addNumber);
         }
         Collections.sort(numbers);
         return new Lotto(numbers);
+    }
+
+    @Override
+    public int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = sc.nextInt();
+        if (bonusNumber < Unit.MIN_NUMBER.getValue() || bonusNumber > Unit.MAX_NUMBER.getValue()) {
+            throw new IllegalArgumentException(OUT_OF_RANGE.getErrorMessage());
+        }
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getErrorMessage());
+        }
+        return bonusNumber;
     }
 }
