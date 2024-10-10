@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 public class LottoServiceImpl implements LottoService {
 
-    private static final int LOOTO_AMOUNT = 1000;
+    private static final int LOTTO_AMOUNT = 1000;
 
     private final LottoRepository lottoRepository;
     private final LottoResult lottoResult;
@@ -27,7 +27,7 @@ public class LottoServiceImpl implements LottoService {
     public void purchaseLottos(int amount) {
         Lotto.validatePurchaseAmount(amount);
 
-        int numberOfLotto = amount / LOOTO_AMOUNT;
+        int numberOfLotto = amount / LOTTO_AMOUNT;
         IntStream.range(0, numberOfLotto).forEach(i -> {
             saveLottoNums(Lotto.createRandomLotto());
         });
@@ -66,7 +66,7 @@ public class LottoServiceImpl implements LottoService {
         }
         lottoResult.printResult();
 
-    double yield = lottoResult.calculateYield(purchasedLottos.size() * LOOTO_AMOUNT);
+    double yield = lottoResult.calculateYield(purchasedLottos.size() * LOTTO_AMOUNT);
     System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
 
     }
