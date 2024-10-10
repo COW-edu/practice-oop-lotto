@@ -1,6 +1,6 @@
 package lotto.machine;
 
-import lotto.constant.Error;
+import lotto.constant.ErrorMessage;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Lotto {
     // 보너스 번호 유효성 검사
     public static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(Error.ERROR_INVALID_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_NUMBER.getMessage());
         }
     }
 
@@ -35,21 +35,21 @@ public class Lotto {
     // 로또 번호 개수 유효성 검사
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException(Error.ERROR_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_COUNT.getMessage());
         }
     }
 
     // 숫자 범위 유효성 검사
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException(Error.ERROR_INVALID_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_NUMBER.getMessage());
         }
     }
 
     // 중복 유효성 검사
     private void validateDuplicates(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException(Error.ERROR_DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE_NUMBER.getMessage());
         }
     }
 

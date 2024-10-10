@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum Prompt {
+public enum PromptMessage {
     PROMPT_PURCHASE_AMOUNT("구입 금액을 입력해 주세요: "),
     PROMPT_WINNING_NUMBERS("당첨 번호를 입력해 주세요. (1~45 숫자 6개를 쉼표로 구분해서 입력)"),
     PROMPT_BONUS_NUMBER("보너스 번호를 입력해 주세요. (1~45 사이 숫자)"),
@@ -9,7 +9,7 @@ public enum Prompt {
     private final String message;
 
     // 생성자를 통해 메시지를 설정
-    Prompt(String message) {
+    PromptMessage(String message) {
         this.message = message;
     }
 

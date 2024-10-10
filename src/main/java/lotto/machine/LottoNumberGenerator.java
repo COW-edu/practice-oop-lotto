@@ -1,12 +1,22 @@
 package lotto.machine;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.repository.Memory;
 
-import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoNumberGenerator {
-    public List<Integer> generateRandomNumbers() {
-        // Randoms API를 사용하여 1 ~ 45 범위의 6개의 중복되지 않은 숫자 생성
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+    public void generateNumbers(Memory memory) {
+        int ticketCount = memory.getTicketCount();
+
+        // Stream을 사용해 티켓 개수만큼 로또 번호 생성 후 Memory에 저장
+        IntStream.range(0, ticketCount)
+                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                        .stream()
+                        .sorted()  // 오름차순 정렬
+                        .collect(Collectors.toList()))
+                .forEach(memory::saveGeneratedNumbers);  // 생성된 번호를 Memory에 저장
     }
 }

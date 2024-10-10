@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum Error {
+public enum ErrorMessage {
     ERROR_INVALID_AMOUNT("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."),
     ERROR_INVALID_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     ERROR_DUPLICATE_NUMBER("[ERROR] 중복된 번호가 존재합니다."),
@@ -9,7 +9,7 @@ public enum Error {
     private final String message;
 
     // 생성자
-    Error(String message) {
+    ErrorMessage(String message) {
         this.message = message;
     }
 

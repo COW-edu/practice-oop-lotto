@@ -1,25 +1,18 @@
 package lotto.machine;
 
-import lotto.constant.Error;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import lotto.repository.Memory;
 
 public class LottoSeller {
-    int DEFAULT_AMOUNT = 1000;
 
-    public List<Lotto> sellLotto(int amount) {
-        if (amount % DEFAULT_AMOUNT != 0) {
-            throw new IllegalArgumentException(Error.ERROR_INVALID_AMOUNT.getMessage());
+    private static final int PRICE_PER_TICKET = 1000;
+
+    public void sellLotto(int amount, Memory memory) {
+        if (amount % PRICE_PER_TICKET != 0) {
+            throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
-        int ticketCount = amount / DEFAULT_AMOUNT;
-        LottoNumberGenerator generator = new LottoNumberGenerator();
+        int ticketCount = amount / PRICE_PER_TICKET;
 
-        // 로또 티켓을 생성
-        List<Lotto> lottoTickets = java.util.stream.IntStream.range(0, ticketCount)
-                .mapToObj(i -> new Lotto(generator.generateRandomNumbers()))
-                .collect(Collectors.toList());
-
-        return lottoTickets;
+        // Memory에 티켓 개수 저장
+        memory.saveTicketCount(ticketCount);
     }
 }
