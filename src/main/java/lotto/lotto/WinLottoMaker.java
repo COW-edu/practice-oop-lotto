@@ -15,7 +15,7 @@ public class WinLottoMaker {
     makeWinLotto(inputHandler.getWinNums());
   }
 
-  public List<Integer> makeWinLotto(String winNumbersAsString) {
+  public void makeWinLotto(String winNumbersAsString) {
     winNumbersAsStrings = winNumbersAsString.split(",");
 
     winNumbers = ErrorCheckingAndParsing.isNumsAsString(winNumbersAsStrings);
@@ -24,8 +24,6 @@ public class WinLottoMaker {
     for (int i = 0; i < winNumbers.size(); i++) {
       ErrorCheckingAndParsing.confirmNumRange(winNumbers.get(i));
     }
-
-    return winNumbers;
   }
 
   public List<Integer> getWinLotto() {

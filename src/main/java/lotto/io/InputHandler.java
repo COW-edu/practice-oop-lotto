@@ -6,16 +6,13 @@ import lotto.error.ErrorCheckingAndParsing;
 public class InputHandler {
 
   int price = 0;
-
   static Scanner scanner = new Scanner(System.in);
 
-  public int getPrice(){
+  public void getPrice(){
     System.out.println("구입 금액을 입력해 주세요.");
 
     String lottoPrice = scanner.nextLine();
     price = ErrorCheckingAndParsing.isNum(lottoPrice);
-
-    return price;
   }
 
   public int getInputPrice() {

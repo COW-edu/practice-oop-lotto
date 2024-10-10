@@ -17,7 +17,8 @@ public class MyLottoMaker {
 
   public MyLottoMaker(InputHandler inputHandler) {
     this.inputHandler = inputHandler;
-    makeMyLottos(inputHandler.getPrice());
+    inputHandler.getPrice();
+    makeMyLottos(inputHandler.getInputPrice());
   }
 
   public void makeMyLottos(int price) {

@@ -5,6 +5,7 @@ import lotto.io.InputHandler;
 
 public class LottoComparison {
 
+  int matchCount = 0;
   LottoMatchCounter lottoMatchCounter;
   WinLottoMaker winLottoMaker;
   InputHandler inputHandler;
@@ -31,7 +32,6 @@ public class LottoComparison {
   }
 
   private int countMatchingNumbers(List<Integer> myLotto, List<Integer> winLotto) {
-    int matchCount = 0;
     for (int num : myLotto) {
       if (winLotto.contains(num)) {
         matchCount++;

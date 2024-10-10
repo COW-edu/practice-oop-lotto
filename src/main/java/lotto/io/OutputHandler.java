@@ -8,6 +8,11 @@ import lotto.lotto.ProfitCalculator;
 
 public class OutputHandler {
 
+  final int FIRST_PLACE = 6;
+  final int SECOND_PLACE = 5;
+  final int THIRD_PLACE = 4;
+  final int FOURTH_PLACE = 3;
+  final int FIFTH_PLACE = 2;
   MyLottoMaker myLottoMaker;
   InputHandler inputHandler;
   LottoMatchCounter lottoMatchCounter;
@@ -18,6 +23,7 @@ public class OutputHandler {
     this.inputHandler = inputHandler;
     printLottos(myLottoMaker);
   }
+
   public OutputHandler(LottoMatchCounter lottoMatchCounter, ProfitCalculator profitCalculator){
 
     this.lottoMatchCounter = lottoMatchCounter;
@@ -34,15 +40,10 @@ public class OutputHandler {
     }
   }
 
-  public static void printLottoResult(LottoMatchCounter lottoMatchCounter, ProfitCalculator profitCalculator){
+  public void printLottoResult(LottoMatchCounter lottoMatchCounter, ProfitCalculator profitCalculator){
+
     Map<Integer, Integer> prizeRanking = lottoMatchCounter.getPrizeRanking();
     double profitRate = profitCalculator.getProfitRate();
-
-    final int FIRST_PLACE = 6;
-    final int SECOND_PLACE = 5;
-    final int THIRD_PLACE = 4;
-    final int FOURTH_PLACE = 3;
-    final int FIFTH_PLACE = 2;
 
     System.out.println("\n당첨 통계");
     System.out.println("---------");
