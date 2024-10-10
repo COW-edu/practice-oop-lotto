@@ -25,14 +25,15 @@
 - 기능 구현을 완료한 뒤 아래 가이드에 따라 테스트를 실행했을 때 모든 테스트가 성공하는지 확인한다.
 - **테스트가 실패할 경우 0점으로 처리**되므로, 반드시 확인 후 제출한다.
 
-### 테스트 실행 가이드
 
-- 터미널에서 `java -version`을 실행하여 Java 버전이 11인지 확인한다. 또는 Eclipse 또는 IntelliJ IDEA와 같은 IDE에서 Java 11로 실행되는지 확인한다.
-- 터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean test` 명령을 실행하고,   
-  Windows 사용자의 경우  `gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.
+### ~~테스트 실행 가이드~~
+
+- ~~터미널에서 `java -version`을 실행하여 Java 버전이 11인지 확인한다. Eclipse 또는 IntelliJ IDEA와 같은 IDE에서 Java 11로 실행되는지 확인한다.~~
+- ~~터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean build` 명령을 실행하고,   
+  Windows 사용자의 경우  `gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.~~
 
 ```
-BUILD SUCCESSFUL in 0s
+BUILD SUCCESSFUL in 0
 ```
 
 ---
@@ -169,7 +170,7 @@ BUILD SUCCESSFUL in 0s
 - 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
 - JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
 
-### 추가된 요구 사항(3주차부터는 필수로 지킬 것)
+### 추가된 요구 사항
 
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
     - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
