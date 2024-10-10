@@ -7,10 +7,12 @@ import lotto.LottoCalculator;
 import java.util.List;
 
 public class LottoResultView {
-
+    // 생성자 지우기, 왜 만듦? 이거 만들면 안됨
+    // int[] rankCount = lottoCalculator.countRanks(results);가 계산을 하는거 같아
+    // View는 단순히 출력만 하기로 했는데
     LottoCalculator lottoCalculator = new LottoCalculator();
 
-    private static void printRankResults(int[] rankCount) {
+    private void printRankResults(int[] rankCount) {
         System.out.println(LottoMessage.PRINT_RANK_RESULTS_HEADER);
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
