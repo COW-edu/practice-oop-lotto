@@ -1,10 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.Error;
 import lotto.constant.Prompt;
 import lotto.constant.Rank.RankEnum;
-import lotto.machine.*;
+import lotto.machine.Lotto;
+import lotto.machine.LottoParser;
+import lotto.machine.LottoSeller;
+import lotto.machine.WinningSystem;
 
 import java.util.List;
 import java.util.Map;
@@ -39,43 +41,26 @@ public class LottoKiosk {
     }
 
     private int requestAmount() {
-        while (true) {
-            try {
-                System.out.println(Prompt.PROMPT_PURCHASE_AMOUNT.getMessage());
-                // Console API로 사용자 입력 처리
-                String input = Console.readLine();
-                int amount = Integer.parseInt(input);
-                return amount;
-            } catch (NumberFormatException e) {
-                System.out.println(Error.ERROR_INVALID_AMOUNT);
-            }
-        }
+        System.out.println(Prompt.PROMPT_PURCHASE_AMOUNT.getMessage());
+        String input = Console.readLine();
+        return Integer.parseInt(input);
     }
 
     private List<Integer> requestWinningNumbers() {
-        while (true) {
-            try {
-                System.out.println(Prompt.PROMPT_WINNING_NUMBERS.getMessage());
-                String input = Console.readLine();
-                return LottoParser.parseWinningNumbers(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println(Prompt.PROMPT_WINNING_NUMBERS.getMessage());
+        String input = Console.readLine();
+        return LottoParser.parseWinningNumbers(input);
     }
 
     private int requestBonusNumber() {
-        while (true) {
-            try {
-                System.out.println(Prompt.PROMPT_BONUS_NUMBER.getMessage());
-                String input = Console.readLine();
-                int bonusNumber = Integer.parseInt(input);
-                BonusNumberValidator.validateBonusNumber(bonusNumber);
-                return bonusNumber;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println(Prompt.PROMPT_BONUS_NUMBER.getMessage());
+        String input = Console.readLine();
+        int bonusNumber = Integer.parseInt(input);
+
+        // 보너스 번호 유효성 검증은 Lotto 클래스에서 처리
+        Lotto.validateBonusNumber(bonusNumber);
+
+        return bonusNumber;
     }
 
     private void printResult(Map<RankEnum, Integer> matchCount) {

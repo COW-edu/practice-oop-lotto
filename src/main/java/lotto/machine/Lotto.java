@@ -13,17 +13,26 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        // 유효성 검사를 생성자 내부에서 처리
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    // 보너스 번호 유효성 검사
+    public static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(Error.ERROR_INVALID_NUMBER.getMessage());
+        }
+    }
+
+    // 로또 번호 유효성 검사
+    private void validateNumbers(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicates(numbers);
     }
 
-    // 개수 유효성 검사
+    // 로또 번호 개수 유효성 검사
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(Error.ERROR_NUMBER_COUNT.getMessage());
