@@ -1,16 +1,27 @@
 package lotto.lotto;
 
 import java.util.List;
+import lotto.io.InputHandler;
 
 public class LottoComparison {
 
   LottoMatchCounter lottoMatchCounter;
+  WinLottoMaker winLottoMaker;
+  InputHandler inputHandler;
+  MyLottoMaker myLottoMaker;
 
-  public LottoComparison(LottoMatchCounter lottoMatchCounter) {
+  public LottoComparison(LottoMatchCounter lottoMatchCounter, MyLottoMaker myLottoMaker, WinLottoMaker winLottoMaker, InputHandler inputHandler) {
     this.lottoMatchCounter = lottoMatchCounter;
+    this.myLottoMaker = myLottoMaker;
+    this.winLottoMaker = winLottoMaker;
+    this.inputHandler = inputHandler;
+    compareNums(myLottoMaker, winLottoMaker, inputHandler);
   }
 
-  public void compareNums(List<List<Integer>> myLottos, List<Integer> winLotto, int bonusNumber) {
+  public void compareNums(MyLottoMaker myLottoMaker, WinLottoMaker winLottoMaker, InputHandler inputHandler) {
+    List<List<Integer>> myLottos = myLottoMaker.getMyLottos();
+    List<Integer> winLotto = winLottoMaker.getWinLotto();
+    int bonusNumber = inputHandler.getBonusNum();
     for (List<Integer> myLotto : myLottos) {
       int matchCount = countMatchingNumbers(myLotto, winLotto);
       boolean bonusMatch = myLotto.contains(bonusNumber);

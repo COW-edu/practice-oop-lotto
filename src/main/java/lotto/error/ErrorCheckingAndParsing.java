@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ErrorCheckingAndParsing {
+
   static final int THOUSAND_PLACE = 1000;
   static final int MINIMUM_NUMBER_RANGE = 1;
   static final int MAXIMUM_NUMBER_RANGE = 45;
   static final int LOTTO_NUM_COUNT = 6;
-
 
  public static int isDividedThousand(int price){
 

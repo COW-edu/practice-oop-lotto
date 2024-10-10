@@ -2,18 +2,42 @@ package lotto.io;
 
 import java.util.List;
 import java.util.Map;
+import lotto.lotto.LottoMatchCounter;
+import lotto.lotto.MyLottoMaker;
+import lotto.lotto.ProfitCalculator;
 
 public class OutputHandler {
 
-  public static void printLottos (List<List<Integer>> lottoStorage, int count){
+  MyLottoMaker myLottoMaker;
+  InputHandler inputHandler;
+  LottoMatchCounter lottoMatchCounter;
+  ProfitCalculator profitCalculator;
 
+  public OutputHandler(InputHandler inputHandler, MyLottoMaker myLottoMaker){
+    this.myLottoMaker = myLottoMaker;
+    this.inputHandler = inputHandler;
+    printLottos(myLottoMaker);
+  }
+  public OutputHandler(LottoMatchCounter lottoMatchCounter, ProfitCalculator profitCalculator){
+
+    this.lottoMatchCounter = lottoMatchCounter;
+    this.profitCalculator = profitCalculator;
+    printLottoResult(lottoMatchCounter, profitCalculator);
+  }
+
+  public void printLottos (MyLottoMaker myLottoMaker){
+    int count = myLottoMaker.getLottoCount();
+    List<List<Integer>> lottoStorage = myLottoMaker.getMyLottos();
     System.out.println("\n" + count + "개를 입력했습니다.");
     for (int i =0; i < lottoStorage.size(); i++){
       System.out.println(lottoStorage.get(i));
     }
   }
 
-  public static void printLottoResult(Map<Integer, Integer> prizeRanking, double profitRate){
+  public static void printLottoResult(LottoMatchCounter lottoMatchCounter, ProfitCalculator profitCalculator){
+    Map<Integer, Integer> prizeRanking = lottoMatchCounter.getPrizeRanking();
+    double profitRate = profitCalculator.getProfitRate();
+
     final int FIRST_PLACE = 6;
     final int SECOND_PLACE = 5;
     final int THIRD_PLACE = 4;
@@ -31,3 +55,5 @@ public class OutputHandler {
   }
 
 }
+
+
