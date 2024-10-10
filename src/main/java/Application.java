@@ -1,4 +1,4 @@
-import lotto_controller.LottoController;
+import controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {

@@ -1,19 +1,19 @@
-import lotto_controller.LottoController;
-import lotto_controller.LottoControllerImpl;
-import lotto_model.comparator.LottoComparator;
-import lotto_model.comparator.LottoComparatorImpl;
-import lotto_model.data.LottoRepository;
-import lotto_model.data.LottoRepositoryImpl;
-import lotto_model.data.LottoWinning;
-import lotto_model.data.LottoWinningImpl;
-import lotto_model.generator.LottoGenerator;
-import lotto_model.generator.LottoGeneratorImpl;
-import lotto_model.service.LottoService;
-import lotto_model.service.LottoServiceImpl;
-import lotto_view.LottoInput;
-import lotto_view.LottoInputImpl;
-import lotto_view.LottoOutput;
-import lotto_view.LottoOutputImpl;
+import controller.LottoController;
+import controller.LottoControllerImpl;
+import model.comparator.LottoComparator;
+import model.comparator.LottoComparatorImpl;
+import model.data.LottoRepository;
+import model.data.LottoRepositoryImpl;
+import model.data.LottoWinning;
+import model.data.LottoWinningImpl;
+import model.generator.LottoGenerator;
+import model.generator.LottoGeneratorImpl;
+import model.service.LottoService;
+import model.service.LottoServiceImpl;
+import view.LottoInput;
+import view.LottoInputImpl;
+import view.LottoOutput;
+import view.LottoOutputImpl;
 
 public class AppConfig {
     public LottoInput lottoInput() {
