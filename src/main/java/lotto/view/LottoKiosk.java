@@ -46,8 +46,12 @@ public class LottoKiosk {
         memory.saveWinningNumbers(winningNumbers, bonusNumber);
 
         // 당첨 확인 및 결과 출력
-        Map<Rank.RankEnum, Integer> matchCount = winningSystem.checkWinning(purchaseAmount);
+        Map<Rank.RankEnum, Integer> matchCount = winningSystem.checkWinning();
         printResult(matchCount);
+
+        // 수익률 계산 및 출력
+        double profitRate = winningSystem.calculateProfitRate(purchaseAmount);
+        printProfitRate(profitRate);  // 수익률 출력
     }
 
     // 구입 금액 입력 처리
@@ -109,5 +113,10 @@ public class LottoKiosk {
                 .forEach(rank -> System.out.println(
                         PromptMessage.countCorrect(rank.getMatchCount(), rank.getPrize(), matchCount.getOrDefault(rank, 0))
                 ));
+    }
+
+    // 수익률 출력 메서드
+    private void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 }

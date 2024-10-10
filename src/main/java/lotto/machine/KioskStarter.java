@@ -13,7 +13,7 @@ public class KioskStarter {
         // LottoKiosk에 모든 인자 전달
         LottoKiosk kiosk = new LottoKiosk(lottoSeller, lottoNumberGenerator, winningSystem, memory);
 
-        // 게임 시작
+        // 시작
         kiosk.start();
     }
 }

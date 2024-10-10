@@ -15,7 +15,7 @@ public class WinningSystem {
     }
 
     // Memory에서 저장된 로또 티켓과 당첨 번호를 비교하여 Rank 계산 및 수익률 반환
-    public Map<RankEnum, Integer> checkWinning(int purchaseAmount) {
+    public Map<RankEnum, Integer> checkWinning() {
         List<List<Integer>> tickets = memory.getGeneratedNumbers();
         List<Integer> winningNumbers = memory.getWinningNumbers();
         int bonusNumber = memory.getBonusNumber();
@@ -33,9 +33,7 @@ public class WinningSystem {
             totalPrize += rank.getPrize();  // 당첨 금액 합산
         }
 
-        // 수익률 계산 및 출력
-        calculateProfitRate(totalPrize, purchaseAmount);
-
+        memory.setTotalPrize(totalPrize);  // Memory에 총 당첨 금액 저장
         return matchCount;  // 당첨 통계 반환
     }
 
@@ -47,11 +45,10 @@ public class WinningSystem {
                 .orElse(RankEnum.NONE);
     }
 
-    // 수익률 계산 및 출력
-    private void calculateProfitRate(int totalPrize, int purchaseAmount) {
+    // 수익률 계산만 하고 반환
+    public double calculateProfitRate(int purchaseAmount) {
+        int totalPrize = memory.getTotalPrize();
         double profitRate = ((double) totalPrize / purchaseAmount) * 100;
-        double roundedProfitRate = Math.round(profitRate * 10) / 10.0;  // 소수점 둘째 자리에서 반올림
-
-        System.out.println("총 수익률은 " + roundedProfitRate + "%입니다.");
+        return Math.round(profitRate * 10) / 10.0;  // 소수점 둘째 자리에서 반올림
     }
 }

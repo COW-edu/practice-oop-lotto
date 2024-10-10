@@ -5,7 +5,6 @@ public enum ErrorMessage {
     ERROR_INVALID_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     ERROR_DUPLICATE_NUMBER("[ERROR] 중복된 번호가 존재합니다."),
     ERROR_NUMBER_COUNT("[ERROR] 로또 번호는 정확히 6개를 입력해야 합니다.");
-
     private final String message;
 
     // 생성자
