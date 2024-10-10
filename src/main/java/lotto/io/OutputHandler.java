@@ -14,7 +14,6 @@ public class OutputHandler {
   final int FOURTH_PLACE = 3;
   final int FIFTH_PLACE = 2;
   MyLottoMaker myLottoMaker;
-  InputHandler inputHandler;
   LottoMatchCounter lottoMatchCounter;
   ProfitCalculator profitCalculator;
 
