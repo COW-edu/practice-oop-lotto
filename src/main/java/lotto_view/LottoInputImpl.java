@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto_exception.ErrorMessage.*;
 
 
@@ -28,8 +29,8 @@ public class LottoInputImpl implements LottoInput {
     @Override
     public Lotto inputNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String inputNum = sc.next();
-        String[] targetNum = inputNum.split(",");
+        String inputNumber = readLine();
+        String[] targetNum = inputNumber.split(",");
         for (String number : targetNum) {
             int addNumber = Integer.parseInt(number.trim());
             if (addNumber > Unit.MAX_NUMBER.getValue()) {
