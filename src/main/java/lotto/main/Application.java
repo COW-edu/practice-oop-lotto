@@ -14,9 +14,11 @@ public class Application {
         InputHandler inputHandler = new InputHandler();
         MyLottoMaker myLottoMaker = new MyLottoMaker(inputHandler);
         new OutputHandler(inputHandler, myLottoMaker);
+
         WinLottoMaker winLottoMaker = new WinLottoMaker(inputHandler);
         LottoMatchCounter lottoMatchCounter = new LottoMatchCounter();
         new LottoComparison(lottoMatchCounter, myLottoMaker, winLottoMaker, inputHandler);
+
         ProfitCalculator profitCalculator = new ProfitCalculator(lottoMatchCounter, inputHandler);
         new OutputHandler(lottoMatchCounter, profitCalculator);
     }
