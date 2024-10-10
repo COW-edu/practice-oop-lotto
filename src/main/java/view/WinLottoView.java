@@ -1,7 +1,8 @@
-package lotto;
+package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import constant.LottoMessage;
+import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;

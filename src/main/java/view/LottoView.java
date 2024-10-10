@@ -1,9 +1,10 @@
-package lotto;
+package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import constant.ErrorMessage;
 import constant.LottoInformation;
 import constant.LottoMessage;
+import lotto.Lotto;
 
 import java.util.List;
 
@@ -35,5 +36,4 @@ public class LottoView {
             System.out.println(lotto.getNumbers());
         }
     }
-
 }

@@ -3,6 +3,10 @@
 package lotto;
 
 import constant.LottoRank;
+import view.BonusLottoView;
+import view.LottoResultView;
+import view.LottoView;
+import view.WinLottoView;
 
 import java.util.List;
 

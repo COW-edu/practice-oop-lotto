@@ -4,6 +4,8 @@ package lotto;
 
 import constant.LottoRank;
 import constant.ResultInformation;
+import view.BonusLottoView;
+import view.WinLottoView;
 
 import java.util.ArrayList;
 import java.util.List;

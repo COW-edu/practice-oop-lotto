@@ -1,7 +1,8 @@
-package lotto;
+package view;
 
 import constant.LottoMessage;
 import constant.LottoRank;
+import lotto.LottoCalculator;
 
 import java.util.List;
 
