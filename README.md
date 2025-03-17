@@ -131,7 +131,7 @@ COW 5기 서버 - 학습 미션을 위한 저장소
    <img  src="https://avatars.githubusercontent.com/u/162001536?v=4"  width="100px;"  alt=""/>
  </td>
   <td  align="center">
-   <img  src=""  width="100px;"  alt=""/>
+   <img  src="https://avatars.githubusercontent.com/u/101189767?v=4"  width="100px;"  alt=""/>
  </td>
 </tr>
 <tr>
@@ -151,7 +151,7 @@ COW 5기 서버 - 학습 미션을 위한 저장소
      </a>
  </td>
   <td align="center">
-     <a href="">
+     <a href="https://github.com/bapdodi">
          <div>김정빈</div>
      </a>
  </td>
