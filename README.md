@@ -15,9 +15,9 @@
     - 구현 완료 한 코드는 해당 리포지토리에 pr 작성
       - pr 타이틀: [#주차]객체지향 코드 연습(깃헙 아이디) 
         - ex. [2주차] 객체지향 코드 연습(TaetaetaE01)
-    - 미션 구현에서 기록한 md파일은 [COW-Spring-4](https://github.com/COW-edu/COW-Spring-4) 리포지토리에 pr 작성 - 미션 구현 pr 링크 첨부 
+    - 미션 구현에서 기록한 md파일은 [COW-Spring-5](https://github.com/COW-edu/COW-Spring-5) 리포지토리에 pr 작성 - 미션 구현 pr 링크 첨부 
 
-- **해당 리포지토리에만 Pull Request만 보내고 [COW-Spring-4](https://github.com/COW-edu/COW-Spring-4) 리포지토리에 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+- **해당 리포지토리에만 Pull Request만 보내고 [COW-Spring-5](https://github.com/COW-edu/COW-Spring-5) 리포지토리에 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ## 🚨 과제 제출 전 체크 리스트 - 0점 방지
 
