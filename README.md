@@ -49,7 +49,7 @@ COW 5기 서버 - 학습 미션을 위한 저장소
     </td>
     <td align="center">
         <a href="https://github.com/dongyeon1031">
-            <div>김동현</div>
+            <div>김동연연</div>
         </a>
     </td>
   </tr>
