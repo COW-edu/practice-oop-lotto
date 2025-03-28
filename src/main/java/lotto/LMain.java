@@ -15,10 +15,13 @@ public class LMain {
     }
     public void start() {
         int price = view.inputLottoPrice();
+        ArrayList<Lotto> lottos = lottoMachine.creatLotto(price);
+        view.outputPurchaseLotto(price, lottos);
 
     }
-    public void initialize(LView view) {
+    public void initialize(LView view, LottoMachine lottoMachine) {
         this.view = view;
+        this.lottoMachine = lottoMachine;
     }
 
 }

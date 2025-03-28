@@ -5,8 +5,11 @@ public class Application {
         // TODO: 프로그램 구현
         LMain main = new LMain();
         LView view = new LView();
+        LottoMachine lottoMachine = new LottoMachine();
 
-        main.initialize(view);
+        main.initialize(view, lottoMachine);
+
+        main.start();
 
     }
 }
