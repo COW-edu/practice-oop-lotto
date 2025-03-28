@@ -13,19 +13,20 @@ public class LView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public int[] inputWinningNumbers() {
         System.out.print("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
         String[] splitNumbers = input.split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
+        int[] winningNumbers = new int[6];
 
-        for (String num : splitNumbers) {
-            winningNumbers.add(Integer.parseInt(num.trim()));
+        for (int i = 0; i < splitNumbers.length; i++) {
+            winningNumbers[i] = Integer.parseInt(splitNumbers[i].trim());
         }
 
         return winningNumbers;
     }
+
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");

@@ -10,6 +10,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int[] getNumbers() {
+        int[] numbersArray = new int[numbers.size()];
+        for (int i = 0; i < numbers.size(); i++) {
+            numbersArray[i] = numbers.get(i);
+        }
+        return numbersArray;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

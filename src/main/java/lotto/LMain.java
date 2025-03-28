@@ -7,16 +7,17 @@ import java.util.List;
 public class LMain {
     private LView view;
     private LottoMachine lottoMachine;
-    private ArrayList<Lotto> purchasedLottos;
-
 
     public LMain() {
 
     }
     public void start() {
         int price = view.inputLottoPrice();
-        ArrayList<Lotto> lottos = lottoMachine.creatLotto(price);
-        view.outputPurchaseLotto(price, lottos);
+        ArrayList<Lotto> purchasedLottos = lottoMachine.creatLotto(price);
+        view.outputPurchaseLotto(price, purchasedLottos);
+        int[] winningNumbers = view.inputWinningNumbers();
+        int bonus = view.inputBonusNumber();
+        LottoRank rank = lottoMachine.checkLottoRank(purchasedLottos, winningNumbers, bonus);
 
     }
     public void initialize(LView view, LottoMachine lottoMachine) {
