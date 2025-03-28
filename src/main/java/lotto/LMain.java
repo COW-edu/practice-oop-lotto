@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class LMain {
     private LView view;
@@ -14,7 +14,7 @@ public class LMain {
 
     }
     public void start() {
-        view.inputLottoPrice();
+        int price = view.inputLottoPrice();
 
     }
     public void initialize(LView view) {

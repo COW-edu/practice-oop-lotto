@@ -23,7 +23,6 @@ public class LView {
         for (String num : splitNumbers) {
             winningNumbers.add(Integer.parseInt(num.trim()));
         }
-        Collections.sort(winningNumbers);
 
         return winningNumbers;
     }
