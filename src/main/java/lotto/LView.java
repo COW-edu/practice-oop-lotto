@@ -3,8 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
 
 public class LView {
 
@@ -38,5 +36,15 @@ public class LView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    public void outputWinningCount(LottoRank rank) {
+        System.out.println(rank);
+    }
+
+    public void outputprofitRate(int price, int totalPrizeMoney) {
+        double profitRate = (double) totalPrizeMoney / price * 100;
+        profitRate = Math.round(profitRate * 100.0) / 100.0;
+        System.out.println("총 수익률은 "+profitRate+"%입니다");
     }
 }

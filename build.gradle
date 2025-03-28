@@ -19,4 +19,11 @@ java {
 
 test {
     useJUnitPlatform()
+    jvmArgs '--illegal-access=permit'
+}
+
+task runApp(type: JavaExec) {
+    main = 'lotto.Application'  // 여기에 실행할 메인 클래스 경로 입력
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs '--illegal-access=deny'  // JVM 옵션 추가
 }

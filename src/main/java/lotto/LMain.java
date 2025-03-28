@@ -18,7 +18,8 @@ public class LMain {
         int[] winningNumbers = view.inputWinningNumbers();
         int bonus = view.inputBonusNumber();
         LottoRank rank = lottoMachine.checkLottoRank(purchasedLottos, winningNumbers, bonus);
-
+        view.outputWinningCount(rank);
+        view.outputprofitRate(price, rank.getTotalPrizeMoney());
     }
     public void initialize(LView view, LottoMachine lottoMachine) {
         this.view = view;
