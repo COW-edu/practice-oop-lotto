@@ -21,16 +21,40 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void run(){
-        int purchaseAmount=inputView.getPurchaseAmount();
-        int numberOfLottos=calculateNumberOfLottos(purchaseAmount);
+    public void run() {
+        int purchaseAmount = handlePurchaseAmount(); // 입력 및 검증
+        int numberOfLottos = calculateNumberOfLottos(purchaseAmount);
         outputView.printPurchaseCount(numberOfLottos);
 
         List<LottoNumber> lottoNumbers = generateRandomLottos(numberOfLottos);
         outputView.printLottoNumbers(lottoNumbers);
 
         getValidatedWinningNumbers();
+    }
 
+    private int handlePurchaseAmount() {
+        while (true) {
+            try {
+                int amount = inputView.getPurchaseAmount();
+                validatePurchaseAmount(amount);
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private void validatePurchaseAmount(int purchaseAmount) {
+        try {
+            if (purchaseAmount <= 0) {
+                throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
+            }
+            if (purchaseAmount % 1000 != 0) {
+                throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000.getMessage());
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
+        }
     }
 
     private int calculateNumberOfLottos(int purchaseAmount) {
