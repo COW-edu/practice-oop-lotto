@@ -30,4 +30,9 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
         }
     }
+
+    public String getWinningNumber() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        return Console.readLine().trim();
+    }
 }
