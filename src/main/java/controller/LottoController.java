@@ -30,6 +30,7 @@ public class LottoController {
         outputView.printLottoNumbers(lottoNumbers);
 
         getValidatedWinningNumbers();
+        handleBonusNumber();
     }
 
     private int handlePurchaseAmount() {
@@ -101,6 +102,31 @@ public class LottoController {
             this.winningNumber = new WinningNumber(numbers);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.WINNINT_NUMBER_IS_NOT_NUMBER.getMessage());
+        }
+    }
+
+    private int handleBonusNumber() {
+        while (true) {
+            try {
+                int bonusNumber = inputView.getBonusNumber();
+                validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        try {
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE.getMessage());
+            }
+            if(winningNumber.getWinningNumbers().contains(bonusNumber)) {
+                throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_DUPLICATE_WINNING_NUMBER.getMessage());
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
         }
     }
 }
