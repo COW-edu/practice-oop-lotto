@@ -16,7 +16,7 @@ public class LMain {
         ArrayList<Lotto> purchasedLottos = lottoMachine.creatLotto(price);
         view.outputPurchaseLotto(price, purchasedLottos);
         int[] winningNumbers = view.inputWinningNumbers();
-        int bonus = view.inputBonusNumber();
+        int bonus = view.inputBonusNumber(winningNumbers);
         LottoRank rank = lottoMachine.checkLottoRank(purchasedLottos, winningNumbers, bonus);
         view.outputWinningCount(rank);
         view.outputprofitRate(price, rank.getTotalPrizeMoney());
@@ -25,5 +25,4 @@ public class LMain {
         this.view = view;
         this.lottoMachine = lottoMachine;
     }
-
 }

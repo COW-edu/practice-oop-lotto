@@ -8,12 +8,24 @@ public class LView {
 
     public int inputLottoPrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        Validator.validatePurchaseAmount(input);
+        try {
+            Validator.validatePurchaseAmount(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return Integer.parseInt(input);
     }
 
     public int[] inputWinningNumbers() {
         System.out.print("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        try {
+            Validator.validateWinningNumbers(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
         String[] splitNumbers = input.split(",");
         int[] winningNumbers = new int[6];
@@ -25,10 +37,16 @@ public class LView {
         return winningNumbers;
     }
 
-
-    public int inputBonusNumber() {
+    public int inputBonusNumber(int[] winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        try {
+            Validator.validateBonusNumber(input, winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return Integer.parseInt(input);
     }
 
     public void outputPurchaseLotto(int price, ArrayList<Lotto> lottos) {
