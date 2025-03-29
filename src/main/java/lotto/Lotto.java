@@ -1,5 +1,7 @@
 package lotto;
 
+//"Console" 사용 시 경고 발생으로 인해 주석 처리 후 Scanner 사용
+//import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 
 public class Lotto {
