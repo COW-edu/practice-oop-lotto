@@ -7,14 +7,13 @@ import model.WinningNumber;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoController {
     private InputView inputView;
     private OutputView outputView;
     private WinningNumber winningNumber;
+    private int bonusNumber;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -30,7 +29,10 @@ public class LottoController {
         outputView.printLottoNumbers(lottoNumbers);
 
         getValidatedWinningNumbers();
-        handleBonusNumber();
+        bonusNumber=handleBonusNumber();
+
+        Map<String, Integer> result = calculateWinningResult(lottoNumbers);
+        outputView.printWinningResult(result);
     }
 
     private int handlePurchaseAmount() {
@@ -87,6 +89,7 @@ public class LottoController {
     private void saveWinningNumber(String input) {
         String[] numberStrings = input.split(",");
         List<Integer> numbers = new ArrayList<>();
+        //Set<Integer> uniqueNumbers = new HashSet<>();
 
         try {
             for (String numberString : numberStrings) {
@@ -94,6 +97,9 @@ public class LottoController {
                 if (number < 1 || number > 45) {
                     throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.getMessage());
                 }
+                /*if(!uniqueNumbers.add(number)) {
+                    throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_IS_DUPLICATE.getMessage());
+                }*/
                 numbers.add(number);
             }
             if (numbers.size() != 6) {
@@ -128,5 +134,34 @@ public class LottoController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
         }
+    }
+
+    private Map<String, Integer> calculateWinningResult(List<LottoNumber> lottoNumbers) {
+        Map<String, Integer> result = new LinkedHashMap<>();
+        result.put("3개 일치 (5,000원)", 0);
+        result.put("4개 일치 (50,000원)", 0);
+        result.put("5개 일치 (1,500,000원)", 0);
+        result.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
+        result.put("6개 일치 (2,000,000,000원)", 0);
+
+        for (LottoNumber lotto : lottoNumbers) {
+            List<Integer> lottoNums = lotto.getNumbers();
+            int matchCount = (int) lottoNums.stream().filter(winningNumber.getWinningNumbers()::contains).count();
+            boolean bonusMatch = lottoNums.contains(bonusNumber);
+
+            if (matchCount == 3) {
+                result.put("3개 일치 (5,000원)", result.get("3개 일치 (5,000원)") + 1);
+            } else if (matchCount == 4) {
+                result.put("4개 일치 (50,000원)", result.get("4개 일치 (50,000원)") + 1);
+            } else if (matchCount == 5 && !bonusMatch) {
+                result.put("5개 일치 (1,500,000원)", result.get("5개 일치 (1,500,000원)") + 1);
+            } else if (matchCount == 5 && bonusMatch) {
+                result.put("5개 일치, 보너스 볼 일치 (30,000,000원)", result.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1);
+            } else if (matchCount == 6) {
+                result.put("6개 일치 (2,000,000,000원)", result.get("6개 일치 (2,000,000,000원)") + 1);
+            }
+        }
+
+        return result;
     }
 }

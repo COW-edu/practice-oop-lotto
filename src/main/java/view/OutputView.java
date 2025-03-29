@@ -3,6 +3,7 @@ package view;
 import model.LottoNumber;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public void printPurchaseCount(int purchaseAmount){
@@ -13,5 +14,11 @@ public class OutputView {
         for(LottoNumber lottoNumber : lottoNumbers){
             System.out.println(lottoNumber.getNumbers());
         }
+    }
+
+    public void printWinningResult(Map<String, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("-------------------");
+        result.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
     }
 }
