@@ -1,5 +1,6 @@
 package view;
 
+import model.Lotto;
 import model.LottoNumber;
 
 import java.util.List;
@@ -10,14 +11,14 @@ public class OutputView {
         System.out.println("\n"+purchaseAmount+"개를 구매했습니다.");
     }
 
-    public void printLottoNumbers(List<LottoNumber> lottoNumbers){
-        for(LottoNumber lottoNumber : lottoNumbers){
-            System.out.println(lottoNumber.getNumbers());
+    public void printLottoNumbers(List<Lotto> lottoNumbers){
+        for(Lotto lottoNumber : lottoNumbers){
+            System.out.println(lottoNumber.getLottoNumbers());
         }
     }
 
     public void printWinningResult(Map<String, Integer> result) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("-------------------");
         result.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
     }

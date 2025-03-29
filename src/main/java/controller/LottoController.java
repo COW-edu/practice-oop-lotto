@@ -2,17 +2,16 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import global.enums.ErrorMessage;
-import model.LottoNumber;
-import model.WinningNumber;
+import model.Lotto;
 import view.InputView;
 import view.OutputView;
 
 import java.util.*;
 
 public class LottoController {
-    private InputView inputView;
-    private OutputView outputView;
-    private WinningNumber winningNumber;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private Lotto winningLotto;
     private int bonusNumber;
 
     public LottoController(InputView inputView, OutputView outputView) {
@@ -22,14 +21,14 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = handlePurchaseAmount(); // 입력 및 검증
-        int numberOfLottos = calculateNumberOfLottos(purchaseAmount);
+        int numberOfLottos = purchaseAmount / 1000;
         outputView.printPurchaseCount(numberOfLottos);
 
-        List<LottoNumber> lottoNumbers = generateRandomLottos(numberOfLottos);
+        List<Lotto> lottoNumbers = generateRandomLottos(numberOfLottos);
         outputView.printLottoNumbers(lottoNumbers);
 
-        getValidatedWinningNumbers();
-        bonusNumber=handleBonusNumber();
+        winningLotto = getWinningNumbers();
+        bonusNumber = handleBonusNumber();
 
         Map<String, Integer> result = calculateWinningResult(lottoNumbers);
         outputView.printWinningResult(result);
@@ -48,66 +47,44 @@ public class LottoController {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        try {
-            if (purchaseAmount <= 0) {
-                throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
-            }
-            if (purchaseAmount % 1000 != 0) {
-                throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000.getMessage());
-            }
-        } catch (NumberFormatException e) {
+        if (purchaseAmount <= 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
+        }
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000.getMessage());
         }
     }
 
-    private int calculateNumberOfLottos(int purchaseAmount) {
-        return purchaseAmount/1000;
-    }
-
-    private List<LottoNumber> generateRandomLottos(int numberOfLottos) {
-        List<LottoNumber> lottoList = new ArrayList<>();
+    private List<Lotto> generateRandomLottos(int numberOfLottos) {
+        List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(randomNumbers);
-            lottoList.add(new LottoNumber(randomNumbers));
+            lottoList.add(new Lotto(randomNumbers));
         }
         return lottoList;
     }
 
-    private void getValidatedWinningNumbers() {
+    private List<Integer> parseNumbers(String input) {
+        String[] numberStrings = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String numberString : numberStrings) {
+            numbers.add(Integer.parseInt(numberString.trim()));
+        }
+
+        return numbers;
+    }
+
+    private Lotto getWinningNumbers() {
         while (true) {
             try {
                 String input = inputView.getWinningNumber();
-                saveWinningNumber(input);
-                break;
+                List<Integer> numbers = parseNumbers(input);
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
-        }
-    }
-
-    private void saveWinningNumber(String input) {
-        String[] numberStrings = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-        Set<Integer> uniqueNumbers = new HashSet<>();
-
-        try {
-            for (String numberString : numberStrings) {
-                int number = Integer.parseInt(numberString.trim());
-                if (number < 1 || number > 45) {
-                    throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.getMessage());
-                }
-                if(!uniqueNumbers.add(number)) {
-                    throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_IS_DUPLICATE.getMessage());
-                }
-                numbers.add(number);
-            }
-            if (numbers.size() != 6) {
-                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_LENGTH.getMessage());
-            }
-            this.winningNumber = new WinningNumber(numbers);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_IS_NOT_NUMBER.getMessage());
         }
     }
 
@@ -124,19 +101,15 @@ public class LottoController {
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        try {
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE.getMessage());
-            }
-            if(winningNumber.getWinningNumbers().contains(bonusNumber)) {
-                throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_DUPLICATE_WINNING_NUMBER.getMessage());
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE.getMessage());
+        }
+        if (winningLotto.getLottoNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
 
-    private Map<String, Integer> calculateWinningResult(List<LottoNumber> lottoNumbers) {
+    private Map<String, Integer> calculateWinningResult(List<Lotto> lottoNumbers) {
         Map<String, Integer> result = new LinkedHashMap<>();
         result.put("3개 일치 (5,000원)", 0);
         result.put("4개 일치 (50,000원)", 0);
@@ -144,9 +117,9 @@ public class LottoController {
         result.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
         result.put("6개 일치 (2,000,000,000원)", 0);
 
-        for (LottoNumber lotto : lottoNumbers) {
-            List<Integer> lottoNums = lotto.getNumbers();
-            int matchCount = (int) lottoNums.stream().filter(winningNumber.getWinningNumbers()::contains).count();
+        for (Lotto lotto : lottoNumbers) {
+            List<Integer> lottoNums = lotto.getLottoNumbers();
+            int matchCount = (int) lottoNums.stream().filter(winningLotto.getLottoNumbers()::contains).count();
             boolean bonusMatch = lottoNums.contains(bonusNumber);
 
             if (matchCount == 3) {
