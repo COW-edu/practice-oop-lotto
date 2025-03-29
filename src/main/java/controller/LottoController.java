@@ -89,7 +89,7 @@ public class LottoController {
     private void saveWinningNumber(String input) {
         String[] numberStrings = input.split(",");
         List<Integer> numbers = new ArrayList<>();
-        //Set<Integer> uniqueNumbers = new HashSet<>();
+        Set<Integer> uniqueNumbers = new HashSet<>();
 
         try {
             for (String numberString : numberStrings) {
@@ -97,9 +97,9 @@ public class LottoController {
                 if (number < 1 || number > 45) {
                     throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.getMessage());
                 }
-                /*if(!uniqueNumbers.add(number)) {
+                if(!uniqueNumbers.add(number)) {
                     throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_IS_DUPLICATE.getMessage());
-                }*/
+                }
                 numbers.add(number);
             }
             if (numbers.size() != 6) {
