@@ -18,15 +18,15 @@ public class InputView {
         }
     }
 
-    private void validatePurchaseAmount(int purchaseAmount){
-        try{
-            if(purchaseAmount <= 0){
+    private void validatePurchaseAmount(int purchaseAmount) {
+        try {
+            if (purchaseAmount <= 0) {
                 throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
             }
-            if( purchaseAmount % 1000 != 0){
+            if (purchaseAmount % 1000 != 0) {
                 throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000.getMessage());
             }
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
         }
     }
