@@ -1,6 +1,6 @@
 package view;
 
-import model.LottoNumbers;
+import model.LottoNumber;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ public class OutputView {
         System.out.println("\n"+purchaseAmount+"개를 구매했습니다.");
     }
 
-    public void printLottoNumbers(List<LottoNumbers> lottoNumbers){
-        for(LottoNumbers lottoNumber : lottoNumbers){
+    public void printLottoNumbers(List<LottoNumber> lottoNumbers){
+        for(LottoNumber lottoNumber : lottoNumbers){
             System.out.println(lottoNumber.getNumbers());
         }
     }

@@ -1,7 +1,7 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import model.LottoNumbers;
+import model.LottoNumber;
 import view.InputView;
 import view.OutputView;
 
@@ -23,7 +23,7 @@ public class LottoController {
         int numberOfLottos=calculateNumberOfLottos(purchaseAmount);
         outputView.printPurchaseCount(numberOfLottos);
 
-        List<LottoNumbers> lottoNumbers = generateRandomLottos(numberOfLottos);
+        List<LottoNumber> lottoNumbers = generateRandomLottos(numberOfLottos);
         outputView.printLottoNumbers(lottoNumbers);
 
     }
@@ -32,12 +32,12 @@ public class LottoController {
         return purchaseAmount/1000;
     }
 
-    private List<LottoNumbers> generateRandomLottos(int numberOfLottos) {
-        List<LottoNumbers> lottoList = new ArrayList<>();
+    private List<LottoNumber> generateRandomLottos(int numberOfLottos) {
+        List<LottoNumber> lottoList = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(randomNumbers);
-            lottoList.add(new LottoNumbers(randomNumbers));
+            lottoList.add(new LottoNumber(randomNumbers));
         }
         return lottoList;
     }
