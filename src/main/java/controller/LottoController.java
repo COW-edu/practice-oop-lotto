@@ -101,7 +101,7 @@ public class LottoController {
             }
             this.winningNumber = new WinningNumber(numbers);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.WINNINT_NUMBER_IS_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_IS_NOT_NUMBER.getMessage());
         }
     }
 
