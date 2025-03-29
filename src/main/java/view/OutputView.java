@@ -22,4 +22,8 @@ public class OutputView {
         System.out.println("-------------------");
         result.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
     }
+
+    public void printProfitRate(float profitRate) {
+        System.out.printf("총 수익률은 %.1f%% 입니다.", profitRate);
+    }
 }

@@ -32,6 +32,9 @@ public class LottoController {
 
         Map<String, Integer> result = calculateWinningResult(lottoNumbers);
         outputView.printWinningResult(result);
+
+        float profitRate = calculateProfitRate(result, purchaseAmount);
+        outputView.printProfitRate(profitRate);
     }
 
     private int handlePurchaseAmount() {
@@ -136,5 +139,24 @@ public class LottoController {
         }
 
         return result;
+    }
+
+    private float calculateProfitRate(Map<String, Integer> winningResult, int purchaseAmount) {
+        int totalPrize = 0;
+
+        Map<String, Integer> prizeMap = Map.of(
+                "3개 일치 (5,000원)", 5000,
+                "4개 일치 (50,000원)", 50000,
+                "5개 일치 (1,500,000원)", 1500000,
+                "5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000,
+                "6개 일치 (2,000,000,000원)", 2000000000
+        );
+
+        for (Map.Entry<String, Integer> entry : winningResult.entrySet()) {
+            totalPrize += prizeMap.get(entry.getKey()) * entry.getValue();
+        }
+
+        float profitRate = (float) totalPrize / purchaseAmount * 100;
+        return Math.round(profitRate * 10) / 10.0f;
     }
 }
