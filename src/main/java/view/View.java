@@ -1,10 +1,13 @@
-package lotto;
+package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import global.Validator;
+import model.Lotto;
+import model.LottoRank;
 
 import java.util.ArrayList;
 
-public class LView {
+public class View {
 
     public int inputLottoPrice(){
         System.out.println("구입금액을 입력해 주세요.");

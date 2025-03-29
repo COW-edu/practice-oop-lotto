@@ -1,4 +1,4 @@
-package lotto;
+package global;
 
 public class ErrorMessage {
     public static final String EMPTY_PURCHASE_AMOUNT = "[ERROR] 구입 금액을 입력하지 않았습니다.";

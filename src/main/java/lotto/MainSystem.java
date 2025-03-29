@@ -1,14 +1,17 @@
 package lotto;
 
+import model.Lotto;
+import model.LottoRank;
+import view.View;
+
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class LMain {
-    private LView view;
+public class MainSystem {
+    private View view;
     private LottoMachine lottoMachine;
 
-    public LMain() {
+    public MainSystem() {
 
     }
     public void start() {
@@ -21,7 +24,7 @@ public class LMain {
         view.outputWinningCount(rank);
         view.outputprofitRate(price, rank.getTotalPrizeMoney());
     }
-    public void initialize(LView view, LottoMachine lottoMachine) {
+    public void initialize(View view, LottoMachine lottoMachine) {
         this.view = view;
         this.lottoMachine = lottoMachine;
     }
