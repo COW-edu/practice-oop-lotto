@@ -9,7 +9,6 @@ public class LView {
     public int inputLottoPrice(){
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        Validator.validatePurchaseAmount(input);
         try {
             Validator.validatePurchaseAmount(input);
         } catch (IllegalArgumentException e) {

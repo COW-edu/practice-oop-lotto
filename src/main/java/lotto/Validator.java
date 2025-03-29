@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Validator {
 
-    public static void validatePurchaseAmount(String input) {
+    public static void validatePurchaseAmount(String input) throws IllegalArgumentException {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_PURCHASE_AMOUNT);
         }
