@@ -3,6 +3,7 @@ package model;
 import global.enums.ErrorMessage;
 import global.enums.MagicNumber;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = Collections.unmodifiableList(numbers);
     }
 
     private void validate(List<Integer> numbers) {
