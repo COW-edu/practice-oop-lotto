@@ -21,7 +21,7 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = handlePurchaseAmount(); // 입력 및 검증
+        int purchaseAmount = handlePurchaseAmount();
         int numberOfLotto = calculateNumberOfLotto(purchaseAmount);
         outputView.printPurchaseCount(numberOfLotto);
 
