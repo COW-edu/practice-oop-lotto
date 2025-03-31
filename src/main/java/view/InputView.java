@@ -28,7 +28,7 @@ public class InputView {
     //문자열 정수 변환
     private static List<Integer> parseNumbers(String number) {
         List<Integer> numbers = new ArrayList<>();
-        String[] numberStrings = number.split(" ");
+        String[] numberStrings = number.split(",");
         for (String numberString : numberStrings) {
             numbers.add(Integer.parseInt(numberString.trim()));
         }
