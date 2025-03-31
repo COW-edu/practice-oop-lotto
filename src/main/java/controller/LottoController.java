@@ -6,6 +6,7 @@ import model.WinningLotto;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -14,12 +15,20 @@ public class LottoController {
     public void run() {
         int price = InputView.inputPrice();
         List<Lotto> lottos = LottoGenerator.buyLottos(price);
-        OutputView.printLottos(lottos);
+        displayLottos(lottos);
 
         List<Integer> winningNumbers = InputView.inputWinningNumbers();
         int bonusNumber = InputView.inputBonusNumber();
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         //추가 예정
+    }
+
+    public void displayLottos(List<Lotto> lottos) {
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoNumbers.add(lotto.getNumbers());
+        }
+        OutputView.printLottos(lottos.size(), lottoNumbers);
     }
 }
