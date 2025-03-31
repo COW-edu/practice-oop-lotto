@@ -1,6 +1,7 @@
 package model;
 
 import global.enums.ErrorMessage;
+import global.enums.MagicNumber;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,13 +16,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != MagicNumber.LOTTO_LENGTH.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_LENGTH.getMessage());
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MagicNumber.LOTTO_NUMBER_MIN.getValue() || number > MagicNumber.LOTTO_NUMBER_MAX.getValue()) {
                 throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.getMessage());
             }
             if (!uniqueNumbers.add(number)) {
