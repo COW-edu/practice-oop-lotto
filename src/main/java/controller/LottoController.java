@@ -25,7 +25,7 @@ public class LottoController {
         int numberOfLotto = calculateNumberOfLotto(purchaseAmount);
         outputView.printPurchaseCount(numberOfLotto);
 
-        List<Lotto> lottoNumbers = generateRandomLottos(numberOfLotto);
+        List<Lotto> lottoNumbers = generateRandomLotto(numberOfLotto);
         outputView.printLottoNumbers(lottoNumbers);
 
         winningLotto = getWinningNumbers();
@@ -45,7 +45,7 @@ public class LottoController {
                 validatePurchaseAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
         }
     }
@@ -63,9 +63,9 @@ public class LottoController {
         return purchaseAmount / MagicNumber.LOTTO_PRICE.getValue();
     }
 
-    private List<Lotto> generateRandomLottos(int numberOfLottos) {
+    private List<Lotto> generateRandomLotto(int numberOfLotto) {
         List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < numberOfLottos; i++) {
+        for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MagicNumber.LOTTO_NUMBER_MIN.getValue(), MagicNumber.LOTTO_NUMBER_MAX.getValue(), MagicNumber.LOTTO_LENGTH.getValue());
             Collections.sort(randomNumbers);
             lottoList.add(new Lotto(randomNumbers));
@@ -91,7 +91,7 @@ public class LottoController {
                 List<Integer> numbers = parseNumbers(input);
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
         }
     }
@@ -103,7 +103,7 @@ public class LottoController {
                 validateBonusNumber(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
         }
     }
