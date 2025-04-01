@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -18,7 +19,7 @@ public class View {
         System.err.println(message);
     }
 
-    public void printResult(int gold, HashMap<LottoRank, Integer> lottoResult) {
+    public void printResult(int gold, Map<LottoRank, Integer> lottoResult) {
         float sum = 0;
         System.out.println(ViewConstant.STATISTICS);
         for(LottoRank rank : LottoRank.values()){
