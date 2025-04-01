@@ -1,7 +1,6 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import global.enums.ErrorMessage;
 
 public class InputView {
     public int getPurchaseAmount() {
