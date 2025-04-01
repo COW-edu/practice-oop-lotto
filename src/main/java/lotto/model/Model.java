@@ -1,9 +1,6 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.global.LottoRank;
@@ -12,14 +9,14 @@ import lotto.global.Constant.LottoConstant;
 
 public class Model {
 
-    private int gold;
+    private int money;
     private int[] correctLotto;
     private int lottoCount;
     private int bonus;
     private ArrayList<Lotto> lottos;
     private HashMap<LottoRank, Integer> lottoResult;
     public Model(){
-        gold = 0;
+        money = 0;
         correctLotto = new int[LottoConstant.LOTTO_COUNT];
         lottoCount = 0;
         bonus = 0;
@@ -27,14 +24,14 @@ public class Model {
         lottoResult = new HashMap<>();
     }
 
-    public int getGold() {
-        return gold;
+    public int getMoney() {
+        return money;
     }
-    
-    public void setGold(int gold, int unit) {
+
+    public void setMoney(int gold, int unit) {
         Validator.checkUnitMoney(gold,unit);
         lottoCount = gold/unit;
-        this.gold = gold;
+        this.money = gold;
     }
     public int[] getCorrectLotto() {
         return correctLotto;
@@ -54,7 +51,7 @@ public class Model {
         }
         Validator.checkDuplication(this.correctLotto);
     }
-    
+
     public int getLottoCount() {
         return lottoCount;
     }
@@ -89,12 +86,10 @@ public class Model {
         for(Lotto lotto : lottos){
             int sameCount = Function.getSameCount(lotto.getNumbers(),correctLotto);
             if(sameCount>=3){
-                if(LottoRank.valueOf(sameCount, lotto.getNumbers().contains(bonus))==null){
-                    System.out.println("d");
-                }
-                lottoResult.put(LottoRank.valueOf(sameCount, lotto.getNumbers().contains(bonus))
-                , lottoResult.get(LottoRank.valueOf(sameCount, lotto.getNumbers().contains(bonus)))+1);
+                Optional<LottoRank> rank = LottoRank.valueOf(sameCount, lotto.getNumbers().contains(bonus));
+                rank.ifPresent(x -> lottoResult.put(x, lottoResult.get(x)+1));
             }
         }
     }
 }
+

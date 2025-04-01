@@ -26,7 +26,7 @@ public class Controller {
         inputLotto();
         inputBonus();
         model.startLotto();
-        view.printResult(model.getGold(), model.getLottoResult());
+        view.printResult(model.getMoney(), model.getLottoResult());
     }
 
     public void showMessage(String message) {
@@ -41,7 +41,7 @@ public class Controller {
         try {
             Validator.checkNoBlank(gold);
             Validator.checkNumber(gold);
-            model.setGold(Integer.parseInt(gold),1000);
+            model.setMoney(Integer.parseInt(gold),1000);
         } catch (Exception e) {
             showError(e.getMessage());
             inputGold();
