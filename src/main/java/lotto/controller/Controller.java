@@ -9,14 +9,12 @@ import lotto.view.View;
 
 public class Controller {
 
-    View view;
-    Model model;
-    Scanner scanner;
+    private View view;
+    private Model model;
 
     public Controller(View view, Model model) {
         this.view = view;
         this.model = model;
-        scanner = new Scanner(System.in);
     }
 
     public void start() {
