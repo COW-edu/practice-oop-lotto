@@ -50,6 +50,7 @@ public class Constant {
         public static final String INPUT_MONEY = "구입금액을 입력해주세요";
         public static final String INPUT_CORRECTNUMBER = "당첨 번호를 입력해주세요";
         public static final String INPUT_BONUSNUMBER = "보너스 번호를 입력해주세요";
+        public static final int UNIT =10;
     }
 
     public static class ViewConstant{
