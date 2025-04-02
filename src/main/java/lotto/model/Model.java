@@ -2,20 +2,19 @@ package lotto.model;
 
 import java.util.*;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.global.LottoRank;
 import lotto.global.Validator;
 import lotto.global.Constant.LottoConstant;
 
 public class Model {
 
-    private ArrayList<Lotto> lottos;
     private HashMap<LottoRank, Integer> lottoResult;
     private Wallet wallet;
     private MatchLotto matchLotto;
+    private BuyLotto buyLotto;
     public Model(){
-        lottos = new ArrayList<Lotto>();
         lottoResult = new HashMap<>();
+        buyLotto = new BuyLotto();
     }
 
     public int getMoney() {
@@ -52,8 +51,8 @@ public class Model {
         matchLotto.setBonus(bonus);
     }
 
-    public ArrayList<Lotto> getLottos() {
-        return lottos;
+    public List<Lotto> getLottos() {
+        return buyLotto.getLottos();
     }
 
     public HashMap<LottoRank, Integer> getLottoResult() {
@@ -61,17 +60,13 @@ public class Model {
     }
 
     public void makeLotto(){
-        for(int i=0; i< wallet.getLottoCount(); i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN, LottoConstant.LOTTO_MAX, LottoConstant.LOTTO_COUNT);
-            numbers.sort(null);
-            lottos.add(new Lotto(numbers));
-        }
+        buyLotto.buyLotto(wallet.getLottoCount());
     }
     public void startLotto(){
         for(LottoRank rank : LottoRank.values()){
             lottoResult.put(rank, 0);
         }
-        for(Lotto lotto : lottos){
+        for(Lotto lotto : buyLotto.getLottos()){
             int sameCount = Function.getSameCount(lotto.getNumbers(), matchLotto.getCorrectNumbers());
             if(sameCount>=3){
                 Optional<LottoRank> rank = LottoRank.valueOf(sameCount, lotto.getNumbers().contains(matchLotto.getBonus()));
