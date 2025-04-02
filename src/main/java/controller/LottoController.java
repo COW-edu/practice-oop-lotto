@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import global.enums.ErrorMessage;
 import global.enums.MagicNumber;
 import model.Lotto;
+import model.WinningRank;
 import view.Input;
 import view.Output;
 
@@ -32,7 +33,7 @@ public class LottoController {
         winningLotto = getWinningNumbers();
         bonusNumber = handleBonusNumber();
 
-        Map<String, Integer> result = calculateWinningResult(lottoNumbers);
+        Map<WinningRank, Integer> result = calculateWinningResult(lottoNumbers);
         outputView.printWinningResult(result);
 
         float profitRate = calculateProfitRate(result, purchaseAmount);
@@ -114,49 +115,30 @@ public class LottoController {
         }
     }
 
-    private Map<String, Integer> calculateWinningResult(List<Lotto> lottoNumbers) {
-        Map<String, Integer> result = new LinkedHashMap<>();
-        result.put("3개 일치 (5,000원)", 0);
-        result.put("4개 일치 (50,000원)", 0);
-        result.put("5개 일치 (1,500,000원)", 0);
-        result.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
-        result.put("6개 일치 (2,000,000,000원)", 0);
+    private Map<WinningRank, Integer> calculateWinningResult(List<Lotto> lottoNumbers) {
+        Map<WinningRank, Integer> result = new LinkedHashMap<>();
+        for (WinningRank rank : WinningRank.values()) {
+            result.put(rank, 0);
+        }
 
         for (Lotto lotto : lottoNumbers) {
             List<Integer> lottoNums = lotto.getLottoNumbers();
             int matchCount = (int) lottoNums.stream().filter(winningLotto.getLottoNumbers()::contains).count();
             boolean bonusMatch = lottoNums.contains(bonusNumber);
 
-            if (matchCount == 3) {
-                result.put("3개 일치 (5,000원)", result.get("3개 일치 (5,000원)") + 1);
-            } else if (matchCount == 4) {
-                result.put("4개 일치 (50,000원)", result.get("4개 일치 (50,000원)") + 1);
-            } else if (matchCount == 5 && !bonusMatch) {
-                result.put("5개 일치 (1,500,000원)", result.get("5개 일치 (1,500,000원)") + 1);
-            } else if (matchCount == 5 && bonusMatch) {
-                result.put("5개 일치, 보너스 볼 일치 (30,000,000원)", result.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1);
-            } else if (matchCount == 6) {
-                result.put("6개 일치 (2,000,000,000원)", result.get("6개 일치 (2,000,000,000원)") + 1);
+            WinningRank rank = WinningRank.of(matchCount, bonusMatch);
+            if (rank != null) {
+                result.put(rank, result.get(rank) + 1);
             }
         }
 
         return result;
     }
 
-    private float calculateProfitRate(Map<String, Integer> winningResult, int purchaseAmount) {
-        int totalPrize = 0;
-
-        Map<String, Integer> prizeMap = Map.of(
-                "3개 일치 (5,000원)", MagicNumber.THREE_MATCH_PRIZE.getValue(),
-                "4개 일치 (50,000원)", MagicNumber.FOUR_MATCH_PRIZE.getValue(),
-                "5개 일치 (1,500,000원)", MagicNumber.FIVE_MATCH_PRIZE.getValue(),
-                "5개 일치, 보너스 볼 일치 (30,000,000원)", MagicNumber.FIVE_BONUS_MATCH_PRIZE.ordinal(),
-                "6개 일치 (2,000,000,000원)", MagicNumber.SIX_MATCH_PRIZE.getValue()
-        );
-
-        for (Map.Entry<String, Integer> entry : winningResult.entrySet()) {
-            totalPrize += prizeMap.get(entry.getKey()) * entry.getValue();
-        }
+    private float calculateProfitRate(Map<WinningRank, Integer> winningResult, int purchaseAmount) {
+        int totalPrize = winningResult.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
 
         float profitRate = (float) totalPrize / purchaseAmount * 100;
         return Math.round(profitRate * 10) / 10.0f;

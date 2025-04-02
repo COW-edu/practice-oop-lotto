@@ -1,6 +1,7 @@
 package view;
 
 import model.Lotto;
+import model.WinningRank;
 
 import java.util.List;
 import java.util.Map;
@@ -20,10 +21,14 @@ public class OutputView implements Output {
     }
 
     @Override
-    public void printWinningResult(Map<String, Integer> result) {
+    public void printWinningResult(Map<WinningRank, Integer> result) {
         System.out.println("\n당첨 통계");
         System.out.println("-------------------");
-        result.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
+        for (Map.Entry<WinningRank, Integer> entry : result.entrySet()) {
+            WinningRank rank = entry.getKey();
+            int count = entry.getValue();
+            System.out.println(rank.getDescription() + " - " + count + "개");
+        }
     }
 
     @Override
