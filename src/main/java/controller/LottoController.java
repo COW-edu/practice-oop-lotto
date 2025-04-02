@@ -8,6 +8,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoController {
     private final InputView inputView;
@@ -59,7 +60,7 @@ public class LottoController {
         }
     }
 
-    private int calculateNumberOfLotto(int purchaseAmount){
+    private int calculateNumberOfLotto(int purchaseAmount) {
         return purchaseAmount / MagicNumber.LOTTO_PRICE.getValue();
     }
 
@@ -74,14 +75,10 @@ public class LottoController {
     }
 
     private List<Integer> parseNumbers(String input) {
-        String[] numberStrings = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-
-        for (String numberString : numberStrings) {
-            numbers.add(Integer.parseInt(numberString.trim()));
-        }
-
-        return numbers;
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private Lotto getWinningNumbers() {
