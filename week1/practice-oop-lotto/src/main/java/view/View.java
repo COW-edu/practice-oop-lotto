@@ -1,8 +1,8 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import controller.InputController;
-import controller.OutputController;
+import viewInterface.InputController;
+import viewInterface.OutputController;
 
 public class View {
 

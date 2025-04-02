@@ -1,6 +1,6 @@
 package OutputController;
 
-import controller.OutputController;
+import viewInterface.OutputController;
 
 public class PurchaseCountOutputController extends OutputController {
     @Override

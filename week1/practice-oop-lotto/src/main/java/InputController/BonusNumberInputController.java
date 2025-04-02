@@ -1,6 +1,6 @@
 package InputController;
 
-import controller.InputController;
+import viewInterface.InputController;
 
 public class BonusNumberInputController extends InputController {
     @Override
