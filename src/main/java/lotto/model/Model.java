@@ -9,14 +9,11 @@ import lotto.global.Constant.LottoConstant;
 
 public class Model {
 
-    private int[] correctLotto;
-    private int bonus;
     private ArrayList<Lotto> lottos;
     private HashMap<LottoRank, Integer> lottoResult;
     private Wallet wallet;
+    private MatchLotto matchLotto;
     public Model(){
-        correctLotto = new int[LottoConstant.LOTTO_COUNT];
-        bonus = 0;
         lottos = new ArrayList<Lotto>();
         lottoResult = new HashMap<>();
     }
@@ -29,34 +26,30 @@ public class Model {
         wallet = new Wallet(gold);
     }
     public int[] getCorrectLotto() {
-        return correctLotto;
-    }
-    public void setCorrectLotto(int[] correctLotto) {
-        this.correctLotto = correctLotto;
+        return matchLotto.getCorrectNumbers();
     }
     public void setCorrectLotto(String correctLotto) {
         StringTokenizer token = new StringTokenizer(correctLotto,",");
-        int count =LottoConstant.LOTTO_COUNT;
-        Validator.checkCount(token,count);
-        for(int i=0; i<count; i++){
+        Validator.checkCount(token,LottoConstant.LOTTO_COUNT);
+        int[] correctNumbers = new int[LottoConstant.LOTTO_COUNT];
+        for(int i=0; i<LottoConstant.LOTTO_COUNT; i++){
             String num = token.nextToken();
             Validator.checkNumber(num);
-            Validator.checkRange(Integer.parseInt(num),LottoConstant.LOTTO_MIN,LottoConstant.LOTTO_MAX);
-            this.correctLotto[i] = Integer.parseInt(num);
+            correctNumbers[i] = Integer.parseInt(num);
         }
-        Validator.checkDuplication(this.correctLotto);
+        matchLotto = new MatchLotto(correctNumbers);
     }
 
     public int getLottoCount() {
         return wallet.getLottoCount();
     }
     public int getBonus() {
-        return bonus;
+        return matchLotto.getBonus();
     }
     public void setBonus(int bonus) {
         Validator.checkRange(bonus,LottoConstant.LOTTO_MIN,LottoConstant.LOTTO_MAX);
-        Validator.checkBonusDuplicate(correctLotto, bonus);
-        this.bonus = bonus;
+        Validator.checkBonusDuplicate(matchLotto.getCorrectNumbers(), bonus);
+        matchLotto.setBonus(bonus);
     }
 
     public ArrayList<Lotto> getLottos() {
@@ -79,9 +72,9 @@ public class Model {
             lottoResult.put(rank, 0);
         }
         for(Lotto lotto : lottos){
-            int sameCount = Function.getSameCount(lotto.getNumbers(),correctLotto);
+            int sameCount = Function.getSameCount(lotto.getNumbers(), matchLotto.getCorrectNumbers());
             if(sameCount>=3){
-                Optional<LottoRank> rank = LottoRank.valueOf(sameCount, lotto.getNumbers().contains(bonus));
+                Optional<LottoRank> rank = LottoRank.valueOf(sameCount, lotto.getNumbers().contains(matchLotto.getBonus()));
                 rank.ifPresent(x -> lottoResult.put(x, lottoResult.get(x)+1));
             }
         }
