@@ -5,18 +5,18 @@ import global.enums.ErrorMessage;
 import global.enums.MagicNumber;
 import model.Lotto;
 import view.Input;
-import view.OutputView;
+import view.Output;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoController {
     private final Input inputView;
-    private final OutputView outputView;
+    private final Output outputView;
     private Lotto winningLotto;
     private int bonusNumber;
 
-    public LottoController(Input inputView, OutputView outputView) {
+    public LottoController(Input inputView, Output outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }

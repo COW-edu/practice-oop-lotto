@@ -3,6 +3,7 @@ package config;
 import controller.LottoController;
 import view.Input;
 import view.InputView;
+import view.Output;
 import view.OutputView;
 
 public class AppConfig {
@@ -10,7 +11,7 @@ public class AppConfig {
         return new InputView();
     }
 
-    public OutputView outputView() {
+    public Output outputView() {
         return new OutputView();
     }
 
