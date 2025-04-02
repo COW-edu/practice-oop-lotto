@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.Scanner;
-
 import lotto.global.Constant;
 import lotto.global.Validator;
 import lotto.model.Model;
@@ -18,11 +16,11 @@ public class Controller {
     }
 
     public void start() {
-        inputGold();
+        handleMoney();
         model.makeLotto();
         view.printLotto(model.getLottos());
-        inputLotto();
-        inputBonus();
+        handleLotto();
+        handleBonus();
         model.startLotto();
         view.printResult(model.getMoney(), model.getLottoResult());
     }
@@ -34,7 +32,7 @@ public class Controller {
         view.showError(message);
     }
 
-    public void inputGold(){
+    public void handleMoney(){
         String gold = view.inputString(Constant.ControllerConstant.INPUT_MONEY);
         try {
             Validator.checkNoBlank(gold);
@@ -42,22 +40,22 @@ public class Controller {
             model.setMoney(Integer.parseInt(gold), Constant.ControllerConstant.UNIT);
         } catch (Exception e) {
             showError(e.getMessage());
-            inputGold();
+            handleMoney();
         }
     }
 
-    public void inputLotto(){
+    public void handleLotto(){
         String lotto = view.inputString(Constant.ControllerConstant.INPUT_CORRECTNUMBER);
         try {
             Validator.checkNoBlank(lotto);
             model.setCorrectLotto(lotto);
         } catch (Exception e) {
             showError(e.getMessage());
-            inputLotto();
+            handleLotto();
         }
     }
 
-    public void inputBonus(){
+    public void handleBonus(){
         String bonus = view.inputString(Constant.ControllerConstant.INPUT_BONUSNUMBER);
         try {
             Validator.checkNoBlank(bonus);
@@ -65,7 +63,7 @@ public class Controller {
             model.setBonus(Integer.parseInt(bonus));
         } catch (Exception e) {
             showError(e.getMessage());
-            inputBonus();
+            handleBonus();
         }
     }
 }
