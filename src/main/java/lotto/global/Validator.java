@@ -21,11 +21,6 @@ public class Validator{
         }
     }
 
-    public static void checkUnitMoney(int gold, int unit) throws IllegalArgumentException {
-        if (gold % unit != 0) {
-            throw new IllegalArgumentException(ValidatorConstant.unitError(unit));
-        }
-    }
     public static void checkDuplication(int[] array) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for(int i : array){

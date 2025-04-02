@@ -6,24 +6,17 @@ public class Constant {
         private static final String ERROR = "[ERROR] ";
         private static final String NO_BLANK = "공백을 입력하셨습니다.";
         private static final String NUMBER = "숫자를 입력해주세요.";
-        private static final String UNIT_MONEY = "원 단위로 입력해주세요.";
         private static final String DUPLICATION = "중복된 숫자가 있습니다.";
         private static final String RANGE_MIN= "부터 ";
         private static final String RANGE_MAX= "까지의 숫자를 입력해주세요.";
         private static final String COUNT = "개의 숫자를 입력해주세요.";
         private static final String BONUS_DUPLICATE = "로또 번호와 중복되는 번호입니다.";
 
-        public static String BlankError() {
-            return ERROR + NO_BLANK;
-        }
         public static String rangeError(int min, int max) {
             return ERROR + min + RANGE_MIN + max + RANGE_MAX;
         }
         public static String countError(int count) {
             return ERROR + count + COUNT;
-        }
-        public static String unitError(int unit) {
-            return ERROR + unit + UNIT_MONEY;
         }
         public static String numberError() {
             return ERROR + NUMBER;
@@ -50,7 +43,15 @@ public class Constant {
         public static final String INPUT_MONEY = "구입금액을 입력해주세요";
         public static final String INPUT_CORRECTNUMBER = "당첨 번호를 입력해주세요";
         public static final String INPUT_BONUSNUMBER = "보너스 번호를 입력해주세요";
-        public static final int UNIT =10;
+    }
+    public static class ControllerWallet{
+        private static final String ERROR = "[ERROR] ";
+        private static final String UNIT_MONEY = "원 단위로 입력해주세요.";
+        public static final int UNIT =1000;
+
+        public static String unitError() {
+            return ERROR + UNIT + UNIT_MONEY;
+        }
     }
 
     public static class ViewConstant{

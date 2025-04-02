@@ -9,29 +9,24 @@ import lotto.global.Constant.LottoConstant;
 
 public class Model {
 
-    private int money;
     private int[] correctLotto;
-    private int lottoCount;
     private int bonus;
     private ArrayList<Lotto> lottos;
     private HashMap<LottoRank, Integer> lottoResult;
+    private Wallet wallet;
     public Model(){
-        money = 0;
         correctLotto = new int[LottoConstant.LOTTO_COUNT];
-        lottoCount = 0;
         bonus = 0;
         lottos = new ArrayList<Lotto>();
         lottoResult = new HashMap<>();
     }
 
     public int getMoney() {
-        return money;
+        return wallet.getMoney();
     }
 
-    public void setMoney(int gold, int unit) {
-        Validator.checkUnitMoney(gold,unit);
-        lottoCount = gold/unit;
-        this.money = gold;
+    public void setWallet(int gold) {
+        wallet = new Wallet(gold);
     }
     public int[] getCorrectLotto() {
         return correctLotto;
@@ -53,7 +48,7 @@ public class Model {
     }
 
     public int getLottoCount() {
-        return lottoCount;
+        return wallet.getLottoCount();
     }
     public int getBonus() {
         return bonus;
@@ -73,7 +68,7 @@ public class Model {
     }
 
     public void makeLotto(){
-        for(int i=0; i<lottoCount; i++){
+        for(int i=0; i< wallet.getLottoCount(); i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN, LottoConstant.LOTTO_MAX, LottoConstant.LOTTO_COUNT);
             numbers.sort(null);
             lottos.add(new Lotto(numbers));

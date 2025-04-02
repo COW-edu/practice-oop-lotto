@@ -37,7 +37,7 @@ public class Controller {
         try {
             Validator.checkNoBlank(gold);
             Validator.checkNumber(gold);
-            model.setMoney(Integer.parseInt(gold), Constant.ControllerConstant.UNIT);
+            model.setWallet(Integer.parseInt(gold));
         } catch (Exception e) {
             showError(e.getMessage());
             handleMoney();
