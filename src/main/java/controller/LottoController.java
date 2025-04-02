@@ -4,19 +4,19 @@ import camp.nextstep.edu.missionutils.Randoms;
 import global.enums.ErrorMessage;
 import global.enums.MagicNumber;
 import model.Lotto;
-import view.InputView;
+import view.Input;
 import view.OutputView;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoController {
-    private final InputView inputView;
+    private final Input inputView;
     private final OutputView outputView;
     private Lotto winningLotto;
     private int bonusNumber;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(Input inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }

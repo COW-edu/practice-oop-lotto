@@ -1,19 +1,20 @@
 package config;
 
 import controller.LottoController;
+import view.Input;
 import view.InputView;
 import view.OutputView;
 
 public class AppConfig {
-    public InputView inputView(){
+    public Input inputView() {
         return new InputView();
     }
 
-    public OutputView outputView(){
+    public OutputView outputView() {
         return new OutputView();
     }
 
-    public LottoController lottoController(){
+    public LottoController lottoController() {
         return new LottoController(this.inputView(), this.outputView());
     }
 }
