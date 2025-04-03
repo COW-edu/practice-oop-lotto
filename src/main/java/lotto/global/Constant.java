@@ -41,7 +41,7 @@ public class Constant {
 
     public static class ControllerConstant{
         public static final String INPUT_MONEY = "구입금액을 입력해주세요";
-        public static final String INPUT_CORRECTNUMBER = "당첨 번호를 입력해주세요";
+        public static final String INPUT_WININGNUMBER = "당첨 번호를 입력해주세요";
         public static final String INPUT_BONUSNUMBER = "보너스 번호를 입력해주세요";
     }
     public static class ControllerWallet{
@@ -54,7 +54,7 @@ public class Constant {
         }
     }
 
-    public static class ViewConstant{
+    public static class LottoResultFormatterConstant {
         public static final String STATISTICS = "당첨 통계 \n-------";
         public static final String TOTAL_PROFIT_RATE_PREFIX = "총 수익률은 ";
         public static final String TOTAL_PROFIT_RATE_SUFFIX = "%입니다.";

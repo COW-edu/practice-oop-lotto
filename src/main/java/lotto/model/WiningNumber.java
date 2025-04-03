@@ -3,16 +3,16 @@ package lotto.model;
 import lotto.global.Constant;
 import lotto.global.Validator;
 
-public class MatchLotto{
-    private int[] correctNumbers;
+public class WiningNumber {
+    private int[] winingNumber;
     private int bonus;
 
-    public MatchLotto(int[] numbers) {
+    public WiningNumber(int[] numbers) {
         Validator.checkDuplication(numbers);
         for(int num : numbers){
             validateRange(num);
         }
-        this.correctNumbers = numbers;
+        this.winingNumber = numbers;
     }
 
     public int getBonus() {
@@ -20,14 +20,14 @@ public class MatchLotto{
     }
     public void setBonus(int bonus) {
         validateRange(bonus);
-        Validator.checkBonusDuplicate(correctNumbers, bonus);
+        Validator.checkBonusDuplicate(winingNumber, bonus);
         this.bonus = bonus;
     }
-    public int[] getCorrectNumbers() {
-        return correctNumbers;
+    public int[] getWiningNumber() {
+        return winingNumber;
     }
-    public void setCorrectNumbers(int[] correctNumbers) {
-        this.correctNumbers = correctNumbers;
+    public void setWiningNumber(int[] winingNumber) {
+        this.winingNumber = winingNumber;
     }
     private static void validateRange(int num) {
         Validator.checkRange(num, Constant.LottoConstant.LOTTO_MIN, Constant.LottoConstant.LOTTO_MAX);

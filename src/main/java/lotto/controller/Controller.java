@@ -19,10 +19,10 @@ public class Controller {
         handleMoney();
         model.makeLotto();
         view.printLotto(model.getLottos());
-        handleLotto();
+        handleWiningNumber();
         handleBonus();
         model.startLotto();
-        view.printResult(model.getMoney(), model.getLottoResult());
+        view.showMessage(model.getLottoResult());
     }
 
     public void showMessage(String message) {
@@ -44,14 +44,14 @@ public class Controller {
         }
     }
 
-    public void handleLotto(){
-        String lotto = view.inputString(Constant.ControllerConstant.INPUT_CORRECTNUMBER);
+    public void handleWiningNumber(){
+        String lotto = view.inputString(Constant.ControllerConstant.INPUT_WININGNUMBER);
         try {
             Validator.checkNoBlank(lotto);
-            model.setCorrectLotto(lotto);
+            model.setWiningLotto(lotto);
         } catch (Exception e) {
             showError(e.getMessage());
-            handleLotto();
+            handleWiningNumber();
         }
     }
 
