@@ -1,12 +1,13 @@
 package controller;
 
+import domain.calculator.LottoResultCalculator;
+import domain.calculator.ProfitCalculator;
 import global.enums.ErrorMessage;
 import model.*;
 import view.Input;
 import view.Output;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +16,6 @@ public class LottoController {
     private final Input inputView;
     private final Output outputView;
     private Lotto winningLotto;
-    private BonusNumber bonusNumber;
 
     public LottoController(Input inputView, Output outputView) {
         this.inputView = inputView;
@@ -31,12 +31,12 @@ public class LottoController {
         outputView.printLottoNumbers(lottoNumbers);
 
         winningLotto = getWinningNumbers();
-        bonusNumber = handleBonusNumber();
+        BonusNumber bonusNumber = handleBonusNumber();
 
-        Map<WinningRank, Integer> result = calculateWinningResult(lottoNumbers);
+        Map<WinningRank, Integer> result = LottoResultCalculator.calculate(lottoNumbers, winningLotto, bonusNumber);
         outputView.printWinningResult(result);
 
-        float profitRate = calculateProfitRate(result, purchaseAmount.getAmount());
+        float profitRate = ProfitCalculator.calculate(result, purchaseAmount.getAmount());
         outputView.printProfitRate(profitRate);
     }
 
@@ -85,34 +85,5 @@ public class LottoController {
                 System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
         }
-    }
-
-    private Map<WinningRank, Integer> calculateWinningResult(List<Lotto> lottoNumbers) {
-        Map<WinningRank, Integer> result = new LinkedHashMap<>();
-        for (WinningRank rank : WinningRank.values()) {
-            result.put(rank, 0);
-        }
-
-        for (Lotto lotto : lottoNumbers) {
-            List<Integer> lottoNums = lotto.getLottoNumbers();
-            int matchCount = (int) lottoNums.stream().filter(winningLotto.getLottoNumbers()::contains).count();
-            boolean bonusMatch = lottoNums.contains(bonusNumber.getNumber());
-
-            WinningRank rank = WinningRank.of(matchCount, bonusMatch);
-            if (rank != null) {
-                result.put(rank, result.get(rank) + 1);
-            }
-        }
-
-        return result;
-    }
-
-    private float calculateProfitRate(Map<WinningRank, Integer> winningResult, int purchaseAmount) {
-        int totalPrize = winningResult.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
-
-        float profitRate = (float) totalPrize / purchaseAmount * 100;
-        return Math.round(profitRate * 10) / 10.0f;
     }
 }
