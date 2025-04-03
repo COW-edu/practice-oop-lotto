@@ -3,6 +3,7 @@ package global.enums;
 public enum ErrorMessage {
     ERROR_MESSAGE_PREFIX("[ERROR] "),
     PURCHASE_AMOUNT_NEGATIVE("구매 금액은 0보다 커야 합니다."),
+    INVALID_NUMBER_FORMAT("입력은 숫자만 가능합니다."),
     PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000("구매 금액은 1000 단위로 나누어 떨어져야 합니다."),
     PURCHASE_AMOUNT_NOT_NUMBER("구매 금액은 숫자여야 합니다."),
     WINNING_NUMBER_RANGE("당첨 번호는 1부터 45 사이여야 합니다."),

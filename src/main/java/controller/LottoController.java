@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import global.enums.ErrorMessage;
 import global.enums.MagicNumber;
 import model.Lotto;
+import model.PurchaseAmount;
 import model.WinningRank;
 import view.Input;
 import view.Output;
@@ -23,8 +24,8 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = handlePurchaseAmount();
-        int numberOfLotto = calculateNumberOfLotto(purchaseAmount);
+        PurchaseAmount purchaseAmount = handlePurchaseAmount();
+        int numberOfLotto = purchaseAmount.calculateNumberOfLotto();
         outputView.printPurchaseCount(numberOfLotto);
 
         List<Lotto> lottoNumbers = generateRandomLotto(numberOfLotto);
@@ -36,33 +37,21 @@ public class LottoController {
         Map<WinningRank, Integer> result = calculateWinningResult(lottoNumbers);
         outputView.printWinningResult(result);
 
-        float profitRate = calculateProfitRate(result, purchaseAmount);
+        float profitRate = calculateProfitRate(result, purchaseAmount.getAmount());
         outputView.printProfitRate(profitRate);
     }
 
-    private int handlePurchaseAmount() {
+    private PurchaseAmount handlePurchaseAmount() {
         while (true) {
             try {
                 int amount = inputView.getPurchaseAmount();
-                validatePurchaseAmount(amount);
-                return amount;
+                return new PurchaseAmount(amount);
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
         }
-    }
-
-    private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
-        }
-        if (purchaseAmount % MagicNumber.LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000.getMessage());
-        }
-    }
-
-    private int calculateNumberOfLotto(int purchaseAmount) {
-        return purchaseAmount / MagicNumber.LOTTO_PRICE.getValue();
     }
 
     private List<Lotto> generateRandomLotto(int numberOfLotto) {
