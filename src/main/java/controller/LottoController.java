@@ -66,6 +66,8 @@ public class LottoController {
                 String input = inputView.getWinningNumber();
                 List<Integer> numbers = parseNumbers(input);
                 return new Lotto(numbers);
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
