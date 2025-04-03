@@ -1,16 +1,14 @@
 package controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import global.enums.ErrorMessage;
-import global.enums.MagicNumber;
-import model.BonusNumber;
-import model.Lotto;
-import model.PurchaseAmount;
-import model.WinningRank;
+import model.*;
 import view.Input;
 import view.Output;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoController {
@@ -29,7 +27,7 @@ public class LottoController {
         int numberOfLotto = purchaseAmount.calculateNumberOfLotto();
         outputView.printPurchaseCount(numberOfLotto);
 
-        List<Lotto> lottoNumbers = generateRandomLotto(numberOfLotto);
+        List<Lotto> lottoNumbers = LottoGenerator.generateMultiple(numberOfLotto);
         outputView.printLottoNumbers(lottoNumbers);
 
         winningLotto = getWinningNumbers();
@@ -53,16 +51,6 @@ public class LottoController {
                 System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
         }
-    }
-
-    private List<Lotto> generateRandomLotto(int numberOfLotto) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < numberOfLotto; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MagicNumber.LOTTO_NUMBER_MIN.getValue(), MagicNumber.LOTTO_NUMBER_MAX.getValue(), MagicNumber.LOTTO_LENGTH.getValue());
-            Collections.sort(randomNumbers);
-            lottoList.add(new Lotto(randomNumbers));
-        }
-        return lottoList;
     }
 
     private List<Integer> parseNumbers(String input) {
