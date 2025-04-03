@@ -3,6 +3,7 @@ package controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import global.enums.ErrorMessage;
 import global.enums.MagicNumber;
+import model.BonusNumber;
 import model.Lotto;
 import model.PurchaseAmount;
 import model.WinningRank;
@@ -16,7 +17,7 @@ public class LottoController {
     private final Input inputView;
     private final Output outputView;
     private Lotto winningLotto;
-    private int bonusNumber;
+    private BonusNumber bonusNumber;
 
     public LottoController(Input inputView, Output outputView) {
         this.inputView = inputView;
@@ -83,24 +84,16 @@ public class LottoController {
         }
     }
 
-    private int handleBonusNumber() {
+    private BonusNumber handleBonusNumber() {
         while (true) {
             try {
                 int bonusNumber = inputView.getBonusNumber();
-                validateBonusNumber(bonusNumber);
-                return bonusNumber;
+                return new BonusNumber(bonusNumber, winningLotto);
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
-        }
-    }
-
-    private void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < MagicNumber.LOTTO_NUMBER_MIN.getValue() || bonusNumber > MagicNumber.LOTTO_NUMBER_MAX.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE.getMessage());
-        }
-        if (winningLotto.getLottoNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
 
@@ -113,7 +106,7 @@ public class LottoController {
         for (Lotto lotto : lottoNumbers) {
             List<Integer> lottoNums = lotto.getLottoNumbers();
             int matchCount = (int) lottoNums.stream().filter(winningLotto.getLottoNumbers()::contains).count();
-            boolean bonusMatch = lottoNums.contains(bonusNumber);
+            boolean bonusMatch = lottoNums.contains(bonusNumber.getNumber());
 
             WinningRank rank = WinningRank.of(matchCount, bonusMatch);
             if (rank != null) {
