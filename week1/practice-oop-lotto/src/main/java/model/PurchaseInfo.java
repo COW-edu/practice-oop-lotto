@@ -2,9 +2,7 @@ package model;
 
 import global.Constants;
 
-import java.util.AbstractMap;
-
-public class PurchaseInfo implements MModel<AbstractMap.SimpleEntry<Integer, Integer>>{
+public class PurchaseInfo implements MModel<Integer> {
     private final int purchasePrice;
     private final int purchaseCount;
 
@@ -14,13 +12,10 @@ public class PurchaseInfo implements MModel<AbstractMap.SimpleEntry<Integer, Int
     }
 
     @Override
-    public AbstractMap.SimpleEntry<Integer, Integer> getData() {
-        return new AbstractMap.SimpleEntry<>(purchasePrice, purchaseCount);
-    }
-
-    public int getPurchaseCount() {
+    public Integer getData() {
         return purchaseCount;
     }
+
     public int getPurchasePrice() {
         return purchasePrice;
     }

@@ -20,7 +20,7 @@ public class PurchasedLottosCreator implements ModelCreator<PurchasedLottos> {
         }
 
         PurchaseInfo purchaseInfo = (PurchaseInfo) models[0];
-        int purchaseCount = purchaseInfo.getPurchaseCount();
+        int purchaseCount = purchaseInfo.getData();
 
         return new PurchasedLottos(generateLottos(purchaseCount));
     }
