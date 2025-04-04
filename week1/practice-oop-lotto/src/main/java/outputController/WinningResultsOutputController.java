@@ -26,9 +26,4 @@ public class WinningResultsOutputController extends OutputController {
                 fifthPrize, fourthPrize, thirdPrize, secondPrize, firstPrize
         );
     }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
 }

@@ -12,6 +12,8 @@ public abstract class OutputController implements ViewController {
     public abstract void setMessage(MModel<?> model);
 
     @Override
-    public abstract String getMessage();
+    public String getMessage(){
+        return message;
+    };
 
 }

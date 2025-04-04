@@ -15,9 +15,4 @@ public class ProfitRateOutputController extends OutputController {
         ProfitRate profitRate = (ProfitRate) model;
         this.message = MessageManager.MessageFormatter.formatProfitRate(profitRate.getData());
     }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
 }

@@ -17,9 +17,4 @@ public class PurchaseCountOutputController extends OutputController {
 
         this.message = MessageManager.MessageFormatter.formatPurchaseCount(purchaseInfo.getData());
     }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
 }

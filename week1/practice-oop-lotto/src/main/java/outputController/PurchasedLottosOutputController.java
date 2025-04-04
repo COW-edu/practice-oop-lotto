@@ -28,9 +28,4 @@ public class PurchasedLottosOutputController extends OutputController {
 
         this.message = sb.toString().trim();
     }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
 }
