@@ -1,4 +1,4 @@
-package OutputController;
+package outputController;
 
 import model.Lotto;
 import model.MModel;
@@ -6,12 +6,11 @@ import model.PurchasedLottos;
 import viewInterface.OutputController;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class PurchaseLottosOutputController extends OutputController {
+public class PurchasedLottosOutputController extends OutputController {
     @Override
-    protected void setMessage(MModel<?> model) {
+    public void setMessage(MModel<?> model) {
         if (!(model instanceof PurchasedLottos)) {
             throw new IllegalArgumentException("PurchasedLottos 모델이 필요합니다.");
         }

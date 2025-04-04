@@ -1,4 +1,4 @@
-package InputController;
+package inputController;
 
 import global.MessageManager;
 import viewInterface.InputController;

@@ -6,12 +6,12 @@ import viewInterface.OutputController;
 
 public class View {
 
-    public String inputValue(InputController input) {
-        System.out.println(input.getMessage());
+    public String inputValue(String message) {
+        System.out.println(message);
         return Console.readLine();
     }
 
-    public void outputValue(OutputController output) {
-        System.out.println(output.getMessage());
+    public void outputValue(String message) {
+        System.out.println(message);
     }
 }

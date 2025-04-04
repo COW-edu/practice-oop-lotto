@@ -1,30 +1,63 @@
 package lotto;
 
-import model.Lotto;
+import controllerManager.InputControllerManager;
+import controllerManager.ModelCreatorManager;
+import controllerManager.OutputControllerManager;
+import model.*;
 import view.View;
+import viewInterface.InputController;
+import viewInterface.OutputController;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class MainSystem {
-    private View view;
-    private LottoMachine lottoMachine;
 
-    public MainSystem() {
+    private final InputControllerManager inputControllerManager;
+    private final ModelCreatorManager modelCreatorManager;
+    private final OutputControllerManager outputControllerManager;
+    private final View view;
 
-    }
-    public void start() {
-        int price = view.inputLottoPrice();
-        ArrayList<Lotto> purchasedLottos = lottoMachine.creatLotto(price);
-        view.outputPurchaseLotto(price, purchasedLottos);
-        int[] winningNumbers = view.inputWinningNumbers();
-        int bonus = view.inputBonusNumber(winningNumbers);
-        LottoRank rank = lottoMachine.checkLottoRank(purchasedLottos, winningNumbers, bonus);
-        view.outputWinningCount(rank);
-        view.outputprofitRate(price, rank.getTotalPrizeMoney());
-    }
-    public void initialize(View view, LottoMachine lottoMachine) {
+    public MainSystem(InputControllerManager inputControllerManager,
+                      ModelCreatorManager modelCreatorManager,
+                      OutputControllerManager outputControllerManager,
+                      View view) {
+        this.inputControllerManager = inputControllerManager;
+        this.modelCreatorManager = modelCreatorManager;
+        this.outputControllerManager = outputControllerManager;
         this.view = view;
-        this.lottoMachine = lottoMachine;
+    }
+
+    public void run() {
+        PurchaseInfo purchaseInfo = createModel(PurchaseInfo.class, Optional.empty());
+        outputModel(purchaseInfo);
+
+        PurchasedLottos purchasedLottos = createModel(PurchasedLottos.class, Optional.empty(), purchaseInfo);
+        outputModel(purchasedLottos);
+
+        WinningNumbers winningNumbers = createModel(WinningNumbers.class, Optional.empty());
+        BonusNumber bonusNumber = createModel(BonusNumber.class, Optional.empty());
+
+        WinningResult winningResult = createModel(WinningResult.class, Optional.empty(), purchasedLottos, winningNumbers, bonusNumber);
+        outputModel(winningResult);
+
+        ProfitRate profitRate = createModel(ProfitRate.class, Optional.empty(), winningResult, purchaseInfo);
+        outputModel(profitRate);
+    }
+
+    private <T> T createModel(Class<T> modelClass, Optional<String> input, MModel<?>... models) {
+        InputController inputController = inputControllerManager.get(modelClass);
+        if (inputController != null && input.isEmpty()) {
+            String userInput = view.inputValue(inputController.getMessage());
+            input = Optional.of(userInput);
+        }
+
+        return modelCreatorManager.get(modelClass).create(input, models);
+    }
+
+    private void outputModel(MModel<?> model) {
+        OutputController controller = outputControllerManager.get(model.getClass());
+        controller.setMessage(model);
+        view.outputValue(controller.getMessage());
     }
 }

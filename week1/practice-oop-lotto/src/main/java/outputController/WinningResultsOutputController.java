@@ -1,4 +1,4 @@
-package OutputController;
+package outputController;
 
 import global.Constants;
 import global.MessageManager;
@@ -9,7 +9,7 @@ import viewInterface.OutputController;
 public class WinningResultsOutputController extends OutputController {
 
     @Override
-    protected void setMessage(MModel<?> model) {
+    public void setMessage(MModel<?> model) {
         if (!(model instanceof WinningResult)) {
             throw new IllegalArgumentException("WinningResult 모델이 필요합니다.");
         }

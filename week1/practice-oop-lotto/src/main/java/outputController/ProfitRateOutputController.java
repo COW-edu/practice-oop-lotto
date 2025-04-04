@@ -1,4 +1,4 @@
-package OutputController;
+package outputController;
 
 import global.MessageManager;
 import model.MModel;
@@ -7,7 +7,7 @@ import viewInterface.OutputController;
 
 public class ProfitRateOutputController extends OutputController {
     @Override
-    protected void setMessage(MModel<?> model) {
+    public void setMessage(MModel<?> model) {
         if (!(model instanceof ProfitRate)) {
             throw new IllegalArgumentException("ProfitRate 모델이 필요합니다.");
         }

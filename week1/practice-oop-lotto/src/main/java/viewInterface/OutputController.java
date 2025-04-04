@@ -9,7 +9,7 @@ public abstract class OutputController implements ViewController {
 
     }
 
-    protected abstract void setMessage(MModel<?> model);
+    public abstract void setMessage(MModel<?> model);
 
     @Override
     public abstract String getMessage();

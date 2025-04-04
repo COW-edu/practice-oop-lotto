@@ -1,11 +1,7 @@
 package global;
 
-import model.Lotto;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 
 import static global.Constants.*;
 
@@ -13,8 +9,7 @@ public class MessageManager {
     public enum MessageType {
         INPUT_LOTTO_PRICE("구입금액을 입력해 주세요."),
         INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-        INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-        INPUT_PURCHASE_COUNT("개를 구매했습니다.");
+        INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
 
         private final String message;
 
@@ -31,8 +26,12 @@ public class MessageManager {
 
         private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.0");
 
+        public static String formatPurchaseCount(int purchaseCount) {
+            return String.format("%d개를 구매했습니다.", purchaseCount);
+        }
+
         public static String formatProfitRate(double profitRate) {
-            return "총 수익률은 " + DECIMAL_FORMAT.format(profitRate) + "%입니다";
+            return String.format("총 수익률은 %s%%입니다", DECIMAL_FORMAT.format(profitRate));
         }
 
         public static String formatWinningStatistics(int fifthPrize, int fourthPrize, int thirdPrize, int secondPrize, int firstPrize) {

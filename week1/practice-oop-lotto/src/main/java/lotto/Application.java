@@ -1,17 +1,21 @@
 package lotto;
 
+import controllerManager.InputControllerManager;
+import controllerManager.ModelCreatorManager;
+import controllerManager.OutputControllerManager;
 import view.View;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        MainSystem main = new MainSystem();
+
+        InputControllerManager inputManager = new InputControllerManager();
+        ModelCreatorManager creatorManager = new ModelCreatorManager();
+        OutputControllerManager outputManager = new OutputControllerManager();
         View view = new View();
-        LottoMachine lottoMachine = new LottoMachine();
 
-        main.initialize(view, lottoMachine);
+        MainSystem system = new MainSystem(inputManager, creatorManager, outputManager, view);
+        system.run();
 
-        main.start();
 
     }
 }
