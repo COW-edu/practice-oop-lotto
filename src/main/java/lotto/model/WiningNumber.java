@@ -7,6 +7,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class WiningNumber {
+
+    private static final String DUPLICATION = "중복된 숫자가 있습니다.";
+    private static final String RANGE_MIN= "부터 ";
+    private static final String RANGE_MAX= "까지의 숫자를 입력해주세요.";
+    private static final String BONUS_DUPLICATE = "로또 번호와 중복되는 번호입니다.";
+    private static String rangeError(int min, int max) {
+        return Constant.ValidatorConstant.ERROR + min + RANGE_MIN + max + RANGE_MAX;
+    }
+    private static String duplicationError() {
+        return Constant.ValidatorConstant.ERROR + DUPLICATION;
+    }
+    private static String bonusDuplicateError() {
+        return Constant.ValidatorConstant.ERROR + BONUS_DUPLICATE;
+    }
+
     private final int[] winingNumber;
     private int bonus;
 
@@ -23,26 +38,34 @@ public class WiningNumber {
     }
     public void setBonus(int bonus) {
         validateRange(bonus);
-        validateDuplication(winingNumber);
+        validateBonusDuplication(bonus);
         this.bonus = bonus;
     }
     public int[] getWiningNumber() {
         return Arrays.copyOf(winingNumber, winingNumber.length);
     }
+
     private void validateDuplication(int[] numbers){
         HashMap<Integer, Integer> map = new HashMap<>();
         for(int i : numbers){
             if(map.containsKey(i)){
-                throw new IllegalArgumentException(Constant.ValidatorConstant.duplicationError());
+                throw new IllegalArgumentException(duplicationError());
             }
             map.put(i, 1);
         }
     }
+
     private void validateRange(int number) {
         int min = Constant.LottoConstant.LOTTO_MIN;
         int max = Constant.LottoConstant.LOTTO_MAX;
         if(number<min||number>max){
-            throw new IllegalArgumentException(Constant.ValidatorConstant.rangeError(min, max));
+            throw new IllegalArgumentException(rangeError(min, max));
+        }
+    }
+
+    private void validateBonusDuplication(int bonus) {
+        if(Arrays.stream(winingNumber).anyMatch(n -> n == bonus)){
+            throw new IllegalArgumentException(duplicationError());
         }
     }
     

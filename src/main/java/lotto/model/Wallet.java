@@ -1,8 +1,13 @@
 package lotto.model;
 
-import lotto.global.Constant.ControllerWallet;
+import lotto.global.Constant.*;
 
 public class Wallet {
+    private static final int UNIT =1000;
+    private static final String UNIT_MONEY = "원 단위로 입력해주세요.";
+    private static String unitError() {
+        return ValidatorConstant.ERROR + UNIT + UNIT_MONEY;
+    }
 
     private int money;
     private int lottoCount;
@@ -10,11 +15,11 @@ public class Wallet {
     public Wallet(int money) {
         checkUnitMoney(money);
         this.money = money;
-        lottoCount = this.money / ControllerWallet.UNIT;
+        lottoCount = this.money / UNIT;
     }
     private void checkUnitMoney(int money){
-        if (money % ControllerWallet.UNIT != 0) {
-            throw new IllegalArgumentException(ControllerWallet.unitError());
+        if (money % UNIT != 0) {
+            throw new IllegalArgumentException(unitError());
         }
     }
     public int getMoney() {

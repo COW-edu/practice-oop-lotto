@@ -3,11 +3,10 @@ package lotto.view;
 import java.util.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.global.Constant.LottoResultFormatterConstant;
 import lotto.model.Lotto;
 
 public class View {
-
+    private static final String PURCHASED_COUNT_MESSAGE = "개를 구매했습니다.";
     public void showMessage(String message){
         System.out.println(message);
     }
@@ -16,7 +15,7 @@ public class View {
     }
 
     public void printLotto(List<Lotto> lottos) {
-        System.out.println(lottos.size()+ LottoResultFormatterConstant.PURCHASED_COUNT_MESSAGE);
+        System.out.println(lottos.size()+ PURCHASED_COUNT_MESSAGE);
         for(int i=0; i<lottos.size(); i++){
             System.out.println(lottos.get(i).getNumbers());
         }

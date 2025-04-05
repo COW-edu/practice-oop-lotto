@@ -10,6 +10,10 @@ public class Controller {
     private View view;
     private Model model;
 
+    private final static String INPUT_MONEY = "구입금액을 입력해주세요";
+    private final static String INPUT_WININGNUMBER = "당첨 번호를 입력해주세요";
+    private final static String INPUT_BONUSNUMBER = "보너스 번호를 입력해주세요";
+
     public Controller() {
     }
     public void association(View view, Model model){
@@ -32,7 +36,7 @@ public class Controller {
     }
 
     public void handleMoney(){
-        String gold = view.inputString(Constant.ControllerConstant.INPUT_MONEY);
+        String gold = view.inputString(INPUT_MONEY);
         try {
             Validator.checkNoBlank(gold);
             Validator.checkNumber(gold);
@@ -44,7 +48,7 @@ public class Controller {
     }
 
     public void handleWiningNumber(){
-        String lotto = view.inputString(Constant.ControllerConstant.INPUT_WININGNUMBER);
+        String lotto = view.inputString(INPUT_WININGNUMBER );
         try {
             Validator.checkNoBlank(lotto);
             model.setWiningLotto(lotto);
@@ -55,7 +59,7 @@ public class Controller {
     }
 
     public void handleBonus(){
-        String bonus = view.inputString(Constant.ControllerConstant.INPUT_BONUSNUMBER);
+        String bonus = view.inputString(INPUT_BONUSNUMBER);
         try {
             Validator.checkNoBlank(bonus);
             Validator.checkNumber(bonus);
