@@ -7,13 +7,13 @@ import java.util.*;
 public class Lotto {
     private final Scanner scanner = new Scanner(System.in);
 
-    List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto() {
     }
 
-    public Lotto(List<Integer> integers) {
-        numbers = integers;
+    public Lotto(List<Integer> numbers) {
+        this.numbers = numbers;
     }
 
     public void run() {
@@ -48,8 +48,8 @@ public class Lotto {
     private List<Integer> parseNumbers(String input) {
         String[] split = input.split(",");
         List<Integer> numbers = new ArrayList<>();
-        for (String num : split) {
-            numbers.add(Integer.parseInt(num.trim()));
+        for (String number : split) {
+            numbers.add(Integer.parseInt(number.trim()));
         }
         return numbers;
     }
