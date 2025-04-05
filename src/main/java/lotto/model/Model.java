@@ -22,16 +22,11 @@ public class Model {
         wallet = new Wallet(gold);
     }
 
-    public void setWiningLotto(String correctLotto) {
-        StringTokenizer token = new StringTokenizer(correctLotto,",");
-        Validator.checkCount(token,LottoConstant.LOTTO_COUNT);
-        int[] correctNumbers = new int[LottoConstant.LOTTO_COUNT];
-        for(int i=0; i<LottoConstant.LOTTO_COUNT; i++){
-            String num = token.nextToken();
-            Validator.checkNumber(num);
-            correctNumbers[i] = Integer.parseInt(num);
-        }
-        winingNumber = new WiningNumber(correctNumbers);
+    public void setWiningLotto(int[] winingNumbers) {
+
+        Validator.checkCount(winingNumbers,LottoConstant.LOTTO_COUNT);
+
+        winingNumber = new WiningNumber(winingNumbers);
     }
 
     public void setBonus(int bonus) {

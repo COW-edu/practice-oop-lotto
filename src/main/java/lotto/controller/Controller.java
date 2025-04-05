@@ -5,6 +5,8 @@ import lotto.global.Validator;
 import lotto.model.Model;
 import lotto.view.View;
 
+import java.util.StringTokenizer;
+
 public class Controller {
 
     private View view;
@@ -48,10 +50,17 @@ public class Controller {
     }
 
     public void handleWiningNumber(){
-        String lotto = view.inputString(INPUT_WININGNUMBER );
+        String inputString = view.inputString(INPUT_WININGNUMBER );
         try {
-            Validator.checkNoBlank(lotto);
-            model.setWiningLotto(lotto);
+            Validator.checkNoBlank(inputString);
+            StringTokenizer token = new StringTokenizer(inputString,",");
+            int[] winingNumbers = new int[Constant.LottoConstant.LOTTO_COUNT];
+            for(int i = 0; i< Constant.LottoConstant.LOTTO_COUNT; i++){
+                String num = token.nextToken();
+                Validator.checkNumber(num);
+                winingNumbers[i] = Integer.parseInt(num);
+            }
+            model.setWiningLotto(winingNumbers);
         } catch (Exception e) {
             showError(e.getMessage());
             handleWiningNumber();
