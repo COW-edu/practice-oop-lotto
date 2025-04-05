@@ -7,12 +7,12 @@ import view.OutputView;
 import view.OutputViewImpl;
 
 public class AppConfig {
-    public InputViewImpl inputView() {
-        return new InputView();
+    public InputView inputView() {
+        return new InputViewImpl();
     }
 
-    public OutputViewImpl outputView() {
-        return new OutputView();
+    public OutputView outputView() {
+        return new OutputViewImpl();
     }
 
     public LottoController lottoController() {

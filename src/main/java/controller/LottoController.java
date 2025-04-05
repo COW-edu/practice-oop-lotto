@@ -8,8 +8,8 @@ import model.Lotto;
 import model.LottoGenerator;
 import model.PurchaseAmount;
 import model.constants.WinningRank;
-import view.InputViewImpl;
-import view.OutputViewImpl;
+import view.InputView;
+import view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoController {
-    private final InputViewImpl inputView;
-    private final OutputViewImpl outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private Lotto winningLotto;
 
-    public LottoController(InputViewImpl inputView, OutputViewImpl outputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
