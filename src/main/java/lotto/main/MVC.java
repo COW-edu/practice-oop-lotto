@@ -10,13 +10,12 @@ public class MVC {
     MVC(){
         view = new View();
         model = new Model();
-        controller = new Controller(view, model);
+        controller = new Controller();
+
+        controller.association(view, model);
     }
     public void start(){
         controller.start();
     }
-    
-    public void initalize(){
 
-    }
 }

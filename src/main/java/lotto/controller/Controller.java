@@ -10,7 +10,9 @@ public class Controller {
     private View view;
     private Model model;
 
-    public Controller(View view, Model model) {
+    public Controller() {
+    }
+    public void association(View view, Model model){
         this.view = view;
         this.model = model;
     }
