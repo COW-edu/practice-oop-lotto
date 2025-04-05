@@ -1,22 +1,29 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningLotto {
 
     private final Lotto winningNumbers;
-    private final int bounsNumber;
+    private final int bonusNumber;
 
-    public WinningLotto(List<Integer> winningNumbers, int bounsNumber) {
-        validateWinningNumbers(winningNumbers, bounsNumber);
+    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        validateWinningNumbers(winningNumbers, bonusNumber);
         this.winningNumbers = new Lotto(winningNumbers);
-        this.bounsNumber = bounsNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     //유효성 검사
-    private void validateWinningNumbers(List<Integer> winningNumbers, int bounsNumber) {
-        if (winningNumbers.contains(bounsNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    private void validateWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        Set<Integer> lottoNumbers = new HashSet<>(winningNumbers);
+        if (lottoNumbers.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
@@ -24,7 +31,7 @@ public class WinningLotto {
         return winningNumbers;
     }
 
-    public int getBounsNumber() {
-        return bounsNumber;
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
