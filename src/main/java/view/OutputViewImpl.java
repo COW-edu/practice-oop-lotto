@@ -6,7 +6,7 @@ import model.constants.WinningRank;
 import java.util.List;
 import java.util.Map;
 
-public interface Output {
+public interface OutputViewImpl {
     void printPurchaseCount(int count);
 
     void printLottoNumbers(List<Lotto> lottoNumbers);

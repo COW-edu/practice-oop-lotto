@@ -1,17 +1,17 @@
 package config;
 
 import controller.LottoController;
-import view.Input;
 import view.InputView;
-import view.Output;
+import view.InputViewImpl;
 import view.OutputView;
+import view.OutputViewImpl;
 
 public class AppConfig {
-    public Input inputView() {
+    public InputViewImpl inputView() {
         return new InputView();
     }
 
-    public Output outputView() {
+    public OutputViewImpl outputView() {
         return new OutputView();
     }
 

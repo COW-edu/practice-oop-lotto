@@ -1,6 +1,6 @@
 package view;
 
-public interface Input {
+public interface InputViewImpl {
     int getPurchaseAmount();
 
     String getWinningNumber();

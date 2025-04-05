@@ -6,7 +6,7 @@ import model.constants.WinningRank;
 import java.util.List;
 import java.util.Map;
 
-public class OutputView implements Output {
+public class OutputView implements OutputViewImpl {
 
     @Override
     public void printPurchaseCount(int purchaseAmount) {
