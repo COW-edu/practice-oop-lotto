@@ -4,8 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class LottoCounter {
     private int lottoCount;
+    private final LottoView view;
 
-    public LottoCounter() {
+    public LottoCounter(LottoView view) {
+        this.view = view;
         System.out.println("구입금액을 입력해 주세요.");
         try {
             String input = Console.readLine().trim();
@@ -13,13 +15,13 @@ public class LottoCounter {
             lottoCount = money / 1000;
             printLottoDigit();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자로 된 금액을 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
         }
     }
 
     private void printLottoDigit() {
         System.out.println();
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        view.printPurchasedCount(lottoCount);
     }
 
     public int getLottoCount() {
