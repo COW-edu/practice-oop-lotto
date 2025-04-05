@@ -4,13 +4,13 @@ import lotto.Controller.LottoSeller;
 import lotto.Model.Buyer;
 import lotto.Model.LottoBuyer;
 import lotto.Controller.Seller;
-import lotto.View.InteractBuyer;
+import lotto.View.BuyerInteractionHandler;
 
 public class Application {
     public static void main(String[] args) {
         Buyer buyer = new LottoBuyer();
-        InteractBuyer interactBuyer = new InteractBuyer();
-        Seller seller = new LottoSeller(buyer, interactBuyer);
-        seller.sell();
+        BuyerInteractionHandler buyerInteractionHandler = new BuyerInteractionHandler();
+        Seller seller = new LottoSeller(buyer, buyerInteractionHandler);
+        seller.run();
     }
 }

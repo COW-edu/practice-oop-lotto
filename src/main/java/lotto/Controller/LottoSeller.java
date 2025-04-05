@@ -1,52 +1,57 @@
 package lotto.Controller;
 
-import lotto.Model.Buyer;
-import lotto.Model.ConfirmMachine;
-import lotto.Model.WinningLotto;
-import lotto.View.InteractBuyer;
 
+import lotto.Model.Buyer;
+import lotto.Model.LottoResultChecker;
+import lotto.Model.Lotto;
+import lotto.Model.WinningLotto;
+import lotto.View.BuyerInteractionHandler;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class LottoSeller implements Seller{
-    private Buyer buyer;
-    private InteractBuyer interactBuyer;
-    private WinningLotto winningLotto;
-    private ConfirmMachine confirmMachine = new ConfirmMachine();
+public class LottoSeller implements Seller {
+    private final Buyer buyer;
+    private final BuyerInteractionHandler buyerInteractionHandler;
+    private final WinningLotto winningLotto;
+    private final LottoResultChecker lottoResultChecker = new LottoResultChecker();
 
-    public LottoSeller(Buyer buyer, InteractBuyer interactBuyer){
+    public LottoSeller(Buyer buyer, BuyerInteractionHandler buyerInteractionHandler) {
         this.buyer = buyer;
-        this.interactBuyer = interactBuyer;
+        this.buyerInteractionHandler = buyerInteractionHandler;
         winningLotto = new WinningLotto();
     }
-    public void setFirstWinningLottoNumber(String firstNumber){
-        winningLotto.setFirstNumbers(firstNumber);
+    private void setWinningLottoNumber(String firstNumber) {
+        winningLotto.setNumbers(firstNumber);
     }
-    public void setBonusWinningLottoNumber(int bonusNumber){
+    private void setBonusWinningLottoNumber(int bonusNumber) {
         winningLotto.setBonusNumber(bonusNumber);
     }
-    public void useConfirmMachine(){
-        confirmMachine.matchNumber(buyer.showMyLotto(), winningLotto);
+    private void useLottoResultChecker() {
+        lottoResultChecker.matchNumber(buyer.getMyLotto(), winningLotto);
     }
 
-    public void sayStatics(List<Integer> countStatics, int confirmedMoney, int purchasingMoney){
-        interactBuyer.sayProfit(countStatics, confirmedMoney, purchasingMoney);
+    private void showStatics(List<Integer> countStatics, int totalAmount, int purchaseAmount) {
+        buyerInteractionHandler.sayProfit(countStatics, calculateProfitRate(totalAmount, purchaseAmount));
+    }
+    private double calculateProfitRate(int totalWinningAmount, int purchaseAmount) {
+        double rate = (double) totalWinningAmount / purchaseAmount;
+        return Math.round(rate * 1000) / 10.0;
     }
 
     @Override
-    public void sell() {
-        try{
-            buyer.purchaseMoney(interactBuyer.requestMoney());
-            buyer.getLotto();
-            interactBuyer.showBuyResult(buyer.getPurchasedLotto(), buyer.showMyLotto());
-            setFirstWinningLottoNumber(interactBuyer.requestWinningNumber());
-            setBonusWinningLottoNumber(interactBuyer.requestBonusNumber());
-            useConfirmMachine();
-            sayStatics(confirmMachine.getMoneyStatics().getCountStatics(), confirmMachine.getConfirmedMoney(), buyer.getPurchasingMoney());
-
-        }catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
+    public void run() {
+        buyer.pay(buyerInteractionHandler.requestMoney());
+        buyer.receiveLotto();
+        List<String> lottoStrings = new ArrayList<>();
+        for (Lotto lotto : buyer.getMyLotto()) {
+            lottoStrings.add(lotto.getNumbers().toString());
         }
-
+        buyerInteractionHandler.showBuyResult(buyer.getPurchasedLottoCount(), lottoStrings);
+        setWinningLottoNumber(buyerInteractionHandler.requestWinningNumber());
+        setBonusWinningLottoNumber(buyerInteractionHandler.requestBonusNumber());
+        useLottoResultChecker();
+        showStatics(lottoResultChecker.getMoneyStatics().getCountStatics(), lottoResultChecker.getConfirmedMoney(), buyer.getPaidMoney());
     }
 
 

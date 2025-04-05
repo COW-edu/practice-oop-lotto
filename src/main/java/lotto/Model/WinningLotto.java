@@ -7,7 +7,7 @@ public class WinningLotto {
     private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
 
-    public void setFirstNumbers(String firstNumber){
+    public void setNumbers(String firstNumber){
         for(int part : cutNumbers(firstNumber)){
             winningNumbers.add(part);
         }

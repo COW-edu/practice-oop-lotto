@@ -1,5 +1,7 @@
 package lotto.Model;
 
+import lotto.Exception.ErrorMessage;
+
 import java.util.List;
 
 public class Lotto {
@@ -8,16 +10,26 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicationValidate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTOSIZE.getMessage());
+        }
+    }
+    private void duplicationValidate(List<Integer> numbers) {
+        for(int i=0; i<numbers.size(); i++){
+            int target = numbers.get(i);
+            for(int j=0; j<numbers.size(); j++){
+                if(target == numbers.get(j) && i != j){
+                    throw  new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
+                }
+            }
         }
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers(){
         return this.numbers;
     }

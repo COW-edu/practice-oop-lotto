@@ -1,52 +1,46 @@
 package lotto.Model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.*;
+
 public class LottoBuyer implements Buyer{
-    private int purchasingMoney;
-    private int purchasedLotto;
+    private int paidMoney;
+    private int purchasedLottoCount;
     private List<Lotto> lottoes;
 
-
-
-    public List<Integer> getRandomNumber(){
+    private List<Integer> getRandomNumber(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
     }
 
-    @Override
-    public void purchaseMoney(int purchasingMoney) {
-        this.purchasingMoney = purchasingMoney;
-        this.purchasedLotto = purchasingMoney/1000;
+    public void pay(int paidMoney) {
+        this.paidMoney = paidMoney;
+        this.purchasedLottoCount = paidMoney/1000;
     }
+
     @Override
-    public void getLotto(){
-        lottoes = new ArrayList<>(purchasedLotto);
-        for(int i=0; i<purchasedLotto; i++){
+    public void receiveLotto() {
+        lottoes = new ArrayList<>(purchasedLottoCount);
+        for(int i = 0; i< purchasedLottoCount; i++){
             lottoes.add(new Lotto(getRandomNumber()));
         }
     }
 
     @Override
-    public int getPurchasingMoney() {
-        return this.purchasingMoney;
+    public int getPaidMoney() {
+        return this.paidMoney;
     }
 
     @Override
-    public int getPurchasedLotto() {
-        return this.purchasedLotto;
+    public int getPurchasedLottoCount() {
+        return this.purchasedLottoCount;
     }
 
     @Override
-    public List<Lotto> showMyLotto() {
+    public List<Lotto> getMyLotto() {
         return this.lottoes;
     }
-
-
-
-
 }
