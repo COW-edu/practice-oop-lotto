@@ -8,7 +8,7 @@ import outputController.ProfitRateOutputController;
 import outputController.PurchaseCountOutputController;
 import outputController.PurchasedLottosOutputController;
 import outputController.WinningResultsOutputController;
-import viewInterface.OutputController;
+import viewController.OutputController;
 
 import java.util.HashMap;
 import java.util.Map;

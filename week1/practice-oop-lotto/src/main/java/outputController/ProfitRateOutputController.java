@@ -3,7 +3,7 @@ package outputController;
 import global.MessageManager;
 import model.MModel;
 import model.ProfitRate;
-import viewInterface.OutputController;
+import viewController.OutputController;
 
 public class ProfitRateOutputController extends OutputController {
     @Override

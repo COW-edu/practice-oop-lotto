@@ -4,7 +4,7 @@ import global.Constants;
 import global.MessageManager;
 import model.MModel;
 import model.WinningResult;
-import viewInterface.OutputController;
+import viewController.OutputController;
 
 public class WinningResultsOutputController extends OutputController {
 

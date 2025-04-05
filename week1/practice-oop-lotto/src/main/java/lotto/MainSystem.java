@@ -5,8 +5,8 @@ import controllerManager.ModelCreatorManager;
 import controllerManager.OutputControllerManager;
 import model.*;
 import view.View;
-import viewInterface.InputController;
-import viewInterface.OutputController;
+import viewController.InputController;
+import viewController.OutputController;
 
 import java.util.Optional;
 

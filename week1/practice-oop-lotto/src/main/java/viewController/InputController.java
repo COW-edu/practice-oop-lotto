@@ -1,4 +1,4 @@
-package viewInterface;
+package viewController;
 
 public abstract class InputController implements ViewController {
     @Override

@@ -1,4 +1,4 @@
-package viewInterface;
+package viewController;
 
 import model.MModel;
 

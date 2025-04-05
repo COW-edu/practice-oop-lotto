@@ -1,7 +1,7 @@
 package inputController;
 
 import global.MessageManager;
-import viewInterface.InputController;
+import viewController.InputController;
 
 public class BonusNumberInputController extends InputController {
     @Override

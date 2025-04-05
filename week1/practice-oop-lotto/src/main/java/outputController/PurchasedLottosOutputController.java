@@ -3,7 +3,7 @@ package outputController;
 import model.Lotto;
 import model.MModel;
 import model.PurchasedLottos;
-import viewInterface.OutputController;
+import viewController.OutputController;
 
 import java.util.ArrayList;
 import java.util.List;

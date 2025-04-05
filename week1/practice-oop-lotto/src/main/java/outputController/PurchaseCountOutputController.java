@@ -3,7 +3,7 @@ package outputController;
 import global.MessageManager;
 import model.MModel;
 import model.PurchaseInfo;
-import viewInterface.OutputController;
+import viewController.OutputController;
 
 public class PurchaseCountOutputController extends OutputController {
 

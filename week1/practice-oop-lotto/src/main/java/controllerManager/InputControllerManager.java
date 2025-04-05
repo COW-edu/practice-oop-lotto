@@ -3,7 +3,7 @@ package controllerManager;
 import model.BonusNumber;
 import model.PurchaseInfo;
 import model.WinningNumbers;
-import viewInterface.InputController;
+import viewController.InputController;
 import inputController.WinningNumbersInputController;
 import inputController.PurchaseInfoInputController;
 import inputController.BonusNumberInputController;
