@@ -1,8 +1,6 @@
 package controller;
 
-import model.Lotto;
-import model.LottoGenerator;
-import model.WinningLotto;
+import model.*;
 import view.InputView;
 import view.OutputView;
 
@@ -11,24 +9,40 @@ import java.util.List;
 
 public class LottoController {
 
-    //테스트용입니다..미완성
     public void run() {
         int price = InputView.inputPrice();
-        List<Lotto> lottos = LottoGenerator.buyLottos(price);
-        displayLottos(lottos);
+        LottoTickets purchasedLottos = LottoGenerator.buyLottos(price);
+        displayLottos(purchasedLottos);
 
-        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        String winningNumbersInput = InputView.inputWinningNumbers();
+        List<Integer> winningNumbers = parseNumbers(winningNumbersInput);
         int bonusNumber = InputView.inputBonusNumber();
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        //추가 예정
+        LottoResult lottoResult = new LottoResult(purchasedLottos, winningLotto, price);
+        displayResult(lottoResult);
+
     }
 
-    public void displayLottos(List<Lotto> lottos) {
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            lottoNumbers.add(lotto.getNumbers());
+    public void displayLottos(LottoTickets lottos) {
+        OutputView.printLottos(lottos.getTotalCount(), lottos.getLottoNumbers());
+    }
+
+    public void displayResult(LottoResult lottoResult) {
+        OutputView.printWinningStatistics(lottoResult);
+    }
+
+    //문자열 정수 변환
+    private static List<Integer> parseNumbers(String number) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] numberStrings = number.split(",");
+        for (String numberString : numberStrings) {
+            try {
+                numbers.add(Integer.parseInt(numberString.trim()));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
+            }
         }
-        OutputView.printLottos(lottos.size(), lottoNumbers);
+        return numbers;
     }
 }
