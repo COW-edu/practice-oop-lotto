@@ -11,9 +11,4 @@ public abstract class ValidatedModelCreator<T> implements ModelCreator<T> {
     protected ValidatedModelCreator(ValidatorManager validatorManager) {
         this.validatorManager = validatorManager;
     }
-
-    protected void validateInput(Optional<String> input, Class<?> modelClass) {
-        Validator validator = validatorManager.getValidator(modelClass);
-        validator.validate(input.orElseThrow());
-    }
 }

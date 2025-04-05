@@ -1,10 +1,8 @@
 package modelCreator;
 
 import controllerManager.ValidatorManager;
-import model.BonusNumber;
 import model.MModel;
 import model.PurchaseInfo;
-import validator.Validator;
 
 import java.util.Optional;
 

@@ -4,8 +4,6 @@ import controllerManager.ValidatorManager;
 import model.BonusNumber;
 import model.MModel;
 import model.WinningNumbers;
-import validator.BonusNumberValidator;
-import validator.Validator;
 
 import java.util.Optional;
 
