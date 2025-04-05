@@ -8,7 +8,7 @@ public enum LottoRank {
     FOURTH(4, false, 50_000, "4개 일치 (50,000원)"),
     THIRD(5, false, 1_500_000, "5개 일치 (1,500,000원)"),
     SECOND(5, true, 30_000_000, "5개, 보너스 볼 일치 (30,000,000원)"),
-    FIRST(6, false, 200_000_000, "6개 일치 (200,000,000원)");
+    FIRST(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원)");
 
     private final int matchCount;
     private final boolean bonus;
@@ -34,10 +34,7 @@ public enum LottoRank {
         }
         return Optional.empty();
     }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
+    
 
     public int getPrize() {
         return prize;
