@@ -21,7 +21,7 @@ public class LottoResultCalculator {
             }
         }
     }
-    private static int getSameCount(List<Integer> list, int[] array) {
+    private int getSameCount(List<Integer> list, int[] array) {
         return (int)list.stream().filter(num -> java.util.Arrays.stream(array).anyMatch(x -> x == num)).count();
     }
     public Map<LottoRank, Integer> getLottoResult() {

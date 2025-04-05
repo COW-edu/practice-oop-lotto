@@ -13,7 +13,7 @@ public class LottoResultFormatter {
         return prizeText+" - "+count+"개";
     }
     
-    public static String formatLottoResult(int money, Map<LottoRank, Integer> lottoResult) {
+    public String formatLottoResult(int money, Map<LottoRank, Integer> lottoResult) {
         float sum = 0;
         StringBuilder sb = new StringBuilder();
         sb.append(STATISTICS+"\n");
@@ -27,7 +27,7 @@ public class LottoResultFormatter {
         return sb.toString();
     }
 
-    private static float round(float x, int point) {
+    private  float round(float x, int point) {
         float scale = (float) Math.pow(10, point);
         return Math.round(x * scale) / scale;
     }

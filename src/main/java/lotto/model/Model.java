@@ -11,9 +11,11 @@ public class Model {
     private WiningNumber winingNumber;
     private Lottos lottos;
     private final LottoResultCalculator lottoResultCalculator;
+    private final LottoResultFormatter lottoResultFormatter;
     public Model(){
         lottos = new Lottos();
         lottoResultCalculator = new LottoResultCalculator();
+        lottoResultFormatter = new LottoResultFormatter();
     }
 
     public void setWallet(int gold) {
@@ -45,7 +47,7 @@ public class Model {
     }
 
     public String getLottoResult() {
-        return LottoResultFormatter.formatLottoResult(wallet.getMoney(), lottoResultCalculator.getLottoResult());
+        return lottoResultFormatter.formatLottoResult(wallet.getMoney(), lottoResultCalculator.getLottoResult());
     }
 
     public void makeLotto(){
