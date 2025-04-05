@@ -34,8 +34,8 @@ public class Validator{
         }
     }
 
-    public static void checkCount(StringTokenizer token, int count) {
-        if(token.countTokens()!=count){
+    public static void checkCount(int[] array, int count) {
+        if(array.length!=count){
             throw new IllegalArgumentException(countError(count));
         }
     }

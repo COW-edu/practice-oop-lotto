@@ -6,6 +6,7 @@ import java.util.*;
 
 public class LottoResultCalculator {
     private final HashMap<LottoRank, Integer> lottoResult;
+    private int totalProfitRate;
     public LottoResultCalculator() {
         lottoResult = new HashMap<>();
     }
@@ -21,6 +22,7 @@ public class LottoResultCalculator {
             }
         }
     }
+
     private int getSameCount(List<Integer> list, int[] array) {
         return (int)list.stream().filter(num -> java.util.Arrays.stream(array).anyMatch(x -> x == num)).count();
     }

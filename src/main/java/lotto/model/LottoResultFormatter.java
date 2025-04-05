@@ -9,6 +9,7 @@ public class LottoResultFormatter {
     private static final String STATISTICS = "당첨 통계 \n-------";
     private static final String TOTAL_PROFIT_RATE_PREFIX = "총 수익률은 ";
     private static final String TOTAL_PROFIT_RATE_SUFFIX = "%입니다.";
+    private static final int DECIMAL_POINT = 2;
     private static String resultMessage(String prizeText, int count) {
         return prizeText+" - "+count+"개";
     }
@@ -22,7 +23,7 @@ public class LottoResultFormatter {
             sum += rank.getPrize()*lottoResult.get(rank);
         }
         sb.append(TOTAL_PROFIT_RATE_PREFIX);
-        sb.append(round(sum/money*100,2));
+        sb.append(round(sum/money*100,DECIMAL_POINT));
         sb.append(TOTAL_PROFIT_RATE_SUFFIX);
         return sb.toString();
     }
