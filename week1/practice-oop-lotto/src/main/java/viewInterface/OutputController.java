@@ -14,6 +14,6 @@ public abstract class OutputController implements ViewController {
     @Override
     public String getMessage(){
         return message;
-    };
+    }
 
 }

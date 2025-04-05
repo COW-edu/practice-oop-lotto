@@ -36,7 +36,7 @@ public class MainSystem {
         outputModel(purchasedLottos);
 
         WinningNumbers winningNumbers = createModel(WinningNumbers.class, Optional.empty());
-        BonusNumber bonusNumber = createModel(BonusNumber.class, Optional.empty());
+        BonusNumber bonusNumber = createModel(BonusNumber.class, Optional.empty(), winningNumbers);
 
         WinningResult winningResult = createModel(WinningResult.class, Optional.empty(), purchasedLottos, winningNumbers, bonusNumber);
         outputModel(winningResult);

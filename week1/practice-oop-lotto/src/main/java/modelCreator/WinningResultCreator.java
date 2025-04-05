@@ -1,5 +1,6 @@
 package modelCreator;
 
+import controllerManager.ValidatorManager;
 import global.Constants;
 import model.*;
 
@@ -8,7 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class WinningResultCreator implements ModelCreator<WinningResult> {
+public class WinningResultCreator extends ValidatedModelCreator<WinningResult> {
+
+    public WinningResultCreator(ValidatorManager validatorManager) {
+        super(validatorManager);
+    }
 
     @Override
     public WinningResult create(Optional<String> input, MModel<?>... models) {

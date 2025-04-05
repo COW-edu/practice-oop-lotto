@@ -1,6 +1,7 @@
 package modelCreator;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import controllerManager.ValidatorManager;
 import global.Constants;
 import model.Lotto;
 import model.MModel;
@@ -11,7 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class PurchasedLottosCreator implements ModelCreator<PurchasedLottos> {
+public class PurchasedLottosCreator extends ValidatedModelCreator<PurchasedLottos> {
+
+    public PurchasedLottosCreator(ValidatorManager validatorManager) {
+        super(validatorManager);
+    }
 
     @Override
     public PurchasedLottos create(Optional<String> input, MModel<?>... models) {

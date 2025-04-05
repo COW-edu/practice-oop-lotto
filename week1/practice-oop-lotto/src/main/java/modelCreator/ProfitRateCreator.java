@@ -1,5 +1,6 @@
 package modelCreator;
 
+import controllerManager.ValidatorManager;
 import global.Constants;
 import model.MModel;
 import model.ProfitRate;
@@ -9,7 +10,11 @@ import model.WinningResult;
 import java.util.Map;
 import java.util.Optional;
 
-public class ProfitRateCreator implements ModelCreator<ProfitRate> {
+public class ProfitRateCreator extends ValidatedModelCreator<ProfitRate> {
+
+    public ProfitRateCreator(ValidatorManager validatorManager) {
+        super(validatorManager);
+    }
 
     @Override
     public ProfitRate create(Optional<String> input, MModel<?>... models) {
