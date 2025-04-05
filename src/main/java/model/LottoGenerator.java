@@ -6,34 +6,30 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int LOTTO_PRICE = 1000;
 
     //로또 번호 생성
     public static List<Integer> randomLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_NUMBER.getValue(), LottoConfig.MAX_NUMBER.getValue(), LottoConfig.LOTTO_SIZE.getValue());
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
 
     //로또 여러장 생성
-    public static List<Lotto> buyLottos(int price) {
+    public static LottoTickets buyLottos(int price) {
         int amount = calculateLottoAmount(price);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             List<Integer> lottoNumbers = randomLottoNumbers();
             lottos.add(new Lotto(lottoNumbers));
         }
-        return lottos;
+        return new LottoTickets(lottos);
     }
 
     //로또 구매 갯수 계산
     public static int calculateLottoAmount(int price) {
-        if (price % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위여야 합니다.");
+        if (price % LottoConfig.LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE_UNIT.getMessage());
         }
-        return price / LOTTO_PRICE;
+        return price / LottoConfig.LOTTO_PRICE.getValue();
     }
 }
