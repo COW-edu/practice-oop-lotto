@@ -1,21 +1,22 @@
 package lotto.domain;
 
-import lotto.Lotto;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    public List<Lotto> generateLottos (int lottoCount) {
+    private final LottoNumberGenerator lottoNumberGenerator;
+
+    public LottoMachine (LottoNumberGenerator lottoNumberGenerator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
+    }
+
+    public List<Lotto> generateLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> generateLottoNumbers = LottoNumberGenerator.generateLottoNumbers();
-            Lotto lotto = new Lotto(generateLottoNumbers);
-            lottos.add(lotto);
+            List<Integer> generateLottoNumbers = lottoNumberGenerator.generateLottoNumbers();
+            lottos.add(new Lotto(generateLottoNumbers));
         }
-
         return lottos;
-
     }
 }

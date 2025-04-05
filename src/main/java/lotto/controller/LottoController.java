@@ -1,38 +1,46 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumberManager;
-import lotto.domain.LottoMachine;
-import lotto.domain.PurchaseAmountManager;
-import lotto.domain.WinningNumbersManager;
+import lotto.constant.LottoPrize;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final PurchaseAmountManager purchaseAmountManager = new PurchaseAmountManager();
-    private final LottoMachine lottoMachine = new LottoMachine();
-    private final WinningNumbersManager winningNumbersManager = new WinningNumbersManager();
-    private final BonusNumberManager bonusNumberManager = new BonusNumberManager();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final LottoMachine lottoMachine;
+
+    public LottoController(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.lottoMachine = lottoMachine;
+    }
 
     public void run() {
         String purchaseAmountInput = inputView.inputPurchaseAmount();
-        purchaseAmountManager.checkPurchaseAmountManager(purchaseAmountInput);
-        int lottoCount = purchaseAmountManager.getLottoCount();
+        PurchaseAmount purchaseAmount = new PurchaseAmount(purchaseAmountInput);
+        int lottoCount = purchaseAmount.getLottoCount();
         outputView.printLottoCount(lottoCount);
 
-        List<lotto.Lotto> myLottos = lottoMachine.generateLottos(lottoCount);
+        List<Lotto> myLottos = lottoMachine.generateLottos(lottoCount);
         outputView.printMyLottos(myLottos);
 
         String winningNumbersInput = inputView.inputWinningNumbers();
-        winningNumbersManager.checkWinningNumbers(winningNumbersInput);
-        List<Integer> winningNumbers = winningNumbersManager.getWinningNumbers();
+        WinningNumbers winningNumbers = new WinningNumbers(winningNumbersInput);
 
-        String bonusNumberInput = String.valueOf(inputView.inputBonusNumber());
-        bonusNumberManager.checkBonusNumber(bonusNumberInput, winningNumbers);
-        int bonusNumber = bonusNumberManager.getBonusNumber();
+        String bonusNumberInput = inputView.inputBonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(bonusNumberInput, winningNumbers);
 
+        LottoChecker lottoChecker = new LottoChecker(myLottos, winningNumbers, bonusNumber.getBonusNumber());
+        Map<LottoPrize, Integer> winningResults = lottoChecker.checkWinningResults();
+
+        ProfitCalculator profitCalculator = new ProfitCalculator(purchaseAmount.getPurchaseAmount(), winningResults);
+        double profitRate = profitCalculator.calculateProfitRate();
+
+        outputView.printWinningResults(winningResults);
+        outputView.printProfitRate(profitRate);
     }
 }

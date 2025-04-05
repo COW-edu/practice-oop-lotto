@@ -6,6 +6,7 @@ public class InputView {
 
     public String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
+
         return Console.readLine();
     }
 
@@ -16,11 +17,10 @@ public class InputView {
         return Console.readLine();
     }
 
-    public int inputBonusNumber() {
+    public String inputBonusNumber() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
 
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+        return Console.readLine();
     }
 }

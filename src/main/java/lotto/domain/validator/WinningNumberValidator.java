@@ -1,48 +1,27 @@
 package lotto.domain.validator;
 
-import java.util.Arrays;
+import lotto.constant.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+import static lotto.constant.LottoConstants.*;
 
 public class WinningNumberValidator {
-    public static List<Integer> validateWinningNumbers(String inputWinningNumbers) {
-        if (inputWinningNumbers == null || inputWinningNumbers.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 값을 입력해 주세요.");
+    public static void validateWinningNumbers(List<Integer> parsedNumbers) {
+        if (parsedNumbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_WINNING_SIX_NUMBER.getMessage());
         }
 
-        if (!inputWinningNumbers.contains(",")) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분해야 합니다.");
+        for (int number : parsedNumbers) {
+            InputValidator.validateLottoNumberRange(number);
         }
 
-        List<Integer> winningNumbers;
-        try {
-            winningNumbers = Arrays.stream(inputWinningNumbers.split(","))
-                    .map(String::trim)
-                    .mapToInt(Integer::parseInt)
-                    .boxed()
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
+        // 중복된 숫자가 있을 경우 예외처리
+        Set<Integer> uniqueNumbers = new HashSet<>(parsedNumbers);
+        if (uniqueNumbers.size() != parsedNumbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DUPLICATE_WINNING_NUMBER.getMessage());
         }
-
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR]당첨 번호 6개를 입력하세요.");
-        }
-
-        for (int number : winningNumbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-        }
-
-        // 중복된 숫자가 잇을 경우 예외처리
-        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
-        if (uniqueNumbers.size() != winningNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복 없이 입력해야 합니다.");
-        }
-
-        return winningNumbers;
     }
 }
