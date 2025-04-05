@@ -9,10 +9,10 @@ public class Model {
 
     private Wallet wallet;
     private WiningNumber winingNumber;
-    private BuyLotto buyLotto;
-    private LottoResultCalculator lottoResultCalculator;
+    private Lottos lottos;
+    private final LottoResultCalculator lottoResultCalculator;
     public Model(){
-        buyLotto = new BuyLotto();
+        lottos = new Lottos();
         lottoResultCalculator = new LottoResultCalculator();
     }
 
@@ -33,26 +33,23 @@ public class Model {
     }
 
     public void setBonus(int bonus) {
-        Validator.checkRange(bonus,LottoConstant.LOTTO_MIN,LottoConstant.LOTTO_MAX);
-        Validator.checkBonusDuplicate(winingNumber.getWiningNumber(), bonus);
         winingNumber.setBonus(bonus);
     }
 
     public List<Lotto> getLottos() {
-        return buyLotto.getLottos();
+        return lottos.getLottos();
     }
 
     public void startLotto() {
-        lottoResultCalculator.startLotto(buyLotto.getLottos(), winingNumber.getWiningNumber());
+        lottoResultCalculator.startLotto(lottos.getLottos(), winingNumber.getWiningNumber(), winingNumber.getBonus());
     }
 
     public String getLottoResult() {
-        lottoResultCalculator.startLotto(buyLotto.getLottos(), winingNumber.getWiningNumber());
         return LottoResultFormatter.formatLottoResult(wallet.getMoney(), lottoResultCalculator.getLottoResult());
     }
 
     public void makeLotto(){
-        buyLotto.buyLotto(wallet.getLottoCount());
+        lottos.buyLotto(wallet.getLottoCount());
     }
 
 }

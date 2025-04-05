@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BuyLotto {
+public class Lottos {
     private ArrayList<Lotto> lottos;
-    public BuyLotto() {
+    public Lottos() {
         lottos = new ArrayList<>();
     }
     public void buyLotto(int lottoCount){

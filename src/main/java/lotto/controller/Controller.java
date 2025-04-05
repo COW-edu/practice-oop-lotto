@@ -27,9 +27,6 @@ public class Controller {
         view.showMessage(model.getLottoResult());
     }
 
-    public void showMessage(String message) {
-        view.showMessage(message);
-    }
     public void showError(String message) {
         view.showError(message);
     }
