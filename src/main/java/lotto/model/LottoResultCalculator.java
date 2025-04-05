@@ -14,12 +14,15 @@ public class LottoResultCalculator {
             lottoResult.put(rank, 0);
         }
         for(Lotto lotto : lottos){
-            int sameCount = Function.getSameCount(lotto.getNumbers(), winingNumbers);
+            int sameCount = getSameCount(lotto.getNumbers(), winingNumbers);
             if(sameCount>=3){
                 Optional<LottoRank> rank = LottoRank.valueOf(sameCount, lotto.getNumbers().contains(bonus));
                 rank.ifPresent(x -> lottoResult.put(x, lottoResult.get(x)+1));
             }
         }
+    }
+    private static int getSameCount(List<Integer> list, int[] array) {
+        return (int)list.stream().filter(num -> java.util.Arrays.stream(array).anyMatch(x -> x == num)).count();
     }
     public Map<LottoRank, Integer> getLottoResult() {
         return Collections.unmodifiableMap(lottoResult);
