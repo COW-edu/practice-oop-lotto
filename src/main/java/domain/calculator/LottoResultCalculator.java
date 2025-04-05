@@ -2,7 +2,7 @@ package domain.calculator;
 
 import model.BonusNumber;
 import model.Lotto;
-import model.WinningRank;
+import model.constants.WinningRank;
 
 import java.util.LinkedHashMap;
 import java.util.List;

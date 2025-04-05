@@ -1,7 +1,7 @@
 package view;
 
 import model.Lotto;
-import model.WinningRank;
+import model.constants.WinningRank;
 
 import java.util.List;
 import java.util.Map;

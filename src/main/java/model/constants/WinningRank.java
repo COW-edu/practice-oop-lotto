@@ -1,4 +1,4 @@
-package model;
+package model.constants;
 
 public enum WinningRank {
     THREE(3, false, 5_000, "3개 일치 (5,000원)"),

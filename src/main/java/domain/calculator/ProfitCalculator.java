@@ -1,6 +1,6 @@
 package domain.calculator;
 
-import model.WinningRank;
+import model.constants.WinningRank;
 
 import java.util.Map;
 

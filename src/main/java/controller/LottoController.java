@@ -3,7 +3,11 @@ package controller;
 import domain.calculator.LottoResultCalculator;
 import domain.calculator.ProfitCalculator;
 import global.enums.ErrorMessage;
-import model.*;
+import model.BonusNumber;
+import model.Lotto;
+import model.LottoGenerator;
+import model.PurchaseAmount;
+import model.constants.WinningRank;
 import view.Input;
 import view.Output;
 
