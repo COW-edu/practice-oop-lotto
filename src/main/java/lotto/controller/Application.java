@@ -5,11 +5,11 @@ import lotto.view.*;
 
 public class Application {
     public static void main(String[] args) {
+        AmountInput amountInput = new AmountInput();
+        LottoDraw lottoDraw = new LottoDraw(amountInput.getAmount());
         LottoInput lottoInput = new LottoInput();
-        lottoInput.readPurchaseAmount();
-        LottoDraw lottoDraw = new LottoDraw(lottoInput.getAmount());
-        lottoInput.readWinningLotto();
         LottoCompare lottoCompare = new LottoCompare(lottoDraw, lottoInput);
-        LottoResult lottoResult = new LottoResult(lottoCompare.getMatchCount(), lottoCompare.getBonusMatchCount(), lottoInput.getAmount());
+        LottoResult lottoResult = new LottoResult(lottoCompare.getMatchResults());
+        PrintResult printResult = new PrintResult(lottoResult.getResults(), amountInput.getAmount());
     }
 }

@@ -10,13 +10,13 @@ public class Lotto {
             throw new IllegalArgumentException(INVALID_NUMBERS);
         }
         if (bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(INVALID_BONUSNUMBER);
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER);
         }
     }
 
     public static void overlapCheck(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(Constants.OVERLAP_BONUSNUMBER);
+            throw new IllegalArgumentException(Constants.OVERLAP_BONUS_NUMBER);
         }
         if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException(Constants.OVERLAP_NUMBERS);
