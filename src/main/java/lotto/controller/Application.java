@@ -10,6 +10,6 @@ public class Application {
         LottoInput lottoInput = new LottoInput();
         LottoCompare lottoCompare = new LottoCompare(lottoDraw, lottoInput);
         LottoResult lottoResult = new LottoResult(lottoCompare.getMatchResults());
-        PrintResult printResult = new PrintResult(lottoResult.getResults(), amountInput.getAmount());
+        new PrintResult(lottoResult.getResults(), amountInput.getAmount());
     }
 }
