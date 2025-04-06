@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.global.Constant;
+import lotto.global.Constant.*;
 import lotto.global.Validator;
 
 import java.util.Arrays;
@@ -13,13 +13,13 @@ public class WiningNumber {
     private static final String RANGE_MAX= "까지의 숫자를 입력해주세요.";
     private static final String BONUS_DUPLICATE = "로또 번호와 중복되는 번호입니다.";
     private static String rangeError(int min, int max) {
-        return Constant.ValidatorConstant.ERROR + min + RANGE_MIN + max + RANGE_MAX;
+        return ValidatorConstant.ERROR + min + RANGE_MIN + max + RANGE_MAX;
     }
     private static String duplicationError() {
-        return Constant.ValidatorConstant.ERROR + DUPLICATION;
+        return ValidatorConstant.ERROR + DUPLICATION;
     }
     private static String bonusDuplicateError() {
-        return Constant.ValidatorConstant.ERROR + BONUS_DUPLICATE;
+        return ValidatorConstant.ERROR + BONUS_DUPLICATE;
     }
 
     private final int[] winingNumber;
@@ -28,7 +28,7 @@ public class WiningNumber {
     public WiningNumber(int[] numbers) {
         validateDuplication(numbers);
         for(int num : numbers){
-            validateRange(num);
+            validateRange(num,LottoConstant.LOTTO_MIN,LottoConstant.LOTTO_MAX);
         }
         this.winingNumber = numbers;
     }
@@ -37,7 +37,7 @@ public class WiningNumber {
         return bonus;
     }
     public void setBonus(int bonus) {
-        validateRange(bonus);
+        validateRange(bonus,LottoConstant.LOTTO_MIN,LottoConstant.LOTTO_MAX);
         validateBonusDuplication(bonus);
         this.bonus = bonus;
     }
@@ -55,9 +55,7 @@ public class WiningNumber {
         }
     }
 
-    private void validateRange(int number) {
-        int min = Constant.LottoConstant.LOTTO_MIN;
-        int max = Constant.LottoConstant.LOTTO_MAX;
+    private void validateRange(int number, int min, int max) {
         if(number<min||number>max){
             throw new IllegalArgumentException(rangeError(min, max));
         }
