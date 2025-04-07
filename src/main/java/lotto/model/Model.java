@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.*;
 
+import lotto.global.LottoRank;
 import lotto.global.Validator;
 import lotto.global.Constant.LottoConstant;
 
@@ -10,12 +11,12 @@ public class Model {
     private Wallet wallet;
     private WiningNumber winingNumber;
     private Lottos lottos;
-    private final LottoResultCalculator lottoResultCalculator;
-    private final LottoResultFormatter lottoResultFormatter;
+    private final LottoMatchCalculator lottoMatchCalculator;
+    private ProfitRateCalculator profitRateCalculator;
     public Model(){
         lottos = new Lottos();
-        lottoResultCalculator = new LottoResultCalculator();
-        lottoResultFormatter = new LottoResultFormatter();
+        lottoMatchCalculator = new LottoMatchCalculator();
+        profitRateCalculator = new ProfitRateCalculator();
     }
 
     public void setWallet(int gold) {
@@ -38,16 +39,19 @@ public class Model {
     }
 
     public void startLotto() {
-        lottoResultCalculator.startLotto(lottos.getLottos(), winingNumber.getWiningNumber(), winingNumber.getBonus());
-    }
-
-    public String getLottoResult() {
-        return lottoResultFormatter.formatLottoResult(wallet.getMoney(), lottoResultCalculator.getLottoResult());
+        lottoMatchCalculator.startLotto(lottos.getLottos(), winingNumber.getWiningNumber(), winingNumber.getBonus());
+        profitRateCalculator.profitRateCalculate(wallet.getMoney(), lottoMatchCalculator.getLottoResult());
     }
 
     public void makeLotto(){
         lottos.buyLotto(wallet.getLottoCount());
     }
 
+    public Map<LottoRank, Integer> getLottoResult(){
+        return lottoMatchCalculator.getLottoResult();
+    }
+    public float getProfitRate(){
+        return profitRateCalculator.getProfitRate();
+    }
 }
 

@@ -34,7 +34,6 @@ public enum LottoRank {
         }
         return Optional.empty();
     }
-    
 
     public int getPrize() {
         return prize;

@@ -24,6 +24,12 @@ public class Wallet {
         this.money = money;
         lottoCount = this.money / UNIT;
     }
+    public int getMoney() {
+        return money;
+    }
+    public int getLottoCount() {
+        return lottoCount;
+    }
     private void validateUnitMoney(int money){
         if (money % UNIT != 0) {
             throw new IllegalArgumentException(unitError());
@@ -33,11 +39,5 @@ public class Wallet {
         if(number<min||number>max){
             throw new IllegalArgumentException(rangeError(min, max));
         }
-    }
-    public int getMoney() {
-        return money;
-    }
-    public int getLottoCount() {
-        return lottoCount;
     }
 }

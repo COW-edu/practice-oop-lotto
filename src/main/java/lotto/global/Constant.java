@@ -12,6 +12,4 @@ public class Constant {
         public static final int LOTTO_MAX = 45;
 
     }
-
-    
 }

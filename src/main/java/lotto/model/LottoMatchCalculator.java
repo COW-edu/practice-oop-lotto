@@ -4,10 +4,10 @@ import lotto.global.LottoRank;
 
 import java.util.*;
 
-public class LottoResultCalculator {
+public class LottoMatchCalculator {
     private final HashMap<LottoRank, Integer> lottoResult;
 
-    public LottoResultCalculator() {
+    public LottoMatchCalculator() {
         lottoResult = new HashMap<>();
     }
     public void startLotto(List<Lotto> lottos, int[] winingNumbers, int bonus) {

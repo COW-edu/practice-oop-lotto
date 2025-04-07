@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.global.LottoRank;
 import lotto.model.Lotto;
 
 public class View {
@@ -19,6 +20,9 @@ public class View {
         for(int i=0; i<lottos.size(); i++){
             System.out.println(lottos.get(i).getNumbers());
         }
+    }
+    public void showLottoResult(float profitRate, Map<LottoRank, Integer> lottoResult) {
+        System.out.println(LottoResultFormatter.formatLottoResult(profitRate, lottoResult));
     }
     public String inputString(String str) {
         showMessage(str);

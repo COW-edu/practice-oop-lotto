@@ -30,14 +30,14 @@ public class Controller {
         handleWiningNumber();
         handleBonus();
         model.startLotto();
-        view.showMessage(model.getLottoResult());
+        view.showLottoResult(model.getProfitRate(), model.getLottoResult());
     }
 
-    public void showError(String message) {
+    private void showError(String message) {
         view.showError(message);
     }
 
-    public void handleMoney(){
+    private void handleMoney(){
         String gold = view.inputString(INPUT_MONEY);
         try {
             Validator.checkNoBlank(gold);
@@ -49,7 +49,7 @@ public class Controller {
         }
     }
 
-    public void handleWiningNumber(){
+    private void handleWiningNumber(){
         String inputString = view.inputString(INPUT_WININGNUMBER );
         try {
             Validator.checkNoBlank(inputString);
@@ -67,7 +67,7 @@ public class Controller {
         }
     }
 
-    public void handleBonus(){
+    private void handleBonus(){
         String bonus = view.inputString(INPUT_BONUSNUMBER);
         try {
             Validator.checkNoBlank(bonus);
