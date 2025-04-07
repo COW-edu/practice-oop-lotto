@@ -1,6 +1,6 @@
 package view;
 
-import model.Lotto;
+import dto.LottoDto;
 import model.constants.WinningRank;
 
 import java.util.List;
@@ -14,9 +14,9 @@ public class OutputViewImpl implements OutputView {
     }
 
     @Override
-    public void printLottoNumbers(List<Lotto> lottoNumbers) {
-        for (Lotto lottoNumber : lottoNumbers) {
-            System.out.println(lottoNumber.getLottoNumbers());
+    public void printLottoNumbers(List<LottoDto> lottoNumbers) {
+        for (LottoDto lottoNumber : lottoNumbers) {
+            System.out.println(lottoNumber.getNumbers());
         }
     }
 

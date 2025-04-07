@@ -2,6 +2,7 @@ package controller;
 
 import domain.calculator.LottoResultCalculator;
 import domain.calculator.ProfitCalculator;
+import dto.LottoDto;
 import global.enums.ErrorMessage;
 import model.BonusNumber;
 import model.Lotto;
@@ -32,7 +33,8 @@ public class LottoController {
         outputView.printPurchaseCount(numberOfLotto);
 
         List<Lotto> lottoNumbers = LottoGenerator.generateMultiple(numberOfLotto);
-        outputView.printLottoNumbers(lottoNumbers);
+        List<LottoDto> lottoDto = convertToDto(lottoNumbers);
+        outputView.printLottoNumbers(lottoDto);
 
         winningLotto = getWinningNumbers();
         BonusNumber bonusNumber = handleBonusNumber();
@@ -76,6 +78,12 @@ public class LottoController {
                 System.out.println(ErrorMessage.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
             }
         }
+    }
+
+    private List<LottoDto> convertToDto(List<Lotto> lottoList) {
+        return lottoList.stream()
+                .map(lotto -> new LottoDto(lotto.getLottoNumbers()))
+                .collect(Collectors.toList());
     }
 
     private BonusNumber handleBonusNumber() {
