@@ -4,11 +4,12 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Exception.ErrorMessage;
 
 public class InputHandler {
+    InputValidator inputValidator = new InputValidator();
 
     public int getPurchasingMoney() {
         System.out.println("구입 금액을 입력해주세요");
         int purchasingMoney = Integer.parseInt(Console.readLine());
-        InputValidator.validatePurchasingMoney(purchasingMoney);
+        inputValidator.validatePurchasingMoney(purchasingMoney);
         return purchasingMoney;
     }
 
@@ -21,7 +22,7 @@ public class InputHandler {
         System.out.println("보너스 번호를 입력해주세요");
         try {
             int bonusNumber = Integer.parseInt(Console.readLine());
-            InputValidator.validateBonusNumber(bonusNumber);
+            inputValidator.validateBonusNumber(bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new NumberFormatException(ErrorMessage.NOT_A_NUMBER.getMessage());

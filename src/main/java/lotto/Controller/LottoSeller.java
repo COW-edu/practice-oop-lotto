@@ -30,7 +30,6 @@ public class LottoSeller implements Seller {
     private void useLottoResultChecker() {
         lottoResultChecker.matchNumber(buyer.getMyLotto(), winningLotto);
     }
-
     private void showStatics(List<Integer> countStatics, int totalAmount, int purchaseAmount) {
         buyerInteractionHandler.sayProfit(countStatics, calculateProfitRate(totalAmount, purchaseAmount));
     }
@@ -38,16 +37,19 @@ public class LottoSeller implements Seller {
         double rate = (double) totalWinningAmount / purchaseAmount;
         return Math.round(rate * 1000) / 10.0;
     }
+    private List<String> getchangedString() {
+        List<String> lottoStrings = new ArrayList<>();
+        for (Lotto lotto : buyer.getMyLotto()) {
+            lottoStrings.add(lotto.getNumbers().toString());
+        }
+        return lottoStrings;
+    }
 
     @Override
     public void run() {
         buyer.pay(buyerInteractionHandler.requestMoney());
         buyer.receiveLotto();
-        List<String> lottoStrings = new ArrayList<>();
-        for (Lotto lotto : buyer.getMyLotto()) {
-            lottoStrings.add(lotto.getNumbers().toString());
-        }
-        buyerInteractionHandler.showBuyResult(buyer.getPurchasedLottoCount(), lottoStrings);
+        buyerInteractionHandler.showBuyResult(buyer.getPurchasedLottoCount(), getchangedString());
         setWinningLottoNumber(buyerInteractionHandler.requestWinningNumber());
         setBonusWinningLottoNumber(buyerInteractionHandler.requestBonusNumber());
         useLottoResultChecker();

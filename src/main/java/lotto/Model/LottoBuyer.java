@@ -5,12 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.*;
 
-public class LottoBuyer implements Buyer{
+public class LottoBuyer implements Buyer {
     private int paidMoney;
     private int purchasedLottoCount;
     private List<Lotto> lottoes;
 
-    private List<Integer> getRandomNumber(){
+    private List<Integer> getRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;

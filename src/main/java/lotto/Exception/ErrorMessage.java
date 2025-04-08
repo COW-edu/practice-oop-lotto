@@ -1,4 +1,3 @@
-// ErrorMessage.java
 package lotto.Exception;
 
 public enum ErrorMessage {
