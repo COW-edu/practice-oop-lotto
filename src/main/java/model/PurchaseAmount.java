@@ -12,9 +12,17 @@ public class PurchaseAmount {
     }
 
     private void validate(int amount) {
+        validatePositive(amount);
+        validateMultipleOfLottoPrice(amount);
+    }
+
+    private void validatePositive(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NEGATIVE.getMessage());
         }
+    }
+
+    private void validateMultipleOfLottoPrice(int amount) {
         if (amount % MagicNumber.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000.getMessage());
         }
