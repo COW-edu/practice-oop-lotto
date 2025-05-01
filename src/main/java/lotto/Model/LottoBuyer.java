@@ -10,15 +10,15 @@ public class LottoBuyer implements Buyer {
     private int purchasedLottoCount;
     private List<Lotto> lottoes;
 
+    public void pay(int paidMoney) {
+        this.paidMoney = paidMoney;
+        this.purchasedLottoCount = paidMoney/1000;
+    }
+
     private List<Integer> getRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
-    }
-
-    public void pay(int paidMoney) {
-        this.paidMoney = paidMoney;
-        this.purchasedLottoCount = paidMoney/1000;
     }
 
     @Override

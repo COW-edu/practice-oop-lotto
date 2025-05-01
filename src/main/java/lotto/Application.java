@@ -1,16 +1,16 @@
 package lotto;
 
-import lotto.Controller.LottoSeller;
+import lotto.Config.AppConfig;
 import lotto.Model.Buyer;
-import lotto.Model.LottoBuyer;
 import lotto.Controller.Seller;
 import lotto.View.BuyerInteractionHandler;
 
 public class Application {
     public static void main(String[] args) {
-        Buyer buyer = new LottoBuyer();
-        BuyerInteractionHandler buyerInteractionHandler = new BuyerInteractionHandler();
-        Seller seller = new LottoSeller(buyer, buyerInteractionHandler);
+        AppConfig appConfig = new AppConfig();
+        Buyer buyer = appConfig.lottoBuyer();
+        BuyerInteractionHandler buyerInteractionHandler = appConfig.buyerInteractionHandler();
+        Seller seller = appConfig.lottoSeller(buyer, buyerInteractionHandler);
         seller.run();
     }
 }

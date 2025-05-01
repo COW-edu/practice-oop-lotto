@@ -14,11 +14,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTOSIZE.getMessage());
         }
     }
+
     private void duplicationValidate(List<Integer> numbers) {
         for(int i=0; i<numbers.size(); i++){
             int target = numbers.get(i);
@@ -28,9 +33,5 @@ public class Lotto {
                 }
             }
         }
-    }
-
-    public List<Integer> getNumbers(){
-        return this.numbers;
     }
 }

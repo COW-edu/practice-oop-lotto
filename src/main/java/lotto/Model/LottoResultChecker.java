@@ -31,6 +31,15 @@ public class LottoResultChecker {
             judgementMoney(matchCount, bonusCount);
         }
     }
+
+    public int getConfirmedMoney() {
+        return confirmedMoney;
+    }
+
+    public MoneyStatics getMoneyStatics() {
+        return moneyStatics;
+    }
+
     private void judgementMoney(int matchCount,int bonusCount) {
         if(matchCount < MIN_MATCH_NUMBER){
             confirmedMoney +=0;
@@ -54,13 +63,5 @@ public class LottoResultChecker {
             confirmedMoney +=  ALL_MATCH_MONEY;
             moneyStatics.getCountStatics().set(3, moneyStatics.getCountStatics().get(3) +1);
         }
-    }
-
-    public int getConfirmedMoney() {
-        return confirmedMoney;
-    }
-
-    public MoneyStatics getMoneyStatics() {
-        return moneyStatics;
     }
 }

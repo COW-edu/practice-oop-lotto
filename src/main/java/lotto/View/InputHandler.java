@@ -2,15 +2,16 @@ package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Exception.ErrorMessage;
+import lotto.Model.InputValidator;
 
 public class InputHandler {
-    InputValidator inputValidator = new InputValidator();
+    private final InputValidator inputValidator = new InputValidator();
 
     public int getPurchasingMoney() {
         System.out.println("구입 금액을 입력해주세요");
-        int purchasingMoney = Integer.parseInt(Console.readLine());
-        inputValidator.validatePurchasingMoney(purchasingMoney);
-        return purchasingMoney;
+        int paidMoney = Integer.parseInt(Console.readLine());
+        inputValidator.validatePurchasingMoney(paidMoney);
+        return paidMoney;
     }
 
     public String getWinningNumber() {

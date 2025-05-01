@@ -3,6 +3,7 @@ package lotto.View;
 import java.util.List;
 
 public class OutputHandler {
+
     public void outputLottos(int count, List<String> lottos) {
         System.out.println(count + "개를 구매했습니다.");
         for (String lottoStr : lottos) {
@@ -19,6 +20,7 @@ public class OutputHandler {
         System.out.println("6개 일치 (2,000,000,000원) - " + countStatistics.get(4));
         printProfitRate(profitRate);
     }
+
     private void printProfitRate(double profitRate) {
         System.out.println("총 수익률은 " + profitRate + "%");
     }

@@ -21,22 +21,28 @@ public class LottoSeller implements Seller {
         this.buyerInteractionHandler = buyerInteractionHandler;
         winningLotto = new WinningLotto();
     }
+
     private void setWinningLottoNumber(String firstNumber) {
         winningLotto.setNumbers(firstNumber);
     }
+
     private void setBonusWinningLottoNumber(int bonusNumber) {
         winningLotto.setBonusNumber(bonusNumber);
     }
+
     private void useLottoResultChecker() {
         lottoResultChecker.matchNumber(buyer.getMyLotto(), winningLotto);
     }
+
     private void showStatics(List<Integer> countStatics, int totalAmount, int purchaseAmount) {
         buyerInteractionHandler.sayProfit(countStatics, calculateProfitRate(totalAmount, purchaseAmount));
     }
+
     private double calculateProfitRate(int totalWinningAmount, int purchaseAmount) {
         double rate = (double) totalWinningAmount / purchaseAmount;
         return Math.round(rate * 1000) / 10.0;
     }
+
     private List<String> getchangedString() {
         List<String> lottoStrings = new ArrayList<>();
         for (Lotto lotto : buyer.getMyLotto()) {

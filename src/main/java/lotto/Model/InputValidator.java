@@ -1,4 +1,4 @@
-package lotto.View;
+package lotto.Model;
 
 import lotto.Exception.ErrorMessage;
 
