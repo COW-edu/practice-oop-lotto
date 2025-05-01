@@ -22,6 +22,17 @@ public class LottoSeller implements Seller {
         winningLotto = new WinningLotto();
     }
 
+    @Override
+    public void run() {
+        buyer.pay(buyerInteractionHandler.requestMoney());
+        buyer.receiveLotto();
+        buyerInteractionHandler.showBuyResult(buyer.getPurchasedLottoCount(), getchangedString());
+        setWinningLottoNumber(buyerInteractionHandler.requestWinningNumber());
+        setBonusWinningLottoNumber(buyerInteractionHandler.requestBonusNumber());
+        useLottoResultChecker();
+        showStatics(lottoResultChecker.getMoneyStatics().getCountStatics(), lottoResultChecker.getConfirmedMoney(), buyer.getPaidMoney());
+    }
+
     private void setWinningLottoNumber(String firstNumber) {
         winningLotto.setNumbers(firstNumber);
     }
@@ -50,19 +61,4 @@ public class LottoSeller implements Seller {
         }
         return lottoStrings;
     }
-
-    @Override
-    public void run() {
-        buyer.pay(buyerInteractionHandler.requestMoney());
-        buyer.receiveLotto();
-        buyerInteractionHandler.showBuyResult(buyer.getPurchasedLottoCount(), getchangedString());
-        setWinningLottoNumber(buyerInteractionHandler.requestWinningNumber());
-        setBonusWinningLottoNumber(buyerInteractionHandler.requestBonusNumber());
-        useLottoResultChecker();
-        showStatics(lottoResultChecker.getMoneyStatics().getCountStatics(), lottoResultChecker.getConfirmedMoney(), buyer.getPaidMoney());
-    }
-
-
-
-
 }

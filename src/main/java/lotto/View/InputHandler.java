@@ -25,8 +25,8 @@ public class InputHandler {
             int bonusNumber = Integer.parseInt(Console.readLine());
             inputValidator.validateBonusNumber(bonusNumber);
             return bonusNumber;
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException(ErrorMessage.NOT_A_NUMBER.getMessage());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
         }
     }
 }

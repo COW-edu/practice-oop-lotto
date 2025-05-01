@@ -15,12 +15,6 @@ public class LottoBuyer implements Buyer {
         this.purchasedLottoCount = paidMoney/1000;
     }
 
-    private List<Integer> getRandomNumber() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-        return numbers;
-    }
-
     @Override
     public void receiveLotto() {
         lottoes = new ArrayList<>(purchasedLottoCount);
@@ -42,5 +36,11 @@ public class LottoBuyer implements Buyer {
     @Override
     public List<Lotto> getMyLotto() {
         return this.lottoes;
+    }
+
+    private List<Integer> getRandomNumber() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 }
