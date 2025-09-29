@@ -1,4 +1,4 @@
-package Controller;
+package lotto.Controller;
 
 import Domain.LottoResult;
 import Domain.LottoTicketMachine;

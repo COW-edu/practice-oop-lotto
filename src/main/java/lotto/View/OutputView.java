@@ -1,4 +1,4 @@
-package View;
+package lotto.View;
 
 import Domain.LottoResult;
 import Domain.Rank;

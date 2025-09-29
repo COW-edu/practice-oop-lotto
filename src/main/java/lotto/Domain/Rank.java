@@ -1,4 +1,4 @@
-package Domain;
+package lotto.Domain;
 
 public enum Rank {
     FIRST(6, 2_000_000_000),
