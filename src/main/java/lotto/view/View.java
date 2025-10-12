@@ -9,10 +9,12 @@ import java.util.Map;
 
 public class View {
     private final InputReader reader;
+    private Validator validator;
 
     // 생성자에서 InputReader 구현체 주입
     public View() {
         this.reader = new Scan(); // Scan은 InputReader 구현체
+        this.validator = new Validator();
     }
 
     // 로또 구매하기
@@ -22,21 +24,7 @@ public class View {
             String line = reader.readLine();
 
             // 빈 입력 체크
-            if (line.isEmpty()) {
-                throw new IllegalArgumentException(ErrorMessage.EMPTY_PURCHASE_AMOUNT.getMessage());
-            }
-
-            int purchasePrice = Integer.parseInt(line);
-
-            // 음수 또는 0 체크
-            if (purchasePrice <= 0) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
-            }
-
-            // 1000원 단위 체크
-            if (purchasePrice % 1000 != 0) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
-            }
+            int purchasePrice=validator.priceValidator(line);
 
             System.out.println();
             return purchasePrice;
@@ -64,33 +52,11 @@ public class View {
     public List<Integer> winningNumber(){
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
-            String winningNumber = reader.readLine().trim();
+            String winningNumber = reader.readLine();
             String[] winningNumbers = winningNumber.split(",");
             System.out.println();
 
-            List<Integer> numbers = new ArrayList<>();
-            for(String number : winningNumbers) {
-                int num = Integer.parseInt(number);
-
-                // 번호 범위 체크 (1-45)
-                if (num < 1 || num > 45) {
-                    throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
-                }
-
-                // 중복 번호 체크
-                if (numbers.contains(num)) {
-                    throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
-                }
-
-                numbers.add(num);
-            }
-
-            // 당첨 번호 개수 체크
-            if (numbers.size() != 6) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT.getMessage());
-            }
-
-            return numbers;
+            return validator.winningNumberValidator(winningNumbers);
 
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NOT_A_VALID_NUMBER.getMessage());
@@ -101,16 +67,10 @@ public class View {
     public int bounusNumber(){ // 메서드명 그대로 유지
         try {
             System.out.println("보너스 번호를 입력해 주세요.");
-            String input = reader.readLine().trim();
+            String input = reader.readLine();
             int bonusNumber = Integer.parseInt(input);
             System.out.println();
-
-            // 보너스 번호 범위 체크 (1-45)
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
-            }
-
-            return bonusNumber;
+            return validator.bounusNumberValidator(bonusNumber);
 
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());

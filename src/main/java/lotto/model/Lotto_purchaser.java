@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto_purchaser {
-    private final int price;
+
     private final int costOfPurchasing;
     private List<Lotto> lottos;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
 
 
     public Lotto_purchaser(int costOfPurchasing) {
-        this.price = costOfPurchasing;
         this.costOfPurchasing = costOfPurchasing;
     }
 
@@ -26,7 +28,7 @@ public class Lotto_purchaser {
         List<Lotto> lottos = new ArrayList<>();
         int ticketCount = costToTicketNUM();
         for (int i = 0; i < ticketCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
             lottos.add(new Lotto(numbers));
         }
         this.lottos = lottos;
