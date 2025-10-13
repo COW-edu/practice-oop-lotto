@@ -61,35 +61,6 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatchingNumbers(List<Integer> winningLotto) {
-        List<Integer> myNumbers = this.numbers; // 내 로또 번호
-
-        int matchCount = 0;
-        int pointerIndex = 0;
-        int winningIndex = 0;
-
-        while (pointerIndex < 6 && winningIndex < 6) {
-            int myNum = myNumbers.get(pointerIndex);
-            int winningNum = winningLotto.get(winningIndex);
-
-            if (myNum == winningNum) {
-                // 1. 번호가 같으면 일치 개수 증가시키고 두 포인터 모두 이동
-                matchCount++;
-                pointerIndex++;
-                winningIndex++;
-            } else if (myNum < winningNum) {
-                // 2. 내 번호가 작으면 내 포인터만 이동
-                pointerIndex++;
-            } else { // myNum > winningNum
-                // 3. 당첨 번호가 작으면 당첨 포인터만 이동
-                winningIndex++;
-            }
-        }
-        return matchCount;
-    }
-    public boolean countMatchingNumbers(int bonusNum) {
-        return this.numbers.contains(bonusNum);
-    }
     @Override
     public String toString() {
         return numbers.toString();

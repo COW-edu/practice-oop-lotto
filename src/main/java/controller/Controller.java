@@ -1,8 +1,7 @@
 package controller;
 
-import lotto.Validator;
+import model.Validator;
 import model.Lotto;
-import model.LottoResultChecker;
 import model.LottoService;
 import model.LottoTickets;
 import view.InputView;
@@ -22,50 +21,16 @@ public class Controller {
 
     }
     public void run(){
-        int purchasedPrice = readAndValidatePurchasePrice();
-        LottoTickets hadLottos = lottoService.purchaseLottos(purchasedPrice);
-        outputView.printLottos(hadLottos);
-        List<Integer> winningNum = readAndValidateWinningNumbers();
-        Lotto winningLotto = new Lotto(winningNum);
-        winningLotto.sortNumbers();
-        int bonusNum = readAndValidateBonusNumber(winningLotto);
-        int[] result = LottoResultChecker.checkResult(hadLottos, winningLotto, bonusNum);
-        outputView.printResult(result,purchasedPrice);
+        int price = inputView.readPurchasePrice();
+        validator.validatePurchasedAmount(price);
+        LottoTickets tickets = lottoService.purchaseLottos(price);
+        outputView.printLottos(tickets);
+        List<Integer> winningNumber = inputView.readWinningNumberInput();
+        validator.validateWinningNumber(winningNumber);
+        Lotto winningLotto = new Lotto(winningNumber);
+        int bonusNumber = inputView.readBonusNumber();
+        validator.validateBonusNumber(winningLotto, bonusNumber);
+        int[] result = LottoService.checkResult(tickets, winningLotto, bonusNumber);
+        outputView.printResult(result, price);
     }
-
-    private int readAndValidateBonusNumber(Lotto winningLotto) {
-        while (true) {
-            try {
-                int bonusNum = inputView.readBonusNumber();
-                validator.validateBonusNumber(winningLotto, bonusNum);
-                return bonusNum;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-
-    private int readAndValidatePurchasePrice() {
-        while (true) {
-            try {
-                int purchasedPrice = inputView.readPurchasePrice();
-                validator.validatePurchasedAmount(purchasedPrice);
-                return purchasedPrice;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private List<Integer> readAndValidateWinningNumbers() {
-        while (true)
-            try {
-                List<Integer> winningNumbers = inputView.readWinningNumberInput();
-                validator.validateWinningNumber(winningNumbers);
-                return winningNumbers;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
 }
