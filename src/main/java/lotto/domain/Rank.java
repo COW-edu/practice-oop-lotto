@@ -32,13 +32,13 @@ public enum Rank {
     }
 
     private boolean matches(int matchCount, boolean bonusMatched) {
-        if (this == SECOND) {
-            return this.matchCount == matchCount && bonusMatched;
+        if (this.matchCount != matchCount) {
+            return false;
         }
-        if (this == THIRD) {
-            return this.matchCount == matchCount && !bonusMatched;
+        if (this.matchCount != THIRD.matchCount) {
+            return true;
         }
-        return this.matchCount == matchCount;
+        return this.bonusMatched == bonusMatched;
     }
 
     private static List<Rank> matchRanks() {
