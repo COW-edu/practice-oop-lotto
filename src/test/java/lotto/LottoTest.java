@@ -1,5 +1,7 @@
 package lotto;
 
+import domain.Amount;
+import domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +26,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("입력값이 숫자가 아닌 경우")
+    @Test
+    void createAmountNotNumber() {
+        assertThatThrownBy(() -> new Amount("1000j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호에 1 ~ 45 범위가 아닌 경우.")
+    @Test
+    void createLottoByNotRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 }
