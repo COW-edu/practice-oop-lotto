@@ -43,14 +43,14 @@ public class Result {
         }
         return total;
     }
-/*
+
     // 수익률 = 당첨금/구입금액 * 100
     public double getReturnRate() {
         long totalCost = purchasedLottos.size() * 1000L;
         long totalPrize = getTotalPrize();
         if (totalCost == 0) return  0;
-        return (double) totalPrize / totalCost * 100;
+        double rate = (double) totalPrize / totalCost * 100;
+        return Math.round(rate * 10) / 10.0;
     }
-*/
 }
 
