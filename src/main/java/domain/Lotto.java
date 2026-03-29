@@ -1,6 +1,7 @@
 package domain;
 
-import exception.ErrorMessage.ErrorMessageType;
+import enums.ErrorMessage;
+import enums.ErrorMessage;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,7 +36,7 @@ public class Lotto {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
 
@@ -43,7 +44,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ErrorMessageType.NOT_RANGE.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.NOT_RANGE.getMessage());
             }
         }
     }
@@ -54,13 +55,13 @@ public class Lotto {
                 .count();
 
         if (distinctCount != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessageType.LOTTO_NUMBER_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessageType.NOT_SIZE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_SIZE.getMessage());
         }
     }
 

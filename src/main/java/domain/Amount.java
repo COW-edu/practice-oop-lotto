@@ -1,6 +1,6 @@
 package domain;
 
-import exception.ErrorMessage.ErrorMessageType;
+import enums.ErrorMessage;
 
 public class Amount {
     private static final int LOTTO_PRICE = 1000;
@@ -16,16 +16,16 @@ public class Amount {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
 
     private void validate(int parsedAmount) {
         if (parsedAmount <= 0) {
-            throw new IllegalArgumentException(ErrorMessageType.NOT_PLUS.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_PLUS.getMessage());
         }
         if (parsedAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessageType.NOT_THOUSAND.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND.getMessage());
         }
     }
 

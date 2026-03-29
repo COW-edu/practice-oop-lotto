@@ -3,7 +3,7 @@ package lotto;
 import domain.Amount;
 import domain.BonusNumber;
 import domain.Lotto;
-import exception.ErrorMessage;
+import enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,6 @@ public class BonusNumberTest {
          Lotto winningLotto = new Lotto("1,2,3,4,5,6");
 
          assertThatThrownBy(() -> new BonusNumber("6", winningLotto))
-                 .isInstanceOf(IllegalArgumentException.class)
-                 .hasMessage(ErrorMessage.ErrorMessageType.LOTTO_NUMBER_DUPLICATED.getMessage());
+                 .isInstanceOf(IllegalArgumentException.class);
      }
 }

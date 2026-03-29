@@ -1,5 +1,5 @@
 package domain;
-import exception.ErrorMessage.ErrorMessageType;
+import enums.ErrorMessage;
 
 public class BonusNumber {
     private final int number;
@@ -15,18 +15,18 @@ public class BonusNumber {
         try {
             return Integer.parseInt(input.trim());
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
 
     private void validateRange(int number) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ErrorMessageType.NOT_RANGE.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.NOT_RANGE.getMessage());
             }
     }
     private void validateDuplicate(int number, Lotto winLotto) {
         if (winLotto.contains(number)) {
-            throw new IllegalArgumentException(ErrorMessageType.LOTTO_NUMBER_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
