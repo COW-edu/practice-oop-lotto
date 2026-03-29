@@ -2,9 +2,9 @@ package domain;
 
 import exception.ErrorMessage.ErrorMessageType;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +14,13 @@ public class Lotto {
         validateRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto Random() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+        return new Lotto(numbers);
     }
 
     public Lotto(String input) {
@@ -53,5 +60,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessageType.NOT_SIZE.getMessage());
         }
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
