@@ -1,7 +1,6 @@
 package domain;
 
 import enums.ErrorMessage;
-import enums.ErrorMessage;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,7 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public static Lotto Random() {
+    public static Lotto random() {
         // stream -> 오름차순-natural -> collect 다시 list로 반환
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
                 .sorted(Comparator.naturalOrder())

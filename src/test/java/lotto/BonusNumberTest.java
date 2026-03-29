@@ -15,13 +15,15 @@ public class BonusNumberTest {
     @DisplayName("입력값이 숫자가 아닌 경우")
     @Test
     void createAmountNotNumber() {
-        assertThatThrownBy(() -> new Amount("1000j"))
+        Lotto winLotto = new Lotto("1,2,3,4,5,6");
+        assertThatThrownBy(() -> new BonusNumber("j", winLotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("로또 번호에 1 ~ 45 범위가 아닌 경우.")
     @Test
     void createLottoByNotRange() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+        Lotto winLotto = new Lotto("1,2,3,4,5,6");
+        assertThatThrownBy(() -> new BonusNumber("46", winLotto))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
