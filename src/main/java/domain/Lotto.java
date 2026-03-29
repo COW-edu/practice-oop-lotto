@@ -40,7 +40,6 @@ public class Lotto {
         }
     }
 
-
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
@@ -67,6 +66,12 @@ public class Lotto {
 
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public int matchCount(Lotto other) {
+        return (int) numbers.stream()
+                .filter(other::contains)
+                .count();
     }
 
     @Override
