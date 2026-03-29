@@ -21,7 +21,7 @@
 ### 당첨 번호와 랜덤으로 뽑은 로또들을 저장하고 로또 번호끼리와 보너스 번호를 비교하는 메소드 생성
 
 ## Application class
-### 실행 담당 + 수익률 계산 method
+### 입력 및 실행 담당 + 수익률 계산 method
 
 ## check implement
 ### check_input -> 1000으로 나누어 떨어지는지 확인
