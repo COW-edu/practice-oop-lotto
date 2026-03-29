@@ -9,18 +9,19 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Lotto {
     private final List<Integer> numbers;
 
+    public static Lotto Random() {
+        // stream -> 오름차순-natural -> collect 다시 list로 반환
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+        return new Lotto(numbers);
+    }
+
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
-    }
-
-    public static Lotto Random() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
-        return new Lotto(numbers);
     }
 
     public Lotto(String input) {
@@ -37,6 +38,7 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.getMessage());
         }
     }
+
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
