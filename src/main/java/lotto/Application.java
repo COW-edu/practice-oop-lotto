@@ -19,7 +19,7 @@ public class Application {
 
         // 구입 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
-        int num = 0;
+        int num;
         while (true) {
             try {
                 num = Integer.parseInt(Console.readLine());
