@@ -1,21 +1,17 @@
 package lotto;
 
-import java.util.*;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class RandomLotto {
     public List<Integer> generate() {
-
-        Random rand = new Random();
-        List<Integer> lotto = new ArrayList<>();
-
-        while (lotto.size() < 6) {
-            int num = rand.nextInt(45) + 1;
-
-            if (!lotto.contains(num)) {
-                lotto.add(num);
-            }
-        }
-
+        List<Integer> lotto = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        );
         Collections.sort(lotto);
         return lotto;
     }
