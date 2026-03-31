@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum LottoPrize {
 
@@ -19,9 +20,9 @@ public enum LottoPrize {
     public static Optional<LottoPrize> find(final List<Integer> winningNumber, final int bonus, final Lotto lotto) {
         final int correct = lotto.correct(winningNumber);
         final boolean bonusMatch = lotto.bonusMatch(bonus);
+        final Stream<LottoPrize> candidates = candidates(correct);
 
-        return Arrays.stream(LottoPrize.values())
-            .filter(prize -> prize.correct == correct)
+        return candidates
             .filter(prize -> {
                 if (prize.correct == 5) {
                     return prize.correctBonus == bonusMatch;
@@ -31,10 +32,9 @@ public enum LottoPrize {
             .findFirst();
     }
 
-    private static List<LottoPrize> candidates(final int correct) {
+    private static Stream<LottoPrize> candidates(final int correct) {
         return Arrays.stream(LottoPrize.values())
-            .filter(prize -> prize.correct == correct)
-            .collect(Collectors.toList());
+            .filter(prize -> prize.correct == correct);
     }
 
     private final long prizeMoney;
