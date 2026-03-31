@@ -36,6 +36,13 @@ public class LottoSession {
             this.matchingLotto(lotto);
         }
     }
+
+    private void matchingLotto(final Lotto lotto) {
+        LottoPrize.find(this.winningNumbers, this.bonus, lotto)
+            .ifPresent(prize -> this.recipes.computeIfAbsent(prize, k -> new ArrayList<>())
+                .add(new LottoRecipe(lotto, prize)));
+    }
+
     private void purchase(final int count) {
         LottoWriter.printPurchaseCount(count);
 
