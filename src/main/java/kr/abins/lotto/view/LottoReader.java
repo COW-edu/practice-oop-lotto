@@ -40,4 +40,9 @@ public interface LottoReader extends Reader {
 
         return numbers;
     }
+
+    private static boolean hasDuplicate(final List<Integer> numbers) {
+        final Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return uniqueNumbers.size() != numbers.size();
+    }
 }
