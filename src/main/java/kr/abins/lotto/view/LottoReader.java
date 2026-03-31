@@ -50,6 +50,13 @@ public interface LottoReader extends Reader {
             throw new IllegalArgumentException(Constants.ERROR_LOTTO_NUMBER_OUT_OF_RANGE);
         });
     }
+
+    static void validateBonusNumber(final int bonusNumber, final List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(Constants.ERROR_BONUS_NUMBER_DUPLICATED);
+        }
+    }
+
     private static boolean hasDuplicate(final List<Integer> numbers) {
         final Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() != numbers.size();

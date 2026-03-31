@@ -29,6 +29,7 @@ public class LottoSession {
 
         LottoWriter.printBonusNumberMessage();
         this.bonus = LottoReader.readBonusNumber();
+        LottoReader.validateBonusNumber(this.bonus, this.winningNumbers);
     private void purchase(final int count) {
         LottoWriter.printPurchaseCount(count);
 
