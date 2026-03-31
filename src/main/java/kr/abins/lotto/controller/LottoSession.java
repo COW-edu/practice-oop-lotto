@@ -23,6 +23,9 @@ public class LottoSession {
     public void start() {
         final int count = this.purchaseAmount0();
         this.purchase(count);
+
+        LottoWriter.printWinningNumbersMessage();
+        this.winningNumbers = LottoReader.readWinningNumbers();
     private void purchase(final int count) {
         LottoWriter.printPurchaseCount(count);
 

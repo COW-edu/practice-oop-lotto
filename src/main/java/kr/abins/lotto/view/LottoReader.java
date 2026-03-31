@@ -20,4 +20,24 @@ public interface LottoReader extends Reader {
             throw new IllegalArgumentException(Constants.ERROR_PURCHASE_AMOUNT_NOT_DIVISIBLE);
         });
     }
+
+    static List<Integer> readWinningNumbers() throws IllegalArgumentException {
+        final List<Integer> numbers = Reader.readInts(number -> {
+            if (Constants.MIN_LOTTO_NUMBER <= number && number <= Constants.MAX_LOTTO_NUMBER) {
+                return;
+            }
+
+            throw new IllegalArgumentException(Constants.ERROR_LOTTO_NUMBER_OUT_OF_RANGE);
+        });
+
+        if (numbers.size() != Constants.LOTTO_WINNING_NUMBER_COUNT) {
+            throw new IllegalArgumentException(Constants.ERROR_WINNING_LOTTO_NUMBERS_MUST_BE_SIX);
+        }
+
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException(Constants.ERROR_LOTTO_NUMBERS_DUPLICATED);
+        }
+
+        return numbers;
+    }
 }

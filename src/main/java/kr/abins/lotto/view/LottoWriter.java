@@ -16,4 +16,11 @@ public interface LottoWriter {
         Collections.sort(numbers);
         System.out.println(numbers);
     }
+
+    static void printWinningNumbersMessage() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+    static void printNewLine() {
+        System.out.println();
+    }
 }
