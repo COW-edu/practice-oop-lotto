@@ -46,6 +46,14 @@ public class LottoSession {
         return count;
     }
 
+    private List<Integer> pickRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(
+            Constants.MIN_LOTTO_NUMBER,
+            Constants.MAX_LOTTO_NUMBER,
+            Constants.LOTTO_NUMBER_COUNT
+        );
+    }
+
     public int purchaseAmount() {
         return this.purchaseAmount;
     }

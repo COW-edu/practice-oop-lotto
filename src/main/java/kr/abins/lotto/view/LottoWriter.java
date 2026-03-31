@@ -11,4 +11,9 @@ public interface LottoWriter {
     static void printPurchaseCount(int count) {
         System.out.println(count + "개를 구매했습니다.");
     }
+
+    static void printLottoNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
+        System.out.println(numbers);
+    }
 }
