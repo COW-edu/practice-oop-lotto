@@ -30,6 +30,12 @@ public class LottoSession {
         LottoWriter.printBonusNumberMessage();
         this.bonus = LottoReader.readBonusNumber();
         LottoReader.validateBonusNumber(this.bonus, this.winningNumbers);
+
+        LottoWriter.printNewLine();
+        for (final Lotto lotto : this.lottos) {
+            this.matchingLotto(lotto);
+        }
+    }
     private void purchase(final int count) {
         LottoWriter.printPurchaseCount(count);
 
