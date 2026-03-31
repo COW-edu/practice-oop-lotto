@@ -20,6 +20,11 @@ public interface LottoWriter {
     static void printWinningNumbersMessage() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }
+
+    static void printBonusNumberMessage() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
     static void printNewLine() {
         System.out.println();
     }

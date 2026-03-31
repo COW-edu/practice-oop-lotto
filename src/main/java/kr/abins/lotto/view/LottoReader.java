@@ -41,6 +41,15 @@ public interface LottoReader extends Reader {
         return numbers;
     }
 
+    static int readBonusNumber() throws IllegalArgumentException {
+        return Reader.readInt(number -> {
+            if (Constants.MIN_LOTTO_NUMBER <= number && number <= Constants.MAX_LOTTO_NUMBER) {
+                return;
+            }
+
+            throw new IllegalArgumentException(Constants.ERROR_LOTTO_NUMBER_OUT_OF_RANGE);
+        });
+    }
     private static boolean hasDuplicate(final List<Integer> numbers) {
         final Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() != numbers.size();
