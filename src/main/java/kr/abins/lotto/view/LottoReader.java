@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface LottoReader extends Reader {
+
     static int readPurchaseAmount() throws IllegalArgumentException {
         return Reader.readInt(number -> {
             if (number <= 0) {
