@@ -1,5 +1,6 @@
 package kr.abins.lotto.view;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,13 +9,14 @@ public interface LottoWriter {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    static void printPurchaseCount(int count) {
+    static void printPurchaseCount(final int count) {
         System.out.println(count + "개를 구매했습니다.");
     }
 
-    static void printLottoNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        System.out.println(numbers);
+    static void printLottoNumbers(final List<Integer> numbers) {
+        final List<Integer> sorted = new ArrayList<>(numbers);
+        Collections.sort(sorted);
+        System.out.println(sorted);
     }
 
     static void printWinningNumbersMessage() {
