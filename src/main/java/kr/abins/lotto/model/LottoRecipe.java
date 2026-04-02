@@ -1,6 +1,8 @@
 package kr.abins.lotto.model;
 
+// record class 쓰고싶어요 ㅠ.ㅠ
 public class LottoRecipe {
+
     private final Lotto lotto;
     private final LottoPrize prize;
 

@@ -21,7 +21,7 @@ public class Application {
         final LottoSession session = new LottoSession();
         session.start();
 
-        final LottoResult result = new LottoResult(session.recipes(), session.purchaseAmount());
+        final LottoResult result = new LottoResult(session.recipes());
         LottoStatistics.print(result);
     }
 }
