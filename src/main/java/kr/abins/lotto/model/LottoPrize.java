@@ -14,7 +14,10 @@ public enum LottoPrize {
     PRIZE_2ND(Constants.PRIZE_2ND, 5, true),
     PRIZE_3RD(Constants.PRIZE_3RD, 5, false),
     PRIZE_4TH(Constants.PRIZE_4TH, 4, false),
-    PRIZE_5TH(Constants.PRIZE_5TH, 3, false);
+    PRIZE_5TH(Constants.PRIZE_5TH, 3, false),
+    NONE_2(0, 2, false),
+    NONE_1(0, 1, false),
+    NONE_0(0, 0, false);
 
 
     public static Optional<LottoPrize> find(final List<Integer> winningNumber, final int bonus, final Lotto lotto) {
