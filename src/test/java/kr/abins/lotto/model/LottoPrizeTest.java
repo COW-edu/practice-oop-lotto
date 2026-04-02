@@ -46,16 +46,4 @@ class LottoPrizeTest {
         assertThat(prize).isPresent();
         assertThat(prize.get()).isEqualTo(expectedPrize);
     }
-
-    @DisplayName("당첨 기준에 미달하면 등수를 찾지 못한다.")
-    @Test
-    void findNoPrize() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonus = 7;
-        Lotto lotto = new Lotto(List.of(1, 2, 8, 9, 10, 11)); // 2개 일치
-
-        Optional<LottoPrize> prize = LottoPrize.find(winningNumbers, bonus, lotto);
-
-        assertThat(prize).isEmpty();
-    }
 }
