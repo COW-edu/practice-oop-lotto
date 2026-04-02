@@ -20,11 +20,11 @@ public interface LottoStatistics {
             "5개 일치 (%s) - %d개\n" +
             "5개 일치, 보너스 볼 일치 (%s) - %d개\n" +
             "6개 일치 (%s) - %d개",
-            money(LottoPrize.PRIZE_5TH), result.getCount(LottoPrize.PRIZE_5TH),
-            money(LottoPrize.PRIZE_4TH), result.getCount(LottoPrize.PRIZE_4TH),
-            money(LottoPrize.PRIZE_3RD), result.getCount(LottoPrize.PRIZE_3RD),
-            money(LottoPrize.PRIZE_2ND), result.getCount(LottoPrize.PRIZE_2ND),
-            money(LottoPrize.PRIZE_1ST), result.getCount(LottoPrize.PRIZE_1ST)
+            money(LottoPrize.PRIZE_5TH), result.count(LottoPrize.PRIZE_5TH),
+            money(LottoPrize.PRIZE_4TH), result.count(LottoPrize.PRIZE_4TH),
+            money(LottoPrize.PRIZE_3RD), result.count(LottoPrize.PRIZE_3RD),
+            money(LottoPrize.PRIZE_2ND), result.count(LottoPrize.PRIZE_2ND),
+            money(LottoPrize.PRIZE_1ST), result.count(LottoPrize.PRIZE_1ST)
         );
         System.out.println(results);
     }
