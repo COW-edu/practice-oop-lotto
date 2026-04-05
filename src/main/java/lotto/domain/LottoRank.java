@@ -25,6 +25,7 @@ public enum LottoRank {
         if (matchCount == 4) return FOURTH;
         if (matchCount == 3) return FIFTH;
         return NONE;
+    }
 
     public int getMatchCount() {
         return matchCount;
