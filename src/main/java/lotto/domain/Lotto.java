@@ -1,34 +1,34 @@
-package lotto;
+package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
+    private static final int SIZE = 6;
+    private static final int MIN = 1;
+    private static final int MAX = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicate(numbers);
-
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        this.numbers = sortedNumbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-    }
 
-    private void validateDuplicate(List<Integer> numbers) {
-        List<Integer> checklist = new ArrayList<>();
-        for (int number : numbers){
-            if (checklist.contains(number)){
+        Set<Integer> set = new HashSet<>(numbers);
+            if (set.size() != SIZE){
                 throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
             }
-            checklist.add(number);
+
+        for(int n : numbers) {
+            if (n<MIN || n>MAX) {
+                throw new IllegalArgumentException("[ERROR] 1~45 사이 숫자여야 합니다.");
+            }
         }
     }
 
