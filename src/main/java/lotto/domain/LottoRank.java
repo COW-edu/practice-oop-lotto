@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum LottoRank {
     FIFTH(3, 5000, "3개 일치 (5,000원) - "),
@@ -17,6 +17,14 @@ public enum LottoRank {
         this.prize = prize;
         this.message = message;
     }
+
+    public static LottoRank getRank(int matchCount, boolean bonus) {
+        if (matchCount == 6) return FIRST;
+        if (matchCount == 5&& bonus) return SECOND;
+        if (matchCount == 5) return THIRD;
+        if (matchCount == 4) return FOURTH;
+        if (matchCount == 3) return FIFTH;
+        return NONE;
 
     public int getMatchCount() {
         return matchCount;
