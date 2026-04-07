@@ -2,11 +2,13 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class UserInput {
+public class InputView {
 
+    // 2. 구입금액 입력받기
     public String purchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
+
     }
 
     public String winningNumbers() {

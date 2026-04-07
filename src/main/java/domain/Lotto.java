@@ -1,21 +1,17 @@
 package domain;
 
+import static global.Constants.*;
+
+import camp.nextstep.edu.missionutils.Randoms;
 import enums.ErrorMessage;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
-
-    public static Lotto random() {
-        // stream -> 오름차순-natural -> collect 다시 list로 반환
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
-        return new Lotto(numbers);
-    }
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
@@ -24,43 +20,31 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto(String input) {
-        this(parseNumbers(input));
-    }
-
-    private static List<Integer> parseNumbers(String input) {
-        try{
-            return Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
-        }
-    }
-
     private void validateRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_RANGE.getMessage());
-            }
+        if (numbers.stream().anyMatch(n -> n < LOTTO_MIN_NUMBER || n > LOTTO_MAX_NUMBER)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_RANGE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        long distinctCount = numbers.stream()
-                .distinct()
-                .count();
-
-        if (distinctCount != numbers.size()) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_SIZE.getMessage());
         }
+    }
+
+    // 4. 로또 생성
+    public static Lotto createRandomLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        return new Lotto(randomNumbers.stream()
+                .sorted()
+                .collect(Collectors.toList()));
     }
 
     public boolean contains(int number) {

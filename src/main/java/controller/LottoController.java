@@ -1,61 +1,64 @@
 package controller;
 
-import domain.Amount;
-import domain.BonusNumber;
-import domain.Lotto;
-import domain.Result;
-import enums.Rank;
-import view.UserInput;
+import domain.*;
+import util.Parser;
+import view.InputView;
+import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoController {
+    private final InputView userInput;
+    private final OutputView userOutput;
+
+    public LottoController(InputView userInput, OutputView userOutput) {
+        this.userInput = userInput;
+        this.userOutput = userOutput;
+    }
+
     public void run() {
         try {
-            UserInput userInput = new UserInput();
-            List<Lotto> purchasedLottos = purchaseLottos(userInput);
-            Lotto winLotto = readWinningLotto(userInput);
-            BonusNumber bonusNumber = readBonusNumber(userInput, winLotto);
-            Result result = new Result(purchasedLottos, winLotto, bonusNumber);
-            printResult(result);
+            PurchaseAmount amount = receiveAmount();
+
+            List<Lotto> purchasedLottos = purchase(amount);
+
+            Result result = calculateResult(purchasedLottos);
+
+            // 8. 당첨결과 출력
+            userOutput.printResult(result);
+
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            userOutput.printErrorMessage(e.getMessage());
         }
     }
 
-    private List<Lotto> purchaseLottos(UserInput userInput) {
-        int lottoCount = new Amount(userInput.purchaseAmount()).getLottoCount();
-
-        System.out.println();
-        System.out.println(lottoCount + "개를 구매했습니다.");
-
-        List<Lotto> purchasedLottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            Lotto lotto = Lotto.random();
-            purchasedLottos.add(lotto);
-            System.out.println(lotto);
-        }
-        return purchasedLottos;
+    // 3. 입력받은 구입금액 파싱 후 넘겨줘서 검증 - 천원단위, 양수
+    private PurchaseAmount receiveAmount() {
+        return new PurchaseAmount(Parser.parseSingleNumber(userInput.purchaseAmount()));
     }
 
-    private Lotto readWinningLotto(UserInput userInput) {
-        return new Lotto(userInput.winningNumbers());
+    // 4. 로또 개수 파악 및 로또 객체 생성 후 출력
+    private List<Lotto> purchase(PurchaseAmount amount) {
+        int count = amount.getLottoCount();
+        userOutput.printPurchaseCount(count);
+
+        List<Lotto> lottos = Stream.generate(Lotto::createRandomLotto)
+                .limit(count)
+                .collect(Collectors.toList());
+
+        userOutput.printLottos(lottos);
+        return lottos;
     }
 
-    private BonusNumber readBonusNumber(UserInput userInput, Lotto winLotto) {
-        return new BonusNumber(userInput.bonusNumbers(), winLotto);
-    }
-
-    private void printResult(Result result) {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println(Rank.FIFTH.getDisplayString() + result.getCount(Rank.FIFTH) + "개");
-        System.out.println(Rank.FOURTH.getDisplayString() + result.getCount(Rank.FOURTH) + "개");
-        System.out.println(Rank.THIRD.getDisplayString() + result.getCount(Rank.THIRD) + "개");
-        System.out.println(Rank.SECOND.getDisplayString() + result.getCount(Rank.SECOND) + "개");
-        System.out.println(Rank.FIRST.getDisplayString() + result.getCount(Rank.FIRST) + "개");
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", result.getReturnRate());
+    private Result calculateResult(List<Lotto> purchasedLottos) {
+        // 5. 당첨번호 및 보너스번호 입력받은 후 파싱
+        Lotto winLotto = new Lotto(Parser.parseNumbers(userInput.winningNumbers()));
+        BonusNumber bonusNumber = new BonusNumber(Parser.parseSingleNumber(userInput.bonusNumbers()));
+        // 6. WinningLotto클래스로
+        WinningLotto winningLotto = new WinningLotto(winLotto, bonusNumber);
+        // 7. 당첨 확인 및 수익률 확인
+        return new Result(purchasedLottos, winningLotto);
     }
 }

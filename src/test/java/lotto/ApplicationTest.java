@@ -59,6 +59,6 @@ class ApplicationTest extends NsTest {
 
     @Override
     public void runMain() {
-        Application.main(new String[]{});
+        lotto.Application.main(new String[]{});
     }
 }

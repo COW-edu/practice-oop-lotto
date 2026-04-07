@@ -1,38 +1,23 @@
 package lotto;
 
-import domain.Amount;
 import domain.BonusNumber;
-import domain.Lotto;
-import enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberTest {
-    @DisplayName("입력값이 숫자가 아닌 경우")
+    @DisplayName("보너스 번호가 1 ~ 45 범위가 아닌 경우")
     @Test
-    void createAmountNotNumber() {
-        Lotto winLotto = new Lotto("1,2,3,4,5,6");
-        assertThatThrownBy(() -> new BonusNumber("j", winLotto))
+    void createBonusNumberByNotRange() {
+        assertThatThrownBy(() -> new BonusNumber(46))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("로또 번호에 1 ~ 45 범위가 아닌 경우.")
+    @DisplayName("보너스 번호가 1보다 작은 경우")
     @Test
-    void createLottoByNotRange() {
-        Lotto winLotto = new Lotto("1,2,3,4,5,6");
-        assertThatThrownBy(() -> new BonusNumber("46", winLotto))
+    void createBonusNumberByBelowMin() {
+        assertThatThrownBy(() -> new BonusNumber(0))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
-     @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우")
-     @Test
-     void createBonusNumberByDuplicatedWinningNumber() {
-         Lotto winningLotto = new Lotto("1,2,3,4,5,6");
-
-         assertThatThrownBy(() -> new BonusNumber("6", winningLotto))
-                 .isInstanceOf(IllegalArgumentException.class);
-     }
 }
