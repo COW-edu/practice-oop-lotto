@@ -19,13 +19,10 @@ public enum LottoRank {
         this.prize = prize;
         this.message = message;
     }
-
-    public static LottoRank getRank(int matchCount, boolean matchbonus) {
-        if (matchCount == 6) return FIRST;
-        if (matchCount == 5 && matchbonus) return SECOND;
-        if (matchCount == 5) return THIRD;
-        if (matchCount == 4) return FOURTH;
-        if (matchCount == 3) return FIFTH;
+    public static LottoRank getRank(int count, boolean isBonus) {
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == count && rank.matchBonus == isBonus) return rank;
+        }
         return NONE;
     }
 
