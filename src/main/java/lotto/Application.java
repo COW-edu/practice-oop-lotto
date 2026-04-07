@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Service.Check;
+
 import java.util.*;
 
 public class Application {
@@ -13,24 +15,9 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        Check checkMoney = new CheckMoney();
-        Check checkNumber = new CheckNumber();
         RandomLotto randomLotto = new RandomLotto();
 
-        // 구입 금액 입력
-        System.out.println("구입금액을 입력해 주세요.");
-        int num;
-        while (true) {
-            try {
-                num = Integer.parseInt(Console.readLine());
-                if (!checkMoney.checkNum(num)) {
-                    throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
-                }
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 올바른 금액을 입력해주세요.");
-            }
-        }
+
 
         // 로또 생성
         int count = num / 1000;
