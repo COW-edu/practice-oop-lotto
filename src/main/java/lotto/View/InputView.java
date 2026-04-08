@@ -14,11 +14,14 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
-                int money = Integer.parseInt(Console.readLine());
+                String input = Console.readLine();
+                int money = Integer.parseInt(input);  // 여기서 "1000j" 오면 NumberFormatException
                 if (!lottoController.checkMoney(money)) {
                     throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
                 }
                 return money;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해주세요.");  // ← [ERROR] 출력
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

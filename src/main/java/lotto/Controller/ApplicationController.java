@@ -1,3 +1,5 @@
+package lotto.Controller;
+
 import lotto.Model.Lotto;
 import lotto.Model.Rank;
 import lotto.Service.LottoResultService;

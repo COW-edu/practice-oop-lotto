@@ -1,9 +1,10 @@
 package lotto.Service;
 
 public class Check {
+    static final int price = 1000;
 
     public boolean checkMoney(int money) {
-        return money % 1000 == 0;
+        return money % price == 0;
     }
 
     public boolean checkNumber(int num) {
