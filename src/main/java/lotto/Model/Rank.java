@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Model;
 
 import java.util.Arrays;
 
@@ -24,7 +24,6 @@ public enum Rank {
     public int getPrize() { return prize; }
     public boolean isBonusMatch() { return bonusMatch; }
 
-    // 맞춘 개수 + 보너스 여부로 등수 판별
     public static Rank of(int matchCount, boolean bonusMatch) {
         if (matchCount == 5 && bonusMatch) return SECOND;
 
