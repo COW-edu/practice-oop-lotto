@@ -1,5 +1,6 @@
 package kr.abins.lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import kr.abins.lotto.constant.Constants;
 import kr.abins.lotto.constant.ErrorMessage;
 
@@ -14,6 +15,16 @@ public final class Lotto {
     public Lotto(final List<Integer> numbers) {
         this.validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto generateRandom() {
+        final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+            Constants.MIN_LOTTO_NUMBER,
+            Constants.MAX_LOTTO_NUMBER,
+            Constants.LOTTO_NUMBER_COUNT
+        );
+
+        return new Lotto(numbers);
     }
 
     private void validate(final List<Integer> numbers) {
