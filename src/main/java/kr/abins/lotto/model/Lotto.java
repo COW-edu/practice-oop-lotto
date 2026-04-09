@@ -17,16 +17,6 @@ public final class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto generateRandom() {
-        final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-            Constants.MIN_LOTTO_NUMBER,
-            Constants.MAX_LOTTO_NUMBER,
-            Constants.LOTTO_NUMBER_COUNT
-        );
-
-        return new Lotto(numbers);
-    }
-
     private void validate(final List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_NUMBER_COUNT) {
             ErrorMessage.LOTTO_NUMBERS_MUST_BE_SIX.throwSelf();
