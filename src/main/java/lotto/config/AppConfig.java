@@ -7,7 +7,7 @@ import lotto.view.OutputView;
 
 public class AppConfig {
     public LottoController lottoController() {
-        return new LottoController(inputView(), outputView(), new LottoService());
+        return new LottoController(inputView(), outputView(), lottoService());
     }
 
     public InputView inputView() {
@@ -17,4 +17,6 @@ public class AppConfig {
     public OutputView outputView() {
         return new OutputView();
     }
+
+    public LottoService lottoService() {return new LottoService(); }
 }
