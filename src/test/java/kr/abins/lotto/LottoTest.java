@@ -1,10 +1,13 @@
-package lotto;
+package kr.abins.lotto;
 
+import kr.abins.lotto.model.Lotto;
+import kr.abins.lotto.model.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -18,10 +21,20 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 1부터 45 사이가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoByOutOfRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 정상적이면 예외가 발생하지 않는다.")
+    @Test
+    void createLotto() {
+        new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    }
 }
