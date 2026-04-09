@@ -2,6 +2,7 @@ package kr.abins.lotto.controller;
 
 import kr.abins.lotto.model.Lotto;
 import kr.abins.lotto.model.LottoResult;
+import kr.abins.lotto.model.PurchaseAmount;
 import kr.abins.lotto.model.WinningLotto;
 import kr.abins.lotto.view.LottoReader;
 import kr.abins.lotto.view.LottoWriter;
@@ -21,13 +22,27 @@ public class LottoProcessor {
     }
 
     public LottoResult start() {
-        final List<Lotto> lottos = this.generator.generate();
 
+        final PurchaseAmount purchaseAmount = this.readPurchaseAmount();
+        this.writer.printNewLine();
+        this.writer.printPurchaseCount(purchaseAmount.lottoCount());
+        // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+        final List<Lotto> lottos = this.generator.generate(purchaseAmount);
+        for (final Lotto lotto : lottos) {
+            this.writer.printLottoNumbers(lotto.numbers());
+        }
+        // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
         final List<Integer> winningNumber = this.readWinningNumber();
         final int bonus = this.readBonusNumber();
         final WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumber), bonus);
 
         return LottoResult.generate(winningLotto, lottos);
+    }
+
+
+    private PurchaseAmount readPurchaseAmount() {
+        this.writer.printPurchaseAmountMessage();
+        return new PurchaseAmount(this.reader.readPurchaseAmount());
     }
 
     private int readBonusNumber() {

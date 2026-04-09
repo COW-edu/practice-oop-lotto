@@ -32,12 +32,10 @@ public final class AppConfig {
     }
 
     public LottoGenerator lottoGenerator() {
-        return new LottoGenerator(this.lottoReader(), this.lottoWriter());
+        return new LottoGenerator();
     }
 
     public LottoProcessor lottoProcessor() {
-        final LottoReader reader = this.lottoReader();
-        final LottoWriter writer = this.lottoWriter();
-        return new LottoProcessor(reader, writer, new LottoGenerator(reader, writer));
+        return new LottoProcessor(this.lottoReader(), this.lottoWriter(), this.lottoGenerator());
     }
 }
