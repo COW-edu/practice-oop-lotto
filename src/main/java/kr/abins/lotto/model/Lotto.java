@@ -1,6 +1,5 @@
 package kr.abins.lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import kr.abins.lotto.constant.Constants;
 import kr.abins.lotto.constant.ErrorMessage;
 
@@ -8,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class Lotto {
+public class Lotto {
 
     private final List<Integer> numbers;
 
