@@ -16,13 +16,13 @@ class LottoResultTest {
     @Test
     void calculateProfitRate() {
         // Given: 8,000원을 투자하여 5,000원(5등) 한 번 당첨된 경우
-        final Map<LottoPrize, List<LottoRecipe>> recipes = new HashMap<>();
+        final Map<LottoPrize, List<LottoReceipt>> recipes = new HashMap<>();
         final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        recipes.put(LottoPrize.PRIZE_5TH, List.of(new LottoRecipe(lotto, LottoPrize.PRIZE_5TH)));
-        final ArrayList<LottoRecipe> nones = new ArrayList<>();
+        recipes.put(LottoPrize.PRIZE_5TH, List.of(new LottoReceipt(lotto, LottoPrize.PRIZE_5TH)));
+        final ArrayList<LottoReceipt> nones = new ArrayList<>();
         for (int index = 0; index < 7; ++index) {
-            nones.add(new LottoRecipe(lotto, LottoPrize.NONE_0));
+            nones.add(new LottoReceipt(lotto, LottoPrize.NONE_0));
         }
         recipes.put(LottoPrize.NONE_0, nones);
 
@@ -30,7 +30,7 @@ class LottoResultTest {
 
 
         // When: 수익률 계산 (5000 / 8000 * 100 = 62.5%)
-        double profitRate = result.calculateProfitRate();
+        double profitRate = result.profitRate();
 
         // Then
         assertThat(profitRate).isEqualTo(62.5);
@@ -40,15 +40,15 @@ class LottoResultTest {
     @Test
     void calculateProfitRateZeroAmount() {
         LottoResult result = new LottoResult(new HashMap<>());
-        assertThat(result.calculateProfitRate()).isEqualTo(0);
+        assertThat(result.profitRate()).isEqualTo(0);
     }
 
     @DisplayName("각 등수의 당첨 횟수를 올바르게 반환한다.")
     @Test
     void count() {
-        Map<LottoPrize, List<LottoRecipe>> recipes = new HashMap<>();
+        Map<LottoPrize, List<LottoReceipt>> recipes = new HashMap<>();
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        recipes.put(LottoPrize.PRIZE_5TH, List.of(new LottoRecipe(lotto, LottoPrize.PRIZE_5TH), new LottoRecipe(lotto, LottoPrize.PRIZE_5TH)));
+        recipes.put(LottoPrize.PRIZE_5TH, List.of(new LottoReceipt(lotto, LottoPrize.PRIZE_5TH), new LottoReceipt(lotto, LottoPrize.PRIZE_5TH)));
         
         LottoResult result = new LottoResult(recipes);
 

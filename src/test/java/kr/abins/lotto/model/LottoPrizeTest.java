@@ -41,7 +41,8 @@ class LottoPrizeTest {
         }
 
         Lotto lotto = new Lotto(lottoNumbers);
-        Optional<LottoPrize> prize = LottoPrize.find(winningNumbers, bonus, lotto);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonus);
+        Optional<LottoPrize> prize = winningLotto.match(lotto);
 
         assertThat(prize).isPresent();
         assertThat(prize.get()).isEqualTo(expectedPrize);

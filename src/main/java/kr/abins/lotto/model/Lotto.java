@@ -1,8 +1,8 @@
 package kr.abins.lotto.model;
 
-import kr.abins.lotto.Constants;
+import kr.abins.lotto.constant.Constants;
+import kr.abins.lotto.constant.ErrorMessage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,13 +18,15 @@ public final class Lotto {
 
     private void validate(final List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(Constants.ERROR_LOTTO_NUMBERS_MUST_BE_SIX);
+            ErrorMessage.LOTTO_NUMBERS_MUST_BE_SIX.throwSelf();
         }
+
         if (this.hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(Constants.ERROR_LOTTO_NUMBERS_DUPLICATED);
+            ErrorMessage.LOTTO_NUMBERS_DUPLICATED.throwSelf();
         }
+
         if (this.hasOutOfRange(numbers)) {
-            throw new IllegalArgumentException(Constants.ERROR_LOTTO_NUMBER_OUT_OF_RANGE);
+            ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.throwSelf();
         }
     }
 
@@ -44,30 +46,5 @@ public final class Lotto {
 
     public List<Integer> numbers() {
         return this.numbers;
-    }
-
-    public List<Boolean> match(final List<Integer> winningNumbers) {
-        final List<Boolean> match = new ArrayList<>();
-
-        for (int number : this.numbers) {
-            match.add(winningNumbers.contains(number));
-        }
-
-        return match;
-    }
-
-    public int correct(final List<Integer> winningNumber) {
-        final List<Boolean> match = this.match(winningNumber);
-
-        int correct = 0;
-        for (final boolean isMatch : match) {
-            if (isMatch) ++correct;
-        }
-
-        return correct;
-    }
-
-    public boolean bonusMatch(final int bonusNumber) {
-        return this.numbers.contains(bonusNumber);
     }
 }

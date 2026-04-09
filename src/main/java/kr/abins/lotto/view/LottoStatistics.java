@@ -3,9 +3,9 @@ package kr.abins.lotto.view;
 import kr.abins.lotto.model.LottoPrize;
 import kr.abins.lotto.model.LottoResult;
 
-public interface LottoStatistics {
+public class LottoStatistics {
 
-    static void print(final LottoResult result) {
+    public void print(final LottoResult result) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -13,7 +13,7 @@ public interface LottoStatistics {
         printProfitRate(result);
     }
 
-    private static void printLottoPrizes(final LottoResult result) {
+    private void printLottoPrizes(final LottoResult result) {
         final String results = String.format(
             "3개 일치 (%s) - %d개\n" +
             "4개 일치 (%s) - %d개\n" +
@@ -29,12 +29,12 @@ public interface LottoStatistics {
         System.out.println(results);
     }
 
-    private static void printProfitRate(final LottoResult result) {
-        double profitRatePercent = result.calculateProfitRate();
+    private void printProfitRate(final LottoResult result) {
+        double profitRatePercent = result.profitRate();
         System.out.printf("총 수익률은 %,.1f%%입니다.%n", profitRatePercent);
     }
 
-    private static String money(final LottoPrize prize) {
+    private String money(final LottoPrize prize) {
         final long money = prize.prizeMoney();
         return String.format("%,d원", money);
     }

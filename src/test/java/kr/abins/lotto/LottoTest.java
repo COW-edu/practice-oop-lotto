@@ -1,6 +1,7 @@
 package kr.abins.lotto;
 
 import kr.abins.lotto.model.Lotto;
+import kr.abins.lotto.model.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,32 +36,5 @@ class LottoTest {
     @Test
     void createLotto() {
         new Lotto(List.of(1, 2, 3, 4, 5, 6));
-    }
-
-    @DisplayName("당첨 번호와 일치하는 숫자의 개수를 반환한다.")
-    @Test
-    void countCorrectNumbers() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
-
-        assertThat(lotto.correct(winningNumbers)).isEqualTo(3);
-    }
-
-    @DisplayName("당첨 번호가 하나도 일치하지 않는 경우 0을 반환한다.")
-    @Test
-    void countCorrectNumbersZero() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
-
-        assertThat(lotto.correct(winningNumbers)).isEqualTo(0);
-    }
-
-    @DisplayName("보너스 번호 포함 여부를 확인한다.")
-    @Test
-    void checkBonusMatch() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        assertThat(lotto.bonusMatch(6)).isTrue();
-        assertThat(lotto.bonusMatch(7)).isFalse();
     }
 }

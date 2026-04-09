@@ -1,12 +1,12 @@
 package kr.abins.lotto.model;
 
 // record class 쓰고싶어요 ㅠ.ㅠ
-public class LottoRecipe {
+public class LottoReceipt {
 
     private final Lotto lotto;
     private final LottoPrize prize;
 
-    public LottoRecipe(final Lotto lotto, final LottoPrize prize) {
+    public LottoReceipt(final Lotto lotto, final LottoPrize prize) {
         this.lotto = lotto;
         this.prize = prize;
     }

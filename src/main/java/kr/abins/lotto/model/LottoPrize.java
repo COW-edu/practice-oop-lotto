@@ -1,11 +1,9 @@
 package kr.abins.lotto.model;
 
-import kr.abins.lotto.Constants;
+import kr.abins.lotto.constant.Constants;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoPrize {
@@ -19,27 +17,6 @@ public enum LottoPrize {
     NONE_1(0, 1, false),
     NONE_0(0, 0, false);
 
-
-    public static Optional<LottoPrize> find(final List<Integer> winningNumber, final int bonus, final Lotto lotto) {
-        final int correct = lotto.correct(winningNumber);
-        final boolean bonusMatch = lotto.bonusMatch(bonus);
-        final Stream<LottoPrize> candidates = candidates(correct);
-
-        return candidates
-            .filter(prize -> {
-                if (prize.correct == 5) {
-                    return prize.correctBonus == bonusMatch;
-                }
-                return true;
-            })
-            .findFirst();
-    }
-
-    private static Stream<LottoPrize> candidates(final int correct) {
-        return Arrays.stream(LottoPrize.values())
-            .filter(prize -> prize.correct == correct);
-    }
-
     private final long prizeMoney;
     private final int correct;
     private final boolean correctBonus;
@@ -48,6 +25,10 @@ public enum LottoPrize {
         this.prizeMoney = prizeMoney;
         this.correct = correct;
         this.correctBonus = correctBonus;
+    }
+
+    public boolean isWinning() {
+        return this.prizeMoney > 0;
     }
 
     public long prizeMoney() {
@@ -60,5 +41,23 @@ public enum LottoPrize {
     
     public boolean correctBonus() {
         return this.correctBonus;
+    }
+
+    public static Optional<LottoPrize> find(final int correct, final boolean bonusMatch) {
+        final Stream<LottoPrize> candidates = candidates(correct);
+
+        return candidates
+                .filter(prize -> matchesBonus(prize, bonusMatch))
+                .findFirst();
+    }
+
+    private static boolean matchesBonus(LottoPrize prize, boolean bonusMatch) {
+        if (prize.correct != 5) return true;
+        return prize.correctBonus == bonusMatch;
+    }
+
+    private static Stream<LottoPrize> candidates(final int correct) {
+        return Arrays.stream(LottoPrize.values())
+                .filter(prize -> prize.correct == correct);
     }
 }
