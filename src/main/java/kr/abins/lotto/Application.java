@@ -14,7 +14,7 @@ public class Application {
         }
     }
 
-    public static void main0() throws RuntimeException {
+    private static void main0() throws RuntimeException {
         final AppConfig config = new AppConfig();
         final LottoProcessor processor = config.lottoProcessor();
         final LottoResult result = processor.start();
