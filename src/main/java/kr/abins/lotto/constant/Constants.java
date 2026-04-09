@@ -1,6 +1,6 @@
 package kr.abins.lotto.constant;
 
-public class Constants {
+public final class Constants {
 
     private Constants() {
         throw new IllegalStateException("cannot be instantiated for constants class");
